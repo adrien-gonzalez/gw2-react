@@ -1,5 +1,9 @@
 .App {
   text-align: center;
+  display: flex;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .App-logo {
@@ -17,7 +21,8 @@
   border-radius: 0px !important;
   border-bottom-right-radius: 15px !important;
   border-top-right-radius: 15px !important;
-  background-color: #F8F9F9 !important;
+  background-color: black !important;
+  opacity: 0.8 !important;
   margin-bottom: 15px !important;
   transition: 0.3s !important;
 }
@@ -29,11 +34,12 @@
  
 
 .App-header {
-  background-color: #282c34;
+  /* background-color: #282c34; */
+  background-color: white;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: flex-start;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
@@ -54,5 +60,67 @@
 
 
 
+/* BOARD WORLDBOSSES */
 
+.worldbosses{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.bossesPicture{
+  width: 28px;
+  height: 28px;
+}
+
+.table-border{
+  border: 1px solid #ddd;
+}
+#output{
+  width: 50vw;
+  max-width: 800px;
+  min-width: 500px;
+  padding: 15px;
+  background-color: black;
+  opacity: 0.8;
+  color: white;
+  font-weight: bold;
+  border-radius: 15px;
+} 
+
+.cell{
+  text-align: left;
+  padding: 3px;
+}
+
+.flex-picture{
+  display: flex;
+}
+
+.flex-picture > img{
+  margin-right: 8px;
+}
+
+
+.inprogress{
+  background-color: #C0392B;
+  color: white;
+}
+
+#output .remaining {
+  color: #30a0ea;
+}
+
+
+#output .timestamp {
+  color: #aa2b2b;
+}
+
+
+.table-bordered>tbody>tr>td{
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+}
 
