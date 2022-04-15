@@ -1,40 +1,40 @@
 import './App.css';
-import React, { /*useState,*/ useEffect } from 'react';
-import {fetchBosses} from './js/worldsboss';
 import Header from './components/header';
-
 // Background image
 import background from './img/background/background.png';
+import {Provider, connect } from 'react-redux';
+import Store from './store/configureStore';
+
+import Main from './pages/Main';
+import Test from './pages/Test';
 
 
 
-const App = () => {
+// Router for navigation
+import {
+  BrowserRouter,
+  Routes, //replaces "Switch" used till v5
+  Route,
+} from "react-router-dom";
 
-
-// const [account, setAccount] = useState([]);
-
-
-
-useEffect(() => {
-  fetchBosses()
-  setInterval(function() {
-		// $("#nowtime").html(getnowtime());
-		var rn = new Date();
-		var rs = rn.getSeconds();
-		// auto refresh table at 0 second
-		if (rs == 0)fetchBosses()
-	},1000);
-})
-
+const App = (props) => {
 
   return (
-    <div className="App" style={{backgroundImage: 'url('+background+')'}} >
-      <Header/>
-      <div className="worldbosses">
-        <table className="table table-bordered" id="output" ></table>
-      </div>
-    </div>
+    <Provider store={Store}>
+      <BrowserRouter>
+        <div className="App" style={{backgroundImage: 'url('+background+')'}} >
+          <Header/>
+          <Routes>
+            <Route exact path="/" element={<Main/>}/>
+            <Route exact path="pages/Test" element={<Test/>}/>
+            <Route exact path="pages/Main" element={<Main/>}/>
+          </Routes>
+        </div>
+      </BrowserRouter>
+    </Provider>
   );
 }
 
+
 export default App;
+// export default connect(mapStateToProps, mapDispatchToProps)(App);

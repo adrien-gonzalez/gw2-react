@@ -170,7 +170,7 @@ export function fetchBosses() {
   
           document.getElementById("output").innerHTML = htmlOutput;
   
-          console.log(htmlOutput)
+      
           current.map((curr2, id2) => 
           // for (i = 0; i < current.length; i++) {
               bossesKilled.map((boss, id3) => 
