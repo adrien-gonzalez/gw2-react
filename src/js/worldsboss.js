@@ -110,7 +110,7 @@ export function fetchBosses() {
         var bossesKilled = []
     }
    
-          htmlOutput += "<tr class='row'><td class='bossname'>Nom du Boss</td><td class='cell timestamp'>Heure</td><td class='cell remaining'></td></tr>";
+          htmlOutput += "<tr ><td class='cell bossname_title'>Nom du Boss</td><td class='cell time_title timestamp'>Heure</td><td class='time_title cell remaining'>Temps</td></tr>";
   
   
             // for (i = 0; i < current.length; i++) {
@@ -119,51 +119,51 @@ export function fetchBosses() {
           {
             switch (curr.key) {
                 case "Béhémoth des ombres": 
-                    htmlOutput += "<tr class='row' id='bosse_"+id+"'><td class='cell flex-picture'><img class='bossesPicture' src='"+Béhémotdesombres+"'>" + curr.key + "</td><td class='cell timestamp'>" + curr.stamp.toLocaleTimeString() + "</td><td class='cell remaining' id='remaining_"+id+"'>dans: " + formatRemaining(curr.remaining) + "</td></tr>"
+                    htmlOutput += "<tr  id='bosse_"+id+"'><td class='cell flex-picture'><img class='bossesPicture' src='"+Béhémotdesombres+"'>" + curr.key + "</td><td class='cell timestamp'>" + curr.stamp.toLocaleTimeString() + "</td><td class='cell remaining' id='remaining_"+id+"'>dans: " + formatRemaining(curr.remaining) + "</td></tr>"
                     break;
                 case "Chamane de Svanir":
-                    htmlOutput += "<tr class='row' id='bosse_"+id+"'><td class='cell flex-picture'><img class='bossesPicture' src='"+ChamanedeSvanir+"'>" + curr.key + "</td><td class='cell timestamp'>" + curr.stamp.toLocaleTimeString() + "</td><td class='cell remaining' id='remaining_"+id+"'>dans: " + formatRemaining(curr.remaining) + "</td></tr>"
+                    htmlOutput += "<tr  id='bosse_"+id+"'><td class='cell flex-picture'><img class='bossesPicture' src='"+ChamanedeSvanir+"'>" + curr.key + "</td><td class='cell timestamp'>" + curr.stamp.toLocaleTimeString() + "</td><td class='cell remaining' id='remaining_"+id+"'>dans: " + formatRemaining(curr.remaining) + "</td></tr>"
                     break;
                 case "Drakkar":
-                    htmlOutput += "<tr class='row' id='bosse_"+id+"'><td class='cell flex-picture'><img class='bossesPicture' src='"+Drakkar+"'>" + curr.key + "</td><td class='cell timestamp'>" + curr.stamp.toLocaleTimeString() + "</td><td class='cell remaining' id='remaining_"+id+"'>dans: " + formatRemaining(curr.remaining) + "</td></tr>"
+                    htmlOutput += "<tr  id='bosse_"+id+"'><td class='cell flex-picture'><img class='bossesPicture' src='"+Drakkar+"'>" + curr.key + "</td><td class='cell timestamp'>" + curr.stamp.toLocaleTimeString() + "</td><td class='cell remaining' id='remaining_"+id+"'>dans: " + formatRemaining(curr.remaining) + "</td></tr>"
                     break;
                 case "Élémentaire de feu":
-                    htmlOutput += "<tr class='row' id='bosse_"+id+"'><td class='cell flex-picture'><img class='bossesPicture' src='"+Élémentairedefeu+"'>" + curr.key + "</td><td class='cell timestamp'>" + curr.stamp.toLocaleTimeString() + "</td><td class='cell remaining' id='remaining_"+id+"'>dans: " + formatRemaining(curr.remaining) + "</td></tr>"
+                    htmlOutput += "<tr  id='bosse_"+id+"'><td class='cell flex-picture'><img class='bossesPicture' src='"+Élémentairedefeu+"'>" + curr.key + "</td><td class='cell timestamp'>" + curr.stamp.toLocaleTimeString() + "</td><td class='cell remaining' id='remaining_"+id+"'>dans: " + formatRemaining(curr.remaining) + "</td></tr>"
                     break;
                 case "Golem Marque II":
-                    htmlOutput += "<tr class='row' id='bosse_"+id+"'><td class='cell flex-picture'><img class='bossesPicture' src='"+GolemMarqueII+"'>" + curr.key + "</td><td class='cell timestamp'>" + curr.stamp.toLocaleTimeString() + "</td><td class='cell remaining' id='remaining_"+id+"'>dans: " + formatRemaining(curr.remaining) + "</td></tr>"
+                    htmlOutput += "<tr  id='bosse_"+id+"'><td class='cell flex-picture'><img class='bossesPicture' src='"+GolemMarqueII+"'>" + curr.key + "</td><td class='cell timestamp'>" + curr.stamp.toLocaleTimeString() + "</td><td class='cell remaining' id='remaining_"+id+"'>dans: " + formatRemaining(curr.remaining) + "</td></tr>"
                     break;
                 case "Griffe de Jormag":
-                    htmlOutput += "<tr class='row' id='bosse_"+id+"'><td class='cell flex-picture'><img class='bossesPicture' src='"+GriffedeJormag+"'>" + curr.key + "</td><td class='cell timestamp'>" + curr.stamp.toLocaleTimeString() + "</td><td class='cell remaining' id='remaining_"+id+"'>dans: " + formatRemaining(curr.remaining) + "</td></tr>"
+                    htmlOutput += "<tr  id='bosse_"+id+"'><td class='cell flex-picture'><img class='bossesPicture' src='"+GriffedeJormag+"'>" + curr.key + "</td><td class='cell timestamp'>" + curr.stamp.toLocaleTimeString() + "</td><td class='cell remaining' id='remaining_"+id+"'>dans: " + formatRemaining(curr.remaining) + "</td></tr>"
                     break;
                 case "Guivre de la jungle":
-                    htmlOutput += "<tr class='row' id='bosse_"+id+"'><td class='cell flex-picture'><img class='bossesPicture' src='"+Guivredelajungle+"'>" + curr.key + "</td><td class='cell timestamp'>" + curr.stamp.toLocaleTimeString() + "</td><td class='cell remaining' id='remaining_"+id+"'>dans: " + formatRemaining(curr.remaining) + "</td></tr>"
+                    htmlOutput += "<tr  id='bosse_"+id+"'><td class='cell flex-picture'><img class='bossesPicture' src='"+Guivredelajungle+"'>" + curr.key + "</td><td class='cell timestamp'>" + curr.stamp.toLocaleTimeString() + "</td><td class='cell remaining' id='remaining_"+id+"'>dans: " + formatRemaining(curr.remaining) + "</td></tr>"
                     break;
                 case "Le Destructeur":
-                    htmlOutput += "<tr class='row' id='bosse_"+id+"'><td class='cell flex-picture'><img class='bossesPicture' src='"+LeDestructeur+"'>" + curr.key + "</td><td class='cell timestamp'>" + curr.stamp.toLocaleTimeString() + "</td><td class='cell remaining' id='remaining_"+id+"'>dans: " + formatRemaining(curr.remaining) + "</td></tr>"
+                    htmlOutput += "<tr  id='bosse_"+id+"'><td class='cell flex-picture'><img class='bossesPicture' src='"+LeDestructeur+"'>" + curr.key + "</td><td class='cell timestamp'>" + curr.stamp.toLocaleTimeString() + "</td><td class='cell remaining' id='remaining_"+id+"'>dans: " + formatRemaining(curr.remaining) + "</td></tr>"
                     break;
                 case "Mégadestructeur":
-                    htmlOutput += "<tr class='row' id='bosse_"+id+"'><td class='cell flex-picture'><img class='bossesPicture' src='"+Mégadestructeur+"'>" + curr.key + "</td><td class='cell timestamp'>" + curr.stamp.toLocaleTimeString() + "</td><td class='cell remaining' id='remaining_"+id+"'>dans: " + formatRemaining(curr.remaining) + "</td></tr>"
+                    htmlOutput += "<tr  id='bosse_"+id+"'><td class='cell flex-picture'><img class='bossesPicture' src='"+Mégadestructeur+"'>" + curr.key + "</td><td class='cell timestamp'>" + curr.stamp.toLocaleTimeString() + "</td><td class='cell remaining' id='remaining_"+id+"'>dans: " + formatRemaining(curr.remaining) + "</td></tr>"
                     break;
                 case "Reine karka":
-                    htmlOutput += "<tr class='row' id='bosse_"+id+"'><td class='cell flex-picture'><img class='bossesPicture' src='"+Reinekarka+"'>" + curr.key + "</td><td class='cell timestamp'>" + curr.stamp.toLocaleTimeString() + "</td><td class='cell remaining' id='remaining_"+id+"'>dans: " + formatRemaining(curr.remaining) + "</td></tr>"
+                    htmlOutput += "<tr  id='bosse_"+id+"'><td class='cell flex-picture'><img class='bossesPicture' src='"+Reinekarka+"'>" + curr.key + "</td><td class='cell timestamp'>" + curr.stamp.toLocaleTimeString() + "</td><td class='cell remaining' id='remaining_"+id+"'>dans: " + formatRemaining(curr.remaining) + "</td></tr>"
                     break;
                 case "Taidha Covington":
-                    htmlOutput += "<tr class='row' id='bosse_"+id+"'><td class='cell flex-picture'><img class='bossesPicture' src='"+TaidhaCovington+"'>" + curr.key + "</td><td class='cell timestamp'>" + curr.stamp.toLocaleTimeString() + "</td><td class='cell remaining' id='remaining_"+id+"'>dans: " + formatRemaining(curr.remaining) + "</td></tr>"
+                    htmlOutput += "<tr  id='bosse_"+id+"'><td class='cell flex-picture'><img class='bossesPicture' src='"+TaidhaCovington+"'>" + curr.key + "</td><td class='cell timestamp'>" + curr.stamp.toLocaleTimeString() + "</td><td class='cell remaining' id='remaining_"+id+"'>dans: " + formatRemaining(curr.remaining) + "</td></tr>"
                     break;
                 case "Tequatl le Sans-soleil":
-                    htmlOutput += "<tr class='row' id='bosse_"+id+"'><td class='cell flex-picture'><img class='bossesPicture' src='"+TequatlleSanssoleil+"'>" + curr.key + "</td><td class='cell timestamp'>" + curr.stamp.toLocaleTimeString() + "</td><td class='cell remaining' id='remaining_"+id+"'>dans: " + formatRemaining(curr.remaining) + "</td></tr>"
+                    htmlOutput += "<tr  id='bosse_"+id+"'><td class='cell flex-picture'><img class='bossesPicture' src='"+TequatlleSanssoleil+"'>" + curr.key + "</td><td class='cell timestamp'>" + curr.stamp.toLocaleTimeString() + "</td><td class='cell remaining' id='remaining_"+id+"'>dans: " + formatRemaining(curr.remaining) + "</td></tr>"
                     break;
                 case "Triple terreur":
-                    htmlOutput += "<tr class='row' id='bosse_"+id+"'><td class='cell flex-picture'><img class='bossesPicture' src='"+Tripleterreur+"'>" + curr.key + "</td><td class='cell timestamp'>" + curr.stamp.toLocaleTimeString() + "</td><td class='cell remaining' id='remaining_"+id+"'>dans: " + formatRemaining(curr.remaining) + "</td></tr>"
+                    htmlOutput += "<tr  id='bosse_"+id+"'><td class='cell flex-picture'><img class='bossesPicture' src='"+Tripleterreur+"'>" + curr.key + "</td><td class='cell timestamp'>" + curr.stamp.toLocaleTimeString() + "</td><td class='cell remaining' id='remaining_"+id+"'>dans: " + formatRemaining(curr.remaining) + "</td></tr>"
                     break;
                 case "Ulgoth le Modniir":
-                    htmlOutput += "<tr class='row' id='bosse_"+id+"'><td class='cell flex-picture'><img class='bossesPicture' src='"+UlgothleModniir+"'>" + curr.key + "</td><td class='cell timestamp'>" + curr.stamp.toLocaleTimeString() + "</td><td class='cell remaining' id='remaining_"+id+"'>dans: " + formatRemaining(curr.remaining) + "</td></tr>"
+                    htmlOutput += "<tr  id='bosse_"+id+"'><td class='cell flex-picture'><img class='bossesPicture' src='"+UlgothleModniir+"'>" + curr.key + "</td><td class='cell timestamp'>" + curr.stamp.toLocaleTimeString() + "</td><td class='cell remaining' id='remaining_"+id+"'>dans: " + formatRemaining(curr.remaining) + "</td></tr>"
                     break;
             }
           }
   
-           // htmlOutput += "<tr class='row' id='bosse_"+id+"'><td class='cell flex-picture'><img class='bossesPicture' src='"+IMG+"'>" + curr.key + "</td><td class='cell timestamp'>" + curr.stamp.toLocaleTimeString() + "</td><td class='cell remaining' id='remaining_"+id+"'>dans: " + formatRemaining(curr.remaining) + "</td></tr>"
+           // htmlOutput += "<tr  id='bosse_"+id+"'><td class='cell flex-picture'><img class='bossesPicture' src='"+IMG+"'>" + curr.key + "</td><td class='cell timestamp'>" + curr.stamp.toLocaleTimeString() + "</td><td class='cell remaining' id='remaining_"+id+"'>dans: " + formatRemaining(curr.remaining) + "</td></tr>"
           )
             // }
           

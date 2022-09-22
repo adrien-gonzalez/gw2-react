@@ -4,9 +4,8 @@ import React, { /*useState,*/ useEffect } from 'react';
 import {fetchBosses} from '../js/worldsboss';
 
 
-const Main = (props) => {
+const Worldboss = (props) => {
 
-    
 useEffect(() => {
     fetchBosses()
     setInterval(function() {
@@ -23,7 +22,7 @@ useEffect(() => {
 
     return (
         <div className="worldbosses">
-            <table className="table table-bordered" id="output" ></table>
+            <table className="table" id="output" ></table>
         </div> 
     ); 
 }
@@ -42,5 +41,5 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(Worldboss);
 

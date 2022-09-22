@@ -95,6 +95,10 @@
   padding: 3px;
 }
 
+.bossname_title, .time_title{
+  font-size: 20px;
+}
+
 .flex-picture{
   display: flex;
 }
@@ -144,10 +148,19 @@
 
 }
 
+.valid_form{
+  display: flex;
+  justify-content: end;
+}
+
+form input{
+  width: 100%;
+}
 
 
-
-
+.input_error{
+  color: #aa2b2b;
+}
 
 
 
