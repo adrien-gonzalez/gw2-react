@@ -3,7 +3,7 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined';
 import '../App.css';
 import {connect} from 'react-redux';
-import React, { useState  } from 'react';
+import React, { useState } from 'react';
 import KeyIcon from '@mui/icons-material/Key';
 import ModalAuth from "./ModalAuth";
 import { useNavigate } from "react-router-dom";
@@ -11,16 +11,18 @@ import { useNavigate } from "react-router-dom";
 
 
 const Header = (props) => {
- 
+
+
     const [showModalAuth, setShowModalAuth] = useState(false);
+    const [color] = useState(localStorage.getItem('apiKey') ? '#4ECDC4' : '#C62E2D');
 
     let navigate = useNavigate();
     return (
         <header className="App-header">
-            <Button onClick={() => setShowModalAuth(true)} className="menuButton" variant="contained"><KeyIcon style={{ color: "white" }}></KeyIcon></Button>
+            <Button onClick={() => setShowModalAuth(true)}  style={{ backgroundColor: localStorage.getItem('apiKey') ? '#4ECDC4' : '#C62E2D' }} className={color == '#C62E2D' ? 'zoom menuButton' : 'menuButton'} variant="contained"><KeyIcon style={{ color: "white" }}></KeyIcon></Button>
             <ModalAuth show={showModalAuth} close={() => setShowModalAuth(false)} />
-            <Button onClick={()=>navigate("pages/Worldboss")} className="menuButton" variant="contained"><AccessTimeOutlinedIcon style={{ color: "white" }}></AccessTimeOutlinedIcon></Button>
-            <Button onClick={()=>navigate("pages/Test")} className="menuButton" variant="contained"><PersonOutlineOutlinedIcon style={{ color: "white" }}></PersonOutlineOutlinedIcon></Button>
+            <Button onClick={()=>navigate("pages/Worldboss")} style={{ backgroundColor: "black" }} className="menuButton" variant="contained"><AccessTimeOutlinedIcon style={{ color: "white" }}></AccessTimeOutlinedIcon></Button>
+            <Button onClick={()=>navigate("pages/Characters")} style={{ backgroundColor: "black" }} className="menuButton" variant="contained"><PersonOutlineOutlinedIcon style={{ color: "white" }}></PersonOutlineOutlinedIcon></Button>
         </header>
         
     ); 
@@ -33,7 +35,7 @@ const Header = (props) => {
 
 // RECUP DU STORE REDUX
 const mapStateToProps = ({ apiKey }) => ({
-    apiKey
+    apiKey,
 });
 
 // DISPATCH ACTIONS

@@ -1,3 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
+@font-face {
+  font-family: "Menomonia";
+  src: url("https://d1h9a8s8eodvjz.cloudfront.net/fonts/menomonia/08-02-12/font/menomonia.eot");
+  src: url("https://d1h9a8s8eodvjz.cloudfront.net/fonts/menomonia/08-02-12/font/menomonia.eot?#iefix") format("embedded-opentype"),
+      url("https://d1h9a8s8eodvjz.cloudfront.net/fonts/menomonia/08-02-12/font/menomonia.woff") format("woff"),
+      url("https://d1h9a8s8eodvjz.cloudfront.net/fonts/menomonia/08-02-12/font/menomonia.ttf") format("truetype"),
+      url("https://d1h9a8s8eodvjz.cloudfront.net/fonts/menomonia/08-02-12/font/menomonia.svg#MenomoniaRegular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+*{
+  font-family: "Menomonia";
+}
+
 .App {
   text-align: center;
   display: flex;
@@ -21,7 +38,6 @@
   border-radius: 0px !important;
   border-bottom-right-radius: 15px !important;
   border-top-right-radius: 15px !important;
-  background-color: black !important;
   opacity: 0.8 !important;
   margin-bottom: 15px !important;
   transition: 0.3s !important;
@@ -163,4 +179,304 @@ form input{
 }
 
 
+.zoom {
 
+  animation: zoom 0.8s linear;
+  animation-iteration-count: 2; 
+}
+
+
+@keyframes zoom {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.5, 1.5);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+
+input{
+  padding: 0.5em 0.6em;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-shadow: inset 0 1px 3px #ddd;
+  border-radius: 4px;
+  vertical-align: middle;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  outline: none;
+}
+
+input::placeholder {
+  color: #ccc;
+}
+
+input:focus{
+  outline: 1px solid;
+  outline-color: #1da1f2;
+}
+
+.modalButton{
+  border: 1px solid #333333 !important;
+  color: #333333 !important;
+  padding: 5px !important;
+  margin-right: 5px !important;
+  margin-top: 15px !important;
+  transition: 0.3s !important;
+}
+
+
+.modalButton:hover{
+  background: #333333 !important;
+  color: white !important;
+}
+
+.actuel_key{
+  margin-bottom: 10px;
+}
+
+
+.loader {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+}
+
+
+.charactersSection{
+  display: flex;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+#characters{
+  /* margin-top: 60px; */
+  max-height: 90vh;
+  padding: 15px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.characterForm{
+  border-radius: 10px;
+  /* min-height: 500px; */
+  width: 500px;
+  padding: 20px 20px 20px 20px;
+  /* border-radius: 10px; */
+  margin-bottom: 50px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  transition: all 0.5s ease;
+  font-family: 'cronos';
+}
+
+.characterForm:hover{
+  -webkit-transform:scale(1.10); /* Safari et Chrome */
+  -moz-transform:scale(1.10); /* Firefox */
+  -ms-transform:scale(1.10); /* Internet Explorer 9 */
+  -o-transform:scale(1.10); /* Opera */
+  transform:scale(1.10);
+  cursor: pointer;
+}
+
+.characterForm div{
+  /* background-color: grey; */
+  color: white;
+  /* height: 100%;aster
+  width: 100%; */
+  padding: 10px;
+}
+
+.Necromancer{
+  background-color: rgba(1,59,1,0.8);
+}
+
+.Guardian{
+  background-color: rgba(77,135,149,0.8);
+}
+
+.Elementalist{
+  background-color: rgba(161,108,118,0.8);
+}
+
+.Mesmer{
+  background-color: rgba(219,151,226,0.8);
+}
+
+.Ranger{
+  background-color: rgba(111,150,60,0.8);
+}
+
+.Thief{
+  background-color: rgba(37,35,38,0.8);
+}
+
+.Revenant{
+  background-color: rgba(35,56,61,0.8);
+}
+
+.Warrior{
+  background-color: rgba(123,76,32,0.8);
+}
+
+
+.picture{
+  height: 100px;
+}
+
+
+.name{
+  font-size: 20px;
+}
+
+.nameAndProfession{
+  display: flex;
+  justify-content: space-between;
+  padding-top: 0px !important;
+  font-size: 20px;
+}
+
+.craftList{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.crafting{
+  font-size: 15px;
+}
+
+.crafting img{
+  width: 20px;
+}
+.crafting span{
+  margin-left: 5px;
+}
+
+.craftListActive{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.need_api_key{
+  width: 100%;
+  color: rgb(198, 46, 45);
+  animation: information 0.4s linear;
+  animation-iteration-count: 1; 
+}
+
+@keyframes information {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(0.75);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.things > .content {
+  float: left;
+  width: 50%;
+  height: 500px;
+  -webkit-box-sizing: border-box; 
+	-moz-box-sizing: border-box;    
+	box-sizing: border-box;
+  position: relative;
+}
+
+.things > .content span {
+  width: 100px;
+  top: 0;
+  bottom: 500px;
+  left: -37px;
+  right: 0;
+  margin: auto;
+  position: absolute;
+  height: 150px;
+  color: #89323B;
+  font-size: 25px;
+  font-weight: 700;
+  animation: information 0.4s linear;
+  animation-iteration-count: 1; 
+}
+
+/* Arrow */
+
+.arrow {
+	position: relative;
+  margin: 0 auto;
+  width: 100px;
+  animation: information 0.4s linear;
+  animation-iteration-count: 1; 
+}
+
+.arrow .curve {
+  border: 2px solid #89323B;
+  border-color: transparent transparent transparent #89323B;
+  height: 221px;
+  width: 1199px;
+  border-radius: 230px 0 0 150px;
+  rotate: 5deg;
+  position: absolute;
+  left: -50px;
+}
+
+.arrow .point {
+  position: absolute;
+  left: -23px;
+  top: 156px;
+  rotate: -1deg;
+}
+
+.arrow .point:before, .arrow .point:after {
+	border: 1px solid #89323B;
+	height: 25px;
+	content: "";
+	position: absolute;
+}
+
+.arrow .point:before {
+	top: -11px;
+	left: -11px;
+	transform:rotate(-74deg);
+	-webkit-transform:rotate(-74deg);
+  -moz-transform:rotate(-74deg);
+  -ms-transform: rotate(-74deg);
+}
+
+.arrow .point:after {
+  top: -20px;
+	left: 5px;
+	transform:rotate(12deg);
+	-webkit-transform: rotate(12deg);
+  -moz-transform:rotate(12deg);
+  -ms-transform: rotate(12deg);
+}

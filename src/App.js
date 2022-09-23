@@ -6,7 +6,7 @@ import {Provider, connect } from 'react-redux';
 import Store from './store/configureStore';
 
 import Worldboss from './pages/Worldboss';
-import Test from './pages/Test';
+import Characters from './pages/Characters';
 
 
 // Router for navigation
@@ -28,7 +28,7 @@ const App = (props) => {
           
           <Routes>
             <Route exact path="/" element={<Worldboss/>}/>
-            <Route exact path="pages/Test" element={<Test/>}/>
+            <Route exact path="pages/Characters" element={<Characters/>}/>
             <Route exact path="pages/Worldboss" element={<Worldboss/>}/>
           </Routes>
 

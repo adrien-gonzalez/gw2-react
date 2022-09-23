@@ -167,8 +167,10 @@ export function fetchBosses() {
           )
             // }
           
-  
-          document.getElementById("output").innerHTML = htmlOutput;
+          
+        if($("#output").length > 0){
+            document.getElementById("output").innerHTML = htmlOutput;
+        }
   
       
           current.map((curr2, id2) => 

@@ -9,6 +9,7 @@ import React, { useState, useEffect } from 'react';
 const ModalAuth = (props) => {
   
   const [error, setError] = useState("");
+  const [apiKey, setApiKey] = useState(localStorage.getItem('apiKey') ?? '');
 
   useEffect(() => {
     setError("")
@@ -48,7 +49,9 @@ const ModalAuth = (props) => {
                   { 
                     if(response){
                       setSubmitting(false);
-
+                      localStorage.setItem('apiKey', values.key);
+                      setApiKey(values.key)
+                      close()
                     } else {
                       const err ="Votre clé n'est pas valide !"
                       setError(err)
@@ -68,20 +71,31 @@ const ModalAuth = (props) => {
               isSubmitting,
               /* and other goodies */
             }) => (
+              
               <form onSubmit={handleSubmit}>
+
+                <input
+                  type={apiKey ? 'text' : 'hidden'}
+                  disabled="true"
+                  className="actuel_key"
+                  value={apiKey}
+                  placeholder="Renseigner votre clé ici"
+                /> 
+
                 <input
                   type="text"
                   name="key"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.key}
-                />
-                
-                
+                  placeholder={apiKey ? 'Modifier votre clé ici' : 'Renseigner votre clé ici'}
+                /> 
+
+
                 <span className="input_error">{errors.key || error}</span>
                 <div className="valid_form">
-                  <Button onClick={close}>Annuler</Button>
-                  <Button type="submit" disabled={isSubmitting}>Valider</Button>
+                  <Button className="modalButton" onClick={close}>Annuler</Button>
+                  <Button  className="modalButton" type="submit" disabled={isSubmitting}>Valider</Button>
                 </div>
               </form>
             )}
@@ -92,4 +106,6 @@ const ModalAuth = (props) => {
   );
 };
 
+
 export default ModalAuth;
+
