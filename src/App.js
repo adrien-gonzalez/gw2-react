@@ -27,7 +27,7 @@ const App = (props) => {
           <Header/>
           
           <Routes>
-            <Route exact path="/" element={<Worldboss/>}/>
+            <Route exact path="/pages" element={<Worldboss/>}/>
             <Route exact path="pages/Characters" element={<Characters/>}/>
             <Route exact path="pages/Worldboss" element={<Worldboss/>}/>
           </Routes>

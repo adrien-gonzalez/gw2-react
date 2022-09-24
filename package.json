@@ -2,7 +2,7 @@
   "name": "gw2-react",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://adrien-gonzalez.github.io/gw2-react",
+  "homepage": "https://adrien-gonzalez.github.io/gw2-react/",
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
