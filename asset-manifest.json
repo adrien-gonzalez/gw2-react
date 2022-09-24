@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/gw2-react/static/css/main.d1e03054.css",
-    "main.js": "/gw2-react/static/js/main.47478449.js",
+    "main.css": "/gw2-react/static/css/main.91979139.css",
+    "main.js": "/gw2-react/static/js/main.8b748265.js",
     "static/js/787.211ad51a.chunk.js": "/gw2-react/static/js/787.211ad51a.chunk.js",
     "static/media/Necromancer.png": "/gw2-react/static/media/Necromancer.c64febc2bba2cef35fe6.png",
     "static/media/Elementalist.png": "/gw2-react/static/media/Elementalist.2cfbc30e47f7d21e5091.png",
@@ -30,12 +30,12 @@
     "static/media/Weaponsmith.png": "/gw2-react/static/media/Weaponsmith.a45a9b881a3f012d5035.png",
     "static/media/Chef.png": "/gw2-react/static/media/Chef.3af24edca3db58c0be15.png",
     "index.html": "/gw2-react/index.html",
-    "main.d1e03054.css.map": "/gw2-react/static/css/main.d1e03054.css.map",
-    "main.47478449.js.map": "/gw2-react/static/js/main.47478449.js.map",
+    "main.91979139.css.map": "/gw2-react/static/css/main.91979139.css.map",
+    "main.8b748265.js.map": "/gw2-react/static/js/main.8b748265.js.map",
     "787.211ad51a.chunk.js.map": "/gw2-react/static/js/787.211ad51a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d1e03054.css",
-    "static/js/main.47478449.js"
+    "static/css/main.91979139.css",
+    "static/js/main.8b748265.js"
   ]
 }
