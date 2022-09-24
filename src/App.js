@@ -14,6 +14,7 @@ import {
   BrowserRouter,
   Routes, //replaces "Switch" used till v5
   Route,
+  Navigate
 } from "react-router-dom";
 
 const App = (props) => {
@@ -25,9 +26,9 @@ const App = (props) => {
       <BrowserRouter>
         <div className="App" style={{backgroundImage: 'url('+background+')'}} >
           <Header/>
-          
           <Routes>
-            <Route exact path="/pages" element={<Worldboss/>}/>
+            <Route path="/gw2-react" element={<Navigate to="/pages/Worldboss" />} />
+            <Route path="/" element={<Navigate to="/pages/Worldboss" />} />
             <Route exact path="pages/Characters" element={<Characters/>}/>
             <Route exact path="pages/Worldboss" element={<Worldboss/>}/>
           </Routes>

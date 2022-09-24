@@ -94,17 +94,33 @@
 .table-border{
   border: 1px solid #ddd;
 }
-#output{
-  width: 50vw;
-  max-width: 800px;
-  min-width: 500px;
-  padding: 15px;
-  background-color: black;
-  opacity: 0.8;
-  color: white;
-  font-weight: bold;
-  border-radius: 15px;
-} 
+
+@media screen and (min-width: 621px) {
+  #output{
+    width: 50vw;
+    max-width: 800px;
+    min-width: 500px;
+    padding: 15px;
+    background-color: black;
+    opacity: 0.8;
+    color: white;
+    font-weight: bold;
+    border-radius: 15px;
+  } 
+}
+
+@media screen and (max-width: 620px) {
+  #output{
+    width: 95%;
+    padding: 15px;
+    background-color: black;
+    opacity: 0.8;
+    color: white;
+    font-weight: bold;
+    border-radius: 15px;
+    font-size: x-small;
+  } 
+}
 
 .cell{
   text-align: left;
@@ -267,16 +283,32 @@ input:focus{
   width: 100%;
 }
 
-.characterForm{
-  border-radius: 10px;
-  /* min-height: 500px; */
-  width: 500px;
-  padding: 20px 20px 20px 20px;
-  /* border-radius: 10px; */
-  margin-bottom: 50px;
-  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-  transition: all 0.5s ease;
-  font-family: 'cronos';
+@media screen and (min-width: 621px) {
+  .characterForm{
+    border-radius: 10px;
+    /* min-height: 500px; */
+    width: 500px;
+    padding: 20px 20px 20px 20px;
+    /* border-radius: 10px; */
+    margin-bottom: 50px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    transition: all 0.5s ease;
+    font-family: 'cronos';
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .characterForm{
+    border-radius: 10px;
+    /* min-height: 500px; */
+    width: 100%;
+    padding: 20px 20px 20px 20px;
+    /* border-radius: 10px; */
+    margin-bottom: 50px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    transition: all 0.5s ease;
+    font-family: 'cronos';
+  }
 }
 
 .characterForm:hover{
@@ -335,7 +367,7 @@ input:focus{
 
 
 .name{
-  font-size: 20px;
+  font-size: 1rem;
 }
 
 .nameAndProfession{
