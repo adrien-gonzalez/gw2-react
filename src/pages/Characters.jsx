@@ -8,6 +8,7 @@ import loader from '../img/chargement.gif';
 const Characters = (props) => {
 
     const [apiKey] = useState(localStorage.getItem('apiKey') ?? null);
+
     
 
     useEffect(() => {
@@ -16,10 +17,10 @@ const Characters = (props) => {
         }
     },[])
 
-
     if(apiKey){
         return (
             <section className="wrapper charactersSection">
+                <div className="loader" style={{backgroundImage: `url(${loader})`}}></div>
                 <div id="characters"></div>
             </section>
         ); 

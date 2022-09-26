@@ -142,6 +142,8 @@ import Warrior from '../img/personnages/Warrior.png';
                     }
                 })
             })
+
+            $(".loader").fadeOut()
         } else {
             alert("error")
         }
