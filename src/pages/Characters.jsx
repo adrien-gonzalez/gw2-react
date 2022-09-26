@@ -2,7 +2,7 @@ import '../App.css';
 import {connect} from 'react-redux';
 import React, {useEffect, useState } from 'react';
 import {characters} from '../js/characters';
-import loader from '../img/chargement.gif';
+import Spinner from 'react-bootstrap/Spinner';
 
 
 const Characters = (props) => {
@@ -20,7 +20,14 @@ const Characters = (props) => {
     if(apiKey){
         return (
             <section className="wrapper charactersSection">
-                <div className="loader" style={{backgroundImage: `url(${loader})`}}></div>
+                <Spinner
+                    className="loader"
+                    as="span"
+                    animation="border"
+                    size="lg"
+                    role="status"
+                    aria-hidden="true"
+                    />
                 <div id="characters"></div>
             </section>
         ); 

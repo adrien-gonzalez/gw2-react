@@ -76,7 +76,7 @@ const ModalAuth = (props) => {
 
                 <input
                   type={apiKey ? 'text' : 'hidden'}
-                  disabled="true"
+                  disabled={true}
                   className="actuel_key"
                   value={apiKey}
                   placeholder="Renseigner votre clé ici"

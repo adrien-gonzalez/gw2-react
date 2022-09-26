@@ -4,6 +4,7 @@ import React, { /*useState,*/ useEffect } from 'react';
 import {fetchBosses} from '../js/worldsboss';
 
 
+
 const Worldboss = (props) => {
 
 useEffect(() => {

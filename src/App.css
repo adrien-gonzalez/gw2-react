@@ -260,13 +260,11 @@ input:focus{
 
 .loader {
   position: absolute;
-  top: 0;
-  z-index: 1;
-  height: 100%;
-  right: 0;
-  width: 100%;
-  background-position: center center;
-  background-repeat: no-repeat;
+  /* right: 50%; */
+  right: calc(50% - 36px);
+  top: 45%;
+  height: 50px !important;
+  width: 50px !important;
 }
 
 
@@ -286,6 +284,28 @@ input:focus{
   justify-content: space-around;
   flex-wrap: wrap;
   width: 100%;
+  animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 0.4s;
+}
+
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+	}
+  25% {
+		opacity: 0.25;
+	}
+  50% {
+		opacity: 0.5;
+	}
+  75% {
+		opacity: 0.75;
+	}
+	100% {
+		opacity: 1;
+	}
 }
 
 @media screen and (min-width: 621px) {
