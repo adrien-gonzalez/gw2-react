@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// GET ACCOUNT INFO
 export function getAccount(key) {
     return axios
     .get(process.env.REACT_APP_API_URL+"account?access_token="+key)
@@ -7,6 +8,7 @@ export function getAccount(key) {
     .catch((error) => error.response.data.errors);     
 }
 
+// GET CHARACTER INFO
 export function getCharacters(key) {
     return axios
     .get(process.env.REACT_APP_API_URL+"characters?ids=all&access_token="+key)
@@ -24,4 +26,10 @@ export function getInfoGuild(guildId, key) {
     } 
 }
 
-// 7B754A69-BA5F-4340-89DB-C03B08843BFE98C7272C-B7B5-419E-837A-F98D9DED12B2
+// GET ITEM BY ID
+export function getItem(item_id, key) {
+    return axios
+    .get(process.env.REACT_APP_API_URL+"items/"+item_id+"?access_token="+key)
+    .then((response) => response.data)
+    .catch((error) => error.response.data.errors);    
+}

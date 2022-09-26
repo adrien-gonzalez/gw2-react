@@ -7,6 +7,8 @@ import Store from './store/configureStore';
 
 import Worldboss from './pages/Worldboss';
 import Characters from './pages/Characters';
+import Inventory from './pages/Inventory';
+
 
 
 // Router for navigation
@@ -29,11 +31,10 @@ const App = (props) => {
           <Routes>
             <Route path="/gw2-react" element={<Navigate to="/pages/Worldboss" />} />
             <Route path="/" element={<Navigate to="/pages/Worldboss" />} />
-            <Route exact path="pages/Characters" element={<Characters/>}/>
-            <Route exact path="pages/Worldboss" element={<Worldboss/>}/>
+            <Route exact path="pages/characters" element={<Characters/>}/>
+            <Route exact path="pages/worldboss" element={<Worldboss/>}/>
+            <Route exact path="pages/inventory" element={<Inventory/>}/>
           </Routes>
-
-
         </div>
       </BrowserRouter>
     </Provider>
@@ -41,6 +42,4 @@ const App = (props) => {
   );
 }
 
-
 export default App;
-// export default connect(mapStateToProps, mapDispatchToProps)(App);
