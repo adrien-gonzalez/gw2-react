@@ -577,6 +577,9 @@ input:focus{
   align-items: center;
 }
 
+.tr_bags > td:hover{
+  cursor: pointer;
+}
 
 @media screen and (min-width: 1096px) {
 
@@ -613,5 +616,15 @@ input:focus{
 
   .table_bags{
     width: 100% !important;
+  }
+
+  .MuiTooltip-popper{
+    top: -2% !important
+  }
+}
+
+@media screen and (min-width: 521px) {
+  .MuiTooltip-popper{
+    top: -3.5% !important;
   }
 }

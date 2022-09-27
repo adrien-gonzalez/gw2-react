@@ -3,8 +3,7 @@ import {connect} from 'react-redux';
 import React, { useState, useEffect } from 'react';
 import {getCharacters, getItem} from '../services/gw2API';
 import Spinner from 'react-bootstrap/Spinner';
-import { Table, TableBody, TableCell, TableRow    } from '@mui/material';
-import { ConstructionOutlined } from '@mui/icons-material';
+import { Table, TableBody, TableCell, TableRow, Tooltip, Zoom  } from '@mui/material';
 
 const Inventory = (props) => {
 
@@ -79,10 +78,13 @@ const Inventory = (props) => {
                                                                 )
                                                                 if(item_find){
                                                                     return( 
-                                                                        <TableCell title={item_find.description} style={{backgroundImage: `url(${item_find.icon})`}} key={'tab_'+index3}> 
-                                                                            {/* <img className="image_item" key={'item_'+index3} src={item_find.icon}/> */}
-                                                                            <span key={'img_'+index3} className='count_item'>{key3.count}</span>
-                                                                        </TableCell>    
+                                                                        <Tooltip TransitionComponent={Zoom} title={item_find.description ?? 'Aucune description'} key={'tooltip_'+index3} >
+                                                                            <TableCell style={{backgroundImage: `url(${item_find.icon})`}} key={'tab_'+index3}> 
+                                                                                {/* <img className="image_item" key={'item_'+index3} src={item_find.icon}/> */}
+                                                                                <span key={'img_'+index3} className='count_item'>{key3.count}</span>
+                                                                            </TableCell>  
+                                                                        </Tooltip>
+
                                                                     ) 
                                                                 }
                                                             }
