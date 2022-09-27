@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import {getCharacters, getItem} from '../services/gw2API';
 import Spinner from 'react-bootstrap/Spinner';
 import { Table, TableBody, TableCell, TableRow    } from '@mui/material';
+import { ConstructionOutlined } from '@mui/icons-material';
 
 const Inventory = (props) => {
 
@@ -26,7 +27,11 @@ const Inventory = (props) => {
                                 {
                                     item_table.push(item)
                                     if(index + 1 === data.length){
+                                        // console.log(item_table)
+                                           
+
                                         setLoad(true) 
+
                                     }
                                 })
                             }
@@ -38,6 +43,7 @@ const Inventory = (props) => {
             })
             setBags(data)
             setItem(item_table)
+
         } catch (error) {
             console.log(error)
         }
@@ -57,43 +63,30 @@ const Inventory = (props) => {
                 <section className='bags_section'>
                 {bags.map((key, index) => {
                     return (
-                        <div key={key.name}> {key.name}
-                            <Table >
+                        <div className="character_name" key={key.name}> {key.name}
+                            <Table className='table_bags'>
                                 <TableBody>
-                                    <TableRow>
+                                    <TableRow className="tr_bags">
                                         {/* GET BAG FOR EACH CHARACTER */}
                                         {key.bags.map((key2, index2) => {
                                             if(key2 != null){
                                                 // GET ID OF ITEM FOR EACH BAG
                                                 return ( 
-                                                    <TableCell key={index2}>
-                                                        {key2.inventory.map((key3, index3) => {
+                                                        key2.inventory.map((key3, index3) => {
                                                             if(key3 != null){
-
-                                                                console.log(key.name)
-
-                                                                console.log(key3)
-
-                                                                return ( 
-                                                                        item.map((key4, index6) => {
-                                                                            if(key4.id === key3.id){
-                                                                                return( 
-                                                                                    <div>
-                                                                                        <img key={index6} src={key4.icon}/>
-                                                                                        <span>{key3.count}</span>
-                                                                                       
-
-                                                                                    </div>
-                                                                                   
-
-                                                                                )
-                                                                            }
-                                                                        })
-                                                                    
-                                                                )  
+                                                                const item_find = item.find(
+                                                                    element => element.id == key3.id
+                                                                )
+                                                                if(item_find){
+                                                                    return( 
+                                                                        <TableCell title={item_find.description} style={{backgroundImage: `url(${item_find.icon})`}} key={'tab_'+index3}> 
+                                                                            {/* <img className="image_item" key={'item_'+index3} src={item_find.icon}/> */}
+                                                                            <span key={'img_'+index3} className='count_item'>{key3.count}</span>
+                                                                        </TableCell>    
+                                                                    ) 
+                                                                }
                                                             }
-                                                        })}
-                                                    </TableCell>
+                                                        })
                                                 )
                                             }
                                         })}
