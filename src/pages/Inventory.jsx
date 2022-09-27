@@ -69,16 +69,27 @@ const Inventory = (props) => {
                                                     <TableCell key={index2}>
                                                         {key2.inventory.map((key3, index3) => {
                                                             if(key3 != null){
+
+                                                                console.log(key.name)
+
+                                                                console.log(key3)
+
                                                                 return ( 
-                                                                    <div key={index3}>
-                                                                        {item.map((key4, index6) => {
+                                                                        item.map((key4, index6) => {
                                                                             if(key4.id === key3.id){
-                                                                                return(
-                                                                                    <img key={index6} src={key4.icon}></img>
+                                                                                return( 
+                                                                                    <div>
+                                                                                        <img key={index6} src={key4.icon}/>
+                                                                                        <span>{key3.count}</span>
+                                                                                       
+
+                                                                                    </div>
+                                                                                   
+
                                                                                 )
                                                                             }
-                                                                        })}
-                                                                    </div>
+                                                                        })
+                                                                    
                                                                 )  
                                                             }
                                                         })}
