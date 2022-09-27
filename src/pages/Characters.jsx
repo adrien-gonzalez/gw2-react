@@ -9,8 +9,6 @@ const Characters = (props) => {
 
     const [apiKey] = useState(localStorage.getItem('apiKey') ?? null);
 
-    
-
     useEffect(() => {
         if(apiKey != null){
             characters(apiKey)
