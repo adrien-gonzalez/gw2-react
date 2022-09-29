@@ -33,3 +33,8 @@ export function getItem(item_id, key) {
     .then((response) => response.data)
     .catch((error) => error.response.data.errors);    
 }
+
+
+
+// use getCharacters(key) and get equipment / skin / id
+// https://api.guildwars2.com/v2/skins/7662
