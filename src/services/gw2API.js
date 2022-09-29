@@ -9,11 +9,11 @@ export function getAccount(key) {
 }
 
 // GET CHARACTER INFO
-export function getCharacters(key) {
+export function getCharacters(key, id = "all") {
     return axios
-    .get(process.env.REACT_APP_API_URL+"characters?ids=all&access_token="+key)
+    .get(process.env.REACT_APP_API_URL+"characters?ids="+id+"&access_token="+key)
     .then((response) => response.data)
-    .catch((error) => error.response.data.errors);     
+    .catch((error) => error.response.data.errors);   
 }
 
 
@@ -33,6 +33,14 @@ export function getItem(item_id, key) {
     .then((response) => response.data)
     .catch((error) => error.response.data.errors);    
 }
+
+export function getSkin(skin_id, key) {
+    return axios
+    .get(process.env.REACT_APP_API_URL+"skins/"+skin_id+"?access_token="+key)
+    .then((response) => response.data)
+    .catch((error) => error.response.data.errors);    
+}
+
 
 
 

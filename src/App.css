@@ -353,35 +353,35 @@ input:focus{
   padding: 10px;
 }
 
-.Necromancer{
+#Necromancer{
   background-color: rgba(1,59,1,0.8);
 }
 
-.Guardian{
+#Guardian{
   background-color: rgba(77,135,149,0.8);
 }
 
-.Elementalist{
+#Elementalist{
   background-color: rgba(161,108,118,0.8);
 }
 
-.Mesmer{
+#Mesmer{
   background-color: rgba(219,151,226,0.8);
 }
 
-.Ranger{
+#Ranger{
   background-color: rgba(111,150,60,0.8);
 }
 
-.Thief{
+#Thief{
   background-color: rgba(37,35,38,0.8);
 }
 
-.Revenant{
+#Revenant{
   background-color: rgba(35,56,61,0.8);
 }
 
-.Warrior{
+#Warrior{
   background-color: rgba(123,76,32,0.8);
 }
 

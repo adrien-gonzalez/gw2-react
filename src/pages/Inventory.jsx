@@ -8,9 +8,8 @@ import { Table, TableBody, TableCell, TableRow, Tooltip, Zoom  } from '@mui/mate
 const Inventory = (props) => {
 
     const [apiKey] = useState(localStorage.getItem('apiKey') ?? null);
-    const [bags, setBags] = useState();
     const [load, setLoad] = useState(false);
-
+    const [bags, setBags] = useState();
     const [item, setItem] = useState();
     const item_table = []
 
@@ -26,11 +25,7 @@ const Inventory = (props) => {
                                 {
                                     item_table.push(item)
                                     if(index + 1 === data.length){
-                                        // console.log(item_table)
-                                           
-
                                         setLoad(true) 
-
                                     }
                                 })
                             }
@@ -71,24 +66,22 @@ const Inventory = (props) => {
                                             if(key2 != null){
                                                 // GET ID OF ITEM FOR EACH BAG
                                                 return ( 
-                                                        key2.inventory.map((key3, index3) => {
-                                                            if(key3 != null){
-                                                                const item_find = item.find(
-                                                                    element => element.id == key3.id
-                                                                )
-                                                                if(item_find){
-                                                                    return( 
-                                                                        <Tooltip TransitionComponent={Zoom} title={item_find.description ?? 'Aucune description'} key={'tooltip_'+index3} >
-                                                                            <TableCell style={{backgroundImage: `url(${item_find.icon})`}} key={'tab_'+index3}> 
-                                                                                {/* <img className="image_item" key={'item_'+index3} src={item_find.icon}/> */}
-                                                                                <span key={'img_'+index3} className='count_item'>{key3.count}</span>
-                                                                            </TableCell>  
-                                                                        </Tooltip>
-
-                                                                    ) 
-                                                                }
+                                                    key2.inventory.map((key3, index3) => {
+                                                        if(key3 != null){
+                                                            const item_find = item.find(
+                                                                element => element.id == key3.id
+                                                            )
+                                                            if(item_find){
+                                                                return( 
+                                                                    <Tooltip TransitionComponent={Zoom} title={item_find.description ?? 'Aucune description'} key={'tooltip_'+index3} >
+                                                                        <TableCell style={{backgroundImage: `url(${item_find.icon})`}} key={'tab_'+index3}> 
+                                                                            <span key={'img_'+index3} className='count_item'>{key3.count}</span>
+                                                                        </TableCell>  
+                                                                    </Tooltip>
+                                                                ) 
                                                             }
-                                                        })
+                                                        }
+                                                    })
                                                 )
                                             }
                                         })}
@@ -125,7 +118,6 @@ const Inventory = (props) => {
                     <span>Veuillez ajouter votre clé</span>
                 </div>
                 </div>
-            // <h2 className="need_api_key">Veuillez ajouter votre clé API pour accèder à cette rubrique</h2>
         )
     }
 }
