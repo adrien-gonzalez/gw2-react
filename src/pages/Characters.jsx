@@ -78,7 +78,7 @@ const Characters = (props) => {
         if(apiKey != null){
             characters()
         }
-    },[])
+    },[apiKey])
 
 
     if(apiKey){
