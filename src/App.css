@@ -635,22 +635,23 @@ input:focus{
   width: 50px;
   height: 50px;
 }
-.character_equipment{
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-.character_equipment td{
-  /* background: #50473D; */
-  /* border: 2px solid #635A65; */
-  /* width: 35px; */
-  /* height: 58px; */
 
-}
-
-@media (min-width: 576px){
+@media (min-width: 476px){
   .modal-dialog{
-    max-width: 650px !important;
-    width: 75% !important;
+    max-width: 500px !important;
+  }
+  .css-1ex1afd-MuiTableCell-root{
+    padding:25px !important;
+  }
+  
+}
+
+@media (max-width: 475px){
+  .modal-dialog{
+    width: 100%;
+  }
+  .css-1ex1afd-MuiTableCell-root{
+    padding: 18px !important;
   }
 }
 
@@ -664,10 +665,56 @@ input:focus{
   justify-content: center;
 }
 
+
+
 .css-1ex1afd-MuiTableCell-root{
-  padding:25px !important;
-}
+  border-bottom: none !important;
+} 
 
 .border_equipment{
-  border: 2px solid #747372;
+  border: 2px solid #747372 !important;
+}
+
+.modal_character{
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: inherit;
+  background-position: center;
+}
+
+.character_equipment td{
+  background-size: contain;
+}
+
+.character_equipment .border_equipment:hover{
+  cursor: pointer;
+}
+
+.clean{
+  background: rgba(232, 232, 232, 0.1);
+}
+
+.character_equipment_header{
+  background-color: #333333 !important;
+  color: white !important;
+  border-bottom: none !important;
+}
+.charater_equipement_button{
+  margin: 0px !important;
+  border-radius: 0px !important;
+  background-color: #333333 !important;
+  color: white !important;
+}
+
+.changeView{
+  display: flex;
+}
+
+.changeView div:first-child{
+  padding-right: 5px;
+}
+
+
+.changeView div svg:hover{
+  cursor: pointer;
 }

@@ -8,13 +8,16 @@ import { Login } from "@mui/icons-material";
 import { Table, TableBody, TableCell, TableRow, Tooltip, Zoom  } from '@mui/material';
 import $ from 'jquery';
 import equipment_background from '../img/background/equipment.png';
-
+import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
+import ShieldOutlinedIcon from '@mui/icons-material/ShieldOutlined';
 
 const ModalCharacter = (props) => {
   
 
   const [apiKey] = useState(localStorage.getItem('apiKey') ?? '');
   const [equipment, setEquipment] = useState(false);
+  const [view, setView] = useState("equipment");
+
   const tr = 12
   const td = 8
 
@@ -54,6 +57,11 @@ const ModalCharacter = (props) => {
   function close(){
       props.close()
   }
+
+  function changeView(){
+    console.log(view)
+  }
+
 
   const skin = async (skin, api) => {
     const data = await getSkin(skin, api)
@@ -102,7 +110,7 @@ const ModalCharacter = (props) => {
               )
             } else {
             return(
-              <TableCell  className="border_equipment"></TableCell>
+              <TableCell  className="border_equipment clean"></TableCell>
             )
           }
           
@@ -131,12 +139,12 @@ const ModalCharacter = (props) => {
               )  
             } else {
               return(
-                <TableCell  className="border_equipment"></TableCell>
+                <TableCell  className="border_equipment clean"></TableCell>
               )  
             }
           } else {
             return(
-              <TableCell  className="border_equipment"></TableCell>
+              <TableCell  className="border_equipment clean"></TableCell>
             )  
           }
 
@@ -162,50 +170,82 @@ const ModalCharacter = (props) => {
 
 
   if(equipment != false){
-    return ( 
-      <>
-        <Modal 
-          show={props.show} 
-          onHide={props.onHide}
-          size="sl"
-          aria-labelledby="contained-modal-title-vcenter"
-          centered
-        >
-          <Modal.Header>
-            <Modal.Title id="contained-modal-title-vcenter">Info personnage</Modal.Title>
-          </Modal.Header>
+    if(view == "equipment"){
+      return ( 
+        <>
+          <Modal  
+            show={props.show} 
+            onHide={props.onHide}
+            size="sl"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+          >
+            <Modal.Header className="character_equipment_header">
+              <Modal.Title id="contained-modal-title-vcenter">Info personnage</Modal.Title>
+              <div className="changeView">
+                <div><Inventory2OutlinedIcon onClick={() => setView("inventory")} style={{ color: "white" }}></Inventory2OutlinedIcon></div>
+                <div><ShieldOutlinedIcon onClick={() => setView("equipment")} style={{ color: "white" }}></ShieldOutlinedIcon></div>
+              </div>
+            </Modal.Header>
 
-          <Modal.Body>
-           
-          <Table style={{backgroundImage: `url(${equipment_background})`}} className="character_equipment">
-              <TableBody>
-              {Array(tr).fill(1).map((el, i) => 
-                 
-                <TableRow>
-                  {Array(td).fill(1).map((el, j) =>
-                      
-                      find(i, j, equipment)
-                      
-                      // <TableCell></TableCell>
-                  )}
-              </TableRow>
-              )}
-           
-               
-               
-              </TableBody>
-          </Table>
-                    {/* {equipment.map((key, index) => {
-                        return(
-                          <div className="item_image" style={{backgroundImage: `url(${key.icon})`}} key={key.name+index}>{key.name}</div>
-                        )
-                    })}  */}
-              
-          </Modal.Body>
-          <Button className="modalButton" onClick={close}>Annuler</Button>
-        </Modal>
-      </>
-    );
+            <Modal.Body style={{backgroundImage: `url(${equipment_background})`}}  className="modal_character">
+            
+            <Table className="character_equipment">
+                <TableBody>
+                {Array(tr).fill(1).map((el, i) => 
+                  
+                  <TableRow>
+                    {Array(td).fill(1).map((el, j) =>
+                        
+                        find(i, j, equipment)
+                        
+                        // <TableCell></TableCell>
+                    )}
+                </TableRow>
+                )}
+            
+                
+                
+                </TableBody>
+            </Table>
+                      {/* {equipment.map((key, index) => {
+                          return(
+                            <div className="item_image" style={{backgroundImage: `url(${key.icon})`}} key={key.name+index}>{key.name}</div>
+                          )
+                      })}  */}
+                
+            </Modal.Body>
+            <Button className="charater_equipement_button" onClick={close}>Annuler</Button>
+          </Modal>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <Modal 
+            show={props.show} 
+            onHide={props.onHide}
+            size="sl"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+          >
+            <Modal.Header className="character_equipment_header">
+              <Modal.Title id="contained-modal-title-vcenter">Info personnage</Modal.Title>
+              <div className="changeView">
+                <div><Inventory2OutlinedIcon onClick={() => setView("inventory")} style={{ color: "white" }}></Inventory2OutlinedIcon></div>
+                <div><ShieldOutlinedIcon onClick={() => setView("equipment")} style={{ color: "white" }}></ShieldOutlinedIcon></div>
+              </div>
+            </Modal.Header>
+    
+            <Modal.Body>
+                <div>dddd</div>
+            </Modal.Body>
+            <Button className="charater_equipement_button" onClick={close}>Annuler</Button>
+  
+          </Modal>
+        </>
+      );
+    }
   } else {
     return (
       <>
@@ -216,7 +256,7 @@ const ModalCharacter = (props) => {
           aria-labelledby="contained-modal-title-vcenter"
           centered
         >
-          <Modal.Header>
+          <Modal.Header className="character_equipment_header">
             <Modal.Title id="contained-modal-title-vcenter">Info personnage</Modal.Title>
           </Modal.Header>
   
@@ -230,7 +270,7 @@ const ModalCharacter = (props) => {
               aria-hidden="true"
             />
           </Modal.Body>
-          <Button className="modalButton" onClick={close}>Annuler</Button>
+          <Button className="charater_equipement_button" onClick={close}>Annuler</Button>
 
         </Modal>
       </>
