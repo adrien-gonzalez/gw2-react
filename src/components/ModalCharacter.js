@@ -14,22 +14,20 @@ const ModalCharacter = (props) => {
 
   const [apiKey] = useState(localStorage.getItem('apiKey') ?? '');
   const [equipment, setEquipment] = useState(false);
-  const tr = 9
-  const td = 6
+  const tr = 12
+  const td = 10
+
+
 
   const inventory = [
-    {id : "tr1_td1" , name : "Helm"},
-    {id : "tr2_td2" , name : "Shoulders"},
-    {id : "tr3_td3" , name : "Coat"},
-    {id : "tr4_td4" , name : "Gloves"},
-    {id : "tr5_td5" , name : "Leggings"},
-    {id : "tr6_td6" , name : "Boots"},
-
-    {id : "tr6_td6" , name : "Boots"},
-    {id : "tr6_td6" , name : "Boots"},
-    {id : "tr6_td6" , name : "Boots"},
-
-
+    {id : '0+0' , name : "Helm"},
+    {id : '1+0' , name : "Shoulders"},
+    {id : '2+0' , name : "Coat"},
+    {id : '3+0' , name : "Gloves"},
+    {id : '4+0' , name : "Leggings"},
+    {id : '5+0' , name : "Boots"},
+    {id : '7+0' , name : "Weapon"},
+    {id : '8+0' , name : "Weapon"},
   ]
 
  
@@ -60,21 +58,60 @@ const ModalCharacter = (props) => {
     }))
 
    setEquipment(object)
+   console.log(object)
 
   };
 
-  function find(i, equipment_){
-   
-    const item_find = equipment_.find(
-      element => element.details ? element.details.type : element.detail == inventory[i].name
-    )
-    console.log(item_find)
+  function find(i, j, equipment_){
 
-    // if(item_find){
-    //   return(
-    //     <TableCell>{item_find.name}</TableCell>
-    //   )
-    // }
+      const item_find_inventory = inventory.find(
+        element => element.id == i+'+'+j
+      )
+
+
+      if(typeof item_find_inventory != "undefined"){
+
+        if(item_find_inventory.name != "Weapon"){
+          const item_find = equipment_.filter(
+            element => element.details ? element.details.type == item_find_inventory.name : element.type == item_find_inventory.name
+          )
+
+          if(typeof item_find[0] !="undefined"){
+            return(
+              <TableCell style={{backgroundImage: `url(${item_find[0].icon})`}}></TableCell>
+            )
+          } else {
+            return(
+              <TableCell></TableCell>
+            )
+          }
+        } else {
+
+          const item_find = equipment_.filter(
+            element => element.type == item_find_inventory.name
+          )
+          return(
+            <TableCell></TableCell>
+          )
+
+          // return(
+          //   item_find.slice(0,3).map((key, index) =>{
+          //     if(key.details.type != "Trident" && key.details.type != "Harpoon" ){
+          //       return(
+          //             <TableCell style={{backgroundImage: `url(${key.icon})`}}></TableCell>
+          //           )
+                    
+          //     }
+
+          //   })
+          // )
+        }
+      } else {
+        return(
+          <TableCell></TableCell>
+        )
+      }
+
   }
   
 
@@ -82,24 +119,26 @@ const ModalCharacter = (props) => {
     // console.log(inventory)
     setEquipment(false)
 
+   
   
+   
 
    
     if(apiKey != null && props.character){
       character_detail(props.character)
-
-     
-
-      // console.log(equipment[0].details.type)
-      // console.log(equipment[0].type)
-      // console.log(equipment)
-
     }
 
   },[props.character, apiKey])
 
 
   if(equipment != false){
+  //   const item_find = equipment.find(
+  //     element => element.details ? element.details.type == "Boots" : element.type == "Boots"
+  //   )
+
+
+  //   console.log(item_find)
+
     return ( 
       <>
         <Modal 
@@ -115,16 +154,16 @@ const ModalCharacter = (props) => {
 
           <Modal.Body>
            
-          <Table>
+          <Table className="character_equipment">
               <TableBody>
-                
-              {Array(tr).fill(1).map((el, i) =>
+              {Array(tr).fill(1).map((el, i) => 
+                 
                 <TableRow>
                   {Array(td).fill(1).map((el, j) =>
-                     
-                      find(i, equipment)
                       
-                      // <TableCell id="ee">{i}</TableCell>
+                      find(i, j, equipment)
+                      
+                      // <TableCell></TableCell>
                   )}
               </TableRow>
               )}
