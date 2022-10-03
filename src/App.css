@@ -718,3 +718,7 @@ input:focus{
 .changeView div svg:hover{
   cursor: pointer;
 }
+
+.loading_character_equipment{
+  height: 150px;
+}

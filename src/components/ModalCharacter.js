@@ -18,6 +18,12 @@ const ModalCharacter = (props) => {
   const [equipment, setEquipment] = useState(false);
   const [view, setView] = useState("equipment");
 
+  const [bags, setBags] = useState("equipment");
+
+
+  const item_table = []
+
+
   const tr = 12
   const td = 8
 
@@ -58,34 +64,41 @@ const ModalCharacter = (props) => {
       props.close()
   }
 
-  function changeView(){
-    console.log(view)
-  }
-
-
-  const skin = async (skin, api) => {
+  const getMySkin = async (skin, api) => {
     const data = await getSkin(skin, api)
     return data
  
   };
 
-  const item = async (item, api) => {
+  const getMyEquipment = async (item, api) => {
     const data = await getItem(item, api)
     return data
   };
 
   const character_detail = async (character_info) =>  {
 
-    const object = await Promise.all(character_info.equipment.map((key, index) => {
-      if(key.skin){
-        return skin(key.skin, apiKey)
-      } else {
-        return item(key.id, apiKey)
-      }
-    }))
+    // const object = await Promise.all(character_info.equipment.map((key, index) => {
+    //   if(key.skin){
+    //     return getMySkin(key.skin, apiKey)
+    //   } else {
+    //     return getMyEquipment(key.id, apiKey)
+    //   }
+    // }))
 
-   setEquipment(object)
-   console.log(object)
+    const bags = await character_info.bags.map((key, index) => {
+      if(key){
+        key.inventory.map((key2, index2) => {
+            if(key2 != null){
+              return getMyEquipment(key2.id, apiKey)
+            }
+          })
+      } 
+    })
+
+    console.log(bags)
+
+
+// setEquipment(object)
   };
 
   function find(i, j, equipment_){
@@ -105,12 +118,12 @@ const ModalCharacter = (props) => {
           if(typeof item_find[[item_find_inventory.number]] !="undefined"){
               return(
                 <Tooltip TransitionComponent={Zoom} title={item_find[[item_find_inventory.number]].name ?? 'Aucune description'} key={'tooltip_'+i+'+'+j} >
-                  <TableCell className="border_equipment" style={{backgroundImage: `url(${item_find[[item_find_inventory.number]].icon})`}}></TableCell>
+                  <TableCell  key={'equipment_'+i+'+'+j} className="border_equipment" style={{backgroundImage: `url(${item_find[[item_find_inventory.number]].icon})`}}></TableCell>
                 </Tooltip>
               )
             } else {
             return(
-              <TableCell  className="border_equipment clean"></TableCell>
+              <TableCell key={'equipment_'+i+'+'+j} className="border_equipment clean"></TableCell>
             )
           }
           
@@ -127,24 +140,24 @@ const ModalCharacter = (props) => {
             && item_find[item_find_inventory.number].details.type != "Speargun" && (i+'+'+j == '7+0' || i+'+'+j == '8+0' || i+'+'+j == '9+0' || i+'+'+j == '10+0')){
               return(
                 <Tooltip TransitionComponent={Zoom} title={item_find[item_find_inventory.number].name ?? 'Aucune description'} key={'tooltip_'+i+'+'+j} >
-                  <TableCell className="border_equipment" style={{backgroundImage: `url(${item_find[item_find_inventory.number].icon})`}}></TableCell>
+                  <TableCell key={'equipment_'+i+'+'+j}  className="border_equipment" style={{backgroundImage: `url(${item_find[item_find_inventory.number].icon})`}}></TableCell>
                 </Tooltip>
               )  
             } else if((i+'+'+j == '8+6' || i+'+'+j == '8+7') && (item_find[item_find_inventory.number].details.type == "Trident" || item_find[item_find_inventory.number].details.type == "Harpoon"  
             || item_find[item_find_inventory.number].details.type == "Speargun" )){
               return(
                 <Tooltip TransitionComponent={Zoom} title={item_find[item_find_inventory.number].name ?? 'Aucune description'} key={'tooltip_'+i+'+'+j} >
-                  <TableCell className="border_equipment" style={{backgroundImage: `url(${item_find[item_find_inventory.number].icon})`}}></TableCell>
+                  <TableCell  key={'equipment_'+i+'+'+j} className="border_equipment" style={{backgroundImage: `url(${item_find[item_find_inventory.number].icon})`}}></TableCell>
                 </Tooltip>
               )  
             } else {
               return(
-                <TableCell  className="border_equipment clean"></TableCell>
+                <TableCell key={'equipment_'+i+'+'+j} className="border_equipment clean"></TableCell>
               )  
             }
           } else {
             return(
-              <TableCell  className="border_equipment clean"></TableCell>
+              <TableCell key={'equipment_'+i+'+'+j} className="border_equipment clean"></TableCell>
             )  
           }
 
@@ -152,7 +165,7 @@ const ModalCharacter = (props) => {
         }
       } else {
         return(
-          <TableCell></TableCell>
+          <TableCell key={'equipment_'+i+'+'+j}></TableCell>
         )
       }
 
@@ -194,7 +207,7 @@ const ModalCharacter = (props) => {
                 <TableBody>
                 {Array(tr).fill(1).map((el, i) => 
                   
-                  <TableRow>
+                  <TableRow  key={i}>
                     {Array(td).fill(1).map((el, j) =>
                         
                         find(i, j, equipment)
@@ -260,7 +273,7 @@ const ModalCharacter = (props) => {
             <Modal.Title id="contained-modal-title-vcenter">Info personnage</Modal.Title>
           </Modal.Header>
   
-          <Modal.Body>
+          <Modal.Body className="loading_character_equipment">
             <Spinner
               className="loader"
               as="span"
