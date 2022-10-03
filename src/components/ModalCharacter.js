@@ -7,6 +7,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import { Login } from "@mui/icons-material";
 import { Table, TableBody, TableCell, TableRow, Tooltip, Zoom  } from '@mui/material';
 import $ from 'jquery';
+import equipment_background from '../img/background/equipment.png';
 
 
 const ModalCharacter = (props) => {
@@ -15,19 +16,37 @@ const ModalCharacter = (props) => {
   const [apiKey] = useState(localStorage.getItem('apiKey') ?? '');
   const [equipment, setEquipment] = useState(false);
   const tr = 12
-  const td = 10
+  const td = 8
 
 
 
   const inventory = [
-    {id : '0+0' , name : "Helm"},
-    {id : '1+0' , name : "Shoulders"},
-    {id : '2+0' , name : "Coat"},
-    {id : '3+0' , name : "Gloves"},
-    {id : '4+0' , name : "Leggings"},
-    {id : '5+0' , name : "Boots"},
-    {id : '7+0' , name : "Weapon"},
-    {id : '8+0' , name : "Weapon"},
+    {id : '0+0' , name : "Helm", number : 0},
+    {id : '1+0' , name : "Shoulders", number : 0},
+    {id : '2+0' , name : "Coat", number : 0},
+    {id : '3+0' , name : "Gloves", number : 0},
+    {id : '4+0' , name : "Leggings", number : 0},
+    {id : '5+0' , name : "Boots", number : 0},
+    {id : '7+0' , name : "Weapon", number : 1},
+    {id : '8+0' , name : "Weapon", number : 2},
+    {id : '8+5' , name : "HelmAquatic", number : 0},
+    {id : '9+0' , name : "Weapon", number : 3},
+    {id : '10+0' , name : "Weapon", number : 4},
+    {id : '8+6' , name : "Weapon", number : 0},
+    {id : '8+7' , name : "Weapon", number : 1},
+
+    {id : '5+5' , name : "Back", number : 0},
+    {id : '6+6' , name : "Ring", number : 0},
+    {id : '6+7' , name : "Ring", number : 1},
+    {id : '6+5' , name : "Amulet", number : 0},
+    {id : '5+6' , name : "Accessory", number : 0},
+    {id : '5+7' , name : "Accessory", number : 1},
+
+
+    {id : '9+5' , name : "Foraging", number : 0},
+    {id : '9+6' , name : "Mining", number : 0},
+    {id : '9+7' , name : "Logging", number : 0}
+
   ]
 
  
@@ -59,7 +78,6 @@ const ModalCharacter = (props) => {
 
    setEquipment(object)
    console.log(object)
-
   };
 
   function find(i, j, equipment_){
@@ -76,35 +94,53 @@ const ModalCharacter = (props) => {
             element => element.details ? element.details.type == item_find_inventory.name : element.type == item_find_inventory.name
           )
 
-          if(typeof item_find[0] !="undefined"){
+          if(typeof item_find[[item_find_inventory.number]] !="undefined"){
+              return(
+                <Tooltip TransitionComponent={Zoom} title={item_find[[item_find_inventory.number]].name ?? 'Aucune description'} key={'tooltip_'+i+'+'+j} >
+                  <TableCell className="border_equipment" style={{backgroundImage: `url(${item_find[[item_find_inventory.number]].icon})`}}></TableCell>
+                </Tooltip>
+              )
+            } else {
             return(
-              <TableCell style={{backgroundImage: `url(${item_find[0].icon})`}}></TableCell>
-            )
-          } else {
-            return(
-              <TableCell></TableCell>
+              <TableCell  className="border_equipment"></TableCell>
             )
           }
+          
+           
         } else {
 
           const item_find = equipment_.filter(
             element => element.type == item_find_inventory.name
           )
-          return(
-            <TableCell></TableCell>
-          )
 
-          // return(
-          //   item_find.slice(0,3).map((key, index) =>{
-          //     if(key.details.type != "Trident" && key.details.type != "Harpoon" ){
-          //       return(
-          //             <TableCell style={{backgroundImage: `url(${key.icon})`}}></TableCell>
-          //           )
-                    
-          //     }
+          if(typeof item_find[item_find_inventory.number] !="undefined"){
 
-          //   })
-          // )
+            if(item_find[item_find_inventory.number].details.type != "Trident" && item_find[item_find_inventory.number].details.type != "Harpoon"  
+            && item_find[item_find_inventory.number].details.type != "Speargun" && (i+'+'+j == '7+0' || i+'+'+j == '8+0' || i+'+'+j == '9+0' || i+'+'+j == '10+0')){
+              return(
+                <Tooltip TransitionComponent={Zoom} title={item_find[item_find_inventory.number].name ?? 'Aucune description'} key={'tooltip_'+i+'+'+j} >
+                  <TableCell className="border_equipment" style={{backgroundImage: `url(${item_find[item_find_inventory.number].icon})`}}></TableCell>
+                </Tooltip>
+              )  
+            } else if((i+'+'+j == '8+6' || i+'+'+j == '8+7') && (item_find[item_find_inventory.number].details.type == "Trident" || item_find[item_find_inventory.number].details.type == "Harpoon"  
+            || item_find[item_find_inventory.number].details.type == "Speargun" )){
+              return(
+                <Tooltip TransitionComponent={Zoom} title={item_find[item_find_inventory.number].name ?? 'Aucune description'} key={'tooltip_'+i+'+'+j} >
+                  <TableCell className="border_equipment" style={{backgroundImage: `url(${item_find[item_find_inventory.number].icon})`}}></TableCell>
+                </Tooltip>
+              )  
+            } else {
+              return(
+                <TableCell  className="border_equipment"></TableCell>
+              )  
+            }
+          } else {
+            return(
+              <TableCell  className="border_equipment"></TableCell>
+            )  
+          }
+
+
         }
       } else {
         return(
@@ -116,14 +152,8 @@ const ModalCharacter = (props) => {
   
 
   useEffect(() => {
-    // console.log(inventory)
     setEquipment(false)
 
-   
-  
-   
-
-   
     if(apiKey != null && props.character){
       character_detail(props.character)
     }
@@ -132,13 +162,6 @@ const ModalCharacter = (props) => {
 
 
   if(equipment != false){
-  //   const item_find = equipment.find(
-  //     element => element.details ? element.details.type == "Boots" : element.type == "Boots"
-  //   )
-
-
-  //   console.log(item_find)
-
     return ( 
       <>
         <Modal 
@@ -154,7 +177,7 @@ const ModalCharacter = (props) => {
 
           <Modal.Body>
            
-          <Table className="character_equipment">
+          <Table style={{backgroundImage: `url(${equipment_background})`}} className="character_equipment">
               <TableBody>
               {Array(tr).fill(1).map((el, i) => 
                  

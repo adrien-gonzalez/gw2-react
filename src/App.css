@@ -635,14 +635,16 @@ input:focus{
   width: 50px;
   height: 50px;
 }
-
-.character_equipment td{
-  background: #50473D;
-  border: 2px solid #635A65;
-  /* width: 35px; */
-  height: 57px;
+.character_equipment{
   background-size: cover;
   background-repeat: no-repeat;
+}
+.character_equipment td{
+  /* background: #50473D; */
+  /* border: 2px solid #635A65; */
+  /* width: 35px; */
+  /* height: 58px; */
+
 }
 
 @media (min-width: 576px){
@@ -650,4 +652,22 @@ input:focus{
     max-width: 650px !important;
     width: 75% !important;
   }
+}
+
+.css-rqglhn-MuiTable-root{
+  width: auto !important;
+}
+
+
+.modal-body{
+  display: flex;
+  justify-content: center;
+}
+
+.css-1ex1afd-MuiTableCell-root{
+  padding:25px !important;
+}
+
+.border_equipment{
+  border: 2px solid #747372;
 }
