@@ -18,7 +18,8 @@ const ModalCharacter = (props) => {
   const [equipment, setEquipment] = useState(false);
   const [view, setView] = useState("equipment");
 
-  const [bags, setBags] = useState("equipment");
+  const [bags, setBags] = useState("");
+  const [item, setItem] = useState("");
 
 
   const item_table = []
@@ -77,28 +78,28 @@ const ModalCharacter = (props) => {
 
   const character_detail = async (character_info) =>  {
 
-    // const object = await Promise.all(character_info.equipment.map((key, index) => {
-    //   if(key.skin){
-    //     return getMySkin(key.skin, apiKey)
-    //   } else {
-    //     return getMyEquipment(key.id, apiKey)
-    //   }
-    // }))
+    const object = await Promise.all(character_info.equipment.map((key, index) => {
+      if(key.skin){
+        return getMySkin(key.skin, apiKey)
+      } else {
+        return getMyEquipment(key.id, apiKey)
+      }
+    }))
 
-    const bags = await character_info.bags.map((key, index) => {
+    const object2 = await Promise.all(character_info.bags.map((key, index) => {
       if(key){
-        key.inventory.map((key2, index2) => {
+        return Promise.all(key.inventory.map((key2, index2) => {
             if(key2 != null){
+              item_table.push(key2)
               return getMyEquipment(key2.id, apiKey)
             }
-          })
+          }))
       } 
-    })
+    }))
 
-    console.log(bags)
-
-
-// setEquipment(object)
+      setItem(item_table)
+      setBags(object2)
+      setEquipment(object)
   };
 
   function find(i, j, equipment_){
@@ -118,7 +119,7 @@ const ModalCharacter = (props) => {
           if(typeof item_find[[item_find_inventory.number]] !="undefined"){
               return(
                 <Tooltip TransitionComponent={Zoom} title={item_find[[item_find_inventory.number]].name ?? 'Aucune description'} key={'tooltip_'+i+'+'+j} >
-                  <TableCell  key={'equipment_'+i+'+'+j} className="border_equipment" style={{backgroundImage: `url(${item_find[[item_find_inventory.number]].icon})`}}></TableCell>
+                  <TableCell  key={'equipment_'+i+'+'+j} className={item_find[[item_find_inventory.number]].rarity} style={{backgroundImage: `url(${item_find[[item_find_inventory.number]].icon})`}}></TableCell>
                 </Tooltip>
               )
             } else {
@@ -140,14 +141,14 @@ const ModalCharacter = (props) => {
             && item_find[item_find_inventory.number].details.type != "Speargun" && (i+'+'+j == '7+0' || i+'+'+j == '8+0' || i+'+'+j == '9+0' || i+'+'+j == '10+0')){
               return(
                 <Tooltip TransitionComponent={Zoom} title={item_find[item_find_inventory.number].name ?? 'Aucune description'} key={'tooltip_'+i+'+'+j} >
-                  <TableCell key={'equipment_'+i+'+'+j}  className="border_equipment" style={{backgroundImage: `url(${item_find[item_find_inventory.number].icon})`}}></TableCell>
+                  <TableCell key={'equipment_'+i+'+'+j}  className={item_find[[item_find_inventory.number]].rarity} style={{backgroundImage: `url(${item_find[item_find_inventory.number].icon})`}}></TableCell>
                 </Tooltip>
               )  
             } else if((i+'+'+j == '8+6' || i+'+'+j == '8+7') && (item_find[item_find_inventory.number].details.type == "Trident" || item_find[item_find_inventory.number].details.type == "Harpoon"  
             || item_find[item_find_inventory.number].details.type == "Speargun" )){
               return(
                 <Tooltip TransitionComponent={Zoom} title={item_find[item_find_inventory.number].name ?? 'Aucune description'} key={'tooltip_'+i+'+'+j} >
-                  <TableCell  key={'equipment_'+i+'+'+j} className="border_equipment" style={{backgroundImage: `url(${item_find[item_find_inventory.number].icon})`}}></TableCell>
+                  <TableCell  key={'equipment_'+i+'+'+j} className={item_find[[item_find_inventory.number]].rarity} style={{backgroundImage: `url(${item_find[item_find_inventory.number].icon})`}}></TableCell>
                 </Tooltip>
               )  
             } else {
@@ -194,7 +195,7 @@ const ModalCharacter = (props) => {
             centered
           >
             <Modal.Header className="character_equipment_header">
-              <Modal.Title id="contained-modal-title-vcenter">Info personnage</Modal.Title>
+              <Modal.Title id="contained-modal-title-vcenter">{props.character.name}</Modal.Title>
               <div className="changeView">
                 <div><Inventory2OutlinedIcon onClick={() => setView("inventory")} style={{ color: "white" }}></Inventory2OutlinedIcon></div>
                 <div><ShieldOutlinedIcon onClick={() => setView("equipment")} style={{ color: "white" }}></ShieldOutlinedIcon></div>
@@ -205,59 +206,107 @@ const ModalCharacter = (props) => {
             
             <Table className="character_equipment">
                 <TableBody>
-                {Array(tr).fill(1).map((el, i) => 
-                  
+                {Array(tr).fill(1).map((el, i) =>  
                   <TableRow  key={i}>
                     {Array(td).fill(1).map((el, j) =>
-                        
-                        find(i, j, equipment)
-                        
-                        // <TableCell></TableCell>
+                      find(i, j, equipment)
                     )}
                 </TableRow>
                 )}
-            
-                
-                
                 </TableBody>
-            </Table>
-                      {/* {equipment.map((key, index) => {
-                          return(
-                            <div className="item_image" style={{backgroundImage: `url(${key.icon})`}} key={key.name+index}>{key.name}</div>
-                          )
-                      })}  */}
-                
+            </Table> 
             </Modal.Body>
             <Button className="charater_equipement_button" onClick={close}>Annuler</Button>
           </Modal>
         </>
       );
     } else {
-      return (
-        <>
-          <Modal 
-            show={props.show} 
-            onHide={props.onHide}
-            size="sl"
-            aria-labelledby="contained-modal-title-vcenter"
-            centered
-          >
-            <Modal.Header className="character_equipment_header">
-              <Modal.Title id="contained-modal-title-vcenter">Info personnage</Modal.Title>
-              <div className="changeView">
-                <div><Inventory2OutlinedIcon onClick={() => setView("inventory")} style={{ color: "white" }}></Inventory2OutlinedIcon></div>
-                <div><ShieldOutlinedIcon onClick={() => setView("equipment")} style={{ color: "white" }}></ShieldOutlinedIcon></div>
-              </div>
-            </Modal.Header>
+      if(bags != ""){
+        // console.log(bags)
+        return (
+          <>
+            <Modal 
+              show={props.show} 
+              onHide={props.onHide}
+              size="sl"
+              aria-labelledby="contained-modal-title-vcenter"
+              centered
+            >
+              <Modal.Header className="character_equipment_header">
+                <Modal.Title id="contained-modal-title-vcenter">{props.character.name}</Modal.Title>
+                <div className="changeView">
+                  <div><Inventory2OutlinedIcon onClick={() => setView("inventory")} style={{ color: "white" }}></Inventory2OutlinedIcon></div>
+                  <div><ShieldOutlinedIcon onClick={() => setView("equipment")} style={{ color: "white" }}></ShieldOutlinedIcon></div>
+                </div>
+              </Modal.Header>
+      
+              <Modal.Body style={{backgroundImage: `url(${equipment_background})`}}  className="modal_character">
+                <Table className='table_bags'>
+                  <TableBody>
+                      {bags.map((key, index) => {
+                        
+                        if(key){
+                          return(
+                          <TableRow key={'bags_'+index} className="row_invetory">
+                            {key.map((key2, index2) => {
+                              if(key2){
+
+                                const item_find = item.find(
+                                    element => element.id == key2.id
+                                )
+                                if(item_find){
+                                  return(
+                                    <Tooltip TransitionComponent={Zoom} title={key2.description ?? 'Aucune description'} key={index2+'tool_'+key2} >
+                                        <TableCell className={key2.rarity} style={{backgroundImage: `url(${key2.icon})`}} key={index2+'tab_'+key2}> 
+                                            <span key={'img_'+index2} className='count_item'>{item_find.count}</span>
+                                        </TableCell>  
+                                    </Tooltip>
+                                  )
+                                }
+                              }
+                            })}
+                          </TableRow>
+                          )
+                        }
+                      })}
+                  </TableBody>
+                </Table>
+              </Modal.Body>
+              <Button className="charater_equipement_button" onClick={close}>Annuler</Button>
     
-            <Modal.Body>
-                <div>dddd</div>
-            </Modal.Body>
-            <Button className="charater_equipement_button" onClick={close}>Annuler</Button>
-  
-          </Modal>
-        </>
-      );
+            </Modal>
+          </>
+        );
+        } else {
+          return (
+            <>
+              <Modal 
+                show={props.show} 
+                onHide={props.onHide}
+                size="sl"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+              >
+                <Modal.Header className="character_equipment_header">
+                  <Modal.Title id="contained-modal-title-vcenter">{props.character.name}</Modal.Title>
+                </Modal.Header>
+        
+                <Modal.Body className="loading_character_equipment">
+                  <Spinner
+                    className="loader"
+                    as="span"
+                    animation="border"
+                    size="lg"
+                    role="status"
+                    aria-hidden="true"
+                  />
+                </Modal.Body>
+                <Button className="charater_equipement_button" onClick={close}>Annuler</Button>
+      
+              </Modal>
+            </>
+          );
+        }
     }
   } else {
     return (

@@ -528,11 +528,6 @@ input:focus{
   -ms-transform: rotate(12deg);
 }
 
-.bags_section{
-  max-height: 80vh;
-  overflow-y: auto;
-  width: 95%;
-}
 
 .tr_bags{
   display: flex !important;
@@ -540,18 +535,7 @@ input:focus{
   margin-left: 5%;
 }
 
-.character_name{
-  font-weight: bold;
-  font-size: 25px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
 
-.character_name:not(:first-child){
-  margin-top: 15vh;
-}
 
 .count_item{
   position: relative;
@@ -567,46 +551,10 @@ input:focus{
   height: 50px;
 }
 
-.tr_bags > td{
-  background: #50473D;
-  border: 2px solid #635A65;
-  width: 65px;
-  height: 65px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.tr_bags > td:hover{
-  cursor: pointer;
-}
-
-@media screen and (min-width: 1096px) {
-
-  .table_bags{
-    width: 50vw !important;
-  }
-}
 
 
-@media screen and (max-width: 1095px) {
-
-  .table_bags{
-    width: 85vw !important;
-  }
-}
 
 @media screen and (max-width: 520px) {
-  .tr_bags > td{
-    background: #50473D;
-    border: 2px solid #635A65;
-    width: 35px;
-    height: 35px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
   .count_item{
     position: relative;
     left: -5px;
@@ -614,9 +562,6 @@ input:focus{
     font-size: 1.1em;
   }
 
-  .table_bags{
-    width: 100% !important;
-  }
 
   .MuiTooltip-popper{
     top: -2% !important
@@ -665,8 +610,12 @@ input:focus{
   justify-content: center;
 }
 
-
-
+.table_bags, .character_equipment  {
+  animation-name: fadeInOpacity;
+  /* animation-iteration-count: 1; */
+  animation-timing-function: ease-in;
+  animation-duration: 0.4s;
+}
 .css-1ex1afd-MuiTableCell-root{
   border-bottom: none !important;
 } 
@@ -680,6 +629,8 @@ input:focus{
   background-repeat: no-repeat;
   background-position: inherit;
   background-position: center;
+  max-height: 660px;
+  overflow-y: auto;
 }
 
 .character_equipment td{
@@ -721,4 +672,67 @@ input:focus{
 
 .loading_character_equipment{
   height: 150px;
+}
+
+.row_invetory{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.row_invetory{
+ margin-bottom: 25px;
+}
+
+.row_invetory td{
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 55px;
+  width: 55px;
+}
+
+.row_invetory td:hover{
+  cursor: pointer;
+}
+
+.table_bags{
+  display: flex !important;
+  flex-wrap: wrap;
+  width: 100% !important;
+}
+
+.table_bags tr{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.Junk{
+  border: 1px solid #AAAAAA !important;
+}
+
+.Basic{
+  border: 1px solid white !important;
+}
+
+.Fine{
+  border: 1px solid #62A4DA !important;
+}
+
+.Masterwork{
+  border: 1px solid #1A9306 !important;
+}
+
+.Rare{
+  border: 1px solid #FDD90B !important;
+}
+
+.Exotic{
+  border: 1px solid #FFA405 !important;
+}
+
+.Ascended{
+  border: 1px solid #FC3E8D !important;
+}
+
+.Legendary{
+  border: 1px solid #4C139D !important;
 }

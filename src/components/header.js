@@ -24,7 +24,7 @@ const Header = (props) => {
             <ModalAuth show={showModalAuth} close={() => setShowModalAuth(false)} />
             <Button onClick={()=>navigate("pages/worldboss")} style={{ backgroundColor: "black" }} className="menuButton" variant="contained"><AccessTimeOutlinedIcon style={{ color: "white" }}></AccessTimeOutlinedIcon></Button>
             <Button onClick={()=>navigate("pages/characters")} style={{ backgroundColor: "black" }} className="menuButton" variant="contained"><PersonOutlineOutlinedIcon style={{ color: "white" }}></PersonOutlineOutlinedIcon></Button>
-            <Button onClick={()=>navigate("pages/inventory")} style={{ backgroundColor: "black" }} className="menuButton" variant="contained"><Inventory2OutlinedIcon style={{ color: "white" }}></Inventory2OutlinedIcon></Button>
+            {/* <Button onClick={()=>navigate("pages/inventory")} style={{ backgroundColor: "black" }} className="menuButton" variant="contained"><Inventory2OutlinedIcon style={{ color: "white" }}></Inventory2OutlinedIcon></Button> */}
         </header>
         
     ); 
