@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/gw2-react/static/css/main.91979139.css",
-    "main.js": "/gw2-react/static/js/main.8b748265.js",
+    "main.css": "/gw2-react/static/css/main.8312144b.css",
+    "main.js": "/gw2-react/static/js/main.87377c7b.js",
     "static/js/787.211ad51a.chunk.js": "/gw2-react/static/js/787.211ad51a.chunk.js",
     "static/media/Necromancer.png": "/gw2-react/static/media/Necromancer.c64febc2bba2cef35fe6.png",
     "static/media/Elementalist.png": "/gw2-react/static/media/Elementalist.2cfbc30e47f7d21e5091.png",
@@ -12,6 +12,7 @@
     "static/media/Mesmer.png": "/gw2-react/static/media/Mesmer.4b0f3f4cd636950f08bd.png",
     "static/media/background.png": "/gw2-react/static/media/background.f4ed0829f5e6f6b91523.png",
     "static/media/Ranger.png": "/gw2-react/static/media/Ranger.a7268f4fccdc11fe64f1.png",
+    "static/media/equipment.png": "/gw2-react/static/media/equipment.a9dcf3ab48fd1cfd29bb.png",
     "static/media/Triple terreur.png": "/gw2-react/static/media/Triple terreur.d37b44a8a3be4c3ef818.png",
     "static/media/Élémentaire de feu.png": "/gw2-react/static/media/Élémentaire de feu.be8b351c6d518b26ef8c.png",
     "static/media/Chamane de Svanir.png": "/gw2-react/static/media/Chamane de Svanir.10974a5adb71e744f6c1.png",
@@ -21,7 +22,6 @@
     "static/media/Scribe.png": "/gw2-react/static/media/Scribe.68bfbd4ad49def8685f9.png",
     "static/media/Tequatl le Sans-soleil.png": "/gw2-react/static/media/Tequatl le Sans-soleil.38af13e5c12c7838d6b7.png",
     "static/media/Le Destructeur.png": "/gw2-react/static/media/Le Destructeur.7ea798a1382d1326a2a2.png",
-    "static/media/chargement.gif": "/gw2-react/static/media/chargement.8181cc949788ab450803.gif",
     "static/media/Leatherworker.png": "/gw2-react/static/media/Leatherworker.6c41412053f96f34bd34.png",
     "static/media/Guivre de la jungle.png": "/gw2-react/static/media/Guivre de la jungle.981c3b8431a0203a6a9c.png",
     "static/media/Jeweler.png": "/gw2-react/static/media/Jeweler.a4a600494a1c611e7c02.png",
@@ -30,12 +30,12 @@
     "static/media/Weaponsmith.png": "/gw2-react/static/media/Weaponsmith.a45a9b881a3f012d5035.png",
     "static/media/Chef.png": "/gw2-react/static/media/Chef.3af24edca3db58c0be15.png",
     "index.html": "/gw2-react/index.html",
-    "main.91979139.css.map": "/gw2-react/static/css/main.91979139.css.map",
-    "main.8b748265.js.map": "/gw2-react/static/js/main.8b748265.js.map",
+    "main.8312144b.css.map": "/gw2-react/static/css/main.8312144b.css.map",
+    "main.87377c7b.js.map": "/gw2-react/static/js/main.87377c7b.js.map",
     "787.211ad51a.chunk.js.map": "/gw2-react/static/js/787.211ad51a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.91979139.css",
-    "static/js/main.8b748265.js"
+    "static/css/main.8312144b.css",
+    "static/js/main.87377c7b.js"
   ]
 }
