@@ -4,9 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { getItem, getSkin } from '../services/gw2API';
 import React, { useState, useEffect } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
-import { Login } from "@mui/icons-material";
-import { Table, TableBody, TableCell, TableRow, Tooltip, Zoom  } from '@mui/material';
-import $ from 'jquery';
+import {  Tooltip, Zoom  } from '@mui/material';
 import equipment_background from '../img/background/equipment.png';
 import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
 import ShieldOutlinedIcon from '@mui/icons-material/ShieldOutlined';
@@ -119,12 +117,12 @@ const ModalCharacter = (props) => {
           if(typeof item_find[[item_find_inventory.number]] !="undefined"){
               return(
                 <Tooltip TransitionComponent={Zoom} title={item_find[[item_find_inventory.number]].name ?? 'Aucune description'} key={'tooltip_'+i+'+'+j} >
-                  <TableCell  key={'equipment_'+i+'+'+j} className={item_find[[item_find_inventory.number]].rarity} style={{backgroundImage: `url(${item_find[[item_find_inventory.number]].icon})`}}></TableCell>
+                  <td  key={'equipment_'+i+'+'+j} className={item_find[[item_find_inventory.number]].rarity} style={{backgroundImage: `url(${item_find[[item_find_inventory.number]].icon})`}}></td>
                 </Tooltip>
               )
             } else {
             return(
-              <TableCell key={'equipment_'+i+'+'+j} className="border_equipment clean"></TableCell>
+              <td key={'equipment_'+i+'+'+j} className="border_equipment clean"></td>
             )
           }
           
@@ -141,24 +139,24 @@ const ModalCharacter = (props) => {
             && item_find[item_find_inventory.number].details.type != "Speargun" && (i+'+'+j == '7+0' || i+'+'+j == '8+0' || i+'+'+j == '9+0' || i+'+'+j == '10+0')){
               return(
                 <Tooltip TransitionComponent={Zoom} title={item_find[item_find_inventory.number].name ?? 'Aucune description'} key={'tooltip_'+i+'+'+j} >
-                  <TableCell key={'equipment_'+i+'+'+j}  className={item_find[[item_find_inventory.number]].rarity} style={{backgroundImage: `url(${item_find[item_find_inventory.number].icon})`}}></TableCell>
+                  <td key={'equipment_'+i+'+'+j}  className={item_find[[item_find_inventory.number]].rarity} style={{backgroundImage: `url(${item_find[item_find_inventory.number].icon})`}}></td>
                 </Tooltip>
               )  
             } else if((i+'+'+j == '8+6' || i+'+'+j == '8+7') && (item_find[item_find_inventory.number].details.type == "Trident" || item_find[item_find_inventory.number].details.type == "Harpoon"  
             || item_find[item_find_inventory.number].details.type == "Speargun" )){
               return(
                 <Tooltip TransitionComponent={Zoom} title={item_find[item_find_inventory.number].name ?? 'Aucune description'} key={'tooltip_'+i+'+'+j} >
-                  <TableCell  key={'equipment_'+i+'+'+j} className={item_find[[item_find_inventory.number]].rarity} style={{backgroundImage: `url(${item_find[item_find_inventory.number].icon})`}}></TableCell>
+                  <td  key={'equipment_'+i+'+'+j} className={item_find[[item_find_inventory.number]].rarity} style={{backgroundImage: `url(${item_find[item_find_inventory.number].icon})`}}></td>
                 </Tooltip>
               )  
             } else {
               return(
-                <TableCell key={'equipment_'+i+'+'+j} className="border_equipment clean"></TableCell>
+                <td key={'equipment_'+i+'+'+j} className="border_equipment clean"></td>
               )  
             }
           } else {
             return(
-              <TableCell key={'equipment_'+i+'+'+j} className="border_equipment clean"></TableCell>
+              <td key={'equipment_'+i+'+'+j} className="border_equipment clean"></td>
             )  
           }
 
@@ -166,7 +164,7 @@ const ModalCharacter = (props) => {
         }
       } else {
         return(
-          <TableCell key={'equipment_'+i+'+'+j}></TableCell>
+          <td key={'equipment_'+i+'+'+j}></td>
         )
       }
 
@@ -204,17 +202,17 @@ const ModalCharacter = (props) => {
 
             <Modal.Body style={{backgroundImage: `url(${equipment_background})`}}  className="modal_character">
             
-            <Table className="character_equipment">
-                <TableBody>
+            <table className="character_equipment">
+                <tbody>
                 {Array(tr).fill(1).map((el, i) =>  
-                  <TableRow  key={i}>
+                  <tr  key={i}>
                     {Array(td).fill(1).map((el, j) =>
                       find(i, j, equipment)
                     )}
-                </TableRow>
+                </tr>
                 )}
-                </TableBody>
-            </Table> 
+                </tbody>
+            </table> 
             </Modal.Body>
             <Button className="charater_equipement_button" onClick={close}>Annuler</Button>
           </Modal>
@@ -241,13 +239,13 @@ const ModalCharacter = (props) => {
               </Modal.Header>
       
               <Modal.Body style={{backgroundImage: `url(${equipment_background})`}}  className="modal_character">
-                <Table className='table_bags'>
-                  <TableBody>
+                <table className='table_bags'>
+                  <tbody>
                       {bags.map((key, index) => {
                         
                         if(key){
                           return(
-                          <TableRow key={'bags_'+index} className="row_invetory">
+                          <tr key={'bags_'+index} className="row_invetory">
                             {key.map((key2, index2) => {
                               if(key2){
 
@@ -257,20 +255,20 @@ const ModalCharacter = (props) => {
                                 if(item_find){
                                   return(
                                     <Tooltip TransitionComponent={Zoom} title={key2.description ?? 'Aucune description'} key={index2+'tool_'+key2} >
-                                        <TableCell className={key2.rarity} style={{backgroundImage: `url(${key2.icon})`}} key={index2+'tab_'+key2}> 
+                                        <td className={key2.rarity} style={{backgroundImage: `url(${key2.icon})`}} key={index2+'tab_'+key2}> 
                                             <span key={'img_'+index2} className='count_item'>{item_find.count}</span>
-                                        </TableCell>  
+                                        </td>  
                                     </Tooltip>
                                   )
                                 }
                               }
                             })}
-                          </TableRow>
+                          </tr>
                           )
                         }
                       })}
-                  </TableBody>
-                </Table>
+                  </tbody>
+                </table>
               </Modal.Body>
               <Button className="charater_equipement_button" onClick={close}>Annuler</Button>
     

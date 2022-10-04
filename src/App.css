@@ -539,8 +539,8 @@ input:focus{
 
 .count_item{
   position: relative;
-  left: -16px;
-  top: -19px;
+  left: 1px;
+  top: -4px;
   color: white;
   font-size: 1.2em;
   text-shadow: 1px 2px 1px black;
@@ -581,28 +581,33 @@ input:focus{
   height: 50px;
 }
 
+
+
 @media (min-width: 476px){
   .modal-dialog{
     max-width: 500px !important;
   }
-  .css-1ex1afd-MuiTableCell-root{
-    padding:25px !important;
+
+  .character_equipment td{
+    padding: 25px;
   }
-  
+
 }
+
+
 
 @media (max-width: 475px){
   .modal-dialog{
     width: 100%;
   }
-  .css-1ex1afd-MuiTableCell-root{
-    padding: 18px !important;
+
+  .character_equipment td{
+    padding: 18px;
   }
+
 }
 
-.css-rqglhn-MuiTable-root{
-  width: auto !important;
-}
+
 
 
 .modal-body{
@@ -610,15 +615,14 @@ input:focus{
   justify-content: center;
 }
 
+
+
 .table_bags, .character_equipment  {
   animation-name: fadeInOpacity;
   /* animation-iteration-count: 1; */
   animation-timing-function: ease-in;
   animation-duration: 0.4s;
 }
-.css-1ex1afd-MuiTableCell-root{
-  border-bottom: none !important;
-} 
 
 .border_equipment{
   border: 2px solid #747372 !important;
@@ -634,7 +638,8 @@ input:focus{
 }
 
 .character_equipment td{
-  background-size: contain;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
 }
 
 .character_equipment .border_equipment:hover{
@@ -736,3 +741,4 @@ input:focus{
 .Legendary{
   border: 1px solid #4C139D !important;
 }
+
