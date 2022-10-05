@@ -22,7 +22,6 @@ const Events = (props) => {
 
     let currentTime = moment.utc();
     let startHour = Math.floor(currentTime.hour() / 2) * 2;
-    let offset = 0;
 
 
     function movePointer() {
@@ -77,7 +76,6 @@ const Events = (props) => {
         return (
             <section className="meta-section">
                 <div className="meta-container">
-
                     <div className="pointer" style={{left: pointerPosition+'%'}}>
                         <span className="server">
                             <strong>Heure Serveur</strong>
@@ -88,16 +86,15 @@ const Events = (props) => {
                             <span>{pointerLocalTime}</span>
                         </span>
                     </div>
-
                     {events.map((key, index) => {
-
-
+                        let offset = 0;
                         return(
                             <div key={'meta_'+index} className="meta">
                                 <span className="meta-name">{key.name}</span>
 
                                 <div className="bar">
                                     {key.phases.map((phase, index2) => {
+
                                         let correctedTime = "" + (startHour + (offset > 59 ? 1 : 0));
                                         phase.hour = ("00" + correctedTime).slice(-2);
                                         phase.minute = ("00" + (offset % 60)).slice(-2);
@@ -107,7 +104,6 @@ const Events = (props) => {
                                             <div style={{background: phase.color, color: textColor(phase.text), width: 'calc('+calcPhaseWidth(phase.duration)+'% - .25rem)'}} key={'phase'+index2} className="phase">
                                                 <div className="phase-time">{phase.hour} : {phase.minute}</div>
                                                 <div className="phase-name">{phase.name}</div>
-
                                             </div>
                                         )
                                         

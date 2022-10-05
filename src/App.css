@@ -810,6 +810,7 @@ input:focus{
   top: 0;
   transition: left 1s ease-in-out;
   color: #ffffff;
+
 }
 .pointer > span {
   position: absolute;
