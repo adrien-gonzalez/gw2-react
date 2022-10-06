@@ -36,7 +36,8 @@ const Events = (props) => {
         let localMinute = ("00" + localTime.minute()).slice(-2);
     
         // How far along are we (in  % ) of the current 2 hour event cycles?
-        let percentOfTwoHours = ((hour % 2) + minute / 60) * 53;
+        let percentOfTwoHours = ((hour % 2) + minute / 60) * 50;
+       
 
         if(percentOfTwoHours > 96){
             percentOfTwoHours = 96
@@ -45,7 +46,7 @@ const Events = (props) => {
         if(percentOfTwoHours < 3){
             percentOfTwoHours = 3
         }
-    
+
         // // Set the text and move the pointer to that %
         setPointerTime(hour + ":" + minute);
         setPointerLocalTime(localHour + ":" + localMinute);
@@ -82,6 +83,8 @@ const Events = (props) => {
 
         return (
             <section className="meta-section">
+
+              
                 <div className="meta-container">
                     <div className="pointer" style={{left: pointerPosition+'%'}}>
                         <span className="local">
@@ -93,6 +96,7 @@ const Events = (props) => {
                             <span>{pointerLocalTime}</span>
                         </span>
                     </div>
+                  
                     {events.map((key, index) => {
                         let offset = 0;
 
