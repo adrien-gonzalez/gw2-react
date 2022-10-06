@@ -9,7 +9,7 @@
     ],
     "category": "autre"
   },{
-    "name": "Province de Seitung",
+    "name": "Seitung Province",
     "phases": [
       { "name": "", "duration": 90, "color": "rgb(236, 185, 219)", "text": "light" },
       { "name": "Aetherblade Assault", "duration": 20, "color": "rgb(180, 132, 164)", "text": "light" },

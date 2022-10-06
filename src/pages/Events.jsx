@@ -19,10 +19,9 @@ const Events = (props) => {
     const [pointerPosition, setPointerPosition] = useState("");
     const [events, setEvents] = useState(false)
 
-
-    let currentTime = moment.utc();
-    let startHour = Math.floor(currentTime.hour() / 2) * 2;
-
+    // let currentTime = moment.utc();
+    let localTime = moment();
+    let startHour = Math.floor(localTime.hour() / 2) * 2;
 
     function movePointer() {
        
@@ -37,7 +36,7 @@ const Events = (props) => {
         let localMinute = ("00" + localTime.minute()).slice(-2);
     
         // How far along are we (in  % ) of the current 2 hour event cycles?
-        let percentOfTwoHours = ((hour % 2) + minute / 60) * 50;
+        let percentOfTwoHours = ((hour % 2) + minute / 60) * 53;
     
         // // Set the text and move the pointer to that %
         setPointerTime(hour + ":" + minute);
@@ -67,7 +66,7 @@ const Events = (props) => {
             movePointer()
         },1000);
 
-    },[])
+    },[pointerLocalTime, pointerLocalTime, pointerTime, events])
   
 
 
@@ -77,11 +76,11 @@ const Events = (props) => {
             <section className="meta-section">
                 <div className="meta-container">
                     <div className="pointer" style={{left: pointerPosition+'%'}}>
-                        <span className="server">
+                        <span className="local">
                             <strong>Heure Serveur</strong>
                             <span>{pointerTime}</span>
                         </span>
-                        <span className="local">
+                        <span className="server">
                             <strong>Heure locale</strong>
                             <span>{pointerLocalTime}</span>
                         </span>

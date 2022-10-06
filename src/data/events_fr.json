@@ -1,109 +1,109 @@
 [{
-    "name": "Cantha: Day and Night",
+    "name": "Cycle Jour-Nuit - Cantha",
     "phases": [
-        { "name": "Night.", "duration": 35, "color": "#1998B6", "text": "light" },
-        { "name": "Dawn", "duration": 5, "color": "linear-gradient(to right, #1998B6, #93cee2)", "text": "light" },
-        { "name": "Day", "duration": 55, "color": "#93cee2", "text": "light" },
-        { "name": "Dawn", "duration": 5, "color": "linear-gradient(to right, #93cee2, #1998B6)", "text": "light" },
-        { "name": "Night.", "duration": 20, "color": "#1998B6", "text": "light" }
+        { "name": "Nuit", "duration": 35, "color": "#1998B6", "text": "light" },
+        { "name": "Aube", "duration": 5, "color": "linear-gradient(to right, #1998B6, #93cee2)", "text": "light" },
+        { "name": "Jour", "duration": 55, "color": "#93cee2", "text": "light" },
+        { "name": "Soir", "duration": 5, "color": "linear-gradient(to right, #93cee2, #1998B6)", "text": "light" },
+        { "name": "Nuit", "duration": 20, "color": "#1998B6", "text": "light" }
     ],
     "category": "end-of-dragons"
   },{
     "name": "Province de Seitung",
     "phases": [
       { "name": "", "duration": 90, "color": "rgb(236, 185, 219)", "text": "light" },
-      { "name": "Aetherblade Assault", "duration": 20, "color": "rgb(180, 132, 164)", "text": "light" },
+      { "name": "Assaut étherlame", "duration": 20, "color": "rgb(180, 132, 164)", "text": "light" },
       { "name": "Boss", "duration": 10, "color": "rgb(180, 132, 164)", "text": "light" }
 
 
     ],
     "category": "end-of-dragons"
   },{
-    "name": "New Kaineng City",
+    "name": "Néo-Kaineng",
     "phases": [
-        { "name": "Kaineng Blackout", "duration": 30, "color": "rgb(141, 132, 72)", "text": "light" },
+        { "name": "Panne totale à Kaineng", "duration": 30, "color": "rgb(141, 132, 72)", "text": "light" },
         { "name": "", "duration": 90, "color": "rgb(196, 185, 122)", "text": "light" }
       
     ],
     "category": "end-of-dragons"
   },{
-    "name": "The echoval wilds",
+    "name": "Terres sauvages d'Echovald",
     "phases": [
         { "name": "", "duration": 30, "color": "rgb(116, 154, 118)", "text": "light" },
-        { "name": "Gang War", "duration": 35, "color": "rgb(103, 210, 97)", "text": "light" },
+        { "name": "Guerre des gangs", "duration": 35, "color": "rgb(103, 210, 97)", "text": "light" },
         { "name": "", "duration": 35, "color": "rgb(116, 154, 118)", "text": "light" },
-        { "name": "Aspendwood", "duration": 20, "color": "rgb(77, 158, 74)", "text": "light" }
+        { "name": "Fort de Trembleforêt", "duration": 20, "color": "rgb(77, 158, 74)", "text": "light" }
 
 
     ],
     "category": "end-of-dragons"
   },{
-    "name": "Dragon's end",
+    "name": "Trépas du dragon",
     "phases": [
         { "name": "Prep.", "duration": 5, "color": "rgb(0, 149, 170)", "text": "light" },
-        { "name": "Jade Maw", "duration": 8, "color": "rgb(75, 204, 225)", "text": "light" },
+        { "name": "Abîme de jade", "duration": 8, "color": "rgb(75, 204, 225)", "text": "light" },
         { "name": "Prep.", "duration": 32, "color": "rgb(0, 149, 170)", "text": "light" },
-        { "name": "Jade Maw", "duration": 8, "color": "rgb(75, 204, 225)", "text": "light" },
+        { "name": "Abîme de jade", "duration": 8, "color": "rgb(75, 204, 225)", "text": "light" },
         { "name": "Prep.", "duration": 7, "color": "rgb(0, 149, 170)", "text": "light" },
-        { "name": "The Battle for the Jade Sea ", "duration": 60, "color": "rgb(72, 209, 204)", "text": "light" }
+        { "name": "Bataille de la Mer de Jade", "duration": 60, "color": "rgb(72, 209, 204)", "text": "light" }
     ],
     "category": "end-of-dragons"
   },{
-    "name": "Twisted Marionette",
+    "name": "Œil du nord - La marionnette détraquée",
     "phases": [
-        { "name": "The Twisted Marionett.", "duration": 20, "color": "linear-gradient(#9F5AD2, #D25AAC)", "text": "light" },
+        { "name": "La marionnette détraquée", "duration": 20, "color": "linear-gradient(#9F5AD2, #D25AAC)", "text": "light" },
         { "name": "", "duration": 100, "color": "linear-gradient(rgba(159,90,210,0.7), rgba(210,90,172,0.7))", "text": "light" }
     ],
     "category": "leaving-world-season-1"
   },{
-    "name": "Dragonstorm",
+    "name": "Œil du nord - Champion",
     "phases": [
         { "name": "", "duration": 60, "color": "linear-gradient(rgba(255,85,23,0.7), rgba(32,166,208,0.7))", "text": "light" },
-        { "name": "Dragonstorm", "duration": 25, "color": "linear-gradient(#ff5517, #20a6d0)", "text": "light" },
+        { "name": "Tempête de dragons", "duration": 25, "color": "linear-gradient(#ff5517, #20a6d0)", "text": "light" },
         { "name": "", "duration": 35, "color": "linear-gradient(rgba(255,85,23,0.7), rgba(32,166,208,0.7))", "text": "light" }
 
     ],
     "category": "icebrood-saga"
   },{
-    "name": "Bjora Marches",
+    "name": "Frontière de Bjora",
     "phases": [
-        { "name": "Storms of Winter", "duration": 20, "color": "rgb(129,247,243)", "text": "light" },
+        { "name": "Tempêtes hivernales", "duration": 20, "color": "rgb(129,247,243)", "text": "light" },
         { "name": "", "duration": 45, "color": "rgb(169,226,243)", "text": "light" },
         { "name": "Drakkar", "duration": 35, "color": "rgb(8,138,133)", "text": "light" },
         { "name": "", "duration": 5, "color": "rgb(169,226,243)", "text": "light" },
-        { "name": "Storms of Winter", "duration": 15, "color": "rgb(129,247,243)", "text": "light" }
+        { "name": "Tempêtes hivernales", "duration": 15, "color": "rgb(129,247,243)", "text": "light" }
     ],
     "category": "icebrood-saga"
   },{
-    "name": "Grothmar Valley",
+    "name": "Vallée de Grothmar - Caveau de Khan-Ur",
     "phases": [
         { "name": "", "duration": 10, "color": "rgb(67,46,19)", "text": "light" },
-        { "name": "C. of the burning effigy (Key. of Flames)", "duration": 15, "color": "rgb(142,81,24)", "text": "light" },
+        { "name": "C. de l'effigie en feu (Clé. de Flammes)", "duration": 15, "color": "rgb(142,81,24)", "text": "light" },
         { "name": "", "duration": 13, "color": "rgb(67,46,19)", "text": "light" },
-        { "name": "S. of the fatal legend (Key. of the Ashes)", "duration": 20, "color": "rgb(59,72,91)", "text": "light" },
+        { "name": "S. de la légende funeste (Clé. des Cendres)", "duration": 20, "color": "rgb(59,72,91)", "text": "light" },
         { "name": "", "duration": 7, "color": "rgb(67,46,19)", "text": "light" },
-        { "name": "Ooze Pit (Bloody Key)", "duration": 18, "color": "rgb(169,51,21)", "text": "light" },
+        { "name": "Fosse à limons (Clé. Sanglante)", "duration": 18, "color": "rgb(169,51,21)", "text": "light" },
         { "name": "", "duration": 17, "color": "rgb(67,46,19)", "text": "light" },
-        { "name": "Legion Metal Concert (Iron Key)", "duration": 15, "color": "rgb(91,62,86)", "text": "light" },
+        { "name": "Concert de Métal légion (Clé. de Fer)", "duration": 15, "color": "rgb(91,62,86)", "text": "light" },
         { "name": "", "duration": 5, "color": "rgb(67,46,19)", "text": "light" }
     ],
     "category": "icebrood-saga"
   },{
-    "name": "Thunderhead Peaks",
+    "name": "Pics de Chef-Tonnerre",
     "phases": [
-        { "name": "Temporal Rift", "duration": 45, "color": "rgb(202,202,202)", "text": "light" },
-        { "name": "The Oil Floes", "duration": 15, "color": "linear-gradient( 90deg, #7A737C, #CACACA )", "text": "light" },
-        { "name": "Temporal Rift", "duration": 45, "color": "rgb(202,202,202)", "text": "light" },
-        { "name": "C-T Dungeon", "duration": 15, "color": "linear-gradient( 90deg, #7A737C, #CACACA )", "text": "light" }
+        { "name": "Faille temporelle", "duration": 45, "color": "rgb(202,202,202)", "text": "light" },
+        { "name": "Flaques d'huiles", "duration": 15, "color": "linear-gradient( 90deg, #7A737C, #CACACA )", "text": "light" },
+        { "name": "Faille temporelle", "duration": 45, "color": "rgb(202,202,202)", "text": "light" },
+        { "name": "Donjon de C-T", "duration": 15, "color": "linear-gradient( 90deg, #7A737C, #CACACA )", "text": "light" }
     ],
     "category": "leaving-world-season-4"
   },{
-    "name": "Jour et nuit",
+    "name": "Cycle Jour-Nuit - Tyrie centrale",
     "phases": [
       { "name": "Nuit", "duration": 35, "color": "#263238", "text": "light" },
       { "name": "Aube", "duration": 5, "color": "linear-gradient(to right, #263238, #78909C)", "text": "light" },
       { "name": "Jour", "duration": 70,  "color": "#78909C", "text": "light" },
-      { "name": "Crépuscule", "duration": 5, "color": "linear-gradient(to right, #78909C, #263238)", "text": "light" },
+      { "name": "Soir", "duration": 5, "color": "linear-gradient(to right, #78909C, #263238)", "text": "light" },
       { "name": "Nuit", "duration": 5, "color": "#263238", "text": "light" }
     ],
     "category": "autre"
