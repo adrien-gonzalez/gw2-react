@@ -37,6 +37,14 @@ const Events = (props) => {
     
         // How far along are we (in  % ) of the current 2 hour event cycles?
         let percentOfTwoHours = ((hour % 2) + minute / 60) * 53;
+
+        if(percentOfTwoHours > 96){
+            percentOfTwoHours = 96
+        }
+
+        if(percentOfTwoHours < 3){
+            percentOfTwoHours = 3
+        }
     
         // // Set the text and move the pointer to that %
         setPointerTime(hour + ":" + minute);
@@ -87,10 +95,13 @@ const Events = (props) => {
                     </div>
                     {events.map((key, index) => {
                         let offset = 0;
-                        return(
-                            <div key={'meta_'+index} className="meta">
-                                <span className="meta-name">{key.name}</span>
 
+                      
+                        return(
+                            
+                            <div key={'meta_'+index} className="meta">
+                                {key.category_name ? <div className={index == 0 ? "first category_name" : "not_first_category category_name"}>{key.category_name}</div> : ""}
+                                <span className="meta-name">{key.name}</span>
                                 <div className="bar">
                                     {key.phases.map((phase, index2) => {
 

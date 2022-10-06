@@ -15,12 +15,134 @@
   font-family: "Menomonia";
 }
 
-.App {
-  text-align: center;
+
+#characters{
+  /* margin-top: 60px; */
+  padding: 15px;
+  overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
-  align-items: center;
-  background-repeat: no-repeat;
-  background-size: contain;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 100%;
+  animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 0.4s;
+}
+
+
+.worldbosses{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow-y: auto;
+}
+
+@media screen and (min-width: 600px) {
+  .App {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  .App-header {
+    /* background-color: #282c34; */
+    background-color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    z-index: 2;
+  }
+
+  .menuButton{
+    border-radius: 0px !important;
+    border-bottom-right-radius: 15px !important;
+    border-top-right-radius: 15px !important;
+    opacity: 0.8 !important;
+    margin-bottom: 15px !important;
+    transition: 0.3s !important;
+  }
+ 
+  .menuButton:hover{
+   transform: scale(1.5);
+  }
+  .menuButton svg{
+    transform: rotate(0);
+  }
+
+  .meta-container {
+    overflow: hidden;
+    position: relative;
+    font-size: 0.90rem;
+    padding: 4rem 3rem 0.25rem;
+    width: 100%;
+  }
+
+  #characters,.worldbosses, .meta-section{
+    max-height: 90vh;
+  }
+
+}
+
+@media screen and (max-width: 599px) {
+  .App {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    flex-direction: column-reverse;
+  }
+  .App-header {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    z-index: 2;
+    transform: rotate(-90deg);
+    position: absolute;
+    bottom: -70px;
+  }
+
+  .menuButton{
+    border-radius: 0px !important;
+    border-bottom-right-radius: 15px !important;
+    border-top-right-radius: 15px !important;
+    opacity: 0.8 !important;
+    margin-bottom: 15px !important;
+    transition: 0.3s !important;
+  }
+
+  .menuButton svg{
+    transform: rotate(90deg);
+  }
+
+  .meta-container {
+    overflow: hidden;
+    position: relative;
+    font-size: 0.90rem;
+    padding: 4rem 5px 0px 5px;
+    width: 100%;
+  }
+
+  #characters,.worldbosses, .meta-section{
+    max-height: 92vh;
+  }
+
+  .meta{
+   font-size: 12px;
+  }
+  
+
 }
 
 .App-logo {
@@ -34,33 +156,8 @@
   }
 }
 
-.menuButton{
-  border-radius: 0px !important;
-  border-bottom-right-radius: 15px !important;
-  border-top-right-radius: 15px !important;
-  opacity: 0.8 !important;
-  margin-bottom: 15px !important;
-  transition: 0.3s !important;
-}
 
-.menuButton:hover{
- transform: scale(1.5);
-}
 
- 
-
-.App-header {
-  /* background-color: #282c34; */
-  background-color: white;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-  z-index: 2;
-}
 
 .App-link {
   color: #61dafb;
@@ -79,13 +176,7 @@
 
 /* BOARD WORLDBOSSES */
 
-.worldbosses{
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  max-height: 80vh;
-  overflow-y: auto;
-}
+
 
 .bossesPicture{
   width: 28px;
@@ -274,21 +365,7 @@ input:focus{
   justify-content: space-around;
   flex-wrap: wrap;
 }
-#characters{
-  /* margin-top: 60px; */
-  max-height: 90vh;
-  padding: 15px;
-  overflow-y: auto;
-  overflow-x: hidden;
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  width: 100%;
-  animation-name: fadeInOpacity;
-	animation-iteration-count: 1;
-	animation-timing-function: ease-in;
-	animation-duration: 0.4s;
-}
+
 
 @keyframes fadeInOpacity {
 	0% {
@@ -752,7 +829,6 @@ input:focus{
 .meta-section{
   width: 100%;
   overflow-y: auto;
-  max-height: 90vh;
 }
 
 .bar {
@@ -784,18 +860,13 @@ input:focus{
 .meta-name {
   font-weight: 800;
   margin: 0 0 0.25rem;
+  font-size: 1.3em;
 }
 
-.meta-container {
-  overflow: hidden;
-  position: relative;
-  font-size: 0.90rem;
-  padding: 4rem 3rem 0.25rem;
-  width: 100%;
-}
 
 .phase-name {
   font-weight: 800;
+  word-break: break-all;
 }
 
 .basedPage{
@@ -844,3 +915,17 @@ input:focus{
   right: 0.375rem;
   text-align: right;
 }
+
+.category_name{
+  padding: 0.2em;
+  background: rgba(185, 177, 177, 0.5);
+  font-weight: bold;
+  font-size: 1.4em;
+  margin-bottom: 25px;
+  color: white;
+}
+
+.not_first_category{
+ margin-top: 5%;
+}
+
