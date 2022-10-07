@@ -1,6 +1,7 @@
 import '../App.css';
 import {connect} from 'react-redux';
 import React, { useState, useEffect } from 'react';
+import $ from 'jquery';
 
 import Moment from 'react-moment';
 import moment from 'moment';
@@ -21,8 +22,8 @@ const Events = (props) => {
 
     // let currentTime = moment.utc();
     let localTime = moment();
-    let startHour = Math.floor(localTime.hour() / 2) * 2;
-
+    let startHour = Math.floor(localTime.hour() / 2) * 2
+    
     function movePointer() {
        
         let currentTime = moment.utc();
@@ -36,17 +37,21 @@ const Events = (props) => {
         let localMinute = ("00" + localTime.minute()).slice(-2);
     
         // How far along are we (in  % ) of the current 2 hour event cycles?
+
         let percentOfTwoHours = ((hour % 2) + minute / 60) * 50;
-       
-
-        if(percentOfTwoHours > 96){
-            percentOfTwoHours = 96
+        
+        if(percentOfTwoHours > 94){
+            $(".server").hide()
+        } else {
+            $(".server").show()
         }
 
-        if(percentOfTwoHours < 3){
-            percentOfTwoHours = 3
+        if(percentOfTwoHours < 7){
+            $(".local").hide()
+        } else {
+            $(".local").show()
         }
-
+    
         // // Set the text and move the pointer to that %
         setPointerTime(hour + ":" + minute);
         setPointerLocalTime(localHour + ":" + localMinute);
@@ -54,7 +59,11 @@ const Events = (props) => {
     }
 
     function calcPhaseWidth(duration) {
-        return (100 * duration) / 120;
+        if(window.innerWidth < 900){
+            return (100 * duration) / 60;
+        } else {
+            return (100 * duration) / 120;
+        }
     }
 
     function textColor(textColor) {
@@ -83,8 +92,6 @@ const Events = (props) => {
 
         return (
             <section className="meta-section">
-
-              
                 <div className="meta-container">
                     <div className="pointer" style={{left: pointerPosition+'%'}}>
                         <span className="local">
@@ -96,13 +103,9 @@ const Events = (props) => {
                             <span>{pointerLocalTime}</span>
                         </span>
                     </div>
-                  
                     {events.map((key, index) => {
                         let offset = 0;
-
-                      
                         return(
-                            
                             <div key={'meta_'+index} className="meta">
                                 {key.category_name ? <div className={index == 0 ? "first category_name" : "not_first_category category_name"}>{key.category_name}</div> : ""}
                                 <span className="meta-name">{key.name}</span>
@@ -113,14 +116,14 @@ const Events = (props) => {
                                         phase.hour = ("00" + correctedTime).slice(-2);
                                         phase.minute = ("00" + (offset % 60)).slice(-2);
                                         offset += phase.duration;
-
-                                        return(
-                                            <div style={{background: phase.color, color: textColor(phase.text), width: 'calc('+calcPhaseWidth(phase.duration)+'% - .25rem)'}} key={'phase'+index2} className="phase">
-                                                <div className="phase-time">{phase.hour} : {phase.minute}</div>
-                                                <div className="phase-name">{phase.name}</div>
-                                            </div>
-                                        )
-                                        
+                                    
+                                            return(
+                                            
+                                                <div style={{background: phase.color, color: textColor(phase.text), width: 'calc('+calcPhaseWidth(phase.duration)+'% - .25rem)'}} key={'phase'+index2} className="phase">
+                                                    <div className="phase-time">{phase.hour} : {phase.minute}</div>
+                                                    <div className="phase-name">{phase.name}</div>
+                                                </div>
+                                            )
                                     })}
                                 </div>
                             </div>
