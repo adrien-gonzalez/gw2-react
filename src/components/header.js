@@ -22,11 +22,11 @@ const Header = (props) => {
     return (
         <header className="App-header">
         
-            <Button onClick={() => setShowModalAuth(true)}  style={{ backgroundColor: localStorage.getItem('apiKey') ? '#4ECDC4' : '#C62E2D' }} className={color == '#C62E2D' ? 'zoom menuButton' : 'menuButton'} variant="contained"><KeyIcon style={{ color: "white" }}></KeyIcon></Button>
+            <Button onClick={() => setShowModalAuth(true)}  style={{ backgroundColor: localStorage.getItem('apiKey') ? '#4ECDC4' : '#C62E2D' }} className={color == '#C62E2D' ? 'zoom menuButton' : 'menuButton'} variant="contained"><KeyIcon className="menuIcon" style={{ color: "white" }}></KeyIcon></Button>
             <ModalAuth show={showModalAuth} close={() => setShowModalAuth(false)} />
-            <Button onClick={()=>navigate("pages/events")} style={{ backgroundColor: "black" }} className="menuButton" variant="contained"><AccessTimeOutlinedIcon style={{ color: "white" }}></AccessTimeOutlinedIcon></Button> 
-            <Button onClick={()=>navigate("pages/worldboss")} style={{ backgroundColor: "black" }} className="menuButton" variant="contained"><PetsIcon style={{ color: "white" }}></PetsIcon></Button>
-            <Button onClick={()=>navigate("pages/characters")} style={{ backgroundColor: "black" }} className="menuButton" variant="contained"><PersonOutlineOutlinedIcon style={{ color: "white" }}></PersonOutlineOutlinedIcon></Button>
+            <Button onClick={()=>navigate("pages/events")} style={{ backgroundColor: "black" }} className="menuButton" variant="contained"><AccessTimeOutlinedIcon className="menuIcon" style={{ color: "white" }}></AccessTimeOutlinedIcon></Button> 
+            <Button onClick={()=>navigate("pages/worldboss")} style={{ backgroundColor: "black" }} className="menuButton" variant="contained"><PetsIcon className="menuIcon" style={{ color: "white" }}></PetsIcon></Button>
+            <Button onClick={()=>navigate("pages/characters")} style={{ backgroundColor: "black" }} className="menuButton" variant="contained"><PersonOutlineOutlinedIcon className="menuIcon" style={{ color: "white" }}></PersonOutlineOutlinedIcon></Button>
            
             {/* <Button onClick={()=>navigate("pages/inventory")} style={{ backgroundColor: "black" }} className="menuButton" variant="contained"><Inventory2OutlinedIcon style={{ color: "white" }}></Inventory2OutlinedIcon></Button> */}
         </header>

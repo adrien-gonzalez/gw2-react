@@ -118,8 +118,6 @@
 
   .menuButton{
     border-radius: 0px !important;
-    border-bottom-right-radius: 15px !important;
-    border-top-right-radius: 15px !important;
     opacity: 0.8 !important;
     margin-bottom: 15px !important;
     transition: 0.3s !important;
@@ -146,6 +144,10 @@
 
   .meta{
    font-size: 12px;
+  }
+
+  .menuIcon{
+    font-size: 1.9rem !important;
   }
   
 
