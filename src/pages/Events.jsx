@@ -37,9 +37,14 @@ const Events = (props) => {
         let localMinute = ("00" + localTime.minute()).slice(-2);
     
         // How far along are we (in  % ) of the current 2 hour event cycles?
+        let percentOfTwoHours = "";
 
-        let percentOfTwoHours = ((hour % 2) + minute / 60) * 50;
-        
+        if(window.innerWidth < 900){
+            percentOfTwoHours = ((hour % 2) + minute / 60) * 100;
+        } else {
+            percentOfTwoHours = ((hour % 2) + minute / 60) * 50;
+        }
+
         if(percentOfTwoHours > 94){
             $(".server").hide()
         } else {
