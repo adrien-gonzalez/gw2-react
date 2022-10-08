@@ -11,8 +11,6 @@ import Spinner from 'react-bootstrap/Spinner';
 import eventsEng from '../data/events.json';
 import eventsFr from '../data/events_fr.json';
 
-
-
 const Events = (props) => {
 
     const [pointerTime, setPointerTime] = useState("");
@@ -22,7 +20,7 @@ const Events = (props) => {
 
     // let currentTime = moment.utc();
     let localTime = moment();
-    let startHour = Math.floor(localTime.hour() / 2) * 2
+    let startHour = Math.floor(localTime.hour() / 2) * 2 
     
     function movePointer() {
        
@@ -40,7 +38,7 @@ const Events = (props) => {
         let percentOfTwoHours = "";
 
         if(window.innerWidth < 900){
-            percentOfTwoHours = ((hour % 2) + minute / 60) * 100;
+            percentOfTwoHours = ((hour % 2) + minute / 60) * 47;
         } else {
             percentOfTwoHours = ((hour % 2) + minute / 60) * 50;
         }
@@ -76,7 +74,6 @@ const Events = (props) => {
     }
 
     useEffect(() => {
-
         if(moment.tz.guess() == "Europe/Paris"){
             setEvents(eventsFr)
         } else {
@@ -121,7 +118,8 @@ const Events = (props) => {
                                         phase.hour = ("00" + correctedTime).slice(-2);
                                         phase.minute = ("00" + (offset % 60)).slice(-2);
                                         offset += phase.duration;
-                                    
+
+                                     
                                             return(
                                             
                                                 <div style={{background: phase.color, color: textColor(phase.text), width: 'calc('+calcPhaseWidth(phase.duration)+'% - .25rem)'}} key={'phase'+index2} className="phase">
@@ -129,6 +127,8 @@ const Events = (props) => {
                                                     <div className="phase-name">{phase.name}</div>
                                                 </div>
                                             )
+                                      
+                                          
                                     })}
                                 </div>
                             </div>

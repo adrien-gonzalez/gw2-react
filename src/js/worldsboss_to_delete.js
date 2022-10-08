@@ -42,6 +42,7 @@ function BossTimer() {
     // Generate schedule
     self.schedule = [];
     Object.keys(self.events).forEach(function (key, index) {
+
   
         // Events that repeats every X hours
         if (self.events[key].repeat !== undefined) {
@@ -51,7 +52,8 @@ function BossTimer() {
                 event[0] += self.events[key].repeat.interval;
             }
         }
-  
+
+       
         // // Fixed events
         if (self.events[key].fixed !== undefined) {
   
