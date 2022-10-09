@@ -158,7 +158,6 @@ const Events = (props) => {
             return(
                 <div>
                     <ScreenRotationIcon className="changeOrientation"></ScreenRotationIcon>
-                    <span className="changeOrientationSpan">Tournez l'appareil</span>
                 </div>
             )
         }

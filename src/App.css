@@ -366,15 +366,6 @@ input:focus{
   width: 50px !important;
 }
 
-.changeOrientationSpan{
-  position: absolute;
-  /* right: 50%; */
-  right: calc(50% - 36px);
-  top: 52%;
-  height: 50px !important;
-  width: 50px !important;
-}
-
 .changeOrientation {
   position: absolute;
   /* right: 50%; */
