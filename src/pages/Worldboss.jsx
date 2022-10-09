@@ -1,6 +1,9 @@
 import '../App.css';
 import {connect} from 'react-redux';
 import React, { useState, useEffect } from 'react';
+import Spinner from 'react-bootstrap/Spinner';
+import worldbossesTimer from '../data/worldboss.json';
+
 
 // Image of bosses
 import ChamanedeSvanir from '../img/bosses/Chamane de Svanir.png';
@@ -39,26 +42,7 @@ const Worldboss = (props) => {
         { id: 'Golem Marque II', src: GolemMarqueII}
     ];
 
-    const worldbossesTimer = {
-        "Drakkar": { repeat: { start: [1, 5], interval: 2 } },
-        "Taidha Covington": { repeat: { start: [0, 0], interval: 3 } },
-        "Chamane de Svanir": { repeat: { start: [0, 15], interval: 2 } },
-        "Mégadestructeur": { repeat: { start: [0, 30], interval: 3 } },
-        "Élémentaire de feu": { repeat: { start: [0, 45], interval: 2 } },
-        "Le Destructeur": { repeat: { start: [1, 0], interval: 3 } },
-        "Guivre de la jungle": { repeat: { start: [1, 15], interval: 2 } },
-        "Ulgoth le Modniir": { repeat: { start: [1, 30], interval: 3 } },
-        "Béhémoth des ombres": { repeat: { start: [1, 45], interval: 2 } },
-        "Élémentaire de feu": { repeat: { start: [2, 45], interval: 2 } },
-        "Tequatl le Sans-soleil": { fixed: [[23, 55], [2, 55], [6, 55], [11, 25], [15, 55], [18, 55]] },
-        "Griffe de Jormag": { repeat: { start: [2, 30], interval: 3 } },
-        "Triple terreur": { fixed: [[0, 55], [3, 55], [7, 55], [12, 25], [16, 55], [19, 55]] },
-        "Reine karka": { fixed: [[1, 55], [5, 55], [10, 25], [14, 55], [17, 55], [22, 55]] },
-        "Golem Marque II": { repeat: { start: [2, 0], interval: 3 } },
-    }
-  
 
-    const schedule = []
     var now = new Date();
     var retval = [];
 
@@ -72,29 +56,15 @@ const Worldboss = (props) => {
         return (("0" + h).slice(-2) + ":" + ("0" + m).slice(-2));
     }
 
-    const fetchBosses = async () => {
+    const fetchBosses = async (schedule = []) => {
+       
+        worldbossesTimer.map((key, index) => {
+            key.fixed.map(event =>
+                schedule.push([(event[0]) * 60 + event[1], key.name])
+            ) 
+        })
 
-        Object.keys(worldbossesTimer).forEach(function (key, index) {
-
-            // Events that repeats every X hours
-            if (worldbossesTimer[key].repeat !== undefined) {
-                var event = worldbossesTimer[key].repeat.start;
-                while (event[0] < 24) {
-                    schedule.push([(event[0] * 60) + event[1], key]);
-                    event[0] += worldbossesTimer[key].repeat.interval;
-                }
-            }
-           
-            // Fixed events
-            if (worldbossesTimer[key].fixed !== undefined) {
-      
-                worldbossesTimer[key].fixed.map(event =>
-                schedule.push([(event[0]) * 60 + event[1], key])
-              )
-                
-            }
-        });
-
+        setWorldbosses(schedule)
     }
 
     function getSchedule(offset){
@@ -120,15 +90,12 @@ const Worldboss = (props) => {
 
     useEffect(() => {
         fetchBosses()
-        setWorldbosses(schedule)
-
         setInterval(function() {
             var rn = new Date();
             var rs = rn.getSeconds();
             // auto refresh table at 0 second
             if (rs == 0){
                 fetchBosses()
-                setWorldbosses(schedule)
             }
         },1000);
     },[])
@@ -136,8 +103,6 @@ const Worldboss = (props) => {
 
 
     if(worldbosses != false){
-        var current = getSchedule(-10);
-
         return (
             <div className="worldbosses">
                 <table className="table" id="output" >
@@ -147,7 +112,7 @@ const Worldboss = (props) => {
                             <td className='cell time_title timestamp'>Heure</td>
                             <td className='time_title cell remaining'>Temps</td>
                         </tr>
-                        {current.map((curr, id) => {
+                        {getSchedule(-10).map((curr, id) => {
                             const bossImage = images_boss.find(
                                 element => element.id == curr.key
                             )
@@ -158,8 +123,8 @@ const Worldboss = (props) => {
                                         {bossImage ? <img alt="" className='bossesPicture' src={bossImage.src}/> : ''}
                                         {curr.key}
                                     </td>
-                                    <td className='cell timestamp'>{curr.stamp.toLocaleTimeString()}</td>
-                                    <td className='cell remaining'>dans: {formatRemaining(curr.remaining)}</td>
+                                    {curr.remaining <= 0 ? <td className='cell in_progress'>{curr.stamp.toLocaleTimeString()}</td> : <td className='cell timestamp'>{curr.stamp.toLocaleTimeString()}</td>}
+                                    {curr.remaining <= 0 ? <td className='in_progress cell'>En cours</td> : <td className='cell remaining'>dans: {formatRemaining(curr.remaining)}</td>}
                                 </tr>
                             )
                         })}
@@ -168,11 +133,16 @@ const Worldboss = (props) => {
             </div>
         ); 
     } else {
-        return (
-            <div className="worldbosses">
-                <table className="table" id="output" ></table>
-            </div> 
-        ); 
+        return(
+            <Spinner
+                className="loader"
+                as="span"
+                animation="border"
+                size="lg"
+                role="status"
+                aria-hidden="true"
+            /> 
+        )
     }
    
 }

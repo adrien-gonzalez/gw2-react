@@ -6,10 +6,13 @@ import $ from 'jquery';
 import Moment from 'react-moment';
 import moment from 'moment';
 import 'moment-timezone';
+import useScreenOrientation from 'react-hook-screen-orientation';
+import useOrientationChange from "use-orientation-change";
 
 import Spinner from 'react-bootstrap/Spinner';
 import eventsEng from '../data/events.json';
 import eventsFr from '../data/events_fr.json';
+import ScreenRotationIcon from '@mui/icons-material/ScreenRotation';
 
 const Events = (props) => {
 
@@ -17,6 +20,12 @@ const Events = (props) => {
     const [pointerLocalTime, setPointerLocalTime] = useState("");
     const [pointerPosition, setPointerPosition] = useState("");
     const [events, setEvents] = useState(false)
+    // const [orientation, setOrientation] = useState("")
+    const screenOrientation = useScreenOrientation()
+    const orientation = useOrientationChange()
+
+
+ 
 
     // let currentTime = moment.utc();
     let localTime = moment();
@@ -74,6 +83,8 @@ const Events = (props) => {
     }
 
     useEffect(() => {
+        // OrientationChange()
+
         if(moment.tz.guess() == "Europe/Paris"){
             setEvents(eventsFr)
         } else {
@@ -91,57 +102,66 @@ const Events = (props) => {
 
 
     if(events != false){
+        if(orientation == "landscape" || window.innerWidth > 900)
+        {
+            return (
+                <section className="meta-section">
+                    <div className="meta-container">
+                        <div className="pointer" style={{left: pointerPosition+'%'}}>
+                            <span className="local">
+                                <strong>Heure Serveur</strong>
+                                <span>{pointerTime}</span>
+                            </span>
+                            <span className="server">
+                                <strong>Heure locale</strong>
+                                <span>{pointerLocalTime}</span>
+                            </span>
+                        </div>
+                        {events.map((key, index) => {
+                            let offset = 0;
+                            return(
+                                <div key={'meta_'+index} className="meta">
+                                    {key.category_name ? <div className={index == 0 ? "first category_name" : "not_first_category category_name"}>{key.category_name}</div> : ""}
+                                    <span className="meta-name">{key.name}</span>
+                                    <div className="bar">
+                                        {key.phases.map((phase, index2) => {
 
-        return (
-            <section className="meta-section">
-                <div className="meta-container">
-                    <div className="pointer" style={{left: pointerPosition+'%'}}>
-                        <span className="local">
-                            <strong>Heure Serveur</strong>
-                            <span>{pointerTime}</span>
-                        </span>
-                        <span className="server">
-                            <strong>Heure locale</strong>
-                            <span>{pointerLocalTime}</span>
-                        </span>
-                    </div>
-                    {events.map((key, index) => {
-                        let offset = 0;
-                        return(
-                            <div key={'meta_'+index} className="meta">
-                                {key.category_name ? <div className={index == 0 ? "first category_name" : "not_first_category category_name"}>{key.category_name}</div> : ""}
-                                <span className="meta-name">{key.name}</span>
-                                <div className="bar">
-                                    {key.phases.map((phase, index2) => {
+                                            let correctedTime = "" + (startHour + (offset > 59 ? 1 : 0));
+                                            phase.hour = ("00" + correctedTime).slice(-2);
+                                            phase.minute = ("00" + (offset % 60)).slice(-2);
+                                            offset += phase.duration;
 
-                                        let correctedTime = "" + (startHour + (offset > 59 ? 1 : 0));
-                                        phase.hour = ("00" + correctedTime).slice(-2);
-                                        phase.minute = ("00" + (offset % 60)).slice(-2);
-                                        offset += phase.duration;
-
-                                     
-                                            return(
+                                        
+                                                return(
+                                                
+                                                    <div style={{background: phase.color, color: textColor(phase.text), width: 'calc('+calcPhaseWidth(phase.duration)+'% - .25rem)'}} key={'phase'+index2} className="phase">
+                                                        <div className="phase-time">{phase.hour} : {phase.minute}</div>
+                                                        <div className="phase-name">{phase.name}</div>
+                                                    </div>
+                                                )
+                                        
                                             
-                                                <div style={{background: phase.color, color: textColor(phase.text), width: 'calc('+calcPhaseWidth(phase.duration)+'% - .25rem)'}} key={'phase'+index2} className="phase">
-                                                    <div className="phase-time">{phase.hour} : {phase.minute}</div>
-                                                    <div className="phase-name">{phase.name}</div>
-                                                </div>
-                                            )
-                                      
-                                          
-                                    })}
+                                        })}
+                                    </div>
                                 </div>
-                            </div>
 
-                        )
+                            )
 
-                
-                        
-                    })}
+                    
+                            
+                        })}
+                    </div>
+                    <span className='basedPage'>This page is based on the <a href="https://gw2.ninja/timer">Guild Wars 2 Event Timer</a> by <a href="https://twitch.tv/rediche">Rediche.</a></span>
+                </section>
+            ); 
+        } else {
+            return(
+                <div>
+                    <ScreenRotationIcon className="changeOrientation"></ScreenRotationIcon>
+                    <span className="changeOrientationSpan">Tournez l'appareil</span>
                 </div>
-                <span className='basedPage'>This page is based on the <a href="https://gw2.ninja/timer">Guild Wars 2 Event Timer</a> by <a href="https://twitch.tv/rediche">Rediche.</a></span>
-            </section>
-         ); 
+            )
+        }
     } else {
         return(
             <Spinner

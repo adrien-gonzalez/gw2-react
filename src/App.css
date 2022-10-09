@@ -366,6 +366,46 @@ input:focus{
   width: 50px !important;
 }
 
+.changeOrientationSpan{
+  position: absolute;
+  /* right: 50%; */
+  right: calc(50% - 36px);
+  top: 52%;
+  height: 50px !important;
+  width: 50px !important;
+}
+
+.changeOrientation {
+  position: absolute;
+  /* right: 50%; */
+  right: calc(50% - 36px);
+  top: 45%;
+  height: 50px !important;
+  width: 50px !important;
+  animation: rotate 2s linear infinite; 
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(45deg);
+
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75%{
+    transform: rotate(-45deg);
+
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+
 
 .charactersSection{
   display: flex;
@@ -938,3 +978,11 @@ input:focus{
  margin-top: 5%;
 }
 
+
+tr:has(> .in_progress){
+  background-color: #C0392B;
+}
+
+.in_progress{
+  color: white ;
+}
