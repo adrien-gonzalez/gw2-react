@@ -369,11 +369,12 @@ input:focus{
 .changeOrientation {
   position: absolute;
   /* right: 50%; */
-  right: calc(50% - 36px);
+  right: calc(50.2% - 36px);
   top: 45%;
-  height: 50px !important;
-  width: 50px !important;
+  height: 65px !important;
+  width: 65px !important;
   animation: rotate 2s linear infinite; 
+  font-size: 20px;
 }
 
 @keyframes rotate {
