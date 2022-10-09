@@ -86,9 +86,9 @@ const Worldboss = (props) => {
             }
            
             // Fixed events
-            if (worldbossesTimer.fixed !== undefined) {
+            if (worldbossesTimer[key].fixed !== undefined) {
       
-                worldbossesTimer.fixed.map(event =>
+                worldbossesTimer[key].fixed.map(event =>
                 schedule.push([(event[0]) * 60 + event[1], key])
               )
                 
