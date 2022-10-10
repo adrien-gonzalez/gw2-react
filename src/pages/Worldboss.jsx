@@ -105,7 +105,7 @@ const Worldboss = (props) => {
     if(worldbosses != false){
         return (
             <div className="worldbosses">
-                <table className="table" id="output" >
+                <table id="output">
                     <tbody>
                         <tr>
                             <td className='cell bossname_title'>Nom du Boss</td>

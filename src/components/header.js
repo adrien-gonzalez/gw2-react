@@ -9,6 +9,8 @@ import React, { useState } from 'react';
 import KeyIcon from '@mui/icons-material/Key';
 import ModalAuth from "./ModalAuth";
 import { useNavigate } from "react-router-dom";
+import bank from "../img/icon/bank.png";
+
 
 
 
@@ -27,8 +29,9 @@ const Header = (props) => {
             <Button onClick={()=>navigate("pages/events")} style={{ backgroundColor: "black" }} className="menuButton" variant="contained"><AccessTimeOutlinedIcon className="menuIcon" style={{ color: "white" }}></AccessTimeOutlinedIcon></Button> 
             <Button onClick={()=>navigate("pages/worldboss")} style={{ backgroundColor: "black" }} className="menuButton" variant="contained"><PetsIcon className="menuIcon" style={{ color: "white" }}></PetsIcon></Button>
             <Button onClick={()=>navigate("pages/characters")} style={{ backgroundColor: "black" }} className="menuButton" variant="contained"><PersonOutlineOutlinedIcon className="menuIcon" style={{ color: "white" }}></PersonOutlineOutlinedIcon></Button>
+            {/* <Button onClick={()=>navigate("pages/characters")} style={{ backgroundColor: "black" }} className="menuButton" variant="contained"><PersonOutlineOutlinedIcon className="menuIcon" style={{ color: "white" }}></PersonOutlineOutlinedIcon></Button> */}
            
-            {/* <Button onClick={()=>navigate("pages/inventory")} style={{ backgroundColor: "black" }} className="menuButton" variant="contained"><Inventory2OutlinedIcon style={{ color: "white" }}></Inventory2OutlinedIcon></Button> */}
+            <Button style={{  backgroundColor: "black" }} className="ButtonPng menuButton" variant="contained"><div className="buttonWithIcon" style={{ backgroundImage: `url(${bank})`}}></div></Button> 
         </header>
         
     ); 

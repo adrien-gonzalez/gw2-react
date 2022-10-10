@@ -16,6 +16,7 @@
 }
 
 
+
 #characters{
   /* margin-top: 60px; */
   padding: 15px;
@@ -48,6 +49,15 @@
     background-size: contain;
   }
 
+
+  .buttonWithIcon{
+    height: 100%;
+    width: 100%;
+    /* background-size: 50%; */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: black !important;
+  }
   .App-header {
     /* background-color: #282c34; */
     background-color: white;
@@ -127,6 +137,7 @@
     transform: rotate(90deg);
   }
 
+
   .meta-container {
     overflow: hidden;
     position: relative;
@@ -149,7 +160,20 @@
   .menuIcon{
     font-size: 1.9rem !important;
   }
-  
+
+  .buttonWithIcon{
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: black !important;
+    transform: rotate(90deg);
+
+  }
+
+  .ButtonPng{
+    min-height: 42.39px;
+  }
 
 }
 
@@ -194,6 +218,22 @@
 .table-border{
   border: 1px solid #ddd;
 }
+
+
+#output>:not(caption)>*>*{
+  padding: .5rem .5rem;
+}
+
+
+#output tr:hover{
+  background-color: #2C3E50;
+  cursor: pointer;
+}
+
+#output tr:not(:first-child):not(:last-child){
+  border: 1px solid grey;
+}
+
 
 @media screen and (min-width: 621px) {
   #output{
