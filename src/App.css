@@ -51,9 +51,8 @@
 
 
   .buttonWithIcon{
-    height: 100%;
+    height: 24px;
     width: 100%;
-    /* background-size: 50%; */
     background-repeat: no-repeat;
     background-position: center;
     background-color: black !important;
@@ -168,12 +167,14 @@
     background-position: center;
     background-color: black !important;
     transform: rotate(90deg);
-
   }
 
   .ButtonPng{
     min-height: 42.39px;
   }
+
+   
+  
 
 }
 
