@@ -1,14 +1,10 @@
 import '../App.css';
 import {connect} from 'react-redux';
 import React, { useState, useEffect } from 'react';
-import $ from 'jquery';
-
-import Moment from 'react-moment';
 import moment from 'moment';
 import 'moment-timezone';
 import useScreenOrientation from 'react-hook-screen-orientation';
 import useOrientationChange from "use-orientation-change";
-
 import Spinner from 'react-bootstrap/Spinner';
 import eventsEng from '../data/events.json';
 import eventsFr from '../data/events_fr.json';
@@ -20,14 +16,8 @@ const Events = (props) => {
     const [pointerLocalTime, setPointerLocalTime] = useState("");
     const [pointerPosition, setPointerPosition] = useState("");
     const [events, setEvents] = useState(false)
-    // const [orientation, setOrientation] = useState("")
-    const screenOrientation = useScreenOrientation()
     const orientation = useOrientationChange()
 
-
- 
-
-    // let currentTime = moment.utc();
     let localTime = moment();
     let startHour = Math.floor(localTime.hour() / 2) * 2 
     
@@ -44,26 +34,8 @@ const Events = (props) => {
         let localMinute = ("00" + localTime.minute()).slice(-2);
     
         // How far along are we (in  % ) of the current 2 hour event cycles?
-        let percentOfTwoHours = "";
-
-        if(window.innerWidth < 900){
-            percentOfTwoHours = ((hour % 2) + minute / 60) * 47;
-        } else {
-            percentOfTwoHours = ((hour % 2) + minute / 60) * 50;
-        }
-
-        if(percentOfTwoHours > 94){
-            $(".server").hide()
-        } else {
-            $(".server").show()
-        }
-
-        if(percentOfTwoHours < 7){
-            $(".local").hide()
-        } else {
-            $(".local").show()
-        }
-    
+        let percentOfTwoHours = ((hour % 2) + minute / 60) * 50;
+        
         // // Set the text and move the pointer to that %
         setPointerTime(hour + ":" + minute);
         setPointerLocalTime(localHour + ":" + localMinute);
@@ -71,11 +43,7 @@ const Events = (props) => {
     }
 
     function calcPhaseWidth(duration) {
-        if(window.innerWidth < 900){
-            return (100 * duration) / 60;
-        } else {
-            return (100 * duration) / 120;
-        }
+        return (100 * duration) / 120;
     }
 
     function textColor(textColor) {
@@ -108,14 +76,8 @@ const Events = (props) => {
                 <section className="meta-section">
                     <div className="meta-container">
                         <div className="pointer" style={{left: pointerPosition+'%'}}>
-                            <span className="local">
-                                <strong>Heure Serveur</strong>
-                                <span>{pointerTime}</span>
-                            </span>
-                            <span className="server">
-                                <strong>Heure locale</strong>
-                                <span>{pointerLocalTime}</span>
-                            </span>
+                            {pointerPosition > 7 ? <span className="local"><strong>Heure Serveur</strong><span>{pointerTime}</span></span> : ""}
+                            {pointerPosition < 93 ? <span className="server"><strong>Heure locale</strong><span>{pointerLocalTime}</span></span> : ""}
                         </div>
                         {events.map((key, index) => {
                             let offset = 0;
@@ -133,8 +95,7 @@ const Events = (props) => {
 
                                         
                                                 return(
-                                                
-                                                    <div style={{background: phase.color, color: textColor(phase.text), width: 'calc('+calcPhaseWidth(phase.duration)+'% - .25rem)'}} key={'phase'+index2} className="phase">
+                                                    <div style={{background: phase.color, color: textColor(phase.text), width:'calc('+calcPhaseWidth(phase.duration)+'% - .25rem)'}} key={'phase'+index2} className="phase">
                                                         <div className="phase-time">{phase.hour} : {phase.minute}</div>
                                                         <div className="phase-name">{phase.name}</div>
                                                     </div>
