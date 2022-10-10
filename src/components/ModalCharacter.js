@@ -7,7 +7,9 @@ import Spinner from 'react-bootstrap/Spinner';
 import {  Tooltip, Zoom  } from '@mui/material';
 import equipment_background from '../img/background/equipment.png';
 import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
-import ShieldOutlinedIcon from '@mui/icons-material/ShieldOutlined';
+
+import inventory_icon  from "../img/icon/inventory.png";
+import equipment_icon from "../img/icon/equipment.png";
 
 const ModalCharacter = (props) => {
   
@@ -195,8 +197,8 @@ const ModalCharacter = (props) => {
             <Modal.Header className="character_equipment_header">
               <Modal.Title id="contained-modal-title-vcenter">{props.character.name}</Modal.Title>
               <div className="changeView">
-                <div><Inventory2OutlinedIcon onClick={() => setView("inventory")} style={{ color: "white" }}></Inventory2OutlinedIcon></div>
-                <div><ShieldOutlinedIcon onClick={() => setView("equipment")} style={{ color: "white" }}></ShieldOutlinedIcon></div>
+                <div onClick={() => setView("inventory")} style={{ backgroundImage: `url(${inventory_icon})`, color: "white" }}></div>
+                <div onClick={() => setView("equipment")} style={{  backgroundImage: `url(${equipment_icon})`, color: "white" }}></div>
               </div>
             </Modal.Header>
 
@@ -233,8 +235,8 @@ const ModalCharacter = (props) => {
               <Modal.Header className="character_equipment_header">
                 <Modal.Title id="contained-modal-title-vcenter">{props.character.name}</Modal.Title>
                 <div className="changeView">
-                  <div><Inventory2OutlinedIcon onClick={() => setView("inventory")} style={{ color: "white" }}></Inventory2OutlinedIcon></div>
-                  <div><ShieldOutlinedIcon onClick={() => setView("equipment")} style={{ color: "white" }}></ShieldOutlinedIcon></div>
+                  <div onClick={() => setView("inventory")} style={{ backgroundImage: `url(${inventory_icon})`, color: "white" }}></div>
+                  <div onClick={() => setView("equipment")} style={{  backgroundImage: `url(${equipment_icon})`, color: "white" }}></div>
                 </div>
               </Modal.Header>
       

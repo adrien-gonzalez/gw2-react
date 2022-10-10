@@ -56,6 +56,7 @@
     background-repeat: no-repeat;
     background-position: center;
     background-color: black !important;
+    background-size: cover;
   }
   .App-header {
     /* background-color: #282c34; */
@@ -166,6 +167,7 @@
     background-repeat: no-repeat;
     background-position: center;
     background-color: black !important;
+    background-size: cover;
     transform: rotate(90deg);
   }
 
@@ -828,10 +830,17 @@ input:focus{
   padding-right: 5px;
 }
 
+.changeView div{
+  height: 32px;
+  width: 32px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
 
-.changeView div svg:hover{
+.changeView div:hover{
   cursor: pointer;
 }
+
 
 .loading_character_equipment{
   height: 150px;

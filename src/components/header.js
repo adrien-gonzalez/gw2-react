@@ -9,7 +9,11 @@ import React, { useState } from 'react';
 import KeyIcon from '@mui/icons-material/Key';
 import ModalAuth from "./ModalAuth";
 import { useNavigate } from "react-router-dom";
-import bank from "../img/icon/bank.png";
+import bank from "../img/icon/bank.svg";
+import boss from "../img/icon/boss.svg";
+import hero from "../img/icon/hero.svg";
+
+
 
 
 
@@ -27,10 +31,8 @@ const Header = (props) => {
             <Button onClick={() => setShowModalAuth(true)}  style={{ backgroundColor: localStorage.getItem('apiKey') ? '#4ECDC4' : '#C62E2D' }} className={color == '#C62E2D' ? 'zoom menuButton' : 'menuButton'} variant="contained"><KeyIcon className="menuIcon" style={{ color: "white" }}></KeyIcon></Button>
             <ModalAuth show={showModalAuth} close={() => setShowModalAuth(false)} />
             <Button onClick={()=>navigate("pages/events")} style={{ backgroundColor: "black" }} className="menuButton" variant="contained"><AccessTimeOutlinedIcon className="menuIcon" style={{ color: "white" }}></AccessTimeOutlinedIcon></Button> 
-            <Button onClick={()=>navigate("pages/worldboss")} style={{ backgroundColor: "black" }} className="menuButton" variant="contained"><PetsIcon className="menuIcon" style={{ color: "white" }}></PetsIcon></Button>
+            <Button onClick={()=>navigate("pages/worldboss")} style={{ backgroundColor: "black" }} className="ButtonPng menuButton" variant="contained"><div className="buttonWithIcon" style={{ backgroundImage: `url(${boss})`}}></div></Button>
             <Button onClick={()=>navigate("pages/characters")} style={{ backgroundColor: "black" }} className="menuButton" variant="contained"><PersonOutlineOutlinedIcon className="menuIcon" style={{ color: "white" }}></PersonOutlineOutlinedIcon></Button>
-            {/* <Button onClick={()=>navigate("pages/characters")} style={{ backgroundColor: "black" }} className="menuButton" variant="contained"><PersonOutlineOutlinedIcon className="menuIcon" style={{ color: "white" }}></PersonOutlineOutlinedIcon></Button> */}
-           
             <Button style={{  backgroundColor: "black" }} className="ButtonPng menuButton" variant="contained"><div className="buttonWithIcon" style={{ backgroundImage: `url(${bank})`}}></div></Button> 
         </header>
         
