@@ -65,7 +65,7 @@ const Events = (props) => {
             movePointer()
         },1000);
 
-    },[pointerLocalTime, pointerLocalTime, pointerTime, events])
+    },[pointerLocalTime, pointerTime, events])
   
 
 

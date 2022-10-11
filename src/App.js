@@ -8,6 +8,8 @@ import Store from './store/configureStore';
 import Events from './pages/Events';
 import Worldboss from './pages/Worldboss';
 import Characters from './pages/Characters';
+import Bank from './pages/Bank';
+
 
 
 
@@ -35,6 +37,8 @@ const App = (props) => {
             <Route exact path="pages/events" element={<Events/>}/>
             <Route exact path="pages/worldboss" element={<Worldboss/>}/>
             <Route exact path="pages/characters" element={<Characters/>}/>
+            <Route exact path="pages/bank" element={<Bank/>}/>
+
           </Routes>
         </div>
       </BrowserRouter>

@@ -30,7 +30,7 @@ const Header = (props) => {
             <Button onClick={()=>navigate("pages/events")} style={{ backgroundColor: "black" }} className="menuButton" variant="contained"><AccessTimeFilledIcon className="menuIcon" style={{ color: "white" }}></AccessTimeFilledIcon></Button> 
             <Button onClick={()=>navigate("pages/worldboss")} style={{ backgroundColor: "black" }} className="ButtonPng menuButton" variant="contained"><div className="buttonWithIcon" style={{ backgroundImage: `url(${boss})`}}></div></Button>
             <Button onClick={()=>navigate("pages/characters")} style={{ backgroundColor: "black" }} className="menuButton" variant="contained"><PersonIcon className="menuIcon" style={{ color: "white" }}></PersonIcon></Button>
-            <Button style={{  backgroundColor: "black" }} className="ButtonPng menuButton" variant="contained"><div className="buttonWithIcon" style={{ backgroundImage: `url(${bank})`}}></div></Button> 
+            <Button onClick={()=>navigate("pages/bank")} style={{  backgroundColor: "black" }} className="ButtonPng menuButton" variant="contained"><div className="buttonWithIcon" style={{ backgroundImage: `url(${bank})`}}></div></Button> 
         </header>
         
     ); 

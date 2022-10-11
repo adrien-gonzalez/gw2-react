@@ -41,6 +41,17 @@ export function getSkin(skin_id, key) {
     .catch((error) => error.response.data.errors);    
 }
 
+export function getBankAccount(key) {
+    return axios
+    .get(process.env.REACT_APP_API_URL+"account/bank?access_token="+key)
+    .then((response) => response.data)
+    .catch((error) => error.response.data.errors);    
+}
 
-// GET ACCOUNT BANK
-// account/bank
+
+// WALLET 
+// account/wallet
+
+// CURRENCIES ID
+// https://api.guildwars2.com/v2/currencies?ids=4
+
