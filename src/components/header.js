@@ -1,8 +1,6 @@
 import {Button} from '@mui/material';
-import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined';
-import PetsIcon from '@mui/icons-material/Pets';
-
+import PersonIcon from '@mui/icons-material/Person';
+import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
 import '../App.css';
 import {connect} from 'react-redux';
 import React, { useState } from 'react';
@@ -11,7 +9,6 @@ import ModalAuth from "./ModalAuth";
 import { useNavigate } from "react-router-dom";
 import bank from "../img/icon/bank.svg";
 import boss from "../img/icon/boss.svg";
-import hero from "../img/icon/hero.svg";
 
 
 
@@ -30,9 +27,9 @@ const Header = (props) => {
         
             <Button onClick={() => setShowModalAuth(true)}  style={{ backgroundColor: localStorage.getItem('apiKey') ? '#4ECDC4' : '#C62E2D' }} className={color == '#C62E2D' ? 'zoom menuButton' : 'menuButton'} variant="contained"><KeyIcon className="menuIcon" style={{ color: "white" }}></KeyIcon></Button>
             <ModalAuth show={showModalAuth} close={() => setShowModalAuth(false)} />
-            <Button onClick={()=>navigate("pages/events")} style={{ backgroundColor: "black" }} className="menuButton" variant="contained"><AccessTimeOutlinedIcon className="menuIcon" style={{ color: "white" }}></AccessTimeOutlinedIcon></Button> 
+            <Button onClick={()=>navigate("pages/events")} style={{ backgroundColor: "black" }} className="menuButton" variant="contained"><AccessTimeFilledIcon className="menuIcon" style={{ color: "white" }}></AccessTimeFilledIcon></Button> 
             <Button onClick={()=>navigate("pages/worldboss")} style={{ backgroundColor: "black" }} className="ButtonPng menuButton" variant="contained"><div className="buttonWithIcon" style={{ backgroundImage: `url(${boss})`}}></div></Button>
-            <Button onClick={()=>navigate("pages/characters")} style={{ backgroundColor: "black" }} className="menuButton" variant="contained"><PersonOutlineOutlinedIcon className="menuIcon" style={{ color: "white" }}></PersonOutlineOutlinedIcon></Button>
+            <Button onClick={()=>navigate("pages/characters")} style={{ backgroundColor: "black" }} className="menuButton" variant="contained"><PersonIcon className="menuIcon" style={{ color: "white" }}></PersonIcon></Button>
             <Button style={{  backgroundColor: "black" }} className="ButtonPng menuButton" variant="contained"><div className="buttonWithIcon" style={{ backgroundImage: `url(${bank})`}}></div></Button> 
         </header>
         

@@ -33,8 +33,7 @@ const Characters = (props) => {
     const [characterId, setCharacterId] = useState();
 
     const [apiKey] = useState(localStorage.getItem('apiKey') ?? null);
-    const [character, setCharacter] = useState();
-    const [load, setLoad] = useState(false);
+    const [character, setCharacter] = useState(false);
 
 
     const images_class = [
@@ -67,7 +66,6 @@ const Characters = (props) => {
         try {
             const data = await getCharacters(apiKey);
             setCharacter(data)
-            setLoad(true)
         } catch (error) {
             console.log(error)
         }
@@ -82,7 +80,7 @@ const Characters = (props) => {
 
 
     if(apiKey){
-        if(load == true){
+        if(character != false){
             return (
                 <section className="wrapper charactersSection">
                     <div id="characters">
