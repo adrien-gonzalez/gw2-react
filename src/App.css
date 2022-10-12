@@ -15,7 +15,13 @@
   font-family: "Menomonia";
 }
 
+html{
+  cursor: url('img/icon/cursor.png'), auto;	
+}
 
+button:hover{
+  cursor: url('img/icon/pointer.png'), auto !important;	
+}
 
 #characters{
   /* margin-top: 60px; */
@@ -230,7 +236,7 @@
 
 #output tr:hover{
   background-color: #2C3E50;
-  cursor: pointer;
+  cursor: url('img/icon/pointer.png'), auto;	
 }
 
 #output tr:not(:first-child):not(:last-child){
@@ -502,7 +508,7 @@ input:focus{
   -ms-transform:scale(1.10); /* Internet Explorer 9 */
   -o-transform:scale(1.10); /* Opera */
   transform:scale(1.10);
-  cursor: pointer;
+  cursor: url('img/icon/pointer.png'), auto;	
 }
 
 .characterForm div{
@@ -812,7 +818,7 @@ input:focus{
 }
 
 .character_equipment .border_equipment:hover{
-  cursor: pointer;
+  cursor: url('img/icon/pointer.png'), auto;	
 }
 
 .clean{
@@ -842,12 +848,12 @@ input:focus{
 .changeView div{
   height: 32px;
   width: 32px;
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
 }
 
 .changeView div:hover{
-  cursor: pointer;
+  cursor: url('img/icon/pointer.png'), auto;	
 }
 
 
@@ -872,7 +878,7 @@ input:focus{
 }
 
 .row_invetory td:hover{
-  cursor: pointer;
+  cursor: url('img/icon/pointer.png'), auto;	
 }
 
 .table_bags{
@@ -1066,3 +1072,4 @@ tr:has(> .in_progress){
   flex-wrap: wrap;
   justify-content: flex-start;
 }
+

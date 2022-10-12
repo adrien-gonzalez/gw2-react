@@ -1,7 +1,7 @@
 import { Modal } from "react-bootstrap";
 import { Button } from '@mui/material';
 import "bootstrap/dist/css/bootstrap.min.css";
-import { getItem, getSkin } from '../services/gw2API';
+import { getItem, getSkin, getWallet, getCurrencies } from '../services/gw2API';
 import React, { useState, useEffect } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 import {  Tooltip, Zoom  } from '@mui/material';
@@ -10,15 +10,18 @@ import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
 
 import inventory_icon  from "../img/icon/inventory.png";
 import equipment_icon from "../img/icon/equipment.png";
+import coin_icon from "../img/icon/coin.png";
+
 
 const ModalCharacter = (props) => {
   
 
   const [apiKey] = useState(localStorage.getItem('apiKey') ?? '');
   const [equipment, setEquipment] = useState(false);
+  const [money, setMoney] = useState(false)
   const [view, setView] = useState("equipment");
 
-  const [bags, setBags] = useState("");
+  const [bags, setBags] = useState(false);
   const [item, setItem] = useState("");
 
 
@@ -171,13 +174,41 @@ const ModalCharacter = (props) => {
       }
 
   }
+
+  const currencies = async (item, api, count) => {
+      const data = await getCurrencies(api, item)
+      data[0].count = count
+      return data[0]
+  };
+
+  const getMoney = async () => {
+    try {
+        const data = await getWallet(apiKey);
+        const object = await Promise.all(data.map((key, index) => {
+            return currencies(key.id, apiKey, key.value)
+        }))
+
+        // 1 or = 100 argent / 10 000 bronze
+        // 1 argent = 100 bronze 
+        setMoney(object)
+        console.log(object)
+    
+
+    } catch (error) {
+        console.log(error)
+    }
+};
   
 
   useEffect(() => {
     setEquipment(false)
+    setBags(false)
+
 
     if(apiKey != null && props.character){
       character_detail(props.character)
+      getMoney()
+      
     }
 
   },[props.character, apiKey])
@@ -197,6 +228,7 @@ const ModalCharacter = (props) => {
             <Modal.Header className="character_equipment_header">
               <Modal.Title id="contained-modal-title-vcenter">{props.character.name}</Modal.Title>
               <div className="changeView">
+                <div onClick={() => setView("equipment")} style={{  backgroundImage: `url(${coin_icon})`, color: "white" }}></div>
                 <div onClick={() => setView("inventory")} style={{ backgroundImage: `url(${inventory_icon})`, color: "white" }}></div>
                 <div onClick={() => setView("equipment")} style={{  backgroundImage: `url(${equipment_icon})`, color: "white" }}></div>
               </div>
@@ -221,7 +253,7 @@ const ModalCharacter = (props) => {
         </>
       );
     } else {
-      if(bags != ""){
+      if(bags != false){
         // console.log(bags)
         return (
           <>
@@ -235,6 +267,7 @@ const ModalCharacter = (props) => {
               <Modal.Header className="character_equipment_header">
                 <Modal.Title id="contained-modal-title-vcenter">{props.character.name}</Modal.Title>
                 <div className="changeView">
+                  <div onClick={() => setView("equipment")} style={{  backgroundImage: `url(${coin_icon})`, color: "white" }}></div>
                   <div onClick={() => setView("inventory")} style={{ backgroundImage: `url(${inventory_icon})`, color: "white" }}></div>
                   <div onClick={() => setView("equipment")} style={{  backgroundImage: `url(${equipment_icon})`, color: "white" }}></div>
                 </div>

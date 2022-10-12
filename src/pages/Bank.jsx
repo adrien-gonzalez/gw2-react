@@ -48,6 +48,8 @@ const Bank = (props) => {
             // 1 or = 100 argent / 10 000 bronze
             // 1 argent = 100 bronze 
             setMoney(object)
+        
+
         } catch (error) {
             console.log(error)
         }
@@ -87,30 +89,6 @@ const Bank = (props) => {
                       </tr>
                   </tbody>
                 </table>
-
-
-                <table className="bank_table">
-                    <tbody>
-                        <tr>
-                            {money.map((key, index) => {
-
-                                if(key){
-                                    return(
-                                        
-                                        <Tooltip TransitionComponent={Zoom} title={key.description ?? 'Aucune description'} key={index+'tool_'+key} >
-                                            <td className={key.rarity} style={{backgroundSize: "cover",  backgroundImage: `url(${key.icon})`}} key={index+'tab_'+key}> 
-                                                <span key={'img_'+index} className='count_item_bank'>{key.count}</span>
-                                            </td>  
-                                        </Tooltip>
-                                        
-                                    )    
-                                }
-
-                                })}
-                            </tr>
-                    </tbody>
-                </table>
-
             </section>
         ); 
     } else {
