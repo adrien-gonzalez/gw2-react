@@ -48,6 +48,22 @@ export function getBankAccount(key) {
     .catch((error) => error.response.data.errors);    
 }
 
+export function getWallet(key) {
+    return axios
+    .get(process.env.REACT_APP_API_URL+"account/wallet?access_token="+key)
+    .then((response) => response.data)
+    .catch((error) => error.response.data.errors);    
+}
+
+
+
+export function getCurrencies(key, id) {
+    return axios
+    .get(process.env.REACT_APP_API_URL+"currencies?ids="+id+"&access_token="+key)
+    .then((response) => response.data)
+    .catch((error) => error.response.data.errors);    
+}
+
 
 // WALLET 
 // account/wallet
