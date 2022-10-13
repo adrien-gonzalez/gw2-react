@@ -136,17 +136,7 @@ const Characters = (props) => {
         } 
     } else {
         return (
-            <div className="things">
-                <div className="content">
-                    <div className="arrow">
-                    <div className="curve"></div>
-                    <div className="point"></div>
-                    </div>
-                </div> 
-                <div className="content">
-                    <span>Veuillez ajouter votre clé</span>
-                </div>
-                </div>
+            <div></div>
         )
     }
    

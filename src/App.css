@@ -616,6 +616,11 @@ input:focus{
   }
 }
 
+.things{
+  position: absolute;
+  right: 15px;
+}
+
 .things > .content {
   float: left;
   width: 50%;
@@ -630,7 +635,7 @@ input:focus{
   width: 100px;
   top: 0;
   bottom: 500px;
-  left: -37px;
+  /* left: -37px; */
   right: 0;
   margin: auto;
   position: absolute;
@@ -643,60 +648,6 @@ input:focus{
 }
 
 /* Arrow */
-
-.arrow {
-	position: relative;
-  margin: 0 auto;
-  width: 100px;
-  animation: information 0.4s linear;
-  animation-iteration-count: 1; 
-  z-index: 3;
-
-}
-
-.arrow .curve {
-  border: 2px solid #89323B;
-  border-color: transparent transparent transparent #89323B;
-  height: 221px;
-  width: 1199px;
-  border-radius: 230px 0 0 150px;
-  rotate: 6deg;
-  position: absolute;
-  left: -50px;
-}
-
-.arrow .point {
-  position: absolute;
-  left: -23px;
-  top: 140px;
-  rotate: -1deg;
-}
-
-.arrow .point:before, .arrow .point:after {
-	border: 1px solid #89323B;
-	height: 25px;
-	content: "";
-	position: absolute;
-}
-
-.arrow .point:before {
-	top: -11px;
-	left: -11px;
-	transform:rotate(-74deg);
-	-webkit-transform:rotate(-74deg);
-  -moz-transform:rotate(-74deg);
-  -ms-transform: rotate(-74deg);
-}
-
-.arrow .point:after {
-  top: -20px;
-	left: 5px;
-	transform:rotate(12deg);
-	-webkit-transform: rotate(12deg);
-  -moz-transform:rotate(12deg);
-  -ms-transform: rotate(12deg);
-}
-
 
 .tr_bags{
   display: flex !important;
@@ -1124,4 +1075,52 @@ tr:has(> .in_progress){
 
 .count_gold > div:not(:last-child){
   margin-right: 3px;
+}
+
+.settings{
+  position: fixed;
+  right: 15px;
+  top: 10px;
+  z-index: 10;
+  font-size: 35px !important;
+}
+
+.settings:hover{
+  cursor: url('img/icon/pointer.png'), auto;	
+  animation: swing ease-in-out 0.5s 1 alternate;
+
+}
+
+@keyframes swing {
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(10deg);
+  }
+  30% {
+    transform: rotate(0deg);
+  }
+  40% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  60% {
+    transform: rotate(5deg);
+  }
+  70% {
+    transform: rotate(0deg);
+  }
+  80% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.key_form > form{
+  width: 100%;
 }

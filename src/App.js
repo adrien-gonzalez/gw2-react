@@ -4,14 +4,15 @@ import Header from './components/header';
 import background from './img/background/background.png';
 import {Provider, connect } from 'react-redux';
 import Store from './store/configureStore';
+import React, { useState } from 'react';
 
 import Events from './pages/Events';
 import Worldboss from './pages/Worldboss';
 import Characters from './pages/Characters';
 import Bank from './pages/Bank';
+import SettingsIcon from '@mui/icons-material/Settings';
 
-
-
+import ModalAuth from "./components/ModalAuth";
 
 
 // Router for navigation
@@ -24,6 +25,10 @@ import {
 
 const App = (props) => {
  
+  const [showModalAuth, setShowModalAuth] = useState(false);
+  const [apiKey] = useState(localStorage.getItem('apiKey') ?? null);
+
+
 
   return (
     <Provider store={Store}>
@@ -31,6 +36,9 @@ const App = (props) => {
       <BrowserRouter>
         <div className="App" style={{backgroundImage: 'url('+background+')'}} >
           <Header/>
+          <SettingsIcon onClick={() => setShowModalAuth(true)} className="settings"></SettingsIcon>
+          <ModalAuth show={showModalAuth} close={() => setShowModalAuth(false)} />
+
           <Routes>
             <Route path="/gw2-react" element={<Navigate to="/pages/Worldboss" />} />
             <Route path="/" element={<Navigate to="/pages/Worldboss" />} />

@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Formik } from 'formik';
 import { getAccount } from '../services/gw2API';
 import React, { useState, useEffect } from 'react';
+import {connect} from 'react-redux';
 
 
 const ModalAuth = (props) => {
@@ -34,7 +35,7 @@ const ModalAuth = (props) => {
           <Modal.Title id="contained-modal-title-vcenter">Clé API</Modal.Title>
         </Modal.Header>
 
-          <Modal.Body>
+          <Modal.Body className="key_form">
           <Formik
             initialValues={{ key: ''}}
             validate={values => {
@@ -107,5 +108,18 @@ const ModalAuth = (props) => {
 };
 
 
-export default ModalAuth;
+// RECUP DU STORE REDUX
+const mapStateToProps = ({ apiKey }) => ({
+  apiKey,
+});
+
+// DISPATCH ACTIONS
+const mapDispatchToProps = (dispatch) => {
+  return {
+    dispatch: (action) => { dispatch(action) }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ModalAuth);
+
 

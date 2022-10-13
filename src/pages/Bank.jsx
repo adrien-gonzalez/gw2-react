@@ -63,46 +63,52 @@ const Bank = (props) => {
     },[apiKey])
 
 
-
-    if(bank != false && money != false){
-        return (
-            <section className="wrapper">
-                <span className="bank_title">Banque</span>
-                <table className="bank_table">
-                    <tbody>
-                        <tr>
-                        {bank.map((key, index) => {
-
-                            if(key){
-                                return(
-                                    
-                                    <Tooltip TransitionComponent={Zoom} title={key.description ?? 'Aucune description'} key={index+'tool_'+key} >
-                                        <td className={key.rarity} style={{backgroundImage: `url(${key.icon})`}} key={index+'tab_'+key}> 
-                                            <span key={'img_'+index} className='count_item_bank'>{key.count}</span>
-                                        </td>  
-                                    </Tooltip>
-                                    
-                                )    
-                            }
-                           
-                      })}
-                      </tr>
-                  </tbody>
-                </table>
-            </section>
-        ); 
+    if(apiKey){
+        if(bank != false && money != false){
+            return (
+                <section className="wrapper">
+                    <span className="bank_title">Banque</span>
+                    <table className="bank_table">
+                        <tbody>
+                            <tr>
+                            {bank.map((key, index) => {
+    
+                                if(key){
+                                    return(
+                                        
+                                        <Tooltip TransitionComponent={Zoom} title={key.description ?? 'Aucune description'} key={index+'tool_'+key} >
+                                            <td className={key.rarity} style={{backgroundImage: `url(${key.icon})`}} key={index+'tab_'+key}> 
+                                                <span key={'img_'+index} className='count_item_bank'>{key.count}</span>
+                                            </td>  
+                                        </Tooltip>
+                                        
+                                    )    
+                                }
+                               
+                          })}
+                          </tr>
+                      </tbody>
+                    </table>
+                </section>
+            ); 
+        } else {
+            return (
+                <Spinner
+                    className="loader"
+                    as="span"
+                    animation="border"
+                    size="lg"
+                    role="status"
+                    aria-hidden="true"
+                /> 
+            ); 
+        }
     } else {
-        return (
-            <Spinner
-                className="loader"
-                as="span"
-                animation="border"
-                size="lg"
-                role="status"
-                aria-hidden="true"
-            /> 
-        ); 
+        return(
+            <div></div>
+        )
     }
+   
        
    
    
