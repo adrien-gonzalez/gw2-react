@@ -13,6 +13,12 @@ import equipment_icon from "../img/icon/equipment.png";
 import coin_icon from "../img/icon/coin.png";
 
 
+import gold_icon from "../img/icon/gold.png";
+import silver_icon from "../img/icon/silver.png";
+import bronze_icon from "../img/icon/bronze.png";
+
+
+
 const ModalCharacter = (props) => {
   
 
@@ -191,13 +197,58 @@ const ModalCharacter = (props) => {
         // 1 or = 100 argent / 10 000 bronze
         // 1 argent = 100 bronze 
         setMoney(object)
-        console.log(object)
-    
-
+ 
     } catch (error) {
         console.log(error)
     }
 };
+
+  function currency_calculation(count) {
+    var gold = 0
+    var silver = 0
+    var bronze = 0
+    var remaining = 0
+    var currency = 0
+
+    if(count >= 10000){
+      currency = count / 10000
+      gold = parseInt(currency)
+      remaining = currency - gold
+
+      if(remaining > 0){
+        currency = remaining * 100
+        silver = parseInt(currency)
+        remaining =  currency - silver
+
+        if(remaining > 0){
+          bronze = parseInt(remaining * 100)
+        }
+      }
+
+    } else if(count >= 100){
+      currency = count / 100
+      silver = parseInt(currency)
+      remaining = currency - silver
+
+      if(remaining > 0){
+        bronze = parseInt(remaining * 100)
+      }
+
+    } else {
+      bronze = count
+    }
+
+    return (
+      <span className="count_gold">
+        {gold}
+        <div style={{backgroundImage: `url(${gold_icon})`}}></div>
+        {silver}
+        <div style={{backgroundImage: `url(${silver_icon})`}}></div>
+        {bronze}
+        <div style={{backgroundImage: `url(${bronze_icon})`}}></div>
+      </span>
+    )
+  }
   
 
   useEffect(() => {
@@ -228,7 +279,7 @@ const ModalCharacter = (props) => {
             <Modal.Header className="character_equipment_header">
               <Modal.Title id="contained-modal-title-vcenter">{props.character.name}</Modal.Title>
               <div className="changeView">
-                <div onClick={() => setView("equipment")} style={{  backgroundImage: `url(${coin_icon})`, color: "white" }}></div>
+                <div onClick={() => setView("coin")} style={{  backgroundImage: `url(${coin_icon})`, color: "white" }}></div>
                 <div onClick={() => setView("inventory")} style={{ backgroundImage: `url(${inventory_icon})`, color: "white" }}></div>
                 <div onClick={() => setView("equipment")} style={{  backgroundImage: `url(${equipment_icon})`, color: "white" }}></div>
               </div>
@@ -252,9 +303,8 @@ const ModalCharacter = (props) => {
           </Modal>
         </>
       );
-    } else {
+    } else if(view == "inventory"){
       if(bags != false){
-        // console.log(bags)
         return (
           <>
             <Modal 
@@ -267,7 +317,7 @@ const ModalCharacter = (props) => {
               <Modal.Header className="character_equipment_header">
                 <Modal.Title id="contained-modal-title-vcenter">{props.character.name}</Modal.Title>
                 <div className="changeView">
-                  <div onClick={() => setView("equipment")} style={{  backgroundImage: `url(${coin_icon})`, color: "white" }}></div>
+                  <div onClick={() => setView("coin")} style={{  backgroundImage: `url(${coin_icon})`, color: "white" }}></div>
                   <div onClick={() => setView("inventory")} style={{ backgroundImage: `url(${inventory_icon})`, color: "white" }}></div>
                   <div onClick={() => setView("equipment")} style={{  backgroundImage: `url(${equipment_icon})`, color: "white" }}></div>
                 </div>
@@ -304,6 +354,84 @@ const ModalCharacter = (props) => {
                       })}
                   </tbody>
                 </table>
+              </Modal.Body>
+              <Button className="charater_equipement_button" onClick={close}>Annuler</Button>
+    
+            </Modal>
+          </>
+        );
+        } else {
+          return (
+            <>
+              <Modal 
+                show={props.show} 
+                onHide={props.onHide}
+                size="sl"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+              >
+                <Modal.Header className="character_equipment_header">
+                  <Modal.Title id="contained-modal-title-vcenter">{props.character.name}</Modal.Title>
+                </Modal.Header>
+        
+                <Modal.Body className="loading_character_equipment">
+                  <Spinner
+                    className="loader"
+                    as="span"
+                    animation="border"
+                    size="lg"
+                    role="status"
+                    aria-hidden="true"
+                  />
+                </Modal.Body>
+                <Button className="charater_equipement_button" onClick={close}>Annuler</Button>
+      
+              </Modal>
+            </>
+          );
+        }
+    } else {
+      if(money != false){
+        console.log(money)
+        return (
+          <>
+            <Modal 
+              show={props.show} 
+              onHide={props.onHide}
+              size="sl"
+              aria-labelledby="contained-modal-title-vcenter"
+              centered
+            >
+              <Modal.Header className="character_equipment_header">
+                <Modal.Title id="contained-modal-title-vcenter">{props.character.name}</Modal.Title>
+                <div className="changeView">
+                  <div onClick={() => setView("coin")} style={{  backgroundImage: `url(${coin_icon})`, color: "white" }}></div>
+                  <div onClick={() => setView("inventory")} style={{ backgroundImage: `url(${inventory_icon})`, color: "white" }}></div>
+                  <div onClick={() => setView("equipment")} style={{  backgroundImage: `url(${equipment_icon})`, color: "white" }}></div>
+                </div>
+              </Modal.Header>
+      
+              <Modal.Body style={{backgroundImage: `url(${equipment_background})`}}  className="modal_character">
+                {/* <table className='table_bags'>
+                  <tbody> */}
+                  <section className="currencies">
+                      {money.map((key, index) => {
+                        return(
+                          <div key={'currencie_'+index} className="currency_info">
+                            <span className="currency_name">{key.name}</span>
+
+                            <div className="count_currency">
+                              {key.order == 101 ? currency_calculation(key.count) : <span>{key.count}</span>}
+                              {key.order == 101 ? '' : <div style={{backgroundImage: `url(${key.icon})`}}></div>}
+                            </div>
+                          
+                          </div>
+                          
+                        )
+                      })}
+                  </section>
+                  {/* </tbody>
+                </table> */}
               </Modal.Body>
               <Button className="charater_equipement_button" onClick={close}>Annuler</Button>
     

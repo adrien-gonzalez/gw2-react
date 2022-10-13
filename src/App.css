@@ -235,8 +235,11 @@ button:hover{
 
 
 #output tr:hover{
-  background-color: #2C3E50;
   cursor: url('img/icon/pointer.png'), auto;	
+}
+
+#output tr:hover:not(:first-child):not(:last-child){
+  background-color: #2C3E50;
 }
 
 #output tr:not(:first-child):not(:last-child){
@@ -1073,3 +1076,52 @@ tr:has(> .in_progress){
   justify-content: flex-start;
 }
 
+.currencies{
+  animation-name: fadeInOpacity;
+  /* animation-iteration-count: 1; */
+  animation-timing-function: ease-in;
+  animation-duration: 0.4s;
+}
+
+.currencies div{
+  color: white;
+  display: flex;
+}
+
+.currencies > div{
+ justify-content: space-between;
+}
+
+.count_currency > div{
+  width: 20px;
+  height: 20px;
+  background-size: cover;
+}
+
+.currency_name{
+  max-width: 75%;
+  word-break: break-word;
+}
+
+.count_currency > span{
+  padding-right: 5px;
+}
+
+.currency_info:not(:first-child){
+  margin-top: 10px;
+}
+
+.count_gold{
+  display: flex;
+}
+
+.count_gold div{
+  width: 20px;
+  height: 20px;
+  background-size: cover;
+  margin-left: 3px;
+}
+
+.count_gold > div:not(:last-child){
+  margin-right: 3px;
+}
