@@ -69,7 +69,7 @@ export function getCurrencies(key, id) {
 }
 
 // INFO PERMISSION
-export function getPermissions(key, id) {
+export function getPermissions(key) {
     return axios
     .get(process.env.REACT_APP_API_URL+"tokeninfo?access_token="+key)
     .then((response) => response.data)

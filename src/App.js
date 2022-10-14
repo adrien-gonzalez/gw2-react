@@ -2,8 +2,9 @@ import './App.css';
 import Header from './components/header';
 // Background image
 import background from './img/background/background.png';
-import {Provider, connect } from 'react-redux';
+import {Provider } from 'react-redux';
 import Store from './store/configureStore';
+
 import React, { useState } from 'react';
 
 import Events from './pages/Events';
@@ -27,6 +28,7 @@ const App = (props) => {
  
   const [showModalAuth, setShowModalAuth] = useState(false);
   const [apiKey] = useState(localStorage.getItem('apiKey') ?? null);
+
 
 
 
@@ -54,5 +56,7 @@ const App = (props) => {
     
   );
 }
+
+
 
 export default App;

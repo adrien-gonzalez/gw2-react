@@ -1,4 +1,4 @@
-const initialState = { apiKey: {value: 0} }
+const initialState = { apiKey: {key: 0} }
 
 function appState(state = initialState, action) {
     let nextState;

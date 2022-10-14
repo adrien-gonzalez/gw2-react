@@ -1124,3 +1124,17 @@ tr:has(> .in_progress){
 .key_form > form{
   width: 100%;
 }
+
+.list_permissions{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.list_permissions > span{
+  padding: 8px;
+  color: #808080;
+}
+
+.list_permissions svg{
+  font-size: 18px;
+}
