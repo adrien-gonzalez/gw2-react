@@ -1,6 +1,6 @@
 import axios from "axios";
 
-// GET ACCOUNT INFO
+// SCOPE ACCOUNT
 export function getAccount(key) {
     return axios
     .get(process.env.REACT_APP_API_URL+"account?access_token="+key)
@@ -8,7 +8,7 @@ export function getAccount(key) {
     .catch((error) => error.response.data.errors);     
 }
 
-// GET CHARACTER INFO
+// SCOPE CHARACTER
 export function getCharacters(key, id = "all") {
     return axios
     .get(process.env.REACT_APP_API_URL+"characters?ids="+id+"&access_token="+key)
@@ -17,16 +17,16 @@ export function getCharacters(key, id = "all") {
 }
 
 
-export function getInfoGuild(guildId, key) {
-    if (guildId != null) {
-        return axios
-        .get(process.env.REACT_APP_API_URL+"guild/"+guildId+"?access_token="+key)
-        .then((response) => response.data)
-        .catch((error) => error.response.data.errors);    
-    } 
-}
+// export function getInfoGuild(guildId, key) {
+//     if (guildId != null) {
+//         return axios
+//         .get(process.env.REACT_APP_API_URL+"guild/"+guildId+"?access_token="+key)
+//         .then((response) => response.data)
+//         .catch((error) => error.response.data.errors);    
+//     } 
+// }
 
-// GET ITEM BY ID
+// SCOPE ACCOUNT
 export function getItem(item_id, key) {
     return axios
     .get(process.env.REACT_APP_API_URL+"items/"+item_id+"?access_token="+key)
@@ -34,6 +34,7 @@ export function getItem(item_id, key) {
     .catch((error) => error.response.data.errors);    
 }
 
+// SCOPE ACCOUNT
 export function getSkin(skin_id, key) {
     return axios
     .get(process.env.REACT_APP_API_URL+"skins/"+skin_id+"?access_token="+key)
@@ -41,6 +42,7 @@ export function getSkin(skin_id, key) {
     .catch((error) => error.response.data.errors);    
 }
 
+// SCOPE inventories
 export function getBankAccount(key) {
     return axios
     .get(process.env.REACT_APP_API_URL+"account/bank?access_token="+key)
@@ -48,6 +50,8 @@ export function getBankAccount(key) {
     .catch((error) => error.response.data.errors);    
 }
 
+
+// SCOPE WALLET
 export function getWallet(key) {
     return axios
     .get(process.env.REACT_APP_API_URL+"account/wallet?access_token="+key)
@@ -56,7 +60,7 @@ export function getWallet(key) {
 }
 
 
-
+// SCOPE ACCOUNT
 export function getCurrencies(key, id) {
     return axios
     .get(process.env.REACT_APP_API_URL+"currencies?ids="+id+"&access_token="+key)
@@ -64,10 +68,11 @@ export function getCurrencies(key, id) {
     .catch((error) => error.response.data.errors);    
 }
 
-
-// WALLET 
-// account/wallet
-
-// CURRENCIES ID
-// https://api.guildwars2.com/v2/currencies?ids=4
+// INFO PERMISSION
+export function getPermissions(key, id) {
+    return axios
+    .get(process.env.REACT_APP_API_URL+"tokeninfo?access_token="+key)
+    .then((response) => response.data)
+    .catch((error) => error.response.data.errors);    
+}
 

@@ -1,0 +1,21 @@
+[{
+    "name" : "account"
+},{
+    "name" : "builds"
+},{
+    "name" : "characters"
+},{
+    "name" : "guilds"
+},{
+    "name" : "inventories"
+},{
+    "name" : "progression"
+},{
+    "name" : "pvp"
+},{
+    "name" : "tradingpost"
+},{
+    "name" : "unlocks"
+},{
+    "name" : "wallet"
+}]
