@@ -1,13 +1,16 @@
 import { Modal } from "react-bootstrap";
 import { Button } from '@mui/material';
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Formik } from 'formik';
+// import { Formik } from 'formik';
+import { Formik, Form, Field } from "formik";
 import { getAccount, getPermissions } from '../services/gw2API';
 import React, { useState, useEffect } from 'react';
 import {connect} from 'react-redux';
 import permissions_data from '../data/permissions.json';
 import CloseIcon from '@mui/icons-material/Close';
 import CheckIcon from '@mui/icons-material/Check';
+
+import { TextField, InputAdornment } from "@material-ui/core";
 
 const ModalAuth = (props) => {
   
@@ -127,35 +130,104 @@ const ModalAuth = (props) => {
               /* and other goodies */
             }) => (
               
-              <form onSubmit={handleSubmit}>
 
-                <input
-                  type={apiKey ? 'text' : 'hidden'}
-                  disabled={true}
-                  className="actuel_key"
-                  value={apiKey}
-                  placeholder="Renseigner votre clé ici"
-                /> 
-
-                <input
+              <Form >
+                <Field
+                  variant="outlined"
+                  component={TextField}
                   type="text"
-                  name="key"
+                  name="email"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  value={values.key}
-                  placeholder={apiKey ? 'Modifier votre clé ici' : 'Renseigner votre clé ici'}
-                /> 
+                  id="email"
+                  placeholder="Email address"
+                  size="small"
+                  error={errors.email && touched.email && true}
+                  // Mui icons based on Validation
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end" style={{ outline: "none" }}>
+                        {errors.email && touched.email && (
+                          <CloseIcon
+                            style={{ color: "red" }}
+                            fontSize="default"
+                          ></CloseIcon>
+                        )}
+                        {!errors.email && touched.email && (
+                          <CloseIcon
+                            style={{ color: "#05cc30" }}
+                            fontSize="default"
+                          ></CloseIcon>
+                        )}
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+                <Field
+                  variant="outlined"
+                  component={TextField}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  type="password"
+                  id="password"
+                  placeholder="Password"
+                  size="small"
+                  error={errors.password && touched.password && true}
+                  // Mui icons based on Validation
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end" style={{ outline: "none" }}>
+                        {errors.password && touched.password && (
+                          <CloseIcon
+                            style={{ color: "red" }}
+                            fontSize="default"
+                          ></CloseIcon>
+                        )}
+                        {!errors.password && touched.password && (
+                          <CloseIcon
+                            style={{ color: "#05cc30" }}
+                            fontSize="default"
+                          ></CloseIcon>
+                        )}
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              
+              </Form>
+              // <form onSubmit={handleSubmit}>
+
+                    
+
+              //   <CloseIcon></CloseIcon>
+              //   <input
+              //     type={apiKey ? 'text' : 'hidden'}
+              //     disabled={true}
+              //     className="actuel_key"
+              //     value={apiKey}
+              //     placeholder="Renseigner votre clé ici"
+              //   /> 
+
+              //   {/* <CloseIcon></CloseIcon> */}
+              //   <input
+              //     type="text"
+              //     name="key"
+              //     onChange={handleChange}
+              //     onBlur={handleBlur}
+              //     value={values.key}
+              //     placeholder={apiKey ? 'Modifier votre clé ici' : 'Renseigner votre clé ici'}
+              //   /> 
 
                
 
-                <span className="input_error">{errors.key || error}</span>
-                {listPermissions()}
+              //   <span className="input_error">{errors.key || error}</span>
+              //   {listPermissions()}
 
-                <div className="valid_form">
-                  <Button className="modalButton" onClick={close}>Annuler</Button>
-                  <Button  className="modalButton" type="submit" disabled={isSubmitting}>Valider</Button>
-                </div>
-              </form>
+              //   <div className="valid_form">
+              //     <Button className="modalButton" onClick={close}>Annuler</Button>
+              //     <Button  className="modalButton" type="submit" disabled={isSubmitting}>Valider</Button>
+              //   </div>
+              // </form>
             )}
           </Formik>
 
