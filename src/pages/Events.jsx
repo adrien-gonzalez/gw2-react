@@ -17,6 +17,8 @@ const Events = (props) => {
     const [pointerPosition, setPointerPosition] = useState("");
     const [events, setEvents] = useState(false)
     const orientation = useOrientationChange()
+    const [color, setColor] = useState(localStorage.getItem('color') ?? 'default');
+
 
     let localTime = moment();
     let startHour = Math.floor(localTime.hour() / 2) * 2 
@@ -65,7 +67,11 @@ const Events = (props) => {
             movePointer()
         },1000);
 
-    },[pointerLocalTime, pointerTime, events])
+        if(props.appColor.color != 0){
+            setColor(props.appColor.color)
+        }
+
+    },[pointerLocalTime, pointerTime, events, props, color])
   
 
 
@@ -75,8 +81,8 @@ const Events = (props) => {
             return (
                 <section className="meta-section">
                     <div className="meta-container">
-                        <div className="pointer" style={{left: pointerPosition+'%'}}>
-                            {pointerPosition > 7 ? <span className="local"><strong>Heure Serveur</strong><span>{pointerTime}</span></span> : ""}
+                        <div className={color == "default" ? "blackColor pointer" : "whiteColor pointer"} style={{left: pointerPosition+'%'}}>
+                            {pointerPosition > 7 ? <span className="local"><strong >Heure Serveur</strong><span>{pointerTime}</span></span> : ""}
                             {pointerPosition < 93 ? <span className="server"><strong>Heure locale</strong><span>{pointerLocalTime}</span></span> : ""}
                         </div>
                         {events.map((key, index) => {
@@ -112,7 +118,7 @@ const Events = (props) => {
                             
                         })}
                     </div>
-                    <span className='basedPage'>This page is based on the <a href="https://gw2.ninja/timer">Guild Wars 2 Event Timer</a> by <a href="https://twitch.tv/rediche">Rediche.</a></span>
+                    <span className={color == "default" ? "blackColor basedPage" : "whiteColor basedPage"}>This page is based on the <a href="https://gw2.ninja/timer">Guild Wars 2 Event Timer</a> by <a href="https://twitch.tv/rediche">Rediche.</a></span>
                 </section>
             ); 
         } else {
@@ -131,6 +137,7 @@ const Events = (props) => {
                 size="lg"
                 role="status"
                 aria-hidden="true"
+                style={{color: localStorage.getItem('color') == "default" ? "black" : "white" }}
             /> 
         )
     }
@@ -140,10 +147,10 @@ const Events = (props) => {
 
 
 // RECUP DU STORE REDUX
-const mapStateToProps = ({ apiKey }) => ({
-    apiKey
-});
-
+const mapStateToProps = ({ apiKey, appColor }) => ({
+    apiKey,
+    appColor
+  });
 // DISPATCH ACTIONS
 const mapDispatchToProps = (dispatch) => {
     return {

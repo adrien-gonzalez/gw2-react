@@ -367,7 +367,7 @@ form input{
 }
 
 
-input{
+/* input{
   padding: 0.5em 0.6em;
   display: inline-block;
   border: 1px solid #ccc;
@@ -387,7 +387,7 @@ input::placeholder {
 input:focus{
   outline: 1px solid;
   outline-color: #1da1f2;
-}
+} */
 
 .modalButton{
   border: 1px solid #333333 !important;
@@ -1137,4 +1137,43 @@ tr:has(> .in_progress){
 
 .list_permissions svg{
   font-size: 18px;
+}
+
+.formApiKey{
+  display: flex;
+  flex-direction: column;
+}
+
+.defaultColor .modal-content{
+  background-color: white;;
+}
+
+.darkColor .modal-content{
+  background-color: #333333;
+  color: white;
+}
+
+.darkColor input, .darkColor select, .darkColor span, .darkColor label{
+  color: white;
+}
+
+.darkColor option{
+  color: black;
+}
+
+.darkColorButton{
+  background-color: white !important;
+}
+
+.darkColorButton:hover{
+  background-color: white !important;
+  color: #333333 !important;
+}
+
+.blackColor strong, .blackColor {
+  color: black !important;
+}
+
+.whiteColor strong, .whiteColor{
+  color: white !important;
 }

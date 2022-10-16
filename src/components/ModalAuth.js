@@ -2,7 +2,6 @@ import { Modal } from "react-bootstrap";
 import { Button } from '@mui/material';
 import "bootstrap/dist/css/bootstrap.min.css";
 // import { Formik } from 'formik';
-import { Formik, Form, Field } from "formik";
 import { getAccount, getPermissions } from '../services/gw2API';
 import React, { useState, useEffect } from 'react';
 import {connect} from 'react-redux';
@@ -10,11 +9,18 @@ import permissions_data from '../data/permissions.json';
 import CloseIcon from '@mui/icons-material/Close';
 import CheckIcon from '@mui/icons-material/Check';
 
+import { Formik, Form, Field } from "formik";
 import { TextField, InputAdornment } from "@material-ui/core";
+
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+import NativeSelect from '@mui/material/NativeSelect';
+
 
 const ModalAuth = (props) => {
   
-  const [error, setError] = useState("");
+  const [error, setError] = useState(false);
+  const [color, setColor] = useState(localStorage.getItem('color') ?? 'default');
   const [apiKey, setApiKey] = useState(localStorage.getItem('apiKey') ?? '');
   const [permissionsKey, setPermissionsKey] = useState(localStorage.getItem('apiKey') ?? '');
 
@@ -22,6 +28,13 @@ const ModalAuth = (props) => {
 
   const update = (key) => {
     const action = { type: "UPDATE_API_KEY", value: { key: key } };
+    props.dispatch(action);
+  };
+
+  const updateColor = (key) => {
+    localStorage.setItem('color', key)
+    setColor(key)
+    const action = { type: "UPDATE_APP_COLOR", value: { color: key } };
     props.dispatch(action);
   };
 
@@ -37,16 +50,16 @@ const ModalAuth = (props) => {
 
           if(permission_find){
             return(
-              <span><CheckIcon sx={{ color: 'green' }}></CheckIcon>{key.name}</span>
+              <span key={key.name}><CheckIcon sx={{ color: 'green' }}></CheckIcon>{key.name}</span>
             )
           } else {
             return(
-              <span><CloseIcon sx={{ color: '#C62E2D' }}></CloseIcon>{key.name}</span>
+              <span key={key.name}><CloseIcon sx={{ color: '#C62E2D' }}></CloseIcon>{key.name}</span>
             )
           }
         } else {
           return(
-            <span><CloseIcon sx={{ color: '#C62E2D' }}></CloseIcon>{key.name}</span>
+            <span key={key.name}><CloseIcon sx={{ color: '#C62E2D' }}></CloseIcon>{key.name}</span>
           )
         }
 
@@ -65,22 +78,26 @@ const ModalAuth = (props) => {
     setPermissionsKey(data)
   }
 
+
+
   useEffect(() => {
     setError("")
     if(apiKey){
       getPermissionsKey(apiKey)
     }
-  },[apiKey])
+  },[apiKey, color])
 
   function close(){
     setError("")
     props.close()
   }
 
+  
   return (
 
     <>
       <Modal 
+        className= {localStorage.getItem('color') == "default" ? "defaultColor" : "darkColor"}
         show={props.show} 
         onHide={props.onHide}
         size="sl"
@@ -88,24 +105,20 @@ const ModalAuth = (props) => {
         centered
       >
         <Modal.Header>
-          <Modal.Title id="contained-modal-title-vcenter">Clé API</Modal.Title>
+          <Modal.Title id="contained-modal-title-vcenter">Paramètres</Modal.Title>
         </Modal.Header>
 
           <Modal.Body className="key_form">
           <Formik
-            initialValues={{ key: ''}}
-            validate={values => {
-              const errors = {};
-              if (!values.key) {
-                errors.key = "Veuillez renseigner votre clé !";
-              } 
-              return errors
-            }}
+       
+
+            initialValues={{ key: '', color: ''}}
             onSubmit={(values, { setSubmitting }) => {
+              // alert("values:" + JSON.stringify(values));
+              if(values.key != ""){
                 getAccount(values.key).then(response=> 
                   { 
                     if(response){
-                      setSubmitting(false);
                       localStorage.setItem('apiKey', values.key);
                       setApiKey(values.key)
                       update(values.key)
@@ -113,11 +126,19 @@ const ModalAuth = (props) => {
                     } else {
                       const err ="Votre clé n'est pas valide !"
                       setError(err)
-                      setSubmitting(false);
                     }
                   })
+              } 
 
+              if(values.color != ""){
+                updateColor(values.color)
+                close()
+
+              }
+
+              setSubmitting(false)
             }}
+
           >
             {({
               values,
@@ -129,105 +150,69 @@ const ModalAuth = (props) => {
               isSubmitting,
               /* and other goodies */
             }) => (
-              
+            
 
-              <Form >
+              <Form className="formApiKey">
+
+               <FormControl fullWidth>
+                  <InputLabel variant="standard" htmlFor="color">
+                    Theme Color
+                  </InputLabel>
+                    <NativeSelect
+                        defaultValue={localStorage.getItem('color') == "default" ? "default" : "dark"}
+                        type="text"
+                        name="color"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        id= 'color'
+                      > 
+                      <option value={"default"}>Par défaut</option>
+                      <option value={"dark"}>Darkmode</option>
+                    </NativeSelect>
+                </FormControl> 
+                
+
                 <Field
-                  variant="outlined"
-                  component={TextField}
+                  style={{marginTop: '15px'}}
+                  label="Guild Wars 2 API Key"
                   type="text"
-                  name="email"
+                  name="key"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  id="email"
-                  placeholder="Email address"
-                  size="small"
-                  error={errors.email && touched.email && true}
-                  // Mui icons based on Validation
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end" style={{ outline: "none" }}>
-                        {errors.email && touched.email && (
-                          <CloseIcon
-                            style={{ color: "red" }}
-                            fontSize="default"
-                          ></CloseIcon>
-                        )}
-                        {!errors.email && touched.email && (
-                          <CloseIcon
-                            style={{ color: "#05cc30" }}
-                            fontSize="default"
-                          ></CloseIcon>
-                        )}
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-                <Field
-                  variant="outlined"
+                  defaultValue={apiKey}
+                  placeholder={apiKey ? 'Modifier votre clé ici' : 'Renseigner votre clé ici'}
                   component={TextField}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  type="password"
-                  id="password"
-                  placeholder="Password"
                   size="small"
-                  error={errors.password && touched.password && true}
+                  id="key"
                   // Mui icons based on Validation
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="end" style={{ outline: "none" }}>
-                        {errors.password && touched.password && (
+                        {error && touched.key && (
                           <CloseIcon
                             style={{ color: "red" }}
                             fontSize="default"
                           ></CloseIcon>
                         )}
-                        {!errors.password && touched.password && (
-                          <CloseIcon
+                        {!error && touched.key && (
+                          <CheckIcon
                             style={{ color: "#05cc30" }}
                             fontSize="default"
-                          ></CloseIcon>
+                          ></CheckIcon>
                         )}
                       </InputAdornment>
                     ),
                   }}
                 />
-              
+
+                    {listPermissions()}
+
+
+                    <div className="valid_form">
+                      <Button  className={localStorage.getItem('color') == "default" ? "defaultColorButton modalButton" : "darkColorButton modalButton"} onClick={close}>Annuler</Button>
+                      <Button  className={localStorage.getItem('color') == "default" ? "defaultColorButton modalButton" : "darkColorButton modalButton"} type="submit" disabled={isSubmitting}>Valider</Button>
+                  </div>
               </Form>
-              // <form onSubmit={handleSubmit}>
-
-                    
-
-              //   <CloseIcon></CloseIcon>
-              //   <input
-              //     type={apiKey ? 'text' : 'hidden'}
-              //     disabled={true}
-              //     className="actuel_key"
-              //     value={apiKey}
-              //     placeholder="Renseigner votre clé ici"
-              //   /> 
-
-              //   {/* <CloseIcon></CloseIcon> */}
-              //   <input
-              //     type="text"
-              //     name="key"
-              //     onChange={handleChange}
-              //     onBlur={handleBlur}
-              //     value={values.key}
-              //     placeholder={apiKey ? 'Modifier votre clé ici' : 'Renseigner votre clé ici'}
-              //   /> 
-
-               
-
-              //   <span className="input_error">{errors.key || error}</span>
-              //   {listPermissions()}
-
-              //   <div className="valid_form">
-              //     <Button className="modalButton" onClick={close}>Annuler</Button>
-              //     <Button  className="modalButton" type="submit" disabled={isSubmitting}>Valider</Button>
-              //   </div>
-              // </form>
             )}
           </Formik>
 
@@ -240,8 +225,9 @@ const ModalAuth = (props) => {
 
 
 // RECUP DU STORE REDUX
-const mapStateToProps = ({ apiKey }) => ({
+const mapStateToProps = ({ apiKey, appColor }) => ({
   apiKey,
+  appColor
 });
 
 // DISPATCH ACTIONS

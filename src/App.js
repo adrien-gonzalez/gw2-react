@@ -5,7 +5,7 @@ import background from './img/background/background.png';
 import {Provider } from 'react-redux';
 import Store from './store/configureStore';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Events from './pages/Events';
 import Worldboss from './pages/Worldboss';
@@ -29,16 +29,13 @@ const App = (props) => {
   const [showModalAuth, setShowModalAuth] = useState(false);
   const [apiKey] = useState(localStorage.getItem('apiKey') ?? null);
 
-
-
-
   return (
     <Provider store={Store}>
 
       <BrowserRouter>
-        <div className="App" style={{backgroundImage: 'url('+background+')'}} >
+        <div className="App" style={{backgroundColor: localStorage.getItem('color') == "default" ? '' : '#222222', backgroundImage: localStorage.getItem('color') == "default" ? 'url('+background+')' : ''}} >
           <Header/>
-          <SettingsIcon onClick={() => setShowModalAuth(true)} className="settings"></SettingsIcon>
+          <SettingsIcon style={{color: localStorage.getItem('color') == "default" ? 'black' : 'white'}} onClick={() => setShowModalAuth(true)} className="settings"></SettingsIcon>
           <ModalAuth show={showModalAuth} close={() => setShowModalAuth(false)} />
 
           <Routes>

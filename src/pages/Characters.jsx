@@ -131,6 +131,7 @@ const Characters = (props) => {
                     size="lg"
                     role="status"
                     aria-hidden="true"
+                    style={{color: localStorage.getItem('color') == "default" ? "black" : "white" }}
                 />
             )
         } 
