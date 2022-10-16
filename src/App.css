@@ -13,6 +13,7 @@
 
 html, body, #root, .App{
   height: 100%;
+  width: 100%;
 }
 
 .App:has(.wrapper){
@@ -801,7 +802,7 @@ input:focus{
   background-repeat: no-repeat;
   background-position: inherit;
   background-position: center;
-  max-height: 660px;
+  max-height: 70vh;
   overflow-y: auto;
 }
 
