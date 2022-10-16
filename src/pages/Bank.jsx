@@ -65,7 +65,7 @@ const Bank = (props) => {
         if(bank != false && money != false){
             return (
                 <section className="wrapper">
-                    <span style={{color: localStorage.getItem('color') == "default" ? "black" : "white" }} className="bank_title">Banque</span>
+                    <span style={{color: localStorage.getItem('color') == "dark" ? "white" : "black" }} className="bank_title">Banque</span>
                     <table className="bank_table">
                         <tbody>
                             <tr>
@@ -98,7 +98,7 @@ const Bank = (props) => {
                     size="lg"
                     role="status"
                     aria-hidden="true"
-                    style={{color: localStorage.getItem('color') == "default" ? "black" : "white" }}
+                    style={{color: localStorage.getItem('color') == "dark" ? "white" : "black" }}
                 /> 
             ); 
         }

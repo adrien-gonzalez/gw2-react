@@ -33,9 +33,9 @@ const App = (props) => {
     <Provider store={Store}>
 
       <BrowserRouter>
-        <div className="App" style={{backgroundColor: localStorage.getItem('color') == "default" ? '' : '#222222', backgroundImage: localStorage.getItem('color') == "default" ? 'url('+background+')' : ''}} >
+        <div className="App" style={{backgroundColor: localStorage.getItem('color') == "dark" ? '#222222' : '', backgroundImage: localStorage.getItem('color') == "dark" ? '' : 'url('+background+')'}} >
           <Header/>
-          <SettingsIcon style={{color: localStorage.getItem('color') == "default" ? 'black' : 'white'}} onClick={() => setShowModalAuth(true)} className="settings"></SettingsIcon>
+          <SettingsIcon style={{color: localStorage.getItem('color') == "dark" ? 'white' : 'black'}} onClick={() => setShowModalAuth(true)} className="settings"></SettingsIcon>
           <ModalAuth show={showModalAuth} close={() => setShowModalAuth(false)} />
 
           <Routes>

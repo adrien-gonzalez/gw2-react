@@ -66,6 +66,17 @@ button:hover{
     background-size: contain;
   }
 
+  .bank_table{
+    margin-top: 25px;
+    width: 80%;
+    max-width: 900px;
+  }
+  .bank_table tr{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  
 
   .buttonWithIcon{
     height: 24px;
@@ -146,6 +157,19 @@ button:hover{
     height: 0px;
   }
 
+  .bank_table{
+    margin-top: 25px;
+    width: 95%;
+    max-width: 900px;
+    margin-bottom: 7rem;
+  }
+
+  .bank_table tr{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
 
   .menuButton{
     border-radius: 0px !important;
@@ -1030,6 +1054,7 @@ tr:has(> .in_progress){
  align-items: center;
  width: 100%;
  max-height: 100%;
+ overflow-y: auto;
 }
 
 .bank_title{
@@ -1037,22 +1062,13 @@ tr:has(> .in_progress){
   font-size: 25px;
 }
 
-.bank_table{
-  margin-top: 25px;
-  width: 80%;
-  max-width: 900px;
-}
+
 .bank_table td{
   width: 55px;
   height: 55px;
   border: 1px
 }
 
-.bank_table tr{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-}
 
 .currencies{
   animation-name: fadeInOpacity;

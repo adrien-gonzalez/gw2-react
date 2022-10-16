@@ -97,7 +97,7 @@ const ModalAuth = (props) => {
 
     <>
       <Modal 
-        className= {localStorage.getItem('color') == "default" ? "defaultColor" : "darkColor"}
+        className= {localStorage.getItem('color') == "dark" ? "darkColor" : "defaultColor"}
         show={props.show} 
         onHide={props.onHide}
         size="sl"
@@ -159,7 +159,7 @@ const ModalAuth = (props) => {
                     Theme Color
                   </InputLabel>
                     <NativeSelect
-                        defaultValue={localStorage.getItem('color') == "default" ? "default" : "dark"}
+                        defaultValue={localStorage.getItem('color') == "dark" ? "dark" : "default"}
                         type="text"
                         name="color"
                         onChange={handleChange}
@@ -209,8 +209,8 @@ const ModalAuth = (props) => {
 
 
                     <div className="valid_form">
-                      <Button  className={localStorage.getItem('color') == "default" ? "defaultColorButton modalButton" : "darkColorButton modalButton"} onClick={close}>Annuler</Button>
-                      <Button  className={localStorage.getItem('color') == "default" ? "defaultColorButton modalButton" : "darkColorButton modalButton"} type="submit" disabled={isSubmitting}>Valider</Button>
+                      <Button  className={localStorage.getItem('color') == "dark" ? "darkColorButton modalButton" : "defaultColorButton modalButton"} onClick={close}>Annuler</Button>
+                      <Button  className={localStorage.getItem('color') == "dark" ? "darkColorButton modalButton" : "defaultColorButton modalButton"} type="submit" disabled={isSubmitting}>Valider</Button>
                   </div>
               </Form>
             )}
