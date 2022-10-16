@@ -275,6 +275,7 @@ const ModalCharacter = (props) => {
             size="sl"
             aria-labelledby="contained-modal-title-vcenter"
             centered
+           
           >
             <Modal.Header className="character_equipment_header">
               <Modal.Title id="contained-modal-title-vcenter">{props.character.name}</Modal.Title>

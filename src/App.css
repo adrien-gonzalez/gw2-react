@@ -11,6 +11,15 @@
   font-style: normal;
 }
 
+html, body, #root, .App{
+  height: 100%;
+}
+
+.App:has(.wrapper){
+  display: flex;
+  justify-content: center;
+}
+
 *{
   font-family: "Menomonia";
 }
@@ -45,6 +54,8 @@ button:hover{
   justify-content: center;
   overflow-y: auto;
 }
+
+
 
 @media screen and (min-width: 600px) {
   .App {
@@ -108,7 +119,10 @@ button:hover{
     max-height: 90vh;
   }
 
+
 }
+
+
 
 @media screen and (max-width: 599px) {
   .App {
@@ -131,6 +145,7 @@ button:hover{
     bottom: 32px;
     height: 0px;
   }
+
 
   .menuButton{
     border-radius: 0px !important;
@@ -779,35 +794,46 @@ input:focus{
   background: rgba(232, 232, 232, 0.1);
 }
 
+.modal-content:has(.character_equipment_header){
+  border: none !important;
+}
+
 .character_equipment_header{
   background-color: #333333 !important;
   color: white !important;
-  border-bottom: none !important;
+  border-radius: 0px !important;
+  /* border-bottom: none !important; */
 }
 .charater_equipement_button{
   margin: 0px !important;
   border-radius: 0px !important;
   background-color: #333333 !important;
   color: white !important;
+  border-top: 1px solid white;
 }
 
 .changeView{
   display: flex;
 }
 
-.changeView div:first-child{
+/* .changeView div:first-child{
   padding-right: 5px;
-}
+} */
 
 .changeView div{
+  background-position: center;
+  background-color: black;
   height: 32px;
   width: 32px;
   background-size: cover;
   background-repeat: no-repeat;
+  border: 1px solid #52514A;
+  margin-left: 5px;
 }
 
 .changeView div:hover{
   cursor: url('img/icon/pointer.png'), auto;	
+  background-color: #262626;
 }
 
 
@@ -1003,6 +1029,7 @@ tr:has(> .in_progress){
  flex-direction: column;
  align-items: center;
  width: 100%;
+ max-height: 100%;
 }
 
 .bank_title{
@@ -1077,12 +1104,14 @@ tr:has(> .in_progress){
   margin-right: 3px;
 }
 
+
 .settings{
   position: fixed;
   right: 15px;
   top: 10px;
   z-index: 10;
   font-size: 35px !important;
+  z-index: 9999;
 }
 
 .settings:hover{
@@ -1170,10 +1199,11 @@ tr:has(> .in_progress){
   color: #333333 !important;
 }
 
-.blackColor strong, .blackColor {
+.blackColor strong, .blackColorSpan {
   color: black !important;
 }
 
-.whiteColor strong, .whiteColor{
+.whiteColor strong, .whiteColorSpan{
   color: white !important;
 }
+

@@ -45,8 +45,6 @@ const Bank = (props) => {
                 return currencies(key.id, apiKey, key.value)
             }))
 
-            // 1 or = 100 argent / 10 000 bronze
-            // 1 argent = 100 bronze 
             setMoney(object)
         
 

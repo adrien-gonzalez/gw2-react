@@ -118,13 +118,13 @@ const Events = (props) => {
                             
                         })}
                     </div>
-                    <span className={color == "default" ? "blackColor basedPage" : "whiteColor basedPage"}>This page is based on the <a href="https://gw2.ninja/timer">Guild Wars 2 Event Timer</a> by <a href="https://twitch.tv/rediche">Rediche.</a></span>
+                    <span className={color == "default" ? "blackColorSpan basedPage" : "whiteColorSpan basedPage"}>This page is based on the <a href="https://gw2.ninja/timer">Guild Wars 2 Event Timer</a> by <a href="https://twitch.tv/rediche">Rediche.</a></span>
                 </section>
             ); 
         } else {
             return(
                 <div>
-                    <ScreenRotationIcon className="changeOrientation"></ScreenRotationIcon>
+                    <ScreenRotationIcon style={{color: localStorage.getItem('color') == "default" ? "black" : "white" }} className="changeOrientation"></ScreenRotationIcon>
                 </div>
             )
         }
