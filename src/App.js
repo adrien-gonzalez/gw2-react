@@ -15,10 +15,10 @@ import SettingsIcon from '@mui/icons-material/Settings';
 
 import ModalAuth from "./components/ModalAuth";
 
-
 // Router for navigation
 import {
   BrowserRouter,
+  HashRouter,
   Routes, //replaces "Switch" used till v5
   Route,
   Navigate
@@ -28,19 +28,31 @@ const App = (props) => {
  
   const [showModalAuth, setShowModalAuth] = useState(false);
   const [apiKey] = useState(localStorage.getItem('apiKey') ?? null);
+  
 
   return (
     <Provider store={Store}>
 
-      <BrowserRouter>
+
+
+      <HashRouter>
         <div className="App" style={{backgroundColor: localStorage.getItem('color') == "dark" ? '#222222' : '', backgroundImage: localStorage.getItem('color') == "dark" ? '' : 'url('+background+')'}} >
+
           <Header/>
           <SettingsIcon style={{color: localStorage.getItem('color') == "dark" ? 'white' : 'black'}} onClick={() => setShowModalAuth(true)} className="settings"></SettingsIcon>
           <ModalAuth show={showModalAuth} close={() => setShowModalAuth(false)} />
 
           <Routes>
-            <Route path="/gw2-react" element={<Navigate to="/pages/Worldboss" />} />
-            <Route path="/" element={<Navigate to="/pages/Worldboss" />} />
+            {/* NAVIGATE BY URL */}
+            <Route path="/gw2-react" element={<Navigate to="/pages/worldboss" />} />
+            <Route path="/" element={<Navigate to="/pages/worldboss" />} />
+
+          
+
+
+          
+
+            {/* HEADER NAVIGATE */}
             <Route exact path="pages/events" element={<Events/>}/>
             <Route exact path="pages/worldboss" element={<Worldboss/>}/>
             <Route exact path="pages/characters" element={<Characters/>}/>
@@ -48,7 +60,7 @@ const App = (props) => {
 
           </Routes>
         </div>
-      </BrowserRouter>
+      </HashRouter>
     </Provider>
     
   );

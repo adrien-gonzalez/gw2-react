@@ -22,7 +22,7 @@ const ModalAuth = (props) => {
   const [error, setError] = useState(false);
   const [color, setColor] = useState(localStorage.getItem('color') ?? 'default');
   const [apiKey, setApiKey] = useState(localStorage.getItem('apiKey') ?? '');
-  const [permissionsKey, setPermissionsKey] = useState(localStorage.getItem('apiKey') ?? '');
+  const [permissionsKey, setPermissionsKey] = useState(false);
 
 
 
@@ -45,7 +45,8 @@ const ModalAuth = (props) => {
         {permissions_data.map((key, index) => {
 
       
-        if(permissionsKey){
+        if(permissionsKey != false){
+          
           const permission_find = permissionsKey.permissions.some(item => item === key.name);
 
           if(permission_find){

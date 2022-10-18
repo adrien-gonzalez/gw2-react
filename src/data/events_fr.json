@@ -1,4 +1,13 @@
-[{
+[
+  {
+    "name": "Halloween",
+    "phases": [
+        { "name": "Le roi fou dit", "duration": 10, "color": "rgb(232,163,31)", "text": "light" },
+        { "name": "", "duration": 110, "color": "rgb(242,215,162)", "text": "light" }
+    ],
+    "category": "halloween",
+    "category_name": "Halloween"
+  }, {
     "name": "Cycle Jour-Nuit - Cantha",
     "phases": [
         { "name": "Nuit", "duration": 35, "color": "#1998B6", "text": "light" },

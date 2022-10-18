@@ -1,4 +1,12 @@
 [{
+    "name": "Halloween",
+    "phases": [
+        { "name": "Mad King Says", "duration": 10, "color": "rgb(232,163,31)", "text": "light" },
+        { "name": "", "duration": 110, "color": "rgb(242,215,162)", "text": "light" }
+    ],
+    "category": "halloween",
+    "category_name": "Halloween"
+  },{
     "name": "Cantha: Day and Night",
     "phases": [
         { "name": "Night.", "duration": 35, "color": "#1998B6", "text": "light" },
