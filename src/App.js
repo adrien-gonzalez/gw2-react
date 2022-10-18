@@ -33,8 +33,6 @@ const App = (props) => {
   return (
     <Provider store={Store}>
 
-
-
       <HashRouter>
         <div className="App" style={{backgroundColor: localStorage.getItem('color') == "dark" ? '#222222' : '', backgroundImage: localStorage.getItem('color') == "dark" ? '' : 'url('+background+')'}} >
 
