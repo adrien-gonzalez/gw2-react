@@ -2,7 +2,7 @@
   {
     "name": "Halloween",
     "phases": [
-        { "name": "Le roi fou dit", "duration": 10, "color": "rgb(232,163,31)", "text": "light" },
+        { "name": "Le Roi Dément a dit", "duration": 10, "color": "rgb(232,163,31)", "text": "light" },
         { "name": "", "duration": 110, "color": "rgb(242,215,162)", "text": "light" }
     ],
     "category": "halloween",
