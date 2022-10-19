@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/gw2-react/static/css/main.e3ad9b12.css",
-    "main.js": "/gw2-react/static/js/main.13df2053.js",
+    "main.css": "/gw2-react/static/css/main.507c60bc.css",
+    "main.js": "/gw2-react/static/js/main.6ade0373.js",
     "static/js/787.211ad51a.chunk.js": "/gw2-react/static/js/787.211ad51a.chunk.js",
     "static/media/Necromancer.png": "/gw2-react/static/media/Necromancer.c64febc2bba2cef35fe6.png",
     "static/media/Elementalist.png": "/gw2-react/static/media/Elementalist.2cfbc30e47f7d21e5091.png",
@@ -32,15 +32,15 @@
     "static/media/Artificer.png": "/gw2-react/static/media/Artificer.24508482a6435772c689.png",
     "static/media/Weaponsmith.png": "/gw2-react/static/media/Weaponsmith.a45a9b881a3f012d5035.png",
     "static/media/Chef.png": "/gw2-react/static/media/Chef.3af24edca3db58c0be15.png",
-    "static/media/boss.svg": "/gw2-react/static/media/boss.c4db052768a4c9c619a57855cb8593a2.svg",
-    "static/media/bank.svg": "/gw2-react/static/media/bank.054bc5f7f27e065e92c1bc2dccd17aa7.svg",
+    "static/media/boss.svg": "/gw2-react/static/media/boss.93af2eb69edf05c1a8937303847dfc6d.svg",
+    "static/media/bank.svg": "/gw2-react/static/media/bank.20ed62307ed9695085557bde26a68c94.svg",
     "index.html": "/gw2-react/index.html",
-    "main.e3ad9b12.css.map": "/gw2-react/static/css/main.e3ad9b12.css.map",
-    "main.13df2053.js.map": "/gw2-react/static/js/main.13df2053.js.map",
+    "main.507c60bc.css.map": "/gw2-react/static/css/main.507c60bc.css.map",
+    "main.6ade0373.js.map": "/gw2-react/static/js/main.6ade0373.js.map",
     "787.211ad51a.chunk.js.map": "/gw2-react/static/js/787.211ad51a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e3ad9b12.css",
-    "static/js/main.13df2053.js"
+    "static/css/main.507c60bc.css",
+    "static/js/main.6ade0373.js"
   ]
 }
