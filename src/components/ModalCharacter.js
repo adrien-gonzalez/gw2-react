@@ -393,7 +393,6 @@ const ModalCharacter = (props) => {
         }
     } else {
       if(money != false){
-        console.log(money)
         return (
           <>
             <Modal 
