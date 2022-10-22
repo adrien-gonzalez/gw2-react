@@ -112,4 +112,4 @@ object-assign
 
 //! moment.js
 
-//! version : 0.5.38
+//! version : 0.5.37
