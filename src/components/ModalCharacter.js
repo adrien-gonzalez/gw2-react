@@ -26,13 +26,7 @@ const ModalCharacter = (props) => {
   const [equipment, setEquipment] = useState(false);
   const [money, setMoney] = useState(false)
   const [view, setView] = useState("equipment");
-
   const [bags, setBags] = useState(false);
-  const [item, setItem] = useState("");
-
-
-  const item_table = []
-
 
   const tr = 12
   const td = 8
@@ -80,8 +74,9 @@ const ModalCharacter = (props) => {
  
   };
 
-  const getMyEquipment = async (item, api) => {
+  const getMyEquipment = async (item, api, count) => {
     const data = await getItem(item, api)
+    data.count = count
     return data
   };
 
@@ -99,14 +94,12 @@ const ModalCharacter = (props) => {
       if(key){
         return Promise.all(key.inventory.map((key2, index2) => {
             if(key2 != null){
-              item_table.push(key2)
-              return getMyEquipment(key2.id, apiKey)
+              return getMyEquipment(key2.id, apiKey, key2.count)
             }
           }))
       } 
     }))
 
-      setItem(item_table)
       setBags(object2)
       setEquipment(object)
   };
@@ -334,19 +327,13 @@ const ModalCharacter = (props) => {
                           <tr key={'bags_'+index} className="row_invetory">
                             {key.map((key2, index2) => {
                               if(key2){
-
-                                const item_find = item.find(
-                                    element => element.id == key2.id
+                                return(
+                                  <Tooltip TransitionComponent={Zoom} title={key2.description ?? 'Aucune description'} key={index2+'tool_'+key2} >
+                                      <td className={key2.rarity} style={{backgroundImage: `url(${key2.icon})`}} key={index2+'tab_'+key2}> 
+                                          <span key={'img_'+index2} className='count_item'>{key2.count}</span>
+                                      </td>  
+                                  </Tooltip>
                                 )
-                                if(item_find){
-                                  return(
-                                    <Tooltip TransitionComponent={Zoom} title={key2.description ?? 'Aucune description'} key={index2+'tool_'+key2} >
-                                        <td className={key2.rarity} style={{backgroundImage: `url(${key2.icon})`}} key={index2+'tab_'+key2}> 
-                                            <span key={'img_'+index2} className='count_item'>{item_find.count}</span>
-                                        </td>  
-                                    </Tooltip>
-                                  )
-                                }
                               }
                             })}
                           </tr>
