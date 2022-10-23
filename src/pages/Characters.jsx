@@ -26,6 +26,8 @@ import Ranger from '../img/personnages/Ranger.png';
 import Revenant from '../img/personnages/Revenant.png';
 import Thief from '../img/personnages/Thief.png';
 import Warrior from '../img/personnages/Warrior.png';
+import Engineer from '../img/personnages/Engineer.jpg';
+
 
 const Characters = (props) => {
 
@@ -45,6 +47,8 @@ const Characters = (props) => {
         { id: 'Revenant', src: Revenant},
         { id: 'Thief', src: Thief},
         { id: 'Warrior', src: Warrior},
+        { id: 'Engineer', src: Engineer},
+
     ];
 
     const images_craft = [
