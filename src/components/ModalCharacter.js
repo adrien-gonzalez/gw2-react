@@ -245,6 +245,10 @@ const ModalCharacter = (props) => {
   
 
   useEffect(() => {
+
+    setBags(false)
+    setEquipment(false)
+
     if(apiKey != null && props.character){
       character_detail(props.character)
       getMoney()
