@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/gw2-react/static/css/main.d180c4bc.css",
-    "main.js": "/gw2-react/static/js/main.8b06fc03.js",
+    "main.css": "/gw2-react/static/css/main.8164b852.css",
+    "main.js": "/gw2-react/static/js/main.afdec168.js",
     "static/js/787.211ad51a.chunk.js": "/gw2-react/static/js/787.211ad51a.chunk.js",
     "static/media/Necromancer.png": "/gw2-react/static/media/Necromancer.c64febc2bba2cef35fe6.png",
     "static/media/Elementalist.png": "/gw2-react/static/media/Elementalist.2cfbc30e47f7d21e5091.png",
@@ -12,6 +12,7 @@
     "static/media/Mesmer.png": "/gw2-react/static/media/Mesmer.4b0f3f4cd636950f08bd.png",
     "static/media/background.png": "/gw2-react/static/media/background.f4ed0829f5e6f6b91523.png",
     "static/media/Ranger.png": "/gw2-react/static/media/Ranger.a7268f4fccdc11fe64f1.png",
+    "static/media/Engineer.jpg": "/gw2-react/static/media/Engineer.16b7be961aaaec90db52.jpg",
     "static/media/equipment.png": "/gw2-react/static/media/equipment.a9dcf3ab48fd1cfd29bb.png",
     "static/media/Triple terreur.png": "/gw2-react/static/media/Triple terreur.d37b44a8a3be4c3ef818.png",
     "static/media/Élémentaire de feu.png": "/gw2-react/static/media/Élémentaire de feu.be8b351c6d518b26ef8c.png",
@@ -35,12 +36,12 @@
     "static/media/boss.svg": "/gw2-react/static/media/boss.c4db052768a4c9c619a57855cb8593a2.svg",
     "static/media/bank.svg": "/gw2-react/static/media/bank.054bc5f7f27e065e92c1bc2dccd17aa7.svg",
     "index.html": "/gw2-react/index.html",
-    "main.d180c4bc.css.map": "/gw2-react/static/css/main.d180c4bc.css.map",
-    "main.8b06fc03.js.map": "/gw2-react/static/js/main.8b06fc03.js.map",
+    "main.8164b852.css.map": "/gw2-react/static/css/main.8164b852.css.map",
+    "main.afdec168.js.map": "/gw2-react/static/js/main.afdec168.js.map",
     "787.211ad51a.chunk.js.map": "/gw2-react/static/js/787.211ad51a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d180c4bc.css",
-    "static/js/main.8b06fc03.js"
+    "static/css/main.8164b852.css",
+    "static/js/main.afdec168.js"
   ]
 }
