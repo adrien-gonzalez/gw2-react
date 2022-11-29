@@ -4,6 +4,9 @@ import React, { useState, useEffect } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 import {getTrading, getItem} from '../services/gw2API';
 import {  Tooltip, Zoom  } from '@mui/material';
+import gold_icon from "../img/icon/gold.png";
+import silver_icon from "../img/icon/silver.png";
+import bronze_icon from "../img/icon/bronze.png";
 
 import DataTable from 'react-data-table-component';
 
@@ -11,24 +14,65 @@ const Trading = (props) => {
 
     const [trading, setTrading] = useState(false)
 
- 
-
-    const ExpandedComponent = ({ data }) => {
+    // const ExpandedComponent = ({ data }) => {
+    //     return (
+    //     <pre>
+    //         {data.buys.map((key, index)=> { 
+    //             return (
+    //                 <div>{key.unit_price ?? ' - '}</div>
+    //             )
+    //         })}
+    //     </pre>
+    //     )
        
-           
+    // };
+
+    function currency_calculation(count) {
+        var gold = 0
+        var silver = 0
+        var bronze = 0
+        var remaining = 0
+        var currency = 0
+    
+        if(count >= 10000){
+          currency = count / 10000
+          gold = parseInt(currency)
+          remaining = currency - gold
+    
+          if(remaining > 0){
+            currency = remaining * 100
+            silver = parseInt(currency)
+            remaining =  currency - silver
+    
+            if(remaining > 0){
+              bronze = parseInt(remaining * 100)
+            }
+          }
+    
+        } else if(count >= 100){
+          currency = count / 100
+          silver = parseInt(currency)
+          remaining = currency - silver
+    
+          if(remaining > 0){
+            bronze = parseInt(remaining * 100)
+          }
+    
+        } else {
+          bronze = count
+        }
+    
         return (
-        <pre>
-            {data.buys.map((key, index)=> { 
-                return (
-                    <div>{key.unit_price ?? ' - '}</div>
-                )
-            })}
-        </pre>
+          <span className="count_gold">
+            {gold}
+            <div style={{backgroundImage: `url(${gold_icon})`}}></div>
+            {silver}
+            <div style={{backgroundImage: `url(${silver_icon})`}}></div>
+            {bronze}
+            <div style={{backgroundImage: `url(${bronze_icon})`}}></div>
+          </span>
         )
-       
-    };
-
-   
+      }
 
     const columns = [
         {
@@ -37,11 +81,11 @@ const Trading = (props) => {
         },
         {
             name: 'Prix d\'achat',
-            selector: row => row.sells[0] ? row.sells[0].unit_price : ' - ',
+            selector: row => row.sells[0] ? currency_calculation(row.sells[0].unit_price) : ' - ',
         },
         {
             name: 'Prix de Vente',
-            selector: row => row.buys[0] ? row.buys[0].unit_price : ' - ',
+            selector: row => row.buys[0] ? currency_calculation(row.buys[0].unit_price) : ' - ',
         }
     ];
     
@@ -85,8 +129,8 @@ const Trading = (props) => {
                     className="trading_table"
                     columns={columns}
                     data={trading}
-                    expandableRows
-                    expandableRowsComponent={ExpandedComponent}
+                    // expandableRows
+                    // expandableRowsComponent={ExpandedComponent}
                 />
             </section>
         ); 
