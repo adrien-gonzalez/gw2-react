@@ -11,8 +11,8 @@ const Bank = (props) => {
     const [money, setMoney] = useState(false)
     const [apiKey] = useState(localStorage.getItem('apiKey') ?? null);
     
-    const item = async (item, api, count) => {
-        const data = await getItem(item, api)
+    const item = async (item, count) => {
+        const data = await getItem(item)
         data.count = count
         return data
     };
@@ -22,7 +22,7 @@ const Bank = (props) => {
             const data = await getBankAccount(apiKey);
             const object = await Promise.all(data.map((key, index) => {
                 if(key){
-                    return item(key.id, apiKey, key.count)
+                    return item(key.id, key.count)
                 }
             }))
             setBank(object)

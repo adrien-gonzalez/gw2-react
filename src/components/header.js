@@ -9,6 +9,9 @@ import KeyIcon from '@mui/icons-material/Key';
 import { useNavigate } from "react-router-dom";
 import bank from "../img/icon/bank.svg";
 import boss from "../img/icon/boss.svg";
+import trading from "../img/icon/trading.png";
+
+
 
 
 
@@ -41,6 +44,8 @@ const Header = (props) => {
             
             {apiKey ? <Button onClick={()=>navigate("pages/characters")} style={{ backgroundColor: "black" }} className="menuButton" variant="contained"><PersonIcon className="menuIcon" style={{ color: "white" }}></PersonIcon></Button> : ''}
             {apiKey ? <Button onClick={()=>navigate("pages/bank")} style={{  backgroundColor: "black" }} className="ButtonPng menuButton" variant="contained"><div className="buttonWithIcon" style={{ backgroundImage: `url(${bank})`}}></div></Button>  : ''}
+            <Button onClick={()=>navigate("pages/trading")} style={{ backgroundColor: "black" }} className="ButtonPng menuButton" variant="contained"><div className="buttonWithIcon" style={{ backgroundImage: `url(${trading})`}}></div></Button>
+
         </header>
         
     ); 

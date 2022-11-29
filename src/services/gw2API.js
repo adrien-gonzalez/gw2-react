@@ -27,9 +27,9 @@ export function getCharacters(key, id = "all") {
 // }
 
 // SCOPE ACCOUNT
-export function getItem(item_id, key) {
+export function getItem(item_id) {
     return axios
-    .get(process.env.REACT_APP_API_URL+"items/"+item_id+"?access_token="+key)
+    .get(process.env.REACT_APP_API_URL+"items/"+item_id)
     .then((response) => response.data)
     .catch((error) => error.response.data.errors);    
 }
@@ -76,3 +76,16 @@ export function getPermissions(key) {
     .catch((error) => error.response.data.errors);    
 }
 
+
+export function getTrading() {
+    return axios
+    .get(process.env.REACT_APP_API_URL+"commerce/listings?page=1&page_size=200")
+    .then((response) => response.data)
+    .catch((error) => error.response.data.errors);    
+}
+
+// GET TRADING POST
+// https://api.guildwars2.com/v2/commerce/listings?page=1&page_size=200
+
+// GET ITEM INFO
+// https://api.guildwars2.com/v2/items?id=273

@@ -24,6 +24,7 @@
     "react": "^17.0.0",
     "react-bootstrap": "^2.5.0",
     "react-bootstrap-spinner": "^1.0.0",
+    "react-data-table-component": "^7.5.3",
     "react-dom": "^17.0.0",
     "react-hook-screen-orientation": "^1.0.4",
     "react-moment": "^1.1.2",
@@ -32,6 +33,7 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "^5.0.1",
     "start": "^5.1.0",
+    "styled-components": "^5.3.6",
     "use-orientation-change": "^1.0.4",
     "web-vitals": "^2.1.4"
   },

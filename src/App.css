@@ -920,7 +920,7 @@ input:focus{
 }
 
 .Fine{
-  border: 1px solid #62A4DA !important;
+  border: 1.5px solid #62A4DA !important;
 }
 
 .Masterwork{
@@ -1236,5 +1236,28 @@ tr:has(> .in_progress){
 
 .whiteColor strong, .whiteColorSpan{
   color: white !important;
+}
+
+
+.trading_table{
+  width: 75%;
+  max-width: 1300px;
+}
+
+.rdt_Table{
+  overflow-y: auto;
+  max-height: 80vh;
+}
+
+.trading_item > div{
+  width: 55px;
+  height: 55px;
+  margin: 5px 15px 5px 0px;
+  background-size: cover;
+}
+
+.trading_item{
+  display: flex;
+  align-items: center;
 }
 

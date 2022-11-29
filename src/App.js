@@ -8,6 +8,7 @@ import Store from './store/configureStore';
 import React, { useState, useEffect } from 'react';
 
 import Events from './pages/Events';
+import Trading from './pages/Trading';
 import Worldboss from './pages/Worldboss';
 import Characters from './pages/Characters';
 import Bank from './pages/Bank';
@@ -55,7 +56,7 @@ const App = (props) => {
             <Route exact path="pages/worldboss" element={<Worldboss/>}/>
             <Route exact path="pages/characters" element={<Characters/>}/>
             <Route exact path="pages/bank" element={<Bank/>}/>
-
+            <Route exact path="pages/trading" element={<Trading/>}/>
           </Routes>
         </div>
       </HashRouter>

@@ -21,7 +21,7 @@ const Inventory = (props) => {
                     if(key2){
                         key2.inventory.map((key3, index3) => {
                             if(key3 != null){
-                                getItem(key3.id, apiKey).then(item=>
+                                getItem(key3.id).then(item=>
                                 {
                                     item_table.push(item)
                                     if(index + 1 === data.length){
