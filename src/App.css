@@ -1244,20 +1244,40 @@ tr:has(> .in_progress){
   max-width: 1300px;
 }
 
-.rdt_Table{
+.rdt_TableBody{
   overflow-y: auto;
   max-height: 80vh;
 }
 
+
 .trading_item > div{
-  width: 55px;
-  height: 55px;
+  width: 45px;
+  height: 45px;
   margin: 5px 15px 5px 0px;
   background-size: cover;
 }
+
+.count_gold_price{
+  display: flex;
+}
+
+.count_gold_price > div:not(:last-child){
+  margin-right: 3px;
+}
+
 
 .trading_item{
   display: flex;
   align-items: center;
 }
 
+.gold_number{
+  display: flex;
+}
+
+.gold_number div{
+  width: 15px;
+  height: 15px;
+  background-size: cover;
+  margin-left: 3px;
+} 

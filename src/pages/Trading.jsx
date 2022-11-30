@@ -1,18 +1,50 @@
 import '../App.css';
 import {connect} from 'react-redux';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 import {getTrading, getItem} from '../services/gw2API';
 import {  Tooltip, Zoom  } from '@mui/material';
 import gold_icon from "../img/icon/gold.png";
 import silver_icon from "../img/icon/silver.png";
 import bronze_icon from "../img/icon/bronze.png";
-
 import DataTable from 'react-data-table-component';
 
 const Trading = (props) => {
 
     const [trading, setTrading] = useState(false)
+    const [filterText, setFilterText] = useState('');
+	const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
+
+   
+    const FilterComponent = ({ filterText, onFilter, onClear }) => (
+        <>
+            <input
+                autoFocus
+                id="search"
+                type="text"
+                placeholder="Nom"
+                aria-label="Search Input"
+                value={filterText}
+                onChange={onFilter}
+            />
+            <button type="button" onClick={onClear}>X</button>
+        </>
+    );
+
+	const subHeaderComponentMemo = useMemo(() => {
+      
+		const handleClear = () => {
+			if (filterText) {
+				setResetPaginationToggle(!resetPaginationToggle);
+				setFilterText('');
+			}
+		};
+
+
+		return (
+            <FilterComponent filterText={filterText}  onFilter={e =>  setFilterText(e.target.value)} onClear={handleClear}    />
+		);
+	}, [filterText, resetPaginationToggle]);
 
     // const ExpandedComponent = ({ data }) => {
     //     return (
@@ -63,13 +95,11 @@ const Trading = (props) => {
         }
     
         return (
-          <span className="count_gold">
-            {gold}
-            <div style={{backgroundImage: `url(${gold_icon})`}}></div>
-            {silver}
-            <div style={{backgroundImage: `url(${silver_icon})`}}></div>
-            {bronze}
-            <div style={{backgroundImage: `url(${bronze_icon})`}}></div>
+          <span className="count_gold_price">
+            
+            {gold != 0 ? <div className="gold_number">{gold}<div style={{backgroundImage: `url(${gold_icon})`}}></div></div> : ''}
+            {silver != 0 || gold != 0 ? <div className="gold_number">{silver}<div style={{backgroundImage: `url(${silver_icon})`}}></div></div> : ''}
+            {bronze != 0 ? <div className="gold_number">{bronze}<div style={{backgroundImage: `url(${bronze_icon})`}}></div></div> : ''}
           </span>
         )
       }
@@ -109,7 +139,6 @@ const Trading = (props) => {
                 }
             }))
             setTrading(object)
-            // console.log(object[0].buys[0].unit_price)
         } catch (error) {
             console.log(error)
         }
@@ -120,17 +149,24 @@ const Trading = (props) => {
     },[])
 
     if(trading != false){
+
+        const filteredItems = trading.filter(
+            item => item.name && item.name.toLowerCase().includes(filterText.toLowerCase()),
+        );
+
         return (
             <section className="wrapper trading_section">
                 <span style={{color: localStorage.getItem('color') == "dark" ? "white" : "black" }} className="bank_title">Trading</span>
-               
-
+            
                 <DataTable
                     className="trading_table"
                     columns={columns}
-                    data={trading}
-                    // expandableRows
-                    // expandableRowsComponent={ExpandedComponent}
+                    data={filteredItems}
+                    pagination
+                    paginationResetDefaultPage={resetPaginationToggle} // optionally, a hook to reset pagination to page 1
+                    subHeader
+                    subHeaderComponent={subHeaderComponentMemo}
+                    // persistTableHead
                 />
             </section>
         ); 
