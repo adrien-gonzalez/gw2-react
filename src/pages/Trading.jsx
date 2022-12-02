@@ -8,26 +8,33 @@ import gold_icon from "../img/icon/gold.png";
 import silver_icon from "../img/icon/silver.png";
 import bronze_icon from "../img/icon/bronze.png";
 import DataTable from 'react-data-table-component';
+import ClearIcon from '@mui/icons-material/Clear';
+import { fireEvent } from '@testing-library/react';
+import { ConstructionOutlined } from '@mui/icons-material';
 
 const Trading = (props) => {
-
+    
     const [trading, setTrading] = useState(false)
+    const [page, setPage] = useState(1)
     const [filterText, setFilterText] = useState('');
 	const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
 
-   
+    
+  
     const FilterComponent = ({ filterText, onFilter, onClear }) => (
         <>
             <input
                 autoFocus
-                id="search"
+                className="search_post_trading"
                 type="text"
-                placeholder="Nom"
+                placeholder="Rechercher"
                 aria-label="Search Input"
                 value={filterText}
                 onChange={onFilter}
             />
-            <button type="button" onClick={onClear}>X</button>
+
+            <button className="onClearButton" type="button" onClick={onClear}><ClearIcon/></button>
+            {/* <button className="onClearButton" type="button" onClick={onClear}>X</button> */}
         </>
     );
 
@@ -111,11 +118,11 @@ const Trading = (props) => {
         },
         {
             name: 'Prix d\'achat',
-            selector: row => row.sells[0] ? currency_calculation(row.sells[0].unit_price) : ' - ',
+            selector: row => row.sells ? currency_calculation(row.sells.unit_price) : ' - ',
         },
         {
             name: 'Prix de Vente',
-            selector: row => row.buys[0] ? currency_calculation(row.buys[0].unit_price) : ' - ',
+            selector: row => row.buys ? currency_calculation(row.buys.unit_price) : ' - ',
         }
     ];
     
@@ -130,34 +137,44 @@ const Trading = (props) => {
         return key
     };
 
+    const tradingData = []
+
     const getTradingPost = async () => {
+       
         try {
-            const data = await getTrading();
+            const data = await getTrading(page);
             const object = await Promise.all(data.map((key, index) => {
                 if(key){
                     return item(key, key.id)
                 }
             }))
+            
             setTrading(object)
+            
         } catch (error) {
             console.log(error)
         }
     };
 
     useEffect(() => {
-        getTradingPost()
+        if(trading == false){
+            getTradingPost()
+
+        }
     },[])
 
     if(trading != false){
+        
 
         const filteredItems = trading.filter(
             item => item.name && item.name.toLowerCase().includes(filterText.toLowerCase()),
         );
 
-        return (
+
+        return (  
             <section className="wrapper trading_section">
                 <span style={{color: localStorage.getItem('color') == "dark" ? "white" : "black" }} className="bank_title">Trading</span>
-            
+
                 <DataTable
                     className="trading_table"
                     columns={columns}

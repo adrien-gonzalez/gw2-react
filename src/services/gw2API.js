@@ -77,15 +77,23 @@ export function getPermissions(key) {
 }
 
 
-export function getTrading() {
+export function getTrading(page) {
     return axios
-    .get(process.env.REACT_APP_API_URL+"commerce/listings?page=1&page_size=200")
+    .get(process.env.REACT_APP_API_URL+"commerce/prices?page="+page+"&page_size=200")
     .then((response) => response.data)
     .catch((error) => error.response.data.errors);    
 }
+
+
 
 // GET TRADING POST
 // https://api.guildwars2.com/v2/commerce/listings?page=1&page_size=200
 
 // GET ITEM INFO
 // https://api.guildwars2.com/v2/items?id=273
+
+// GET INFO TRADING POST ITEM BY ID
+// https://api.guildwars2.com/v2/commerce/prices/19684
+
+// ALL ITEMS WITH ID
+// https://api.gw2tp.com/1/bulk/items-names.json

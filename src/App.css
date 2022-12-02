@@ -1242,11 +1242,48 @@ tr:has(> .in_progress){
 .trading_table{
   width: 75%;
   max-width: 1300px;
+
 }
 
-.rdt_TableBody{
-  overflow-y: auto;
-  max-height: 80vh;
+.rdt_TableBody, .trading_table{
+  overflow-y: auto !important;
+  /* max-height: 80vh; */
+  height: 70vh;
+  background-color: rgba(0,0,0,0.8) !important;
+}
+
+.rdt_TableRow:nth-child(2n){
+  background-color: rgba(0,0,0,0) !important;
+  color: white !important;
+}
+
+.rdt_TableRow:nth-child(2n+1){
+  background-color: rgba(0,0,0,0.2) !important;
+  color: white !important;
+}
+
+.rdt_TableHeadRow{
+  background-color: rgba(0,0,0,0.1) !important;
+}
+
+.rdt_Table > div{
+  background-color: rgba(0,0,0,0.8) !important;
+  color: white !important;
+}
+
+
+.trading_section{
+  margin-bottom: 80px;
+  margin-top: 50px;
+
+}
+
+.trading_section > header{
+  display: flex;
+  justify-content: flex-start;
+  padding: 0px;
+  max-width: 1300px;
+  background: transparent;
 }
 
 
@@ -1255,6 +1292,7 @@ tr:has(> .in_progress){
   height: 45px;
   margin: 5px 15px 5px 0px;
   background-size: cover;
+  padding: 20px;
 }
 
 .count_gold_price{
@@ -1264,7 +1302,6 @@ tr:has(> .in_progress){
 .count_gold_price > div:not(:last-child){
   margin-right: 3px;
 }
-
 
 .trading_item{
   display: flex;
@@ -1281,3 +1318,27 @@ tr:has(> .in_progress){
   background-size: cover;
   margin-left: 3px;
 } 
+
+.onClearButton{
+  background-color: white;
+  border: 2px solid #000000;
+  color: #000000;
+  width: 38px;
+  transition: 0.3s;
+  height: 38px;
+}
+
+.onClearButton:hover{
+  background-color: #000000;
+  color: white;
+}
+
+.search_post_trading{
+  padding: 5px;
+  outline: none;
+  
+}
+
+.rdt_Pagination{
+  background-color: transparent !important;
+}
