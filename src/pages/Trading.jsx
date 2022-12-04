@@ -2,55 +2,60 @@ import '../App.css';
 import {connect} from 'react-redux';
 import React, { useState, useEffect, useMemo } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
-import {getTrading, getItem} from '../services/gw2API';
+import {getTrading, getItem, getAllItems} from '../services/gw2API';
 import {  Tooltip, Zoom  } from '@mui/material';
 import gold_icon from "../img/icon/gold.png";
 import silver_icon from "../img/icon/silver.png";
 import bronze_icon from "../img/icon/bronze.png";
+import default_image from "../img/icon/default_image.png";
+
 import DataTable from 'react-data-table-component';
 import ClearIcon from '@mui/icons-material/Clear';
-import { fireEvent } from '@testing-library/react';
-import { ConstructionOutlined } from '@mui/icons-material';
+
+
+import Items from '../data/items.json';
+
 
 const Trading = (props) => {
     
-    const [trading, setTrading] = useState(false)
-    const [page, setPage] = useState(1)
-    const [filterText, setFilterText] = useState('');
+  const [trading, setTrading] = useState(false)
+  const [page, setPage] = useState(1)
+  const [filterText, setFilterText] = useState('');
 	const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
+  const rarity = {'0': 'Junk', '1': 'Basic', '2': 'Fine', '3': 'Master', '4': 'Rare', '5': 'Exotic', '6': 'Ascended', '7': 'Legendary'};
 
     
   
-    const FilterComponent = ({ filterText, onFilter, onClear }) => (
-        <>
-            <input
-                autoFocus
-                className="search_post_trading"
-                type="text"
-                placeholder="Rechercher"
-                aria-label="Search Input"
-                value={filterText}
-                onChange={onFilter}
-            />
+  const FilterComponent = ({ filterText, onFilter, onClear }) => (
+      <>
+          <input
+              autoFocus
+              className="search_post_trading"
+              type="text"
+              placeholder="Rechercher"
+              aria-label="Search Input"
+              value={filterText}
+              onChange={onFilter}
+          />
 
-            <button className="onClearButton" type="button" onClick={onClear}><ClearIcon/></button>
-            {/* <button className="onClearButton" type="button" onClick={onClear}>X</button> */}
-        </>
-    );
+          <button className="onClearButton" type="button" onClick={onClear}><ClearIcon/></button>
+          {/* <button className="onClearButton" type="button" onClick={onClear}>X</button> */}
+      </>
+  );
 
 	const subHeaderComponentMemo = useMemo(() => {
       
-		const handleClear = () => {
-			if (filterText) {
-				setResetPaginationToggle(!resetPaginationToggle);
-				setFilterText('');
-			}
-		};
+  const handleClear = () => {
+    if (filterText) {
+      setResetPaginationToggle(!resetPaginationToggle);
+      setFilterText('');
+    }
+  };
 
 
-		return (
-            <FilterComponent filterText={filterText}  onFilter={e =>  setFilterText(e.target.value)} onClear={handleClear}    />
-		);
+  return (
+          <FilterComponent filterText={filterText}  onFilter={e =>  setFilterText(e.target.value)} onClear={handleClear}    />
+  );
 	}, [filterText, resetPaginationToggle]);
 
     // const ExpandedComponent = ({ data }) => {
@@ -114,15 +119,17 @@ const Trading = (props) => {
     const columns = [
         {
             name: 'Name',
-            selector: row => <div className='trading_item'><div className={row.rarity} style={{backgroundImage: `url(${row.icon})`}}></div>{row.name}</div>,//row => row.level ? row.name+' - Niv. '+row.level : row.name,
+            selector: row => row.img.substring(0, 29) == "https://render.guildwars2.com"
+            ? <div className='trading_item'><div className={rarity[row.rarity]+' '+row.data_id} style={{backgroundImage: `url(${row.img})`}}></div>{row.name}</div>
+            : <div className='trading_item'><div style={{backgroundImage: `url(${default_image})`}}></div>{row.name}</div>,
         },
         {
             name: 'Prix d\'achat',
-            selector: row => row.sells ? currency_calculation(row.sells.unit_price) : ' - ',
+            selector: row => row.min_sale_unit_price ? currency_calculation(row.min_sale_unit_price) : ' - ',
         },
         {
             name: 'Prix de Vente',
-            selector: row => row.buys ? currency_calculation(row.buys.unit_price) : ' - ',
+            selector: row => row.max_offer_unit_price ? currency_calculation(row.max_offer_unit_price) : ' - ',
         }
     ];
     
@@ -137,23 +144,30 @@ const Trading = (props) => {
         return key
     };
 
-    const tradingData = []
+
+
 
     const getTradingPost = async () => {
-       
-        try {
-            const data = await getTrading(page);
-            const object = await Promise.all(data.map((key, index) => {
-                if(key){
-                    return item(key, key.id)
-                }
-            }))
+        const data = await getAllItems()
+        // console.log(data.results)
+        setTrading(data.results)
+
+
+        // try {
+        //     const data = await getTrading(page);
+        //     const object = await Promise.all(data.map((key, index) => {
+        //         if(key){
+        //             return item(key, key.id)
+                    
+        //         }
+        //     }))
             
-            setTrading(object)
+        //     setTrading(object)
+           
             
-        } catch (error) {
-            console.log(error)
-        }
+        // } catch (error) {
+        //     console.log(error)
+        // }
     };
 
     useEffect(() => {

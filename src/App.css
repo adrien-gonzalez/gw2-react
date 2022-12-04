@@ -1246,8 +1246,11 @@ tr:has(> .in_progress){
 }
 
 .rdt_TableBody, .trading_table{
+  background-color: rgba(0,0,0,0.8) !important;
+}
+
+.rdt_TableBody{
   overflow-y: auto !important;
-  /* max-height: 80vh; */
   height: 70vh;
   background-color: rgba(0,0,0,0.8) !important;
 }

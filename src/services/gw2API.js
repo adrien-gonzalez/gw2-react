@@ -27,12 +27,14 @@ export function getCharacters(key, id = "all") {
 // }
 
 // SCOPE ACCOUNT
-export function getItem(item_id) {
+export function getItem(item_id = "") {
     return axios
     .get(process.env.REACT_APP_API_URL+"items/"+item_id)
     .then((response) => response.data)
     .catch((error) => error.response.data.errors);    
 }
+
+
 
 // SCOPE ACCOUNT
 export function getSkin(skin_id, key) {
@@ -83,6 +85,17 @@ export function getTrading(page) {
     .then((response) => response.data)
     .catch((error) => error.response.data.errors);    
 }
+
+
+
+export function getAllItems(){
+    return axios
+    .get("https://www.gw2spidy.com/api/v0.9/json/all-items/all")
+    .then((response) => response.data)
+    .catch((error) => error.response.data.errors);    
+}
+
+
 
 
 
