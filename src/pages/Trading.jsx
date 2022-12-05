@@ -118,11 +118,14 @@ const Trading = (props) => {
 
     const columns = [
         {
-          
             name: 'Name',
-            selector: row => row.img.substring(0, 29) == "https://render.guildwars2.com"
-            ? <div className='trading_item'><div className={rarity[row.rarity]+' '+row.data_id} style={{backgroundImage: `url(${row.img})`}}></div>{row.name}</div>
-            : <div className='trading_item'><div style={{backgroundImage: `url(${default_image})`}}></div>{row.name}</div>,
+            selector: row =>  
+                <div className='trading_item'>
+                  <Tooltip TransitionComponent={Zoom} title={row.description ?? 'Aucune description'}  >
+                    <div className={rarity[row.rarity]+' '+row.data_id} style={{backgroundImage: `url(${row.img})`}}></div>
+                  </Tooltip>
+                  {row.name}
+                </div>,
         },
         {
             name: 'Prix d\'achat',
@@ -168,6 +171,8 @@ const Trading = (props) => {
 
             if(nameFr) {
                 data.results[index].name = nameFr.name
+                data.results[index].description = nameFr.description
+
             } else {
                 delete data.results[index]
             }

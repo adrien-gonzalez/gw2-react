@@ -1332,7 +1332,7 @@ tr:has(> .in_progress){
 
 .trading_section > header > input{
   background-color: rgba(0,0,0,0) !important;
-  border: 1px solid white;
+  border: 1px solid black;
 }
 
 .rdt_Pagination{
@@ -1346,6 +1346,7 @@ tr:has(> .in_progress){
     right: 38px;
     top: 60px;
     z-index: 1;
+    color: white;
   }
   
   .trading_section > header > svg{
@@ -1367,3 +1368,6 @@ tr:has(> .in_progress){
 }
 
 
+.rdt_Table > div:first-child:not(.rdt_TableHead){
+  height: 75vh;
+}
