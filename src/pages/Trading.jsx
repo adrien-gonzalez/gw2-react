@@ -2,7 +2,7 @@ import '../App.css';
 import {connect} from 'react-redux';
 import React, { useState, useEffect, useMemo } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
-import {getTrading, getItem, getAllItems} from '../services/gw2API';
+import {getAllItems,getTrading, getAllItemsWithId} from '../services/gw2API';
 import {  Tooltip, Zoom  } from '@mui/material';
 import gold_icon from "../img/icon/gold.png";
 import silver_icon from "../img/icon/silver.png";
@@ -38,7 +38,7 @@ const Trading = (props) => {
               onChange={onFilter}
           />
 
-          <button className="onClearButton" type="button" onClick={onClear}><ClearIcon/></button>
+         <ClearIcon onClick={onClear}/>
           {/* <button className="onClearButton" type="button" onClick={onClear}>X</button> */}
       </>
   );
@@ -114,10 +114,11 @@ const Trading = (props) => {
             {bronze != 0 ? <div className="gold_number">{bronze}<div style={{backgroundImage: `url(${bronze_icon})`}}></div></div> : ''}
           </span>
         )
-      }
+    }
 
     const columns = [
         {
+          
             name: 'Name',
             selector: row => row.img.substring(0, 29) == "https://render.guildwars2.com"
             ? <div className='trading_item'><div className={rarity[row.rarity]+' '+row.data_id} style={{backgroundImage: `url(${row.img})`}}></div>{row.name}</div>
@@ -132,48 +133,53 @@ const Trading = (props) => {
             selector: row => row.max_offer_unit_price ? currency_calculation(row.max_offer_unit_price) : ' - ',
         }
     ];
-    
-
-
-    const item = async (key, item) => {
-        const item_data = await getItem(item)
-        key.icon = item_data.icon ?? null
-        key.name = item_data.name ?? null
-        key.rarity = item_data.rarity ?? null
-        key.level = item_data.level ?? null
-        return key
-    };
-
 
 
 
     const getTradingPost = async () => {
-        const data = await getAllItems()
-        // console.log(data.results)
-        setTrading(data.results)
 
+        // for(var k = 0; k<=0; k++){
+        //     const data = await getTrading(k)
+        //     for(var i = 0; i < data.length; i++){
+        //         ids.push(data[i].id)
+        //     }
+    
+        //     const object = await getAllItemsWithId(ids.join(','))
+        //     // console.log(object)
 
-        // try {
-        //     const data = await getTrading(page);
-        //     const object = await Promise.all(data.map((key, index) => {
-        //         if(key){
-        //             return item(key, key.id)
-                    
-        //         }
-        //     }))
-            
-        //     setTrading(object)
-           
-            
-        // } catch (error) {
-        //     console.log(error)
+        //     ids = []
+
+        //     // if(all_items.length == 0){
+        //         all_items = [...all_items,...object];
+
+        //     // } else {
+        //         // all_items.concat(object)
+
+        //     // }
         // }
+           
+
+        const data = await getAllItems()
+        data.results.map((key, index) => {
+
+            const nameFr = Items.find(
+                element => element.id == data.results[index].data_id
+            )
+
+            if(nameFr) {
+                data.results[index].name = nameFr.name
+            } else {
+                delete data.results[index]
+            }
+
+        })
+
+        setTrading(data.results)
     };
 
     useEffect(() => {
         if(trading == false){
             getTradingPost()
-
         }
     },[])
 

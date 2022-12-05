@@ -79,6 +79,7 @@ export function getPermissions(key) {
 }
 
 
+// GET ALL ITEMS PRICES (RETURN ID OF EACH ITEM)
 export function getTrading(page) {
     return axios
     .get(process.env.REACT_APP_API_URL+"commerce/prices?page="+page+"&page_size=200")
@@ -87,13 +88,32 @@ export function getTrading(page) {
 }
 
 
-
+// GET ALL ITEMS WITH BUY AND SELL
 export function getAllItems(){
     return axios
     .get("https://www.gw2spidy.com/api/v0.9/json/all-items/all")
     .then((response) => response.data)
     .catch((error) => error.response.data.errors);    
 }
+
+// http://api.gw2tp.com/1/bulk/items.json
+
+
+// export function getAllItemsIds(){
+//     return axios
+//     .get(process.env.REACT_APP_API_URL+"items")
+//     .then((response) => response.data)
+//     .catch((error) => error.response.data.errors);    
+// }
+
+export function getAllItemsWithId(ids){
+    return axios
+    .get(process.env.REACT_APP_API_URL+"items?ids="+ids)
+    .then((response) => response.data)
+    .catch((error) => error.response.data.errors);    
+}
+
+
 
 
 
