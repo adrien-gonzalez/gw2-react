@@ -12,8 +12,8 @@ import Trading from './pages/Trading';
 import Worldboss from './pages/Worldboss';
 import Characters from './pages/Characters';
 import Bank from './pages/Bank';
+import Map from './pages/Map';
 import SettingsIcon from '@mui/icons-material/Settings';
-
 import ModalAuth from "./components/ModalAuth";
 
 // Router for navigation
@@ -57,6 +57,8 @@ const App = (props) => {
             <Route exact path="pages/characters" element={<Characters/>}/>
             <Route exact path="pages/bank" element={<Bank/>}/>
             <Route exact path="pages/trading" element={<Trading/>}/>
+            <Route exact path="pages/map" element={<Map/>}/>
+
           </Routes>
         </div>
       </HashRouter>

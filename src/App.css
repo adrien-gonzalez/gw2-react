@@ -747,6 +747,7 @@ input:focus{
   .MuiTooltip-popper{
     top: -5% !important;
     left: 5% !important;
+    max-width: 150px !important;
   }
 }
 
@@ -1378,6 +1379,10 @@ tr:has(> .in_progress){
   color: #00FF00;
 }
 
-.detail_item {
+.detail_item{
   font-size: 1.2em;
+}
+
+.description_item{
+  font-size: 0.8em;
 }

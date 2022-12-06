@@ -22,11 +22,8 @@ const Trading = (props) => {
   const [trading, setTrading] = useState(false)
   const [page, setPage] = useState(1)
   const [filterText, setFilterText] = useState('');
-	const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
-  const rarity = {'0': 'Junk', '1': 'Basic', '2': 'Fine', '3': 'Master', '4': 'Rare', '5': 'Exotic', '6': 'Ascended', '7': 'Legendary'};
+  const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
 
-    
-  
   const FilterComponent = ({ filterText, onFilter, onClear }) => (
       <>
           <input
@@ -127,18 +124,21 @@ const Trading = (props) => {
                         {infosItems.details.infix_upgrade.attributes.map((key, index) => {
                             return(
                                 <div key={infosItems.id+'_'+key.attribute}>{key.attribute} : <span>+{key.modifier}</span></div>
+  
                             )
                         })}
+                        
+                            <div className="description_item">{infosItems.description ?? ''}</div>
                     </div>
                 )
             } else {
                 return(
-                    <div >{infosItems.description ?? 'Aucune description'}</div>
+                    <div className="description_item">{infosItems.description ?? 'Aucune description'}</div>
                 )
             }
         } else {
             return(
-                <div >{infosItems.description ?? 'Aucune description'}</div>
+                <div className="description_item">{infosItems.description ?? 'Aucune description'}</div>
             )
         }
        
@@ -170,7 +170,7 @@ const Trading = (props) => {
                         {getAttributes(row)}
                     </section>
                   }  >
-                    <div className={rarity[row.rarity]+' '+row.data_id} style={{backgroundImage: `url(${row.img})`}}></div>
+                    <div className={row.rarity} style={{backgroundImage: `url(${row.img})`}}></div>
                   </Tooltip>
                   {row.name}
                 </div>,
@@ -221,6 +221,8 @@ const Trading = (props) => {
                 data.results[index].name = nameFr.name
                 data.results[index].description = nameFr.description
                 data.results[index].details = nameFr.details
+                data.results[index].rarity = nameFr.rarity
+
 
 
             } else {

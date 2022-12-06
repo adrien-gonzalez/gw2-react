@@ -64,16 +64,18 @@ const Bank = (props) => {
                                 <div key={infosItems.id+'_'+key.attribute}>{key.attribute} : <span>+{key.modifier}</span></div>
                             )
                         })}
+
+                        <div className="description_item">{infosItems.description ?? ''}</div>
                     </div>
                 )
             } else {
                 return(
-                    <div >{infosItems.description ?? 'Aucune description'}</div>
+                    <div className="description_item">{infosItems.description ?? 'Aucune description'}</div>
                 )
             }
         } else {
             return(
-                <div >{infosItems.description ?? 'Aucune description'}</div>
+                <div className="description_item">{infosItems.description ?? 'Aucune description'}</div>
             )
         }
        
