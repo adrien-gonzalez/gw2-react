@@ -53,6 +53,47 @@ const Bank = (props) => {
         }
     };
 
+    function getAttributes(infosItems){
+       
+        if(infosItems.details){
+            if(infosItems.details.infix_upgrade){
+                return(
+                    <div>
+                        {infosItems.details.infix_upgrade.attributes.map((key, index) => {
+                            return(
+                                <div key={infosItems.id+'_'+key.attribute}>{key.attribute} : <span>+{key.modifier}</span></div>
+                            )
+                        })}
+                    </div>
+                )
+            } else {
+                return(
+                    <div >{infosItems.description ?? 'Aucune description'}</div>
+                )
+            }
+        } else {
+            return(
+                <div >{infosItems.description ?? 'Aucune description'}</div>
+            )
+        }
+       
+    }
+
+    function getInfosItems(infosItems){
+       if(infosItems.details){
+            if(infosItems.details.min_power){
+                return(
+                    <div>Dammage : <span>{infosItems.details.min_power+'-'+infosItems.details.max_power}</span></div> 
+                )
+            }
+            if(infosItems.details.defense){
+                return(
+                    <div>Defense : <span>{infosItems.details.defense}</span></div>
+                )
+            }
+       }
+    }
+
     useEffect(() => {
         if(apiKey != null){
             getBank()
@@ -74,7 +115,13 @@ const Bank = (props) => {
                                 if(key){
                                     return(
                                         
-                                        <Tooltip TransitionComponent={Zoom} title={key.description ?? 'Aucune description'} key={index+'tool_'+key} >
+                                        <Tooltip TransitionComponent={Zoom} title={
+                                            <section className="detail_item"> 
+                                                {getInfosItems(key)} 
+                                                {getAttributes(key)}
+                                            </section>
+
+                                        } key={index+'tool_'+key} >
                                             <td className={key.rarity} style={{backgroundImage: `url(${key.icon})`}} key={index+'tab_'+key}> 
                                                 <span key={'img_'+index} className='count_item_bank'>{key.count}</span>
                                             </td>  

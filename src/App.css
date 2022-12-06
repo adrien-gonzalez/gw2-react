@@ -738,13 +738,15 @@ input:focus{
 
 
   .MuiTooltip-popper{
-    top: -2% !important
+    top: -5% !important;
+    left: 10% !important;
   }
 }
 
 @media screen and (min-width: 521px) {
   .MuiTooltip-popper{
-    top: -3.5% !important;
+    top: -5% !important;
+    left: 5% !important;
   }
 }
 
@@ -1370,4 +1372,12 @@ tr:has(> .in_progress){
 
 .rdt_Table > div:first-child:not(.rdt_TableHead){
   height: 75vh;
+}
+
+.detail_item  span{
+  color: #00FF00;
+}
+
+.detail_item {
+  font-size: 1.2em;
 }

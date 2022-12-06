@@ -3,7 +3,8 @@ import {connect} from 'react-redux';
 import React, { useState, useEffect, useMemo } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 import {getAllItems,getTrading, getAllItemsWithId} from '../services/gw2API';
-import {  Tooltip, Zoom  } from '@mui/material';
+import { Zoom  } from '@mui/material';
+import Tooltip from '@mui/material/Tooltip';
 import gold_icon from "../img/icon/gold.png";
 import silver_icon from "../img/icon/silver.png";
 import bronze_icon from "../img/icon/bronze.png";
@@ -116,12 +117,59 @@ const Trading = (props) => {
         )
     }
 
+
+    function getAttributes(infosItems){
+       
+        if(infosItems.details){
+            if(infosItems.details.infix_upgrade){
+                return(
+                    <div>
+                        {infosItems.details.infix_upgrade.attributes.map((key, index) => {
+                            return(
+                                <div key={infosItems.id+'_'+key.attribute}>{key.attribute} : <span>+{key.modifier}</span></div>
+                            )
+                        })}
+                    </div>
+                )
+            } else {
+                return(
+                    <div >{infosItems.description ?? 'Aucune description'}</div>
+                )
+            }
+        } else {
+            return(
+                <div >{infosItems.description ?? 'Aucune description'}</div>
+            )
+        }
+       
+    }
+
+    function getInfosItems(infosItems){
+       if(infosItems.details){
+            if(infosItems.details.min_power){
+                return(
+                    <div>Dammage : <span>{infosItems.details.min_power+'-'+infosItems.details.max_power}</span></div> 
+                )
+            }
+            if(infosItems.details.defense){
+                return(
+                    <div>Defense : <span>{infosItems.details.defense}</span></div>
+                )
+            }
+       }
+    }
+
     const columns = [
         {
             name: 'Name',
             selector: row =>  
                 <div className='trading_item'>
-                  <Tooltip TransitionComponent={Zoom} title={row.description ?? 'Aucune description'}  >
+                  <Tooltip TransitionComponent={Zoom} title={
+                    <section className="detail_item"> 
+                        {getInfosItems(row)} 
+                        {getAttributes(row)}
+                    </section>
+                  }  >
                     <div className={rarity[row.rarity]+' '+row.data_id} style={{backgroundImage: `url(${row.img})`}}></div>
                   </Tooltip>
                   {row.name}
@@ -172,6 +220,8 @@ const Trading = (props) => {
             if(nameFr) {
                 data.results[index].name = nameFr.name
                 data.results[index].description = nameFr.description
+                data.results[index].details = nameFr.details
+
 
             } else {
                 delete data.results[index]

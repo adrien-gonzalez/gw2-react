@@ -243,6 +243,46 @@ const ModalCharacter = (props) => {
     )
   }
   
+    function getAttributes(infosItems){
+        
+      if(infosItems.details){
+          if(infosItems.details.infix_upgrade){
+              return(
+                  <div>
+                      {infosItems.details.infix_upgrade.attributes.map((key, index) => {
+                          return(
+                              <div key={infosItems.id+'_'+key.attribute}>{key.attribute} : <span>+{key.modifier}</span></div>
+                          )
+                      })}
+                  </div>
+              )
+          } else {
+              return(
+                  <div >{infosItems.description ?? 'Aucune description'}</div>
+              )
+          }
+      } else {
+          return(
+              <div >{infosItems.description ?? 'Aucune description'}</div>
+          )
+      }
+    
+  }
+
+  function getInfosItems(infosItems){
+    if(infosItems.details){
+          if(infosItems.details.min_power){
+              return(
+                  <div>Dammage : <span>{infosItems.details.min_power+'-'+infosItems.details.max_power}</span></div> 
+              )
+          }
+          if(infosItems.details.defense){
+              return(
+                  <div>Defense : <span>{infosItems.details.defense}</span></div>
+              )
+          }
+    }
+  }
 
   useEffect(() => {
 
@@ -328,7 +368,12 @@ const ModalCharacter = (props) => {
                             {key.map((key2, index2) => {
                               if(key2){
                                 return(
-                                  <Tooltip TransitionComponent={Zoom} title={key2.description ?? 'Aucune description'} key={index2+'tool_'+key2} >
+                                  <Tooltip TransitionComponent={Zoom} title={
+                                    <section className="detail_item"> 
+                                        {getInfosItems(key2)} 
+                                        {getAttributes(key2)}
+                                    </section>
+                                  } key={index2+'tool_'+key2} >
                                       <td className={key2.rarity} style={{backgroundImage: `url(${key2.icon})`}} key={index2+'tab_'+key2}> 
                                           <span key={'img_'+index2} className='count_item'>{key2.count}</span>
                                       </td>  
