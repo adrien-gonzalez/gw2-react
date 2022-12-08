@@ -1386,3 +1386,9 @@ tr:has(> .in_progress){
 .description_item{
   font-size: 0.8em;
 }
+
+.leaflet-container{
+  width: 100%;
+  height: 100%;
+  margin-left: 20px;
+}

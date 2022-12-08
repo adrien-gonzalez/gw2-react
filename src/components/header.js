@@ -47,7 +47,7 @@ const Header = (props) => {
             {apiKey ? <Button onClick={()=>navigate("pages/characters")} style={{ backgroundColor: "black" }} className="menuButton" variant="contained"><PersonIcon className="menuIcon" style={{ color: "white" }}></PersonIcon></Button> : ''}
             {apiKey ? <Button onClick={()=>navigate("pages/bank")} style={{  backgroundColor: "black" }} className="ButtonPng menuButton" variant="contained"><div className="buttonWithIcon" style={{ backgroundImage: `url(${bank})`}}></div></Button>  : ''}
             <Button onClick={()=>navigate("pages/trading")} style={{ backgroundColor: "black" }} className="ButtonPng menuButton" variant="contained"><div className="buttonWithIcon" style={{ backgroundImage: `url(${trading})`}}></div></Button>
-            {/* <Button onClick={()=>navigate("pages/map")} style={{ backgroundColor: "black" }} className="ButtonPng menuButton" variant="contained"><div className="buttonWithIcon" style={{ backgroundSize: 'contain', backgroundImage: `url(${map})`}}></div></Button> */}
+            <Button onClick={()=>navigate("pages/map")} style={{ backgroundColor: "black" }} className="ButtonPng menuButton" variant="contained"><div className="buttonWithIcon" style={{ backgroundSize: 'contain', backgroundImage: `url(${map})`}}></div></Button>
 
         </header>
         
