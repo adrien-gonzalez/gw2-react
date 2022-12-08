@@ -1392,3 +1392,8 @@ tr:has(> .in_progress){
   height: 100%;
   margin-left: 20px;
 }
+
+.hero, .core, .vista, .point{
+  display: none !important;
+}
+
