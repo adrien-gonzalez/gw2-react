@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/gw2-react/static/css/main.8164b852.css",
-    "main.js": "/gw2-react/static/js/main.b6c24be8.js",
+    "main.css": "/gw2-react/static/css/main.15bc2e34.css",
+    "main.js": "/gw2-react/static/js/main.dd8a81df.js",
     "static/js/787.211ad51a.chunk.js": "/gw2-react/static/js/787.211ad51a.chunk.js",
     "static/media/Necromancer.png": "/gw2-react/static/media/Necromancer.c64febc2bba2cef35fe6.png",
     "static/media/Elementalist.png": "/gw2-react/static/media/Elementalist.2cfbc30e47f7d21e5091.png",
@@ -27,21 +27,23 @@
     "static/media/Tequatl le Sans-soleil.png": "/gw2-react/static/media/Tequatl le Sans-soleil.38af13e5c12c7838d6b7.png",
     "static/media/Le Destructeur.png": "/gw2-react/static/media/Le Destructeur.7ea798a1382d1326a2a2.png",
     "static/media/Leatherworker.png": "/gw2-react/static/media/Leatherworker.6c41412053f96f34bd34.png",
+    "static/media/default_image.png": "/gw2-react/static/media/default_image.a9fc8a3c1cf76e61c822.png",
     "static/media/Guivre de la jungle.png": "/gw2-react/static/media/Guivre de la jungle.981c3b8431a0203a6a9c.png",
     "static/media/Jeweler.png": "/gw2-react/static/media/Jeweler.a4a600494a1c611e7c02.png",
     "static/media/Tailor.png": "/gw2-react/static/media/Tailor.2daa0aaec44484d85212.png",
     "static/media/Artificer.png": "/gw2-react/static/media/Artificer.24508482a6435772c689.png",
+    "static/media/trading.png": "/gw2-react/static/media/trading.d4d8146d1d566ec064b1.png",
     "static/media/Weaponsmith.png": "/gw2-react/static/media/Weaponsmith.a45a9b881a3f012d5035.png",
     "static/media/Chef.png": "/gw2-react/static/media/Chef.3af24edca3db58c0be15.png",
-    "static/media/boss.svg": "/gw2-react/static/media/boss.c4db052768a4c9c619a57855cb8593a2.svg",
+    "static/media/boss.svg": "/gw2-react/static/media/boss.93af2eb69edf05c1a8937303847dfc6d.svg",
     "static/media/bank.svg": "/gw2-react/static/media/bank.054bc5f7f27e065e92c1bc2dccd17aa7.svg",
     "index.html": "/gw2-react/index.html",
-    "main.8164b852.css.map": "/gw2-react/static/css/main.8164b852.css.map",
-    "main.b6c24be8.js.map": "/gw2-react/static/js/main.b6c24be8.js.map",
+    "main.15bc2e34.css.map": "/gw2-react/static/css/main.15bc2e34.css.map",
+    "main.dd8a81df.js.map": "/gw2-react/static/js/main.dd8a81df.js.map",
     "787.211ad51a.chunk.js.map": "/gw2-react/static/js/787.211ad51a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.8164b852.css",
-    "static/js/main.b6c24be8.js"
+    "static/css/main.15bc2e34.css",
+    "static/js/main.dd8a81df.js"
   ]
 }
