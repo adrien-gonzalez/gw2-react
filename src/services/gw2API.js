@@ -113,15 +113,6 @@ export function getAllItemsWithId(ids){
     .catch((error) => error.response.data.errors);    
 }
 
-export function getMap(ids){
-    return axios
-    .get(process.env.REACT_APP_API_URL+"maps?ids="+ids)
-    .then((response) => response.data)
-    .catch((error) => error.response.data.errors);    
-}
-
-
-
 
 
 // GET TRADING POST
