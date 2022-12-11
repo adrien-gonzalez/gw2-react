@@ -1408,13 +1408,14 @@ tr:has(> .in_progress){
   overflow: hidden;
 }
 
-.hero, .core, .vista, .point, .waypoint{
+.hideElement{
   display: none !important;
 }
 
 .labal_map{
   fill: white !important;
   vertical-align: middle;
+  text-shadow: black 0.1em 0.1em 0.2em
 }
 
 .fullScreen{
@@ -1433,3 +1434,8 @@ tr:has(> .in_progress){
   background: #F4F4F4;
 }
 
+.map{
+  fill: transparent;
+  stroke: black;
+  stroke-width: 1px;
+}
