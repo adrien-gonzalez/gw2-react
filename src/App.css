@@ -1436,6 +1436,20 @@ tr:has(> .in_progress){
 
 .map{
   fill: transparent;
-  stroke: black;
+  stroke: transparent;
   stroke-width: 1px;
+}
+
+
+.leaflet-marker-icon{
+  animation: fadeIn 1s;
+  -webkit-animation: fadeIn 1s;
+  -moz-animation: fadeIn 1s;
+  -o-animation: fadeIn 1s;
+  -ms-animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
