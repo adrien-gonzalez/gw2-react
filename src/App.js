@@ -15,6 +15,7 @@ import Bank from './pages/Bank';
 import Map from './pages/Map';
 import SettingsIcon from '@mui/icons-material/Settings';
 import ModalAuth from "./components/ModalAuth";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Router for navigation
 import {

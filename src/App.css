@@ -131,7 +131,35 @@ button:hover{
     max-height: 90vh;
   }
 
+  .changeViewButton{
+    position: absolute;
+    right: 50px;
+    bottom: 50px;
+  }
 
+  .tyriaArrow{
+    position: absolute;
+    right: 40px;
+    top: -2px;
+  }
+  
+  .desertArrow{
+    position: absolute;
+    right: -2px;
+    top: 40px;
+  } 
+  
+  .canthaArrow{
+    position: absolute;
+    bottom: -2px;
+    left: 40px;
+  }
+  
+  .maguumaArrow{
+    position: absolute;
+    top: 40px;
+    left: -2px;
+  }
 }
 
 .marginLeft{
@@ -229,6 +257,44 @@ button:hover{
 
   .ButtonPng{
     min-height: 42.39px;
+  }
+
+  .mapNavigation{
+    width: 110px;
+    height: 110px;
+  }
+
+  .changeViewButton{
+    position: absolute;
+    right: 10px;
+    bottom: 75px;
+  }
+
+  .changeViewButton > img:not(:last-child){
+    width: 40px;
+  }
+  .tyriaArrow{
+    position: absolute;
+    right: 35px;
+    top: -1px;
+  }
+  
+  .desertArrow{
+    position: absolute;
+    right: -1px;
+    top: 35px;
+  } 
+  
+  .canthaArrow{
+    position: absolute;
+    bottom: -1px;
+    left: 35px;
+  }
+  
+  .maguumaArrow{
+    position: absolute;
+    top: 35px;
+    left: -1px;
   }
 
    
@@ -1409,7 +1475,11 @@ tr:has(> .in_progress){
 }
 
 .hideElement{
-  display: none !important;
+  display: none;
+}
+
+.showElement{
+  display: block !important;
 }
 
 .labal_map{
@@ -1428,6 +1498,8 @@ tr:has(> .in_progress){
   height: 30px;
   line-height: 30px;
 }
+
+
 
 .fullScreen:hover{
   cursor: pointer;
@@ -1452,4 +1524,74 @@ tr:has(> .in_progress){
 @keyframes fadeIn {
   0% { opacity: 0; }
   100% { opacity: 1; }
+}
+
+.tyriaArrow:hover, .desertArrow:hover, .canthaArrow:hover, .maguumaArrow:hover{
+  cursor: pointer;
+}
+
+.mapInfo{
+  z-index: 999;
+  position: absolute;
+  top: 110px;
+  left: 12px;
+  width: 30px;
+  border-radius: 2px;
+
+}
+
+.mapInfo button{
+  width: 30.5px;
+  height: 30px;
+  border-radius: 2px;
+  background: white;
+  border: none;
+}
+
+.show,
+.mapInfo button:active, 
+.mapInfo button:hover, 
+.mapInfo button:focus{
+  background: #f4f4f4 !important;
+  cursor: pointer !important;
+}
+
+.mapInfo button:after{
+  color: #262626;
+  display: none;
+}
+
+
+.mapInfo img{
+  width: 18px;
+}
+
+.mapInfo span{
+  color: black;
+  margin-left: 8px;
+  font-size: 1em;
+}
+
+.iconDetailMap{
+  position: absolute;
+  color: black;
+  right: 2px;
+  top: 4px;
+  font-size: 22px;
+}
+
+.dropdown-menu{
+  animation-duration: 0.8s;
+  animation-name:slidein-low;
+}
+
+@keyframes slidein-low  {
+  from {
+     left:-50px;
+  }
+  
+  to {
+     left:0px;
+  }
+
 }
