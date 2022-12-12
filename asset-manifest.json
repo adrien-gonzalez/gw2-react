@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/gw2-react/static/css/main.15bc2e34.css",
-    "main.js": "/gw2-react/static/js/main.dd8a81df.js",
+    "main.css": "/gw2-react/static/css/main.8d7d96f3.css",
+    "main.js": "/gw2-react/static/js/main.8311b8e5.js",
     "static/js/787.211ad51a.chunk.js": "/gw2-react/static/js/787.211ad51a.chunk.js",
     "static/media/Necromancer.png": "/gw2-react/static/media/Necromancer.c64febc2bba2cef35fe6.png",
     "static/media/Elementalist.png": "/gw2-react/static/media/Elementalist.2cfbc30e47f7d21e5091.png",
@@ -25,9 +25,15 @@
     "static/media/Golem Marque II.png": "/gw2-react/static/media/Golem Marque II.106fc4500f27ca1502e2.png",
     "static/media/Scribe.png": "/gw2-react/static/media/Scribe.68bfbd4ad49def8685f9.png",
     "static/media/Tequatl le Sans-soleil.png": "/gw2-react/static/media/Tequatl le Sans-soleil.38af13e5c12c7838d6b7.png",
+    "static/media/tundra.png": "/gw2-react/static/media/tundra.e3af550fb03f448c2704.png",
     "static/media/Le Destructeur.png": "/gw2-react/static/media/Le Destructeur.7ea798a1382d1326a2a2.png",
+    "static/media/navigation.svg": "/gw2-react/static/media/navigation.edac4824d1387426db3ade0b773ea80b.svg",
+    "static/media/cantha.png": "/gw2-react/static/media/cantha.93a421febe3093a1ee98.png",
     "static/media/Leatherworker.png": "/gw2-react/static/media/Leatherworker.6c41412053f96f34bd34.png",
+    "static/media/tyria.png": "/gw2-react/static/media/tyria.448c99d6c36d6f6e4b23.png",
     "static/media/default_image.png": "/gw2-react/static/media/default_image.a9fc8a3c1cf76e61c822.png",
+    "static/media/desert.png": "/gw2-react/static/media/desert.5f072cf104c6d08c99d7.png",
+    "static/media/maguuma.png": "/gw2-react/static/media/maguuma.d5853b0e31ff5aa94040.png",
     "static/media/Guivre de la jungle.png": "/gw2-react/static/media/Guivre de la jungle.981c3b8431a0203a6a9c.png",
     "static/media/Jeweler.png": "/gw2-react/static/media/Jeweler.a4a600494a1c611e7c02.png",
     "static/media/Tailor.png": "/gw2-react/static/media/Tailor.2daa0aaec44484d85212.png",
@@ -38,12 +44,12 @@
     "static/media/boss.svg": "/gw2-react/static/media/boss.93af2eb69edf05c1a8937303847dfc6d.svg",
     "static/media/bank.svg": "/gw2-react/static/media/bank.054bc5f7f27e065e92c1bc2dccd17aa7.svg",
     "index.html": "/gw2-react/index.html",
-    "main.15bc2e34.css.map": "/gw2-react/static/css/main.15bc2e34.css.map",
-    "main.dd8a81df.js.map": "/gw2-react/static/js/main.dd8a81df.js.map",
+    "main.8d7d96f3.css.map": "/gw2-react/static/css/main.8d7d96f3.css.map",
+    "main.8311b8e5.js.map": "/gw2-react/static/js/main.8311b8e5.js.map",
     "787.211ad51a.chunk.js.map": "/gw2-react/static/js/787.211ad51a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.15bc2e34.css",
-    "static/js/main.dd8a81df.js"
+    "static/css/main.8d7d96f3.css",
+    "static/js/main.8311b8e5.js"
   ]
 }
