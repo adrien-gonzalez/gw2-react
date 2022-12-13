@@ -21,8 +21,8 @@ const Events = (props) => {
 
 
     let localTime = moment();
-    let startHour = Math.floor(localTime.hour() / 2) * 2 
-    
+    let startHour = Math.floor(localTime.hour() / 2) * 2 - 1
+
     function movePointer() {
        
         let currentTime = moment.utc();
@@ -87,35 +87,34 @@ const Events = (props) => {
                         </div>
                         {events.map((key, index) => {
                             let offset = 0;
-                            return(
-                                <div key={'meta_'+index} className="meta">
-                                    {key.category_name ? <div className={index == 0 ? "first category_name" : "not_first_category category_name"}>{key.category_name}</div> : ""}
-                                    <span className="meta-name">{key.name}</span>
-                                    <div className="bar">
-                                        {key.phases.map((phase, index2) => {
-
-                                            let correctedTime = "" + (startHour + (offset > 59 ? 1 : 0));
-                                            phase.hour = ("00" + correctedTime).slice(-2);
-                                            phase.minute = ("00" + (offset % 60)).slice(-2);
-                                            offset += phase.duration;
-
-                                        
-                                                return(
-                                                    <div style={{background: phase.color, color: textColor(phase.text), width:'calc('+calcPhaseWidth(phase.duration)+'% - .25rem)'}} key={'phase'+index2} className="phase">
-                                                        <div className="phase-time">{phase.hour} : {phase.minute}</div>
-                                                        <div className="phase-name">{phase.name}</div>
-                                                    </div>
-                                                )
-                                        
-                                            
-                                        })}
-                                    </div>
-                                </div>
-
-                            )
-
-                    
-                            
+                                if(key.show != false){
+                                    return(
+                                        <div key={'meta_'+index} className="meta">
+                                            {key.category_name ? <div className={index == 0 ? "first category_name" : "not_first_category category_name"}>{key.category_name}</div> : ""}
+                                            <span className="meta-name">{key.name}</span>
+                                            <div className="bar">
+                                                {key.phases.map((phase, index2) => {
+        
+                                                    let correctedTime = "" + (startHour + (offset > 59 ? 1 : 0));
+                                                    phase.hour = ("00" + correctedTime).slice(-2);
+                                                    phase.minute = ("00" + (offset % 60)).slice(-2);
+                                                    offset += phase.duration;
+        
+                                                
+                                                        return(
+                                                            <div style={{background: phase.color, color: textColor(phase.text), width:'calc('+calcPhaseWidth(phase.duration)+'% - .25rem)'}} key={'phase'+index2} className="phase">
+                                                                <div className="phase-time">{phase.hour} : {phase.minute}</div>
+                                                                <div className="phase-name">{phase.name}</div>
+                                                            </div>
+                                                        )
+                                                
+                                                    
+                                                })}
+                                            </div>
+                                        </div>
+        
+                                    )
+                                } 
                         })}
                     </div>
                     <span className={color == "default" ? "blackColorSpan basedPage" : "whiteColorSpan basedPage"}>This page is based on the <a href="https://gw2.ninja/timer">Guild Wars 2 Event Timer</a> by <a href="https://twitch.tv/rediche">Rediche.</a></span>

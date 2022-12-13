@@ -34,9 +34,10 @@ const Trading = (props) => {
               aria-label="Search Input"
               value={filterText}
               onChange={onFilter}
+              style={{border: localStorage.getItem('color') == "dark" ? "1px solid white" : "1px solid black" }}
           />
 
-         <ClearIcon onClick={onClear}/>
+         <ClearIcon style={{color: localStorage.getItem('color') == "dark" ? "white" : "black" }} onClick={onClear}/>
           {/* <button className="onClearButton" type="button" onClick={onClear}>X</button> */}
       </>
   );
@@ -250,10 +251,10 @@ const Trading = (props) => {
 
         return (  
             <section className="wrapper trading_section">
-                <span style={{color: localStorage.getItem('color') == "dark" ? "white" : "black" }} className="bank_title">Trading</span>
+                <span className="bank_title trading">Marchand du Lion noir</span>
 
                 <DataTable
-                    className="trading_table"
+                    className={localStorage.getItem('color') == "dark" ? "trading_table pagination_white" : "trading_table"}
                     columns={columns}
                     data={filteredItems}
                     pagination

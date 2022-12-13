@@ -1,4 +1,5 @@
 [{
+    "show": false,
     "name": "Halloween",
     "phases": [
         { "name": "Mad King Says", "duration": 10, "color": "rgb(232,163,31)", "text": "light" },

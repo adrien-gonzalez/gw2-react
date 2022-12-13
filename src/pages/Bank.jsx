@@ -108,7 +108,7 @@ const Bank = (props) => {
         if(bank != false && money != false){
             return (
                 <section className="wrapper">
-                    <span style={{color: localStorage.getItem('color') == "dark" ? "white" : "black" }} className="bank_title">Banque</span>
+                    <span  className="bank_title">Banque</span>
                     <table className="bank_table">
                         <tbody>
                             <tr>

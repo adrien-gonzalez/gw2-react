@@ -67,6 +67,11 @@ button:hover{
     background-size: contain;
   }
 
+  .rdt_TableBody{
+    height: 70vh;
+    background-color: rgba(0,0,0,0.8) !important;
+  }
+
   .bank_table{
     margin-top: 25px;
     width: 80%;
@@ -191,6 +196,12 @@ button:hover{
     bottom: 32px;
     height: 0px;
   }
+
+  .rdt_TableBody{ 
+    height: 46vh !important;
+    background-color: rgba(0,0,0,0.8) !important;
+  }
+  
 
   .marginLeft{
     margin-left: 0px;
@@ -389,6 +400,7 @@ button:hover{
     font-size: x-small;
   } 
 }
+
 
 .cell{
   text-align: left;
@@ -1317,10 +1329,10 @@ tr:has(> .in_progress){
   color: white !important;
 }
 
-
 .trading_table{
   width: 75%;
   max-width: 1300px;
+  overflow-y: auto;
 
 }
 
@@ -1328,11 +1340,7 @@ tr:has(> .in_progress){
   background-color: rgba(0,0,0,0.8) !important;
 }
 
-.rdt_TableBody{
-  overflow-y: auto !important;
-  height: 70vh;
-  background-color: rgba(0,0,0,0.8) !important;
-}
+
 
 .rdt_TableRow:nth-child(2n){
   background-color: rgba(0,0,0,0) !important;
@@ -1353,11 +1361,23 @@ tr:has(> .in_progress){
   color: white !important;
 }
 
-
 .trading_section{
   margin-bottom: 80px;
   margin-top: 50px;
 
+}
+
+.default .rdt_Pagination, .default .bank_title, .default .trading{
+  color: black;
+}
+
+
+.dark .rdt_Pagination, .dark span{
+  color: white;
+}
+
+.dark svg{
+  fill: white;
 }
 
 .trading_section > header{
@@ -1367,7 +1387,6 @@ tr:has(> .in_progress){
   max-width: 1300px;
   background: transparent;
 }
-
 
 .trading_item > div{
   width: 45px;
@@ -1392,6 +1411,7 @@ tr:has(> .in_progress){
 
 .gold_number{
   display: flex;
+  color: white;
 }
 
 .gold_number div{
@@ -1400,8 +1420,6 @@ tr:has(> .in_progress){
   background-size: cover;
   margin-left: 3px;
 } 
-
-
 
 .search_post_trading{
   padding: 5px;
@@ -1414,6 +1432,11 @@ tr:has(> .in_progress){
   border: 1px solid black;
 }
 
+.trading_section > header{
+  display: flex;
+  justify-content: center;
+}
+
 .rdt_Pagination{
   background-color: transparent !important;
 }
@@ -1422,7 +1445,7 @@ tr:has(> .in_progress){
 @media (min-width: 1100px) { 
   .trading_section > header > input{
     position: absolute;
-    right: 38px;
+    right: 42px;
     top: 60px;
     z-index: 1;
     color: white;
@@ -1430,7 +1453,7 @@ tr:has(> .in_progress){
   
   .trading_section > header > svg{
     position: absolute;
-    right: 5px;
+    right: 12px;
     top: 66px;
     z-index: 1;
   }
@@ -1440,12 +1463,17 @@ tr:has(> .in_progress){
   }
 }
 
+
+.rdt_TableBody{
+  overflow-y: auto;
+}
+
 @media (max-width: 1099px) { 
+  
   .trading_section > header > svg{
     color: black;
   }
 }
-
 
 .rdt_Table > div:first-child:not(.rdt_TableHead){
   height: 75vh;
@@ -1499,8 +1527,6 @@ tr:has(> .in_progress){
   line-height: 30px;
 }
 
-
-
 .fullScreen:hover{
   cursor: pointer;
   background: #F4F4F4;
@@ -1548,7 +1574,7 @@ tr:has(> .in_progress){
   border: none;
 }
 
-.show,
+.leaflet-control .show,
 .mapInfo button:active, 
 .mapInfo button:hover, 
 .mapInfo button:focus{

@@ -36,7 +36,7 @@ const App = (props) => {
     <Provider store={Store}>
 
       <HashRouter>
-        <div className="App" style={{backgroundColor: localStorage.getItem('color') == "dark" ? '#222222' : '', backgroundImage: localStorage.getItem('color') == "dark" ? '' : 'url('+background+')'}} >
+        <div className={localStorage.getItem('color')+" App"} style={{backgroundColor: localStorage.getItem('color') == "dark" ? '#222222' : '', backgroundImage: localStorage.getItem('color') == "dark" ? '' : 'url('+background+')'}} >
 
           <Header/>
           <SettingsIcon style={{color: localStorage.getItem('color') == "dark" ? 'white' : 'black'}} onClick={() => setShowModalAuth(true)} className="settings"></SettingsIcon>
