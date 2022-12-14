@@ -37,7 +37,7 @@ const Trading = (props) => {
               style={{border: localStorage.getItem('color') == "dark" ? "1px solid white" : "1px solid black" }}
           />
 
-         <ClearIcon style={{color: localStorage.getItem('color') == "dark" ? "white" : "black" }} onClick={onClear}/>
+         <ClearIcon className="clearIcon" style={{color: localStorage.getItem('color') == "dark" ? "white" : "black" }} onClick={onClear}/>
           {/* <button className="onClearButton" type="button" onClick={onClear}>X</button> */}
       </>
   );
@@ -148,13 +148,23 @@ const Trading = (props) => {
     function getInfosItems(infosItems){
        if(infosItems.details){
             if(infosItems.details.min_power){
-                return(
-                    <div>Dammage : <span>{infosItems.details.min_power+'-'+infosItems.details.max_power}</span></div> 
+                return( 
+                    <div>
+                    {infosItems.name}<br/>
+                    {infosItems.restriction_level ? <div>Lv : <span>{infosItems.restriction_level}</span></div> : ''}
+                    Dammage : <span>{infosItems.details.min_power+'-'+infosItems.details.max_power}</span></div> 
                 )
             }
             if(infosItems.details.defense){
                 return(
-                    <div>Defense : <span>{infosItems.details.defense}</span></div>
+                    <div>
+                    {infosItems.name}<br/>
+                    {infosItems.restriction_level ? <div>Lv : <span>{infosItems.restriction_level}</span></div> : ''}
+                    Defense : <span>{infosItems.details.defense}</span></div>
+                )
+            } else {
+                return(
+                    <div>{infosItems.name}<br/>{infosItems.restriction_level ? <div>Lv : <span>{infosItems.restriction_level}</span></div> : ''}</div>
                 )
             }
        }
@@ -163,6 +173,7 @@ const Trading = (props) => {
     const columns = [
         {
             name: 'Name',
+            width: "500px" ,
             selector: row =>  
                 <div className='trading_item'>
                   <Tooltip TransitionComponent={Zoom} title={
@@ -177,13 +188,25 @@ const Trading = (props) => {
                 </div>,
         },
         {
+            name: 'Niveau',
+            width: "90px" ,
+            sortable: true,
+            selector: row => row.restriction_level ?? ' - ',
+        },
+        {
             name: 'Prix d\'achat',
-            selector: row => row.min_sale_unit_price ? currency_calculation(row.min_sale_unit_price) : ' - ',
+            width: "180px" ,
+            sortable: true,
+            selector: row =>  row.min_sale_unit_price,
+            cell: row => row.min_sale_unit_price ? currency_calculation(row.min_sale_unit_price) : ' - ',
         },
         {
             name: 'Prix de Vente',
-            selector: row => row.max_offer_unit_price ? currency_calculation(row.max_offer_unit_price) : ' - ',
-        }
+            width: "150px" ,
+            sortable: true,
+            selector: row =>  row.max_offer_unit_price,
+            cell: row =>  row.max_offer_unit_price ? currency_calculation(row.max_offer_unit_price) : ' - ',
+        },
     ];
 
 
@@ -238,7 +261,7 @@ const Trading = (props) => {
     useEffect(() => {
         if(trading == false){
             getTradingPost()
-        }
+        }   
     },[])
 
     if(trading != false){

@@ -72,6 +72,10 @@ button:hover{
     background-color: rgba(0,0,0,0.8) !important;
   }
 
+  .rdt_Table > div:first-child:not(.rdt_TableHead){
+    height: 75vh;
+  }
+
   .bank_table{
     margin-top: 25px;
     width: 80%;
@@ -82,7 +86,6 @@ button:hover{
     flex-wrap: wrap;
     justify-content: flex-start;
   }
-  
 
   .buttonWithIcon{
     height: 24px;
@@ -197,9 +200,18 @@ button:hover{
     height: 0px;
   }
 
+  .App-header  button{
+    border: 1px solid white;
+  }
+
+
   .rdt_TableBody{ 
     height: 46vh !important;
     background-color: rgba(0,0,0,0.8) !important;
+  }
+
+  .rdt_Table > div:first-child:not(.rdt_TableHead){
+    height: 52vh;
   }
   
 
@@ -1312,6 +1324,7 @@ tr:has(> .in_progress){
   color: black;
 }
 
+
 .darkColorButton{
   background-color: white !important;
 }
@@ -1364,6 +1377,7 @@ tr:has(> .in_progress){
 .trading_section{
   margin-bottom: 80px;
   margin-top: 50px;
+  padding: 20px;
 
 }
 
@@ -1442,7 +1456,7 @@ tr:has(> .in_progress){
 }
 
 
-@media (min-width: 1100px) { 
+@media (min-width: 1199px) { 
   .trading_section > header > input{
     position: absolute;
     right: 42px;
@@ -1459,7 +1473,7 @@ tr:has(> .in_progress){
   }
 
   .trading_section > header > svg{
-    color: white;
+    color: white !important;
   }
 }
 
@@ -1468,16 +1482,14 @@ tr:has(> .in_progress){
   overflow-y: auto;
 }
 
-@media (max-width: 1099px) { 
+@media (max-width: 1198px) { 
   
   .trading_section > header > svg{
-    color: black;
+    color: black !important;
   }
 }
 
-.rdt_Table > div:first-child:not(.rdt_TableHead){
-  height: 75vh;
-}
+
 
 .detail_item  span{
   color: #00FF00;
@@ -1528,7 +1540,7 @@ tr:has(> .in_progress){
 }
 
 .fullScreen:hover{
-  cursor: pointer;
+  cursor: url('img/icon/pointer.png'), auto;
   background: #F4F4F4;
 }
 
@@ -1553,7 +1565,7 @@ tr:has(> .in_progress){
 }
 
 .tyriaArrow:hover, .desertArrow:hover, .canthaArrow:hover, .maguumaArrow:hover{
-  cursor: pointer;
+  cursor: url('img/icon/pointer.png'), auto;
 }
 
 .mapInfo{
@@ -1579,8 +1591,13 @@ tr:has(> .in_progress){
 .mapInfo button:hover, 
 .mapInfo button:focus{
   background: #f4f4f4 !important;
-  cursor: pointer !important;
+  cursor: url('img/icon/pointer.png'), auto !important;
 }
+
+.leaflet-control-zoom-in:hover, .leaflet-control-zoom-out:hover{
+  cursor: url('img/icon/pointer.png'), auto !important;
+}
+
 
 .mapInfo button:after{
   color: #262626;
@@ -1620,4 +1637,19 @@ tr:has(> .in_progress){
      left:0px;
   }
 
+}
+
+
+.rdt_TableCol_Sortable:hover, .clearIcon:hover, select:hover{
+  cursor: url('img/icon/pointer.png'), auto;
+}
+
+
+.leaflet-control > a span,
+.leaflet-control svg{
+  color: black;
+}
+
+.leaflet-popup-close-button > span{
+  color: #333333;
 }

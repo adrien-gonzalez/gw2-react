@@ -12,16 +12,21 @@ import ScreenRotationIcon from '@mui/icons-material/ScreenRotation';
 
 const Events = (props) => {
 
+
     const [pointerTime, setPointerTime] = useState("");
     const [pointerLocalTime, setPointerLocalTime] = useState("");
     const [pointerPosition, setPointerPosition] = useState("");
     const [events, setEvents] = useState(false)
     const orientation = useOrientationChange()
     const [color, setColor] = useState(localStorage.getItem('color') ?? 'default');
+    const localTime =  moment();
+    // const startHour = Math.floor(localTime.hour() / 2) * 2;
+    const startHour = isFloat(localTime.hour() / 2) ? Math.floor(localTime.hour() / 2) * 2 + 1 : Math.floor(localTime.hour() / 2) * 2 - 1;
 
 
-    let localTime = moment();
-    let startHour = Math.floor(localTime.hour() / 2) * 2 - 1
+    function isFloat(n) {
+        return n === +n && n !== (n|0);
+    }
 
     function movePointer() {
        
@@ -82,7 +87,7 @@ const Events = (props) => {
                 <section className="meta-section">
                     <div className="meta-container">
                         <div className={color == "default" ? "blackColor pointer" : "whiteColor pointer"} style={{left: pointerPosition+'%'}}>
-                            {pointerPosition > 7 ? <span className="local"><strong >Heure Serveur</strong><span>{pointerTime}</span></span> : ""}
+                            {pointerPosition > 7 ? <span className="local"><strong >Heure Serveur</strong><span style={{color: 'black'}}>{pointerTime}</span></span> : ""}
                             {pointerPosition < 93 ? <span className="server"><strong>Heure locale</strong><span>{pointerLocalTime}</span></span> : ""}
                         </div>
                         {events.map((key, index) => {

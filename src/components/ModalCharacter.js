@@ -272,18 +272,28 @@ const ModalCharacter = (props) => {
 
   function getInfosItems(infosItems){
     if(infosItems.details){
-          if(infosItems.details.min_power){
-              return(
-                  <div>Dammage : <span>{infosItems.details.min_power+'-'+infosItems.details.max_power}</span></div> 
-              )
-          }
-          if(infosItems.details.defense){
-              return(
-                  <div>Defense : <span>{infosItems.details.defense}</span></div>
-              )
-          }
+         if(infosItems.details.min_power){
+             return( 
+                 <div>
+                 {infosItems.name}<br/><br/>
+                 {infosItems.restriction_level ? <div>Lv : <span>{infosItems.restriction_level}</span></div> : ''}
+                 Dammage : <span>{infosItems.details.min_power+'-'+infosItems.details.max_power}</span></div> 
+             )
+         }
+         if(infosItems.details.defense){
+             return(
+                 <div>
+                 {infosItems.name}<br/><br/>
+                 {infosItems.restriction_level ? <div>Lv : <span>{infosItems.restriction_level}</span></div> : ''}
+                 Defense : <span>{infosItems.details.defense}</span></div>
+             )
+         } else {
+             return(
+                 <div>{infosItems.name}<br/><br/>{infosItems.restriction_level ? <div>Lv : <span>{infosItems.restriction_level}</span></div> : ''}</div>
+             )
+         }
     }
-  }
+ }
 
   useEffect(() => {
 

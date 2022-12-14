@@ -360,8 +360,7 @@ const Map = (props) => {
 
 
     useEffect(() => {
-
-    
+     
     },[fullScreen])
 
 
