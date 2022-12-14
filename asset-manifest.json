@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/gw2-react/static/css/main.9428fb62.css",
-    "main.js": "/gw2-react/static/js/main.0ff604ea.js",
+    "main.css": "/gw2-react/static/css/main.32626da9.css",
+    "main.js": "/gw2-react/static/js/main.eeb867b3.js",
     "static/js/787.211ad51a.chunk.js": "/gw2-react/static/js/787.211ad51a.chunk.js",
     "static/media/Necromancer.png": "/gw2-react/static/media/Necromancer.c64febc2bba2cef35fe6.png",
     "static/media/Elementalist.png": "/gw2-react/static/media/Elementalist.2cfbc30e47f7d21e5091.png",
@@ -17,6 +17,7 @@
     "static/media/Triple terreur.png": "/gw2-react/static/media/Triple terreur.d37b44a8a3be4c3ef818.png",
     "static/media/Élémentaire de feu.png": "/gw2-react/static/media/Élémentaire de feu.be8b351c6d518b26ef8c.png",
     "static/media/Chamane de Svanir.png": "/gw2-react/static/media/Chamane de Svanir.10974a5adb71e744f6c1.png",
+    "static/media/backgroundDark.png": "/gw2-react/static/media/backgroundDark.8b0ea22e35d4e8654c9a.png",
     "static/media/bronze.png": "/gw2-react/static/media/bronze.55cf38244d529bb44615.png",
     "static/media/gold.png": "/gw2-react/static/media/gold.0f0fbba954694cc207e2.png",
     "static/media/silver.png": "/gw2-react/static/media/silver.a93a84049e2afb59e17e.png",
@@ -27,11 +28,10 @@
     "static/media/Tequatl le Sans-soleil.png": "/gw2-react/static/media/Tequatl le Sans-soleil.38af13e5c12c7838d6b7.png",
     "static/media/tundra.png": "/gw2-react/static/media/tundra.e3af550fb03f448c2704.png",
     "static/media/Le Destructeur.png": "/gw2-react/static/media/Le Destructeur.7ea798a1382d1326a2a2.png",
-    "static/media/navigation.svg": "/gw2-react/static/media/navigation.edac4824d1387426db3ade0b773ea80b.svg",
+    "static/media/navigation.svg": "/gw2-react/static/media/navigation.ecb04dcefbcf1b2437f433d3178f2eee.svg",
     "static/media/cantha.png": "/gw2-react/static/media/cantha.93a421febe3093a1ee98.png",
     "static/media/Leatherworker.png": "/gw2-react/static/media/Leatherworker.6c41412053f96f34bd34.png",
     "static/media/tyria.png": "/gw2-react/static/media/tyria.448c99d6c36d6f6e4b23.png",
-    "static/media/default_image.png": "/gw2-react/static/media/default_image.a9fc8a3c1cf76e61c822.png",
     "static/media/desert.png": "/gw2-react/static/media/desert.5f072cf104c6d08c99d7.png",
     "static/media/maguuma.png": "/gw2-react/static/media/maguuma.d5853b0e31ff5aa94040.png",
     "static/media/Guivre de la jungle.png": "/gw2-react/static/media/Guivre de la jungle.981c3b8431a0203a6a9c.png",
@@ -41,15 +41,15 @@
     "static/media/trading.png": "/gw2-react/static/media/trading.d4d8146d1d566ec064b1.png",
     "static/media/Weaponsmith.png": "/gw2-react/static/media/Weaponsmith.a45a9b881a3f012d5035.png",
     "static/media/Chef.png": "/gw2-react/static/media/Chef.3af24edca3db58c0be15.png",
-    "static/media/boss.svg": "/gw2-react/static/media/boss.93af2eb69edf05c1a8937303847dfc6d.svg",
+    "static/media/boss.svg": "/gw2-react/static/media/boss.c4db052768a4c9c619a57855cb8593a2.svg",
     "static/media/bank.svg": "/gw2-react/static/media/bank.054bc5f7f27e065e92c1bc2dccd17aa7.svg",
     "index.html": "/gw2-react/index.html",
-    "main.9428fb62.css.map": "/gw2-react/static/css/main.9428fb62.css.map",
-    "main.0ff604ea.js.map": "/gw2-react/static/js/main.0ff604ea.js.map",
+    "main.32626da9.css.map": "/gw2-react/static/css/main.32626da9.css.map",
+    "main.eeb867b3.js.map": "/gw2-react/static/js/main.eeb867b3.js.map",
     "787.211ad51a.chunk.js.map": "/gw2-react/static/js/787.211ad51a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9428fb62.css",
-    "static/js/main.0ff604ea.js"
+    "static/css/main.32626da9.css",
+    "static/js/main.eeb867b3.js"
   ]
 }
