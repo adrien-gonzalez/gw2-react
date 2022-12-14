@@ -8,7 +8,8 @@ import Tooltip from '@mui/material/Tooltip';
 import gold_icon from "../img/icon/gold.png";
 import silver_icon from "../img/icon/silver.png";
 import bronze_icon from "../img/icon/bronze.png";
-import default_image from "../img/icon/default_image.png";
+import ModalItem from "../components/ModalItem";
+
 
 import DataTable from 'react-data-table-component';
 import ClearIcon from '@mui/icons-material/Clear';
@@ -18,7 +19,11 @@ import Items from '../data/items.json';
 
 
 const Trading = (props) => {
-    
+
+  const [showModalItem, setShowModalItem] = useState(false);
+  const [itemId, setItemId] = useState();
+
+
   const [trading, setTrading] = useState(false)
   const [page, setPage] = useState(1)
   const [filterText, setFilterText] = useState('');
@@ -176,14 +181,14 @@ const Trading = (props) => {
             width: "500px" ,
             selector: row =>  
                 <div className='trading_item'>
-                  <Tooltip TransitionComponent={Zoom} title={
+                  {/* <Tooltip TransitionComponent={Zoom} title={
                     <section className="detail_item"> 
                         {getInfosItems(row)} 
                         {getAttributes(row)}
                     </section>
-                  }  >
-                    <div className={row.rarity} style={{backgroundImage: `url(${row.img})`}}></div>
-                  </Tooltip>
+                  }  > */}
+                    <div onClick={() => {setShowModalItem(true);setItemId(row)}} className={"item_info "+row.rarity} style={{backgroundImage: `url(${row.img})`}}></div>
+                  {/* </Tooltip> */}
                   {row.name}
                 </div>,
         },
@@ -275,6 +280,8 @@ const Trading = (props) => {
         return (  
             <section className="wrapper trading_section">
                 <span className="bank_title trading">Marchand du Lion noir</span>
+                <ModalItem  item={itemId} show={showModalItem} close={() => setShowModalItem(false)} />
+
 
                 <DataTable
                     className={localStorage.getItem('color') == "dark" ? "trading_table pagination_white" : "trading_table"}

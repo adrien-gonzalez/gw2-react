@@ -950,7 +950,7 @@ input:focus{
   border-radius: 0px !important;
   /* border-bottom: none !important; */
 }
-.charater_equipement_button{
+.charater_equipement_button, .item_button{
   margin: 0px !important;
   border-radius: 0px !important;
   background-color: #333333 !important;
@@ -1013,36 +1013,69 @@ input:focus{
   flex-wrap: wrap;
 }
 
+
 .Junk{
   border: 1px solid #AAAAAA !important;
+}
+
+.Junk_text{
+  color: #AAAAAA;
 }
 
 .Basic{
   border: 1px solid white !important;
 }
 
+.Basic_text{
+  color: white;
+}
+
 .Fine{
   border: 1.5px solid #62A4DA !important;
+}
+
+.Fine_text{
+  color: #62A4DA;
 }
 
 .Masterwork{
   border: 1px solid #1A9306 !important;
 }
 
+.Masterwork_text{
+  color: #1A9306;
+}
+
 .Rare{
   border: 1px solid #FDD90B !important;
+}
+
+.Rare_text{
+  color: #FDD90B;
 }
 
 .Exotic{
   border: 1px solid #FFA405 !important;
 }
 
+.Exotic_text{
+  color: #FFA405
+}
+
 .Ascended{
   border: 1px solid #FC3E8D !important;
 }
 
+.Ascended_text{
+  color: #FC3E8D;
+}
+
 .Legendary{
   border: 1px solid #4C139D !important;
+}
+
+.Legendary_text{
+  color: #4C139D;
 }
 
 
@@ -1651,4 +1684,29 @@ tr:has(> .in_progress){
 
 .leaflet-popup-close-button > span{
   color: #333333;
+}
+
+.item_info:hover, .closeModal:hover{
+  cursor: url('img/icon/pointer.png'), auto;
+}
+
+.closeModal{
+  position: absolute;
+  fill: white !important;
+  z-index: 1;
+  right: 5px;
+  top: 5px;
+}
+
+
+.modal_item{
+  border-radius: 5px;
+  border: 1px solid #353535;
+  height: 50vh;
+  background-size: 100%;
+}
+
+.item_img{
+  width: 45px;
+  height: 45px;
 }
