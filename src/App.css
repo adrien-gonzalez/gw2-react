@@ -1458,6 +1458,7 @@ tr:has(> .in_progress){
 .gold_number{
   display: flex;
   color: white;
+  align-items: center;
 }
 
 .gold_number div{
@@ -1702,11 +1703,58 @@ tr:has(> .in_progress){
 .modal_item{
   border-radius: 5px;
   border: 1px solid #353535;
-  height: 50vh;
+  height: auto;
   background-size: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
-.item_img{
+.item_name{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: fit-content;
+}
+
+.item_name > div{
   width: 45px;
   height: 45px;
+  background-size: contain;
+}
+
+.item_name > span{
+  margin-left: 15px;
+}
+
+.item_attributes, .item_defense > span, .item_power > span{
+  color: #00FE00;
+}
+
+.item_defense, .item_power{
+  color: white;
+}
+
+.item_description{
+  color: white;
+  font-style: italic;
+}
+
+.item_details_type, .item_specification{
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.item_details_type{
+  margin-top: 25px;
+}
+
+.item_type{
+  color: #878787;
+}
+
+.item_value{
+  display: flex;
+  align-items: center;
 }

@@ -251,7 +251,9 @@ const Trading = (props) => {
                 data.results[index].description = nameFr.description
                 data.results[index].details = nameFr.details
                 data.results[index].rarity = nameFr.rarity
-
+                data.results[index].flags = nameFr.flags
+                data.results[index].type = nameFr.type
+                data.results[index].vendor_value = nameFr.vendor_value
 
 
             } else {
