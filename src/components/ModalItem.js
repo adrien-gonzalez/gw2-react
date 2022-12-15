@@ -117,7 +117,6 @@ const ModalItem = (props) => {
   }
 
   useEffect(() => {
-    console.log(props)
     if(props.item){
         setItems(props)
     }

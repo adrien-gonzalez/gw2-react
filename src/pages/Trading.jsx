@@ -1,79 +1,36 @@
 import '../App.css';
 import {connect} from 'react-redux';
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
-import {getAllItems,getTrading, getAllItemsWithId} from '../services/gw2API';
-import { Zoom  } from '@mui/material';
-import Tooltip from '@mui/material/Tooltip';
+import {getAllItems} from '../services/gw2API';
+
 import gold_icon from "../img/icon/gold.png";
 import silver_icon from "../img/icon/silver.png";
 import bronze_icon from "../img/icon/bronze.png";
 import ModalItem from "../components/ModalItem";
 
 
-import DataTable from 'react-data-table-component';
-import ClearIcon from '@mui/icons-material/Clear';
 
+import { InputText } from 'primereact/inputtext';
 
 import Items from '../data/items.json';
 
 
+
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
+import { Button } from 'primereact/button';
+import { FilterMatchMode, FilterOperator } from 'primereact/api';
+
 const Trading = (props) => {
 
-  const [showModalItem, setShowModalItem] = useState(false);
-  const [itemId, setItemId] = useState();
-
-
-  const [trading, setTrading] = useState(false)
-  const [page, setPage] = useState(1)
-  const [filterText, setFilterText] = useState('');
-  const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
-
-  const FilterComponent = ({ filterText, onFilter, onClear }) => (
-      <>
-          <input
-              autoFocus
-              className="search_post_trading"
-              type="text"
-              placeholder="Rechercher"
-              aria-label="Search Input"
-              value={filterText}
-              onChange={onFilter}
-              style={{border: localStorage.getItem('color') == "dark" ? "1px solid white" : "1px solid black" }}
-          />
-
-         <ClearIcon className="clearIcon" style={{color: localStorage.getItem('color') == "dark" ? "white" : "black" }} onClick={onClear}/>
-          {/* <button className="onClearButton" type="button" onClick={onClear}>X</button> */}
-      </>
-  );
-
-	const subHeaderComponentMemo = useMemo(() => {
-      
-  const handleClear = () => {
-    if (filterText) {
-      setResetPaginationToggle(!resetPaginationToggle);
-      setFilterText('');
-    }
-  };
-
-
-  return (
-          <FilterComponent filterText={filterText}  onFilter={e =>  setFilterText(e.target.value)} onClear={handleClear}    />
-  );
-	}, [filterText, resetPaginationToggle]);
-
-    // const ExpandedComponent = ({ data }) => {
-    //     return (
-    //     <pre>
-    //         {data.buys.map((key, index)=> { 
-    //             return (
-    //                 <div>{key.unit_price ?? ' - '}</div>
-    //             )
-    //         })}
-    //     </pre>
-    //     )
-       
-    // };
+    const [showModalItem, setShowModalItem] = useState(false);
+    const [itemId, setItemId] = useState();
+    const [trading, setTrading] = useState(false)
+    const paginatorLeft = <Button type="button" icon="pi pi-refresh" className="p-button-text" />;
+    const paginatorRight = <Button type="button" icon="pi pi-cloud" className="p-button-text" />;
+    const [filters1, setFilters1] = useState(null);
+    const [globalFilterValue1, setGlobalFilterValue1] = useState('');
 
     function currency_calculation(count) {
         var gold = 0
@@ -108,8 +65,8 @@ const Trading = (props) => {
     
         } else {
           bronze = count
-        }
-    
+        }   
+
         return (
           <span className="count_gold_price">
             
@@ -121,124 +78,9 @@ const Trading = (props) => {
     }
 
 
-    function getAttributes(infosItems){
-       
-        if(infosItems.details){
-            if(infosItems.details.infix_upgrade){
-                return(
-                    <div>
-                        {infosItems.details.infix_upgrade.attributes.map((key, index) => {
-                            return(
-                                <div key={infosItems.id+'_'+key.attribute}>{key.attribute} : <span>+{key.modifier}</span></div>
-  
-                            )
-                        })}
-                        
-                            <div className="description_item">{infosItems.description ?? ''}</div>
-                    </div>
-                )
-            } else {
-                return(
-                    <div className="description_item">{infosItems.description ?? 'Aucune description'}</div>
-                )
-            }
-        } else {
-            return(
-                <div className="description_item">{infosItems.description ?? 'Aucune description'}</div>
-            )
-        }
-       
-    }
-
-    function getInfosItems(infosItems){
-       if(infosItems.details){
-            if(infosItems.details.min_power){
-                return( 
-                    <div>
-                    {infosItems.name}<br/>
-                    {infosItems.restriction_level ? <div>Lv : <span>{infosItems.restriction_level}</span></div> : ''}
-                    Dammage : <span>{infosItems.details.min_power+'-'+infosItems.details.max_power}</span></div> 
-                )
-            }
-            if(infosItems.details.defense){
-                return(
-                    <div>
-                    {infosItems.name}<br/>
-                    {infosItems.restriction_level ? <div>Lv : <span>{infosItems.restriction_level}</span></div> : ''}
-                    Defense : <span>{infosItems.details.defense}</span></div>
-                )
-            } else {
-                return(
-                    <div>{infosItems.name}<br/>{infosItems.restriction_level ? <div>Lv : <span>{infosItems.restriction_level}</span></div> : ''}</div>
-                )
-            }
-       }
-    }
-
-    const columns = [
-        {
-            name: 'Name',
-            width: "500px" ,
-            selector: row =>  
-                <div className='trading_item'>
-                  {/* <Tooltip TransitionComponent={Zoom} title={
-                    <section className="detail_item"> 
-                        {getInfosItems(row)} 
-                        {getAttributes(row)}
-                    </section>
-                  }  > */}
-                    <div onClick={() => {setShowModalItem(true);setItemId(row)}} className={"item_info "+row.rarity} style={{backgroundImage: `url(${row.img})`}}></div>
-                  {/* </Tooltip> */}
-                  {row.name}
-                </div>,
-        },
-        {
-            name: 'Niveau',
-            width: "90px" ,
-            sortable: true,
-            selector: row => row.restriction_level ?? ' - ',
-        },
-        {
-            name: 'Prix d\'achat',
-            width: "180px" ,
-            sortable: true,
-            selector: row =>  row.min_sale_unit_price,
-            cell: row => row.min_sale_unit_price ? currency_calculation(row.min_sale_unit_price) : ' - ',
-        },
-        {
-            name: 'Prix de Vente',
-            width: "150px" ,
-            sortable: true,
-            selector: row =>  row.max_offer_unit_price,
-            cell: row =>  row.max_offer_unit_price ? currency_calculation(row.max_offer_unit_price) : ' - ',
-        },
-    ];
-
-
-
     const getTradingPost = async () => {
 
-        // for(var k = 0; k<=0; k++){
-        //     const data = await getTrading(k)
-        //     for(var i = 0; i < data.length; i++){
-        //         ids.push(data[i].id)
-        //     }
-    
-        //     const object = await getAllItemsWithId(ids.join(','))
-        //     // console.log(object)
-
-        //     ids = []
-
-        //     // if(all_items.length == 0){
-        //         all_items = [...all_items,...object];
-
-        //     // } else {
-        //         // all_items.concat(object)
-
-        //     // }
-        // }
-           
-
+        const object = []
         const data = await getAllItems()
         data.results.map((key, index) => {
 
@@ -254,48 +96,108 @@ const Trading = (props) => {
                 data.results[index].flags = nameFr.flags
                 data.results[index].type = nameFr.type
                 data.results[index].vendor_value = nameFr.vendor_value
-
-
-            } else {
-                delete data.results[index]
-            }
-
+                object.push(data.results[index])
+            } 
         })
 
-        setTrading(data.results)
+        setTrading(object)
     };
 
+
+    const clearFilter1 = () => {
+        initFilters1();
+    }
+
+    const onGlobalFilterChange1 = (e) => {
+
+        const value = e.target.value;
+        let _filters1 = { ...filters1 };
+        _filters1['global'].value = value;
+        setFilters1(_filters1);
+        setGlobalFilterValue1(value);
+    }
+
+    const initFilters1 = () => {
+        setFilters1({
+            'global': { value: null, matchMode: FilterMatchMode.CONTAINS },
+            'name': { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
+        });
+        setGlobalFilterValue1('');
+    }
+
+    const renderHeader1 = () => {
+        return (
+            <div className="flex justify-content-between">
+                <Button type="button" icon="pi pi-filter-slash" label="Clear" className="p-button-outlined" onClick={clearFilter1} />
+                <span className="p-input-icon-left">
+                    <i className="pi pi-search" />
+                    <InputText value={globalFilterValue1} onChange={onGlobalFilterChange1} placeholder="Rechercher" />
+                </span>
+            </div>
+        )
+    }
+
+    const header1 = renderHeader1();
+    const nameItem = (rowData) => {
+
+
+        return  (
+            <div className='trading_item'>
+                <div onClick={() => {setShowModalItem(true);setItemId(rowData)}} className={"item_info "+rowData.rarity} style={{backgroundImage: `url(${rowData.img})`}}></div>
+                <p>{rowData.name}</p>
+            </div>
+        )
+    }
+
+    const sellPriceItem = (rowData) => {
+        return currency_calculation(rowData.max_offer_unit_price)
+    }
+
+    const buyPriceItem = (rowData) => {
+        return currency_calculation(rowData.min_sale_unit_price)
+    }
+
+
     useEffect(() => {
-        if(trading == false){
+        
+        // if(trading == false){
             getTradingPost()
-        }   
+        // } 
+        initFilters1();
     },[])
 
+    
+  
     if(trading != false){
-        
-
-        const filteredItems = trading.filter(
-            item => item.name && item.name.toLowerCase().includes(filterText.toLowerCase()),
-        );
-
 
         return (  
+
             <section className="wrapper trading_section">
-                <span className="bank_title trading">Marchand du Lion noir</span>
-                <ModalItem  item={itemId} show={showModalItem} close={() => setShowModalItem(false)} />
+                 <span className="bank_title trading">Marchand du Lion noir</span>
+                 <ModalItem  item={itemId} show={showModalItem} close={() => setShowModalItem(false)} />
 
-
-                <DataTable
-                    className={localStorage.getItem('color') == "dark" ? "trading_table pagination_white" : "trading_table"}
-                    columns={columns}
-                    data={filteredItems}
-                    pagination
-                    paginationResetDefaultPage={resetPaginationToggle} // optionally, a hook to reset pagination to page 1
-                    subHeader
-                    subHeaderComponent={subHeaderComponentMemo}
-                    // persistTableHead
-                />
+                <div className="card trading_table">
+                    <DataTable  paginator  dataKey="id"  size="small" showGridlines filters={filters1} filterDisplay="menu" value={trading}  
+                        responsiveLayout="stack" breakpoint="900px" resizableColumns columnResizeMode="fit"
+                      paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
+                      rows={10} rowsPerPageOptions={[10,20,50]}
+                      paginatorLeft={paginatorLeft} paginatorRight={paginatorRight}
+                      globalFilterFields={['name']} header={header1} emptyMessage="No customers found."
+                    >   
+                        {/* <Column field="country.name" sortable header="Country" filterField="country.name" body={nameItem} filter filterPlaceholder="Search by country" /> */}
+                    
+                        <Column field="name" header="Nom" style={{width:'50%'}} body={nameItem}/>
+                        <Column sortable field="restriction_level" header="Niveau" />
+                        <Column sortable field="min_sale_unit_price" header="Prix d'achat"  body={buyPriceItem}/>
+                        <Column sortable field="max_offer_unit_price" header="Prix de vente" body={sellPriceItem} />
+                        {/* <Column field="inventoryStatus" header="Status" body={statusTemplate} />
+                        <Column field="rating" header="Rating" body={ratingTemplate} /> */}
+                    </DataTable>
+                </div>
+            
             </section>
+
+
         ); 
     } else {
         return (

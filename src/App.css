@@ -67,6 +67,8 @@ button:hover{
     background-size: contain;
   }
 
+
+
   .rdt_TableBody{
     height: 70vh;
     background-color: rgba(0,0,0,0.8) !important;
@@ -74,6 +76,14 @@ button:hover{
 
   .rdt_Table > div:first-child:not(.rdt_TableHead){
     height: 75vh;
+  }
+
+  .trading_table{
+    width: 75%;
+    max-width: 1300px;
+    overflow-y: auto;
+    background-color: rgba(0,0,0,0.8) !important;
+    color: white;
   }
 
   .bank_table{
@@ -168,6 +178,16 @@ button:hover{
     top: 40px;
     left: -2px;
   }
+
+  .p-column-title{
+    display: none;
+  }
+
+  .p-column-header-content > .p-column-title{
+    display: block;
+
+  }
+
 }
 
 .marginLeft{
@@ -179,6 +199,66 @@ button:hover{
 }
 
 @media screen and (max-width: 599px) {
+
+  .trading_table{
+    width: 100%;
+    max-width: 1300px;
+    overflow-y: auto;
+    background-color: rgba(0,0,0,0.8) !important;
+    color: white;
+  }
+
+  .p-inputtext{
+    width: 80%;
+  }
+
+  .pi-search{
+    display: none;
+  }
+
+
+  .trading_item{
+    width: 85%;
+  }
+ 
+
+  .p-paginator-pages{
+    min-width: 2rem !important;
+  }
+
+  .p-paginator-element{
+    min-width: 2rem !important;
+    height: 2rem !important;
+    font-size: 13px;
+   }
+
+   .p-paginator-last, .p-paginator-first{
+    margin: 0px !important;
+   }
+
+   .p-paginator-current{
+    display: none;
+   }
+
+   .p-dropdown-label{
+    font-size: 13px;
+    padding-top: 4px !important;
+   }
+
+   .p-paginator .p-dropdown {
+    margin-left: 0.5rem;
+    height: 2rem;
+    width: 4rem;
+   }
+
+   .p-dropdown .p-dropdown-trigger{
+      width: 2rem;
+   }
+
+   .p-dropdown-trigger-icon{
+    font-size: 12px;
+   }
+
   .App {
     text-align: center;
     display: flex;
@@ -319,7 +399,7 @@ button:hover{
     left: -1px;
   }
 
-   
+  
   
 
 }
@@ -1078,8 +1158,6 @@ input:focus{
   color: #4C139D;
 }
 
-
-
 .meta{
   margin-bottom: 30px;
   text-align: left;
@@ -1374,36 +1452,26 @@ tr:has(> .in_progress){
   color: white !important;
 }
 
-.trading_table{
-  width: 75%;
-  max-width: 1300px;
-  overflow-y: auto;
 
-}
 
-.rdt_TableBody, .trading_table{
-  background-color: rgba(0,0,0,0.8) !important;
+
+.trading_table table{
+  width: 100%;
 }
 
 
-
-.rdt_TableRow:nth-child(2n){
+.trading_table table tr:nth-child(2n){
   background-color: rgba(0,0,0,0) !important;
   color: white !important;
 }
 
-.rdt_TableRow:nth-child(2n+1){
+.trading_table table tr:nth-child(2n+1){
   background-color: rgba(0,0,0,0.2) !important;
   color: white !important;
 }
 
-.rdt_TableHeadRow{
-  background-color: rgba(0,0,0,0.1) !important;
-}
-
-.rdt_Table > div{
-  background-color: rgba(0,0,0,0.8) !important;
-  color: white !important;
+.p-datatable.p-datatable-gridlines .p-datatable-tbody > tr > td{
+  border-width: 0px !important;
 }
 
 .trading_section{
@@ -1411,6 +1479,14 @@ tr:has(> .in_progress){
   margin-top: 50px;
   padding: 20px;
 
+}
+
+.trading_table  tr{
+  border-bottom: 1px solid #EAECEE;
+}
+
+.trading_table  td{
+  text-align: left;
 }
 
 .default .rdt_Pagination, .default .bank_title, .default .trading{
@@ -1426,13 +1502,6 @@ tr:has(> .in_progress){
   fill: white;
 }
 
-.trading_section > header{
-  display: flex;
-  justify-content: flex-start;
-  padding: 0px;
-  max-width: 1300px;
-  background: transparent;
-}
 
 .trading_item > div{
   width: 45px;
@@ -1474,52 +1543,16 @@ tr:has(> .in_progress){
   
 }
 
-.trading_section > header > input{
-  background-color: rgba(0,0,0,0) !important;
-  border: 1px solid black;
-}
-
-.trading_section > header{
-  display: flex;
-  justify-content: center;
-}
 
 .rdt_Pagination{
   background-color: transparent !important;
 }
 
 
-@media (min-width: 1199px) { 
-  .trading_section > header > input{
-    position: absolute;
-    right: 42px;
-    top: 60px;
-    z-index: 1;
-    color: white;
-  }
-  
-  .trading_section > header > svg{
-    position: absolute;
-    right: 12px;
-    top: 66px;
-    z-index: 1;
-  }
-
-  .trading_section > header > svg{
-    color: white !important;
-  }
-}
 
 
 .rdt_TableBody{
   overflow-y: auto;
-}
-
-@media (max-width: 1198px) { 
-  
-  .trading_section > header > svg{
-    color: black !important;
-  }
 }
 
 
@@ -1721,6 +1754,7 @@ tr:has(> .in_progress){
   width: 45px;
   height: 45px;
   background-size: contain;
+  padding: 20px;
 }
 
 .item_name > span{
@@ -1757,4 +1791,33 @@ tr:has(> .in_progress){
 .item_value{
   display: flex;
   align-items: center;
+}
+
+.p-button-icon-only{
+  display: none;
+}
+
+.p-button-label, .p-button-icon {
+  color: #6366F1 !important;
+}
+
+.p-paginator-icon,
+ .p-inputtext, .p-dropdown-trigger-icon{
+  color: #343a40 !important;
+}
+
+@media screen and (max-width: 900px) {
+  .p-column-title{
+    color: white !important;
+  }
+}
+
+@media screen and (min-width: 899px) {
+  .p-column-title{
+    color: #343a40 !important;
+  }
+}
+
+.trading_item > p{
+  margin: 0px;
 }
