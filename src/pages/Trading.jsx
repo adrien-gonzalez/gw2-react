@@ -173,12 +173,12 @@ const Trading = (props) => {
         return (  
 
             <section className="wrapper trading_section">
-                 <span className="bank_title trading">Marchand du Lion noir</span>
+                 {/* <span className="bank_title trading">Marchand du Lion noir</span> */}
                  <ModalItem  item={itemId} show={showModalItem} close={() => setShowModalItem(false)} />
 
                 <div className="card trading_table">
-                    <DataTable  paginator  dataKey="id"  size="small" showGridlines filters={filters1} filterDisplay="menu" value={trading}  
-                        responsiveLayout="stack" breakpoint="900px" resizableColumns columnResizeMode="fit"
+                    <DataTable  paginator  dataKey="id"   size="small" showGridlines filters={filters1} filterDisplay="menu" value={trading}  
+                        responsiveLayout="stack" breakpoint="900px" 
                       paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
                       rows={10} rowsPerPageOptions={[10,20,50]}
                       paginatorLeft={paginatorLeft} paginatorRight={paginatorRight}
