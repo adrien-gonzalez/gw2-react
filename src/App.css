@@ -480,8 +480,8 @@ button:hover{
 
 @media screen and (min-width: 621px) {
   #output{
-    width: 50vw;
-    max-width: 800px;
+    width: 75%;
+    max-width: 900px;
     min-width: 500px;
     padding: 15px;
     background-color: black;
@@ -490,19 +490,85 @@ button:hover{
     font-weight: bold;
     border-radius: 15px;
   } 
+
+  .worldbosses thead{
+    border-bottom:1px solid grey;
+  }
 }
 
 @media screen and (max-width: 620px) {
   #output{
-    width: 95%;
-    padding: 15px;
-    background-color: black;
+    width: 100%;
+    /* background-color: black; */
+    background-color: transparent;
     opacity: 0.8;
     color: white;
     font-weight: bold;
     border-radius: 15px;
-    font-size: x-small;
+    /* font-size: 0.8em; */
   } 
+
+  .worldbosses{
+    padding: 15px 15px 0px 15px;
+  }
+
+  #output {
+    border: 0;
+  }
+
+  #output > tbody{
+    background-color: transparent;
+  }
+
+  #output > thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+  #output tr{
+    display: block;
+    margin-bottom: 25px;
+    /* background-color: black; */
+    border-radius: 10px;
+  }
+
+  #output tr:has(.bossKilled) {
+    background-color: #145A32;
+  }
+
+  #output tr:has(> .in_progress) {
+    background-color: #C0392B;
+  }
+  
+  #output tr:has(> .remaining) {
+    background-color: black;
+  }
+  
+
+ 
+  #output td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  #output td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  #output td:last-child {
+    border-bottom: 0;
+  }
 }
 
 
@@ -1840,3 +1906,15 @@ tr:has(> .in_progress){
 .p-button-outlined, .p-dropdown{
   box-shadow: none !important;
 }
+
+.bossKilled{
+  background-color: #145A32;
+}
+
+
+
+
+
+
+
+

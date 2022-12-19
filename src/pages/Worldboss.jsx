@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import React, { useState, useEffect } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 import worldbossesTimer from '../data/worldboss.json';
+import {getWorldbossesKilled, getPermissions} from '../services/gw2API';
 
 
 // Image of bosses
@@ -24,6 +25,10 @@ import GolemMarqueII from '../img/bosses/Golem Marque II.png';
 const Worldboss = (props) => {
 
     const [worldbosses, setWorldbosses] = useState(false)
+    const [worldbossesKilled, setWorldbossesKilled] = useState(false)
+
+    const [apiKey] = useState(localStorage.getItem('apiKey') ?? null);
+
 
     const images_boss = [
         { id: 'Chamane de Svanir', src: ChamanedeSvanir},
@@ -60,7 +65,7 @@ const Worldboss = (props) => {
        
         worldbossesTimer.map((key, index) => {
             key.fixed.map(event =>
-                schedule.push([(event[0]) * 60 + event[1], key.name])
+                schedule.push([(event[0]) * 60 + event[1], key.name, key.original])
             ) 
         })
 
@@ -71,6 +76,7 @@ const Worldboss = (props) => {
         worldbosses.map(sch => {
                 var entry = {
                 key: sch[1],
+                original: sch[2],
                 remaining: sch[0] - ((now.getUTCHours() * 60) + now.getUTCMinutes()),
                 stamp: new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate(), Math.floor(sch[0] / 60), (sch[0] - (Math.floor(sch[0] / 60) * 60)) % 60, 0))
                 };
@@ -87,14 +93,36 @@ const Worldboss = (props) => {
     }
     
 
+    const getKiled = async (apiKey) => {
+        const data = await getWorldbossesKilled(apiKey)
+        setWorldbossesKilled(data)
+    }
+
+    const permissions = async (apiKey) => {
+        const data = await getPermissions(apiKey)
+
+        const progression = data.permissions.find(
+            element => element == "progression"
+        )
+        if(progression){
+            getKiled(apiKey)
+        }
+    }
 
     useEffect(() => {
+
+        if(apiKey){
+            permissions(apiKey)
+        }
+       
         fetchBosses()
+    
         setInterval(function() {
             var rn = new Date();
             var rs = rn.getSeconds();
             // auto refresh table at 0 second
             if (rs == 0){
+                if(apiKey){  permissions(apiKey) }
                 fetchBosses()
             }
         },1000);
@@ -106,27 +134,89 @@ const Worldboss = (props) => {
         return (
             <div className="worldbosses">
                 <table id="output">
-                    <tbody>
+                    <thead>
                         <tr>
-                            <td className='cell bossname_title'>Nom du Boss</td>
-                            <td className='cell time_title timestamp'>Heure</td>
-                            <td className='time_title cell remaining'>Temps</td>
+                            <th scope="col" className='cell bossname_title'>Nom du Boss</th>
+                            <th scope="col" className='cell time_title timestamp'>Heure</th>
+                            <th scope="col" className='time_title cell remaining'>Temps</th>
                         </tr>
+                    </thead>
+                    <tbody>
+                       
                         {getSchedule(-10).map((curr, id) => {
                             const bossImage = images_boss.find(
                                 element => element.id == curr.key
                             )
 
-                            return(
-                                <tr key={"boss_"+id}>
-                                    <td className='cell flex-picture'>
-                                        {bossImage ? <img alt="" className='bossesPicture' src={bossImage.src}/> : ''}
-                                        {curr.key}
-                                    </td>
-                                    {curr.remaining <= 0 ? <td className='cell in_progress'>{curr.stamp.toLocaleTimeString()}</td> : <td className='cell timestamp'>{curr.stamp.toLocaleTimeString()}</td>}
-                                    {curr.remaining <= 0 ? <td className='in_progress cell'>En cours</td> : <td className='cell remaining'>dans: {formatRemaining(curr.remaining)}</td>}
-                                </tr>
-                            )
+                            if(worldbossesKilled.length > 1){
+                                var killed = false
+                                worldbossesKilled.map((key, index) => {
+                                    if(key == curr.original){
+                                        killed = true
+                                    }
+                                })
+
+                                if(killed){
+                                    return(
+                                        <tr className="bossKilled" key={"boss_"+id}>
+                                            <td data-label="Nom du Boss" className='cell flex-picture'>
+                                                <div>{bossImage ? <img alt="" className='bossesPicture' src={bossImage.src}/> : ''}  {curr.key}</div>
+                                            </td>
+        
+                                            {curr.remaining <= 0 ? <td data-label="Heure" className='cell'>{curr.stamp.toLocaleTimeString()}</td> : <td data-label="Heure" className='cell'>{curr.stamp.toLocaleTimeString()}</td>}
+                                            {curr.remaining <= 0 ? <td data-label="Temps" className='cell'>En cours</td> : <td data-label="Temps" className='cell'>dans: {formatRemaining(curr.remaining)}</td>}
+                                        </tr>
+                                    )
+                                } else {
+                                    return(
+                                        <tr key={"boss_"+id}>
+                                            <td data-label="Nom du Boss" className='cell flex-picture'>
+                                                <div>{bossImage ? <img alt="" className='bossesPicture' src={bossImage.src}/> : ''}  {curr.key}</div>
+                                            </td>
+        
+                                            {curr.remaining <= 0 ? <td data-label="Heure" className='cell in_progress'>{curr.stamp.toLocaleTimeString()}</td> : <td data-label="Heure" className='cell timestamp'>{curr.stamp.toLocaleTimeString()}</td>}
+                                            {curr.remaining <= 0 ? <td data-label="Temps" className='in_progress cell'>En cours</td> : <td data-label="Temps" className='cell remaining'>dans: {formatRemaining(curr.remaining)}</td>}
+                                        </tr>
+                                    )
+                                }
+                            } else if(worldbossesKilled.length == 1){
+                               if(worldbossesKilled[0] == curr.original){
+                                return(
+                                    <tr className="bossKilled" key={"boss_"+id}>
+                                        <td data-label="Nom du Boss" className='cell flex-picture'>
+                                            <div>{bossImage ? <img alt="" className='bossesPicture' src={bossImage.src}/> : ''}  {curr.key}</div>
+                                        </td>
+    
+                                        {curr.remaining <= 0 ? <td data-label="Heure" className='cell'>{curr.stamp.toLocaleTimeString()}</td> : <td data-label="Heure" className='cell'>{curr.stamp.toLocaleTimeString()}</td>}
+                                        {curr.remaining <= 0 ? <td data-label="Temps" className='cell'>En cours</td> : <td data-label="Temps" className='cell'>dans: {formatRemaining(curr.remaining)}</td>}
+                                    </tr>
+                                )
+                               } else {
+                                return(
+                                    <tr key={"boss_"+id}>
+                                        <td data-label="Nom du Boss" className='cell flex-picture'>
+                                            <div>{bossImage ? <img alt="" className='bossesPicture' src={bossImage.src}/> : ''}  {curr.key}</div>
+                                        </td>
+    
+                                        {curr.remaining <= 0 ? <td data-label="Heure" className='cell in_progress'>{curr.stamp.toLocaleTimeString()}</td> : <td data-label="Heure" className='cell timestamp'>{curr.stamp.toLocaleTimeString()}</td>}
+                                        {curr.remaining <= 0 ? <td data-label="Temps" className='in_progress cell'>En cours</td> : <td data-label="Temps" className='cell remaining'>dans: {formatRemaining(curr.remaining)}</td>}
+                                    </tr>
+                                )
+                               }
+                            } else {
+                                return(
+                                    <tr key={"boss_"+id}>
+                                        <td data-label="Nom du Boss" className='cell flex-picture'>
+                                            <div>{bossImage ? <img alt="" className='bossesPicture' src={bossImage.src}/> : ''}  {curr.key}</div>
+                                        </td>
+    
+                                        {curr.remaining <= 0 ? <td data-label="Heure" className='cell in_progress'>{curr.stamp.toLocaleTimeString()}</td> : <td data-label="Heure" className='cell timestamp'>{curr.stamp.toLocaleTimeString()}</td>}
+                                        {curr.remaining <= 0 ? <td data-label="Temps" className='in_progress cell'>En cours</td> : <td data-label="Temps" className='cell remaining'>dans: {formatRemaining(curr.remaining)}</td>}
+                                    </tr>
+                                )
+                            }
+                            
+                           
                         })}
                     </tbody>
                 </table>

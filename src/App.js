@@ -31,23 +31,10 @@ const App = (props) => {
  
   const [showModalAuth, setShowModalAuth] = useState(false);
   const [apiKey] = useState(localStorage.getItem('apiKey') ?? null);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
-  const [pageLoad, setPageLoad] = useState(window.location.hash)
-  
-  const setWindowDimensions = () => {
-    setWindowWidth(window.innerWidth) 
-
-  }
 
 
   useEffect(() => { 
-    window.addEventListener('resize', setWindowDimensions);
-
-    return () => {
-      window.removeEventListener('resize', setWindowDimensions)
-      
-    }
-  }, [pageLoad, props])
+  }, [props])
   return (
     <Provider store={Store}>
 
@@ -56,7 +43,7 @@ const App = (props) => {
 
           <Header/>
           
-          <SettingsIcon style={{color: localStorage.getItem('color') == "dark" || (pageLoad == "#/pages/worldboss" && windowWidth < 600) ? 'white' : 'black'}} onClick={() => setShowModalAuth(true)} className="settings"></SettingsIcon>
+          <SettingsIcon style={{color: localStorage.getItem('color') == "dark" ? 'white' : 'black'}} onClick={() => setShowModalAuth(true)} className="settings"></SettingsIcon>
           
           <ModalAuth show={showModalAuth} close={() => setShowModalAuth(false)} />
 

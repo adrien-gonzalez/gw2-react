@@ -113,7 +113,13 @@ export function getAllItemsWithId(ids){
     .catch((error) => error.response.data.errors);    
 }
 
-
+// GET WORLDBOSSES KILLED
+export function getWorldbossesKilled(key){
+    return axios
+    .get(process.env.REACT_APP_API_URL+"account/worldbosses?access_token="+key)
+    .then((response) => response.data)
+    .catch((error) => error.response.data.errors);    
+}
 
 // GET TRADING POST
 // https://api.guildwars2.com/v2/commerce/listings?page=1&page_size=200
