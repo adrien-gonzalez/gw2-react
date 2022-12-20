@@ -65,7 +65,7 @@ const Worldboss = (props) => {
        
         worldbossesTimer.map((key, index) => {
             key.fixed.map(event =>
-                schedule.push([(event[0]) * 60 + event[1], key.name, key.original])
+                schedule.push([(event[0]) * 60 + event[1], key.name, key.original, key.waypoint])
             ) 
         })
 
@@ -74,9 +74,11 @@ const Worldboss = (props) => {
 
     function getSchedule(offset){
         worldbosses.map(sch => {
+            console.log(sch)
                 var entry = {
                 key: sch[1],
                 original: sch[2],
+                waypoint: sch[3],
                 remaining: sch[0] - ((now.getUTCHours() * 60) + now.getUTCMinutes()),
                 stamp: new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate(), Math.floor(sch[0] / 60), (sch[0] - (Math.floor(sch[0] / 60) * 60)) % 60, 0))
                 };
@@ -136,7 +138,8 @@ const Worldboss = (props) => {
                 <table id="output">
                     <thead>
                         <tr>
-                            <th scope="col" className='cell bossname_title'>Nom du Boss</th>
+                            <th scope="col" className='cell bossname_title'></th>
+                            <th scope="col" className='cell bossname_title'>Point de passage</th>
                             <th scope="col" className='cell time_title timestamp'>Heure</th>
                             <th scope="col" className='time_title cell remaining'>Temps</th>
                         </tr>
@@ -159,10 +162,10 @@ const Worldboss = (props) => {
                                 if(killed){
                                     return(
                                         <tr className="bossKilled" key={"boss_"+id}>
-                                            <td data-label="Nom du Boss" className='cell flex-picture'>
+                                            <td className='cell flex-picture'>
                                                 <div>{bossImage ? <img alt="" className='bossesPicture' src={bossImage.src}/> : ''}  {curr.key}</div>
                                             </td>
-        
+                                            <td data-label="Point de passage" className='waypointBoss'><span>{curr.waypoint}</span></td>
                                             {curr.remaining <= 0 ? <td data-label="Heure" className='cell'>{curr.stamp.toLocaleTimeString()}</td> : <td data-label="Heure" className='cell'>{curr.stamp.toLocaleTimeString()}</td>}
                                             {curr.remaining <= 0 ? <td data-label="Temps" className='cell'>En cours</td> : <td data-label="Temps" className='cell'>dans: {formatRemaining(curr.remaining)}</td>}
                                         </tr>
@@ -170,10 +173,10 @@ const Worldboss = (props) => {
                                 } else {
                                     return(
                                         <tr key={"boss_"+id}>
-                                            <td data-label="Nom du Boss" className='cell flex-picture'>
+                                            <td  className='cell flex-picture'>
                                                 <div>{bossImage ? <img alt="" className='bossesPicture' src={bossImage.src}/> : ''}  {curr.key}</div>
                                             </td>
-        
+                                            <td data-label="Point de passage" className='waypointBoss'><span>{curr.waypoint}</span></td>
                                             {curr.remaining <= 0 ? <td data-label="Heure" className='cell in_progress'>{curr.stamp.toLocaleTimeString()}</td> : <td data-label="Heure" className='cell timestamp'>{curr.stamp.toLocaleTimeString()}</td>}
                                             {curr.remaining <= 0 ? <td data-label="Temps" className='in_progress cell'>En cours</td> : <td data-label="Temps" className='cell remaining'>dans: {formatRemaining(curr.remaining)}</td>}
                                         </tr>
@@ -183,10 +186,10 @@ const Worldboss = (props) => {
                                if(worldbossesKilled[0] == curr.original){
                                 return(
                                     <tr className="bossKilled" key={"boss_"+id}>
-                                        <td data-label="Nom du Boss" className='cell flex-picture'>
+                                        <td className='cell flex-picture'>
                                             <div>{bossImage ? <img alt="" className='bossesPicture' src={bossImage.src}/> : ''}  {curr.key}</div>
                                         </td>
-    
+                                        <td data-label="Point de passage" className='waypointBoss'><span>{curr.waypoint}</span></td>
                                         {curr.remaining <= 0 ? <td data-label="Heure" className='cell'>{curr.stamp.toLocaleTimeString()}</td> : <td data-label="Heure" className='cell'>{curr.stamp.toLocaleTimeString()}</td>}
                                         {curr.remaining <= 0 ? <td data-label="Temps" className='cell'>En cours</td> : <td data-label="Temps" className='cell'>dans: {formatRemaining(curr.remaining)}</td>}
                                     </tr>
@@ -194,10 +197,10 @@ const Worldboss = (props) => {
                                } else {
                                 return(
                                     <tr key={"boss_"+id}>
-                                        <td data-label="Nom du Boss" className='cell flex-picture'>
+                                        <td  className='cell flex-picture'>
                                             <div>{bossImage ? <img alt="" className='bossesPicture' src={bossImage.src}/> : ''}  {curr.key}</div>
                                         </td>
-    
+                                        <td data-label="Point de passage" className='waypointBoss'><span>{curr.waypoint}</span></td>
                                         {curr.remaining <= 0 ? <td data-label="Heure" className='cell in_progress'>{curr.stamp.toLocaleTimeString()}</td> : <td data-label="Heure" className='cell timestamp'>{curr.stamp.toLocaleTimeString()}</td>}
                                         {curr.remaining <= 0 ? <td data-label="Temps" className='in_progress cell'>En cours</td> : <td data-label="Temps" className='cell remaining'>dans: {formatRemaining(curr.remaining)}</td>}
                                     </tr>
@@ -206,10 +209,10 @@ const Worldboss = (props) => {
                             } else {
                                 return(
                                     <tr key={"boss_"+id}>
-                                        <td data-label="Nom du Boss" className='cell flex-picture'>
+                                        <td  className='cell flex-picture'>
                                             <div>{bossImage ? <img alt="" className='bossesPicture' src={bossImage.src}/> : ''}  {curr.key}</div>
                                         </td>
-    
+                                        <td data-label="Point de passage" className='waypointBoss'><span>{curr.waypoint}</span></td>
                                         {curr.remaining <= 0 ? <td data-label="Heure" className='cell in_progress'>{curr.stamp.toLocaleTimeString()}</td> : <td data-label="Heure" className='cell timestamp'>{curr.stamp.toLocaleTimeString()}</td>}
                                         {curr.remaining <= 0 ? <td data-label="Temps" className='in_progress cell'>En cours</td> : <td data-label="Temps" className='cell remaining'>dans: {formatRemaining(curr.remaining)}</td>}
                                     </tr>
