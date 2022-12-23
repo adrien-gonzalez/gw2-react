@@ -74,7 +74,6 @@ const Worldboss = (props) => {
 
     function getSchedule(offset){
         worldbosses.map(sch => {
-            console.log(sch)
                 var entry = {
                 key: sch[1],
                 original: sch[2],
