@@ -18,15 +18,27 @@ import Weaponsmith from '../img/craft/Weaponsmith.png';
 
 
 // Image of character
-import Elementalist from '../img/personnages/Elementalist.png';
-import Guardian from '../img/personnages/Guardian.png';
-import Mesmer from '../img/personnages/Mesmer.png';
-import Necromancer from '../img/personnages/Necromancer.png';
-import Ranger from '../img/personnages/Ranger.png';
-import Revenant from '../img/personnages/Revenant.png';
-import Thief from '../img/personnages/Thief.png';
-import Warrior from '../img/personnages/Warrior.png';
-import Engineer from '../img/personnages/Engineer.jpg';
+import Elementalist from '../img/icon/elementalist_icon.png';
+import Guardian from '../img/icon/guardian_icon.png';
+import Mesmer from '../img/icon/mesmer_icon.png';
+import Necromancer from '../img/icon/necromancer_icon.png';
+import Ranger from '../img/icon/ranger_icon.png';
+import Revenant from '../img/icon/revenant_icon.png';
+import Thief from '../img/icon/thief_icon.png';
+import Warrior from '../img/icon/warrior_icon.png';
+import Engineer from '../img/icon/engineer_icon.png';
+
+// import necro from '../img/icon/necromancer_icon.png';
+// import necro from '../img/icon/necromancer_icon.png';
+// import necro from '../img/icon/necromancer_icon.png';
+// import necro from '../img/icon/necromancer_icon.png';
+// import necro from '../img/icon/necromancer_icon.png';
+// import necro from '../img/icon/necromancer_icon.png';
+// import necro from '../img/icon/necromancer_icon.png';
+// import necro from '../img/icon/necromancer_icon.png';
+// import necro from '../img/icon/necromancer_icon.png';
+
+
 
 
 const Characters = (props) => {
@@ -97,13 +109,18 @@ const Characters = (props) => {
                             return(
                                 
                                 <div onClick={() => {setShowModalCharacter(true);setCharacterId(key)}} key={'character_'+index} className='characterForm' id={key.profession}>
-                                    <div className='nameAndProfession'>
-                                        <div className='name'>{key.name} - Lv. {key.level} - {key.race}</div>
-                                        <div>{key.profession}</div>
+
+                                    <div className="logoProfession">
+                                        <img src={classImage.src}/>
                                     </div>
-                                    <div className='picture' id='picture"+key+"' style={{backgroundImage: `url(${classImage.src})`, backgroundSize: 'cover'}}></div>
+                                    <div className='detailCharacter'>
+                                        <div className='nameAndProfession'>
+                                            <span className='name'>{key.name}</span>
+                                            <span>Lv. {key.level} - {key.race} {key.profession}</span>
+                                        </div>
+                                        {/* <div className='picture' id='picture"+key+"' style={{backgroundImage: `url(${classImage.src})`, backgroundSize: 'cover'}}></div> */}
                                         <div className='craftList'>
-                                            <div className='craftListActive crafting'>
+                                            {/* <div className='craftListActive crafting'> */}
                                                 {key.crafting.map((key2, index2) => {
 
                                                     const craftImage = images_craft.find(
@@ -113,13 +130,16 @@ const Characters = (props) => {
                                                         return(
                                                             <div key={'craft_'+index2} className='crafting'>
                                                                 <img src={craftImage.src}/>
-                                                                <span>{key2.discipline} - lv. {key2.rating}</span>
+                                                                {/* <span>{key2.discipline} - lv. {key2.rating}</span>  */}
+                                                                <span>{key2.rating}</span> 
+
                                                             </div>   
                                                         )
                                                     }                                                    
                                                 })}
-                                            </div>
+                                            {/* </div> */}
                                         </div>
+                                    </div>
                                 </div>
                             )
                         })}

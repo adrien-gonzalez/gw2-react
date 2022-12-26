@@ -793,8 +793,14 @@ input:focus{
 	}
 }
 
+.logoProfession > img{
+  width: 96px;
+  height: 96px;
+}
+
 @media screen and (min-width: 621px) {
   .characterForm{
+    display: flex;
     border-radius: 10px;
     /* min-height: 500px; */
     width: 500px;
@@ -809,6 +815,7 @@ input:focus{
 
 @media screen and (max-width: 620px) {
   .characterForm{
+    display: flex;
     border-radius: 10px;
     /* min-height: 500px; */
     width: 100%;
@@ -831,11 +838,12 @@ input:focus{
 }
 
 .characterForm div{
-  /* background-color: grey; */
   color: white;
-  /* height: 100%;aster
-  width: 100%; */
-  padding: 10px;
+}
+
+.detailCharacter{
+  margin-left: 20px;
+  margin-top: 5px;
 }
 
 #Necromancer{
@@ -859,11 +867,11 @@ input:focus{
 }
 
 #Thief{
-  background-color: rgba(37,35,38,0.8);
+  background-color: rgba(192,87,75,0.8);
 }
 
 #Revenant{
-  background-color: rgba(35,56,61,0.8);
+  background-color: rgba(114,26,28,0.8);
 }
 
 #Warrior{
@@ -880,19 +888,22 @@ input:focus{
 
 
 .name{
-  font-size: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 .nameAndProfession{
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  padding-top: 0px !important;
-  font-size: 20px;
+  align-items: flex-start;
 }
 
 .craftList{
   display: flex;
   flex-wrap: wrap;
+  margin-top: 5px;
+  margin-left: -2px;
 }
 
 .crafting{
@@ -904,6 +915,8 @@ input:focus{
 }
 .crafting span{
   margin-left: 5px;
+  margin-right: 5px;
+
 }
 
 .craftListActive{

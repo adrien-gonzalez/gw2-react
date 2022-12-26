@@ -65,6 +65,8 @@ const ModalCharacter = (props) => {
  
  
   function close(){
+      setBags(false)
+      setEquipment(false)
       props.close()
   }
 
