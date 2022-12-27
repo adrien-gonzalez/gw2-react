@@ -345,7 +345,7 @@ const ModalCharacter = (props) => {
             size="sl"
             aria-labelledby="contained-modal-title-vcenter"
             centered
-            className="modalCharacterGeneral"
+            className="modalCharacterGeneral homeModalCharacter"
            
           >
             <Modal.Header id={props.character.profession} className="character_equipment_header">
@@ -399,6 +399,8 @@ const ModalCharacter = (props) => {
               size="sl"
               aria-labelledby="contained-modal-title-vcenter"
               centered
+              className="modalCharacterGeneral"
+
             >
                <Modal.Header id={props.character.profession}  className="character_equipment_header">
       
@@ -457,6 +459,7 @@ const ModalCharacter = (props) => {
                 size="sl"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
+                className="modalCharacterGeneral"
               >
                 <Modal.Header className="character_equipment_header">
                   <Modal.Title id="contained-modal-title-vcenter">{props.character.name}</Modal.Title>
@@ -491,6 +494,7 @@ const ModalCharacter = (props) => {
               size="sl"
               aria-labelledby="contained-modal-title-vcenter"
               centered
+              className="modalCharacterGeneral"
             >
               <Modal.Header id={props.character.profession}  className="character_equipment_header">
       
@@ -530,6 +534,7 @@ const ModalCharacter = (props) => {
                 size="sl"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
+                className="modalCharacterGeneral"
               >
                 <Modal.Header className="character_equipment_header">
                   <Modal.Title id="contained-modal-title-vcenter">{props.character.name}</Modal.Title>

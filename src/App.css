@@ -1111,6 +1111,23 @@ input:focus{
     width: 55px;
   }
 
+  .modal_character{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: inherit;
+    background-position: center;
+    height: 648px;
+    /* max-height: 660px; */
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start !important;
+  }
+  
+  .homeModalCharacter .modal-body{
+    height: 583px;
+  }
+
 }
 
 
@@ -1124,6 +1141,39 @@ input:focus{
     padding: 22px;
   }
 
+  .modalCharacterGeneral{
+    z-index: 9999 !important;
+  }
+
+  .modalCharacterGeneral .modal-body{
+    height: 100%;
+    width: 100%;
+  }
+
+  .modalCharacterGeneral > .modal-dialog{
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+  }
+
+  .modalCharacterGeneral .modal-content{
+    border-radius: 0px;
+    height: 100%;
+  }
+
+  .modal_character{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: inherit;
+    background-position: center;
+    height: 100%;
+    /* max-height: 660px; */
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start !important;
+  }
+  
   .row_invetory td{
     background-size: contain;
     background-repeat: no-repeat;
@@ -1149,22 +1199,7 @@ input:focus{
   border: 2px solid #747372 !important;
 }
 
-.modal_character{
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: inherit;
-  background-position: center;
-  height: 648px;
-  /* max-height: 660px; */
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
 
-.modalCharacterGeneral .modal-body{
-  height: 583px;
-}
 
 .modal_character img{
   width: 42px;
