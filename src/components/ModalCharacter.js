@@ -5,8 +5,10 @@ import { getItem, getSkin, getWallet, getCurrencies } from '../services/gw2API';
 import React, { useState, useEffect } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 import {  Tooltip, Zoom  } from '@mui/material';
-import equipment_background from '../img/background/equipment.png';
+import equipment_background from '../img/background/bg_panel.jpg';
+
 import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 import inventory_icon  from "../img/icon/inventory.png";
 import equipment_icon from "../img/icon/equipment.png";
@@ -17,7 +19,16 @@ import gold_icon from "../img/icon/gold.png";
 import silver_icon from "../img/icon/silver.png";
 import bronze_icon from "../img/icon/bronze.png";
 
-
+// Image of character
+import Elementalist from '../img/icon/elementalist_icon.png';
+import Guardian from '../img/icon/guardian_icon.png';
+import Mesmer from '../img/icon/mesmer_icon.png';
+import Necromancer from '../img/icon/necromancer_icon.png';
+import Ranger from '../img/icon/ranger_icon.png';
+import Revenant from '../img/icon/revenant_icon.png';
+import Thief from '../img/icon/thief_icon.png';
+import Warrior from '../img/icon/warrior_icon.png';
+import Engineer from '../img/icon/engineer_icon.png';
 
 const ModalCharacter = (props) => {
   
@@ -31,7 +42,18 @@ const ModalCharacter = (props) => {
   const tr = 12
   const td = 8
 
+  const images_class = [
+    { id: 'Elementalist', src: Elementalist},
+    { id: 'Guardian', src: Guardian},
+    { id: 'Mesmer', src: Mesmer},
+    { id: 'Necromancer', src: Necromancer},
+    { id: 'Ranger', src: Ranger},
+    { id: 'Revenant', src: Revenant},
+    { id: 'Thief', src: Thief},
+    { id: 'Warrior', src: Warrior},
+    { id: 'Engineer', src: Engineer},
 
+];
 
   const inventory = [
     {id : '0+0' , name : "Helm", number : 0},
@@ -65,8 +87,6 @@ const ModalCharacter = (props) => {
  
  
   function close(){
-      setBags(false)
-      setEquipment(false)
       props.close()
   }
 
@@ -132,8 +152,8 @@ const ModalCharacter = (props) => {
             )
           }
           
-           
-        } else {
+            
+        } else { 
 
           const item_find = equipment_.filter(
             element => element.type == item_find_inventory.name
@@ -298,21 +318,23 @@ const ModalCharacter = (props) => {
  }
 
   useEffect(() => {
-
-    setBags(false)
-    setEquipment(false)
-
     if(apiKey != null && props.character){
+      setBags(false)
+      setEquipment(false)
       character_detail(props.character)
       getMoney()
       
     }
-
   },[props.character, apiKey])
 
 
   if(equipment != false){
     if(view == "equipment"){
+
+      
+      const classImage = images_class.find(
+          element => element.id == props.character.profession
+      )
       return ( 
         <>
           <Modal  
@@ -323,13 +345,33 @@ const ModalCharacter = (props) => {
             centered
            
           >
-            <Modal.Header className="character_equipment_header">
-              <Modal.Title id="contained-modal-title-vcenter">{props.character.name}</Modal.Title>
-              <div className="changeView">
+            <Modal.Header id={props.character.profession} className="character_equipment_header">
+
+              <div className="ModalCharacterHeader">
+                <ArrowBackIosIcon  className="closeModalCharacter" onClick={close}/>
+                
+                <div>
+                  <div className="logoProfessionModal">
+                    <img src={classImage.src}/>
+                    <Modal.Title id="contained-modal-title-vcenter">{props.character.name}</Modal.Title>
+
+                  </div>
+                  <div className="details">
+                    <div className="detailCard"><span>Level</span><span>{props.character.level}</span></div>
+                    <div className="detailCard"><span>Playtime</span><span>{props.character.age / 3600 >= 1 ? parseInt(props.character.age / 3600) : props.character.age / 60}m</span></div>
+                    <div className="detailCard"><span>Deaths</span><span>{props.character.deaths}</span></div>
+                  </div>
+                </div>
+
+               
+              </div>
+              
+
+              {/* <div className="changeView">
                 <div onClick={() => setView("coin")} style={{  backgroundImage: `url(${coin_icon})`, color: "white" }}></div>
                 <div onClick={() => setView("inventory")} style={{ backgroundImage: `url(${inventory_icon})`, color: "white" }}></div>
                 <div onClick={() => setView("equipment")} style={{  backgroundImage: `url(${equipment_icon})`, color: "white" }}></div>
-              </div>
+              </div> */}
             </Modal.Header>
 
             <Modal.Body style={{backgroundImage: `url(${equipment_background})`}}  className="modal_character">
@@ -346,7 +388,7 @@ const ModalCharacter = (props) => {
                 </tbody>
             </table> 
             </Modal.Body>
-            <Button className="charater_equipement_button" onClick={close}>Annuler</Button>
+            {/* <Button className="charater_equipement_button" onClick={close}>Annuler</Button> */}
           </Modal>
         </>
       );

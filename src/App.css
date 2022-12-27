@@ -42,6 +42,7 @@ button:hover{
   justify-content: space-around;
   flex-wrap: wrap;
   width: 100%;
+  /* max-width: 1300px; */
   animation-name: fadeInOpacity;
 	animation-iteration-count: 1;
 	animation-timing-function: ease-in;
@@ -798,6 +799,17 @@ input:focus{
   height: 96px;
 }
 
+.logoProfessionModal {
+  display: flex;
+  justify-content: center;
+}
+
+.logoProfessionModal > img{
+  width: 32px;
+  height: 32px;
+}
+
+
 @media screen and (min-width: 621px) {
   .characterForm{
     display: flex;
@@ -1112,7 +1124,13 @@ input:focus{
   background-position: inherit;
   background-position: center;
   height: 62vh;
+  max-height: 660px;
   overflow-y: auto;
+}
+
+.playtime{
+  text-align: left;
+  margin-top: 5px;
 }
 
 .character_equipment td{
@@ -1133,11 +1151,31 @@ input:focus{
 }
 
 .character_equipment_header{
-  background-color: #333333 !important;
   color: white !important;
-  border-radius: 0px !important;
-  /* border-bottom: none !important; */
+  display: flex !important;
+  justify-content: center !important; 
 }
+
+.details{
+  display: flex;
+  margin-top: 5px;
+}
+
+.detailCard{
+  padding: 8px;
+  border: 1px solid white;
+  border-radius: 10px;
+  width: 80px;
+  margin-left: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.detailCard > span:first-child{
+  font-size: 12px;
+}
+
 .charater_equipement_button, .item_button{
   margin: 0px !important;
   border-radius: 0px !important;
@@ -1149,10 +1187,6 @@ input:focus{
 .changeView{
   display: flex;
 }
-
-/* .changeView div:first-child{
-  padding-right: 5px;
-} */
 
 .changeView div{
   background-position: center;
@@ -1838,6 +1872,15 @@ tr:has(> .in_progress){
   top: 5px;
 }
 
+.closeModalCharacter{
+  position: absolute;
+  left: 15px;
+  top: 22px;
+}
+
+.closeModalCharacter:hover{
+  cursor: url('img/icon/pointer.png'), auto;
+}
 
 .modal_item{
   border-radius: 5px;

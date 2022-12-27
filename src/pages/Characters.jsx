@@ -100,9 +100,8 @@ const Characters = (props) => {
             return (
                 <section className="wrapper charactersSection">
                     <div id="characters">
-                        <ModalCharacter  character={characterId} show={showModalCharacter} close={() => setShowModalCharacter(false)} />
+                        <ModalCharacter character={characterId} show={showModalCharacter} close={() => setShowModalCharacter(false)} />
                         {character.map((key, index) => {
-
                             const classImage = images_class.find(
                                 element => element.id == key.profession
                             )
@@ -118,11 +117,13 @@ const Characters = (props) => {
                                             <span className='name'>{key.name}</span>
                                             <span>Lv. {key.level} - {key.race} {key.profession}</span>
                                         </div>
-                                        {/* <div className='picture' id='picture"+key+"' style={{backgroundImage: `url(${classImage.src})`, backgroundSize: 'cover'}}></div> */}
-                                        <div className='craftList'>
-                                            {/* <div className='craftListActive crafting'> */}
+                                        <div className="playtime">
+                                            <span>{key.age / 3600 >= 1 ? parseInt(key.age / 3600)+" hours of playtime" : (key.age / 60)+" minutes of playtime"}</span>    
+                                        </div>
+                                      
+                                        {key.crafting.length > 0 ? 
+                                            <div className='craftList'>
                                                 {key.crafting.map((key2, index2) => {
-
                                                     const craftImage = images_craft.find(
                                                         element => element.id == key2.discipline
                                                     )
@@ -130,15 +131,13 @@ const Characters = (props) => {
                                                         return(
                                                             <div key={'craft_'+index2} className='crafting'>
                                                                 <img src={craftImage.src}/>
-                                                                {/* <span>{key2.discipline} - lv. {key2.rating}</span>  */}
                                                                 <span>{key2.rating}</span> 
-
                                                             </div>   
                                                         )
                                                     }                                                    
                                                 })}
-                                            {/* </div> */}
-                                        </div>
+                                            </div>
+                                        : ''}
                                     </div>
                                 </div>
                             )
