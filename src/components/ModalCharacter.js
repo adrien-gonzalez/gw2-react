@@ -9,9 +9,11 @@ import equipment_background from '../img/background/bg_panel.jpg';
 
 import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import CloseIcon from '@mui/icons-material/Close';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
-import inventory_icon  from "../img/icon/inventory.png";
-import equipment_icon from "../img/icon/equipment.png";
+import inventory_icon  from "../img/icon/inventory_icon.png";
+import equipment_icon from "../img/icon/equipment_icon.png";
 import coin_icon from "../img/icon/coin.png";
 
 
@@ -36,10 +38,10 @@ const ModalCharacter = (props) => {
   const [apiKey] = useState(localStorage.getItem('apiKey') ?? '');
   const [equipment, setEquipment] = useState(false);
   const [money, setMoney] = useState(false)
-  const [view, setView] = useState("equipment");
+  const [view, setView] = useState("home");
   const [bags, setBags] = useState(false);
 
-  const tr = 12
+  const tr = 11
   const td = 8
 
   const images_class = [
@@ -323,18 +325,18 @@ const ModalCharacter = (props) => {
       setEquipment(false)
       character_detail(props.character)
       getMoney()
-      
     }
   },[props.character, apiKey])
 
+  
 
   if(equipment != false){
-    if(view == "equipment"){
+    if(view == "home"){
 
-      
       const classImage = images_class.find(
           element => element.id == props.character.profession
       )
+
       return ( 
         <>
           <Modal  
@@ -343,12 +345,13 @@ const ModalCharacter = (props) => {
             size="sl"
             aria-labelledby="contained-modal-title-vcenter"
             centered
+            className="modalCharacterGeneral"
            
           >
             <Modal.Header id={props.character.profession} className="character_equipment_header">
 
               <div className="ModalCharacterHeader">
-                <ArrowBackIosIcon  className="closeModalCharacter" onClick={close}/>
+                <CloseIcon  className="closeModalCharacter" onClick={close}/>
                 
                 <div>
                   <div className="logoProfessionModal">
@@ -358,42 +361,36 @@ const ModalCharacter = (props) => {
                   </div>
                   <div className="details">
                     <div className="detailCard"><span>Level</span><span>{props.character.level}</span></div>
-                    <div className="detailCard"><span>Playtime</span><span>{props.character.age / 3600 >= 1 ? parseInt(props.character.age / 3600) : props.character.age / 60}m</span></div>
+                    <div className="detailCard"><span>Playtime</span><span>{props.character.age / 3600 >= 1 ? parseInt(props.character.age / 3600)+"h" : (props.character.age / 60)+"m"}</span></div>
                     <div className="detailCard"><span>Deaths</span><span>{props.character.deaths}</span></div>
                   </div>
                 </div>
-
-               
               </div>
-              
 
-              {/* <div className="changeView">
-                <div onClick={() => setView("coin")} style={{  backgroundImage: `url(${coin_icon})`, color: "white" }}></div>
-                <div onClick={() => setView("inventory")} style={{ backgroundImage: `url(${inventory_icon})`, color: "white" }}></div>
-                <div onClick={() => setView("equipment")} style={{  backgroundImage: `url(${equipment_icon})`, color: "white" }}></div>
-              </div> */}
             </Modal.Header>
+            <Modal.Body className="modal_character">
+              <div onClick={() => setView("equipment")} className={props.character.profession+" showView"}>
+                <img src={equipment_icon}/>
+                <span>Équipement</span>
+                <ArrowForwardIosIcon/>
+              </div>
 
-            <Modal.Body style={{backgroundImage: `url(${equipment_background})`}}  className="modal_character">
-            
-            <table className="character_equipment">
-                <tbody>
-                {Array(tr).fill(1).map((el, i) =>  
-                  <tr  key={i}>
-                    {Array(td).fill(1).map((el, j) =>
-                      find(i, j, equipment)
-                    )}
-                </tr>
-                )}
-                </tbody>
-            </table> 
+              <div onClick={() => setView("inventory")} className={props.character.profession+" showView"}>
+                <img src={inventory_icon}/>
+                <span>Inventaire</span>
+                <ArrowForwardIosIcon/>
+              </div>
             </Modal.Body>
-            {/* <Button className="charater_equipement_button" onClick={close}>Annuler</Button> */}
           </Modal>
         </>
       );
     } else if(view == "inventory"){
       if(bags != false){
+
+        const classImage = images_class.find(
+          element => element.id == props.character.profession
+        )
+
         return (
           <>
             <Modal 
@@ -403,13 +400,18 @@ const ModalCharacter = (props) => {
               aria-labelledby="contained-modal-title-vcenter"
               centered
             >
-              <Modal.Header className="character_equipment_header">
-                <Modal.Title id="contained-modal-title-vcenter">{props.character.name}</Modal.Title>
-                <div className="changeView">
-                  <div onClick={() => setView("coin")} style={{  backgroundImage: `url(${coin_icon})`, color: "white" }}></div>
-                  <div onClick={() => setView("inventory")} style={{ backgroundImage: `url(${inventory_icon})`, color: "white" }}></div>
-                  <div onClick={() => setView("equipment")} style={{  backgroundImage: `url(${equipment_icon})`, color: "white" }}></div>
+               <Modal.Header id={props.character.profession}  className="character_equipment_header">
+      
+                <div className="ModalCharacterHeader">
+                <ArrowBackIosIcon  className="returnModalCharacter" onClick={() => setView("home")}/>
+
+                <div>
+                  <div className="logoProfessionModal">
+                    <Modal.Title id="contained-modal-title-vcenter">Inventaire</Modal.Title>
+
+                  </div>
                 </div>
+              </div>
               </Modal.Header>
       
               <Modal.Body style={{backgroundImage: `url(${equipment_background})`}}  className="modal_character">
@@ -443,8 +445,6 @@ const ModalCharacter = (props) => {
                   </tbody>
                 </table>
               </Modal.Body>
-              <Button className="charater_equipement_button" onClick={close}>Annuler</Button>
-    
             </Modal>
           </>
         );
@@ -472,14 +472,17 @@ const ModalCharacter = (props) => {
                     aria-hidden="true"
                   />
                 </Modal.Body>
-                <Button className="charater_equipement_button" onClick={close}>Annuler</Button>
-      
               </Modal>
             </>
           );
         }
     } else {
-      if(money != false){
+      if(equipment != false){
+
+        const classImage = images_class.find(
+          element => element.id == props.character.profession
+        )
+
         return (
           <>
             <Modal 
@@ -489,39 +492,32 @@ const ModalCharacter = (props) => {
               aria-labelledby="contained-modal-title-vcenter"
               centered
             >
-              <Modal.Header className="character_equipment_header">
-                <Modal.Title id="contained-modal-title-vcenter">{props.character.name}</Modal.Title>
-                <div className="changeView">
-                  <div onClick={() => setView("coin")} style={{  backgroundImage: `url(${coin_icon})`, color: "white" }}></div>
-                  <div onClick={() => setView("inventory")} style={{ backgroundImage: `url(${inventory_icon})`, color: "white" }}></div>
-                  <div onClick={() => setView("equipment")} style={{  backgroundImage: `url(${equipment_icon})`, color: "white" }}></div>
+              <Modal.Header id={props.character.profession}  className="character_equipment_header">
+      
+                <div className="ModalCharacterHeader">
+                <ArrowBackIosIcon  className="returnModalCharacter" onClick={() => setView("home")}/>
+        
+                <div>
+                  <div className="logoProfessionModal">
+                    <Modal.Title id="contained-modal-title-vcenter">Équipement</Modal.Title>
+                  </div>
                 </div>
+              </div>
               </Modal.Header>
       
               <Modal.Body style={{backgroundImage: `url(${equipment_background})`}}  className="modal_character">
-                {/* <table className='table_bags'>
-                  <tbody> */}
-                  <section className="currencies">
-                      {money.map((key, index) => {
-                        return(
-                          <div key={'currencie_'+index} className="currency_info">
-                            <span className="currency_name">{key.name}</span>
-
-                            <div className="count_currency">
-                              {key.order == 101 ? currency_calculation(key.count) : <span>{key.count}</span>}
-                              {key.order == 101 ? '' : <div style={{backgroundImage: `url(${key.icon})`}}></div>}
-                            </div>
-                          
-                          </div>
-                          
-                        )
-                      })}
-                  </section>
-                  {/* </tbody>
-                </table> */}
+                <table className="character_equipment">
+                    <tbody>
+                    {Array(tr).fill(1).map((el, i) =>  
+                      <tr  key={i}>
+                        {Array(td).fill(1).map((el, j) =>
+                          find(i, j, equipment)
+                        )}
+                    </tr>
+                    )}
+                    </tbody>
+                </table> 
               </Modal.Body>
-              <Button className="charater_equipement_button" onClick={close}>Annuler</Button>
-    
             </Modal>
           </>
         );
@@ -563,14 +559,10 @@ const ModalCharacter = (props) => {
           show={props.show} 
           onHide={props.onHide}
           size="sl"
-          aria-labelledby="contained-modal-title-vcenter"
           centered
+          className="loaderModal"
         >
-          <Modal.Header className="character_equipment_header">
-            <Modal.Title id="contained-modal-title-vcenter">Info personnage</Modal.Title>
-          </Modal.Header>
-  
-          <Modal.Body className="loading_character_equipment">
+          
             <Spinner
               className="loader"
               as="span"
@@ -579,9 +571,7 @@ const ModalCharacter = (props) => {
               role="status"
               aria-hidden="true"
             />
-          </Modal.Body>
-          <Button className="charater_equipement_button" onClick={close}>Annuler</Button>
-
+          
         </Modal>
       </>
     );
