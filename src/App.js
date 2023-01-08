@@ -44,6 +44,30 @@ const App = (props) => {
           <Header/>
           
           <SettingsIcon style={{color: localStorage.getItem('color') == "dark" ? 'white' : 'black'}} onClick={() => setShowModalAuth(true)} className="settings"></SettingsIcon>
+
+
+          <div className="burgerMenu">
+           
+
+            <input id="toggle" type="checkbox"></input>
+
+            <label for="toggle" class="hamburger">
+              <div class="top-bun"></div>
+              <div class="meat"></div>
+              <div class="bottom-bun"></div>
+            </label>
+
+            <div class="nav">
+              <div class="nav-wrapper">
+                <nav>
+                  <a href="#">HOME</a><br/>
+                  <a href="#">ABOUT</a><br/>
+                  <a href="#">WORK</a><br/>
+                  <a href="#">SERVICES</a>
+                </nav>
+              </div>
+            </div>
+          </div>
           
           <ModalAuth show={showModalAuth} close={() => setShowModalAuth(false)} />
 
