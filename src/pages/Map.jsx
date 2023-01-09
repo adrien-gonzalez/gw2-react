@@ -352,7 +352,7 @@ const Map = (props) => {
         <img className="tyriaArrow" onClick={()=>onClick('N')}src={tyriaNavigation}/>
         <img onClick={()=>onClick('E')} className="desertArrow" src={desertNavigation}/>
         <img onClick={()=>onClick('S')} className="canthaArrow" src={canthaNavigation}/>
-        <img onClick={()=>onClick('W')} className="maguumaArrow" src={maguumaNavigation}/> 
+        <img onClick={()=>onClick('W')} className="maguumaArrow" src={maguumaNavigation}/>  
         <img className="mapNavigation" src={navigation}/>
       </div>
     )

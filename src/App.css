@@ -373,6 +373,7 @@ button:hover{
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 50px;
   }
 
   #characters,.worldbosses, .meta-section{
@@ -409,7 +410,7 @@ button:hover{
   .changeViewButton{
     position: absolute;
     right: 10px;
-    bottom: 75px;
+    bottom: 50px;
   }
 
   .changeViewButton > img:not(:last-child){
@@ -2175,7 +2176,7 @@ tr:has(> .in_progress){
   width: 25px;
   height: 4px;
   /* border-radius: 3px; */
-  background-color: black;
+  /* background-color: black; */
   margin-top: 4px;
   transition: all 0.3s ease-in-out;
 }

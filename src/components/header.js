@@ -55,14 +55,14 @@ const Header = (props) => {
           <div className="burgerMenu">
           <input id="toggle" type="checkbox"></input>
 
-          <label for="toggle" class="hamburger">
-            <div class="top-bun"></div>
-            <div class="meat"></div>
-            <div class="bottom-bun"></div>
+          <label for="toggle" className="hamburger">
+            <div style={{backgroundColor: localStorage.getItem('color') == "dark" ? 'white' : 'black'}} className="top-bun"></div>
+            <div style={{backgroundColor: localStorage.getItem('color') == "dark" ? 'white' : 'black'}} className="meat"></div>
+            <div style={{backgroundColor: localStorage.getItem('color') == "dark" ? 'white' : 'black'}} className="bottom-bun"></div>
           </label>
 
-          <div class="nav">
-            <div class="nav-wrapper">
+          <div style={{backgroundColor: localStorage.getItem('color') == "dark" ? 'rgb(34, 34, 34)' : 'white'}} className="nav">
+            <div className="nav-wrapper">
               <nav>
                 <label for="toggle"  onClick={()=>navigate("pages/events")}><div className="buttonWithIconMobile"><AccessTimeFilledIcon className="menuIcon" style={{ color: "white" }}/></div><span>Évènements</span></label>
                 <label for="toggle"  onClick={()=>navigate("pages/worldboss")}><div className="buttonWithIconMobile"><div style={{ backgroundImage: `url(${boss})`}}></div></div><span>WorldBoss</span></label>
