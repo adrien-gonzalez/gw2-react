@@ -118,7 +118,7 @@ const Characters = (props) => {
                                             <span>Lv. {key.level} - {key.race} {key.profession}</span>
                                         </div>
                                         <div className="playtime">
-                                            <span>{key.age / 3600 >= 1 ? parseInt(key.age / 3600)+" hours of playtime" : (key.age / 60)+" minutes of playtime"}</span>    
+                                            <span>{key.age / 3600 >= 1 ? parseInt(key.age / 3600)+" hours of playtime" : parseInt(key.age / 60)+" minutes of playtime"}</span>    
                                         </div>
                                       
                                         {key.crafting.length > 0 ? 

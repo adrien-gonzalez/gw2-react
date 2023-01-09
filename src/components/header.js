@@ -37,6 +37,7 @@ const Header = (props) => {
 
     let navigate = useNavigate();
     return (
+      <div className="div-header">
         <header style={{backgroundColor: color == 'default' ? 'transparent' : '#222222'}} className="App-header">
         
             {/* <Button onClick={() => setShowModalAuth(true)}  style={{ backgroundColor: localStorage.getItem('apiKey') ? '#4ECDC4' : '#C62E2D' }} className={color == '#C62E2D' ? 'zoom menuButton' : 'menuButton'} variant="contained"><KeyIcon className="menuIcon" style={{ color: "white" }}></KeyIcon></Button>
@@ -50,6 +51,31 @@ const Header = (props) => {
             <Button onClick={()=>navigate("pages/map")} style={{ backgroundColor: "black" }} className="ButtonPng menuButton" variant="contained"><div className="buttonWithIcon" style={{ backgroundSize: 'contain', backgroundImage: `url(${map})`}}></div></Button>
 
         </header>
+
+          <div className="burgerMenu">
+          <input id="toggle" type="checkbox"></input>
+
+          <label for="toggle" class="hamburger">
+            <div class="top-bun"></div>
+            <div class="meat"></div>
+            <div class="bottom-bun"></div>
+          </label>
+
+          <div class="nav">
+            <div class="nav-wrapper">
+              <nav>
+                <label for="toggle"  onClick={()=>navigate("pages/events")}><div className="buttonWithIconMobile"><AccessTimeFilledIcon className="menuIcon" style={{ color: "white" }}/></div><span>Évènements</span></label>
+                <label for="toggle"  onClick={()=>navigate("pages/worldboss")}><div className="buttonWithIconMobile"><div style={{ backgroundImage: `url(${boss})`}}></div></div><span>WorldBoss</span></label>
+                <label for="toggle"  onClick={()=>navigate("pages/characters")}><div className="buttonWithIconMobile"><PersonIcon className="menuIcon" style={{ color: "white" }}/></div><span>Personnages</span></label>
+                <label for="toggle"  onClick={()=>navigate("pages/bank")}><div className="buttonWithIconMobile"><div style={{ backgroundImage: `url(${bank})`}}></div></div><span>Banque</span></label>
+                <label for="toggle"  onClick={()=>navigate("pages/trading")}><div className="buttonWithIconMobile"><div style={{ backgroundImage: `url(${trading})`}}></div></div><span>Commerce</span></label>
+                <label for="toggle"  onClick={()=>navigate("pages/map")}><div className="buttonWithIconMobile"><div style={{ backgroundSize: 'contain', backgroundImage: `url(${map})`}}></div></div><span>Map</span></label>
+              </nav>
+            </div>
+          </div>
+          </div>
+      </div>
+
         
     ); 
 

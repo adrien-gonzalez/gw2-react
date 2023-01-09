@@ -57,6 +57,9 @@ button:hover{
   overflow-y: auto;
 }
 
+.div-header{
+  display: flex;
+}
 
 
 @media screen and (min-width: 600px) {
@@ -2205,12 +2208,19 @@ Nav Styles
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 100%;
 }
 .burgerMenu nav {
-  text-align: left;
-  margin-left: 25%;
+  /* text-align: left; */
+  /* margin-left: 25%; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+
+
 }
-.burgerMenu nav a {
+.burgerMenu nav label {
   position: relative;
   text-decoration: none;
   color: black;
@@ -2219,20 +2229,23 @@ Nav Styles
   margin-top: 1.25em;
   transition: color 0.2s ease-in-out;
   letter-spacing: 1px;
+  display: flex;
+  justify-content: center;
 }
-.burgerMenu nav a:before {
-  content: '';
+.burgerMenu nav label:before {
+  /* content: '';
   height: 0;
   position: absolute;
   width: 0.25em;
   background-color: black;
-  left: -0.5em;
-  transition: all 0.2s ease-in-out;
+  left: 5.5em;
+  transition: all 0.2s ease-in-out; */
 }
-.burgerMenu nav a:hover {
+.burgerMenu nav label:hover {
   font-weight: bold;
+  cursor: url('img/icon/pointer.png'), auto !important;	
 }
-.burgerMenu nav a:hover:before {
+.burgerMenu nav label:hover:before {
   height: 100%;
 }
 
@@ -2256,5 +2269,27 @@ Animations
   top: 0;
   transform: scale(1);
 }
+
+.buttonWithIconMobile{
+  width: 40px !important;
+  height: 40px;
+  background-color: black;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonWithIconMobile div{
+  width: 80%;
+  height: 80%;
+  background-size: cover;
+}
+
+.nav-wrapper nav label span{
+  margin-left: 15px;
+}
+
+
 
 

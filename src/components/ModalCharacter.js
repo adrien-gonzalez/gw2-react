@@ -361,7 +361,7 @@ const ModalCharacter = (props) => {
                   </div>
                   <div className="details">
                     <div className="detailCard"><span>Level</span><span>{props.character.level}</span></div>
-                    <div className="detailCard"><span>Playtime</span><span>{props.character.age / 3600 >= 1 ? parseInt(props.character.age / 3600)+"h" : (props.character.age / 60)+"m"}</span></div>
+                    <div className="detailCard"><span>Playtime</span><span>{props.character.age / 3600 >= 1 ? parseInt(props.character.age / 3600)+"h" : parseInt(props.character.age / 60)+"m"}</span></div>
                     <div className="detailCard"><span>Deaths</span><span>{props.character.deaths}</span></div>
                   </div>
                 </div>
