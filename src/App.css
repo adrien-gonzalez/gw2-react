@@ -166,6 +166,7 @@ button:hover{
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 50px;
   }
 
   #characters,.worldbosses, .meta-section{

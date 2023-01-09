@@ -66,8 +66,8 @@ const Header = (props) => {
               <nav>
                 <label for="toggle"  onClick={()=>navigate("pages/events")}><div className="buttonWithIconMobile"><AccessTimeFilledIcon className="menuIcon" style={{ color: "white" }}/></div><span>Évènements</span></label>
                 <label for="toggle"  onClick={()=>navigate("pages/worldboss")}><div className="buttonWithIconMobile"><div style={{ backgroundImage: `url(${boss})`}}></div></div><span>WorldBoss</span></label>
-                <label for="toggle"  onClick={()=>navigate("pages/characters")}><div className="buttonWithIconMobile"><PersonIcon className="menuIcon" style={{ color: "white" }}/></div><span>Personnages</span></label>
-                <label for="toggle"  onClick={()=>navigate("pages/bank")}><div className="buttonWithIconMobile"><div style={{ backgroundImage: `url(${bank})`}}></div></div><span>Banque</span></label>
+                {apiKey ?<label for="toggle"  onClick={()=>navigate("pages/characters")}><div className="buttonWithIconMobile"><PersonIcon className="menuIcon" style={{ color: "white" }}/></div><span>Personnages</span></label>: ''}
+                {apiKey ?<label for="toggle"  onClick={()=>navigate("pages/bank")}><div className="buttonWithIconMobile"><div style={{ backgroundImage: `url(${bank})`}}></div></div><span>Banque</span></label> : ''}
                 <label for="toggle"  onClick={()=>navigate("pages/trading")}><div className="buttonWithIconMobile"><div style={{ backgroundImage: `url(${trading})`}}></div></div><span>Commerce</span></label>
                 <label for="toggle"  onClick={()=>navigate("pages/map")}><div className="buttonWithIconMobile"><div style={{ backgroundSize: 'contain', backgroundImage: `url(${map})`}}></div></div><span>Map</span></label>
               </nav>
