@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/gw2-react/static/css/main.36e0d3e1.css",
-    "main.js": "/gw2-react/static/js/main.afdf4e2e.js",
+    "main.css": "/gw2-react/static/css/main.7e7c1bdb.css",
+    "main.js": "/gw2-react/static/js/main.bb0be84e.js",
     "static/js/787.211ad51a.chunk.js": "/gw2-react/static/js/787.211ad51a.chunk.js",
     "static/media/background.png": "/gw2-react/static/media/background.f4ed0829f5e6f6b91523.png",
     "static/media/Triple terreur.png": "/gw2-react/static/media/Triple terreur.d37b44a8a3be4c3ef818.png",
@@ -23,7 +23,7 @@
     "static/media/warrior_icon.png": "/gw2-react/static/media/warrior_icon.0d28aaadd7b3422bd9bb.png",
     "static/media/engineer_icon.png": "/gw2-react/static/media/engineer_icon.2363d14a6c8c215fdbfa.png",
     "static/media/guardian_icon.png": "/gw2-react/static/media/guardian_icon.f5508525a10847b9d1ea.png",
-    "static/media/navigation.svg": "/gw2-react/static/media/navigation.ecb04dcefbcf1b2437f433d3178f2eee.svg",
+    "static/media/navigation.svg": "/gw2-react/static/media/navigation.edac4824d1387426db3ade0b773ea80b.svg",
     "static/media/cantha.png": "/gw2-react/static/media/cantha.93a421febe3093a1ee98.png",
     "static/media/thief_icon.png": "/gw2-react/static/media/thief_icon.a22396d2960ed3bf0b99.png",
     "static/media/mesmer_icon.png": "/gw2-react/static/media/mesmer_icon.0814a7ce84ed1435f74c.png",
@@ -41,15 +41,15 @@
     "static/media/trading.png": "/gw2-react/static/media/trading.d4d8146d1d566ec064b1.png",
     "static/media/Weaponsmith.png": "/gw2-react/static/media/Weaponsmith.a45a9b881a3f012d5035.png",
     "static/media/Chef.png": "/gw2-react/static/media/Chef.3af24edca3db58c0be15.png",
-    "static/media/boss.svg": "/gw2-react/static/media/boss.c4db052768a4c9c619a57855cb8593a2.svg",
+    "static/media/boss.svg": "/gw2-react/static/media/boss.93af2eb69edf05c1a8937303847dfc6d.svg",
     "index.html": "/gw2-react/index.html",
     "static/media/bank.svg": "/gw2-react/static/media/bank.054bc5f7f27e065e92c1bc2dccd17aa7.svg",
-    "main.36e0d3e1.css.map": "/gw2-react/static/css/main.36e0d3e1.css.map",
-    "main.afdf4e2e.js.map": "/gw2-react/static/js/main.afdf4e2e.js.map",
+    "main.7e7c1bdb.css.map": "/gw2-react/static/css/main.7e7c1bdb.css.map",
+    "main.bb0be84e.js.map": "/gw2-react/static/js/main.bb0be84e.js.map",
     "787.211ad51a.chunk.js.map": "/gw2-react/static/js/787.211ad51a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.36e0d3e1.css",
-    "static/js/main.afdf4e2e.js"
+    "static/css/main.7e7c1bdb.css",
+    "static/js/main.bb0be84e.js"
   ]
 }
