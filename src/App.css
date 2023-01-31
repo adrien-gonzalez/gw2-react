@@ -2292,6 +2292,181 @@ Animations
   margin-left: 15px;
 }
 
+/* TODO LIST */
 
+.boardTodo{
+  height: 100%;
+  display: flex;
+}
 
+.boardTodo  > div{
+  margin-top: 55px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.task{
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  min-height: 38px;
+}
+
+.task span{
+  text-align: left;
+  word-break: break-all;
+  margin-left: 28px;
+  color: black;
+}
+
+/* .task > div:first-child{
+  display: flex;
+} */
+
+.task > div:first-child {
+  position: absolute;
+}
+
+.todo .task > div:first-child {
+  background-color: #E74C3C;
+}
+
+.in_progress .task > div:first-child {
+  background-color: orange;
+}
+
+.done .task > div:first-child {
+  background-color: #27AE60 ;
+}
+
+.other .task > div:first-child {
+  background-color: #2C3E50;
+}
+
+.hide{
+  display: none !important;
+}
+
+.show{
+  display: block !important;
+}
+
+.deleteTask > svg{
+  font-size: 17px !important;
+  color: #67748B;
+}
+
+.deleteTask{
+  position: absolute;
+  background-color: #EBECF0;
+  right: 5px;
+  top: 5px;
+  width: 25px;
+  height: 25px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.addTaskField{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  padding: 0px 8px 0px 8px;
+  position: relative;
+  background-color: white;
+}
+
+.addTaskField > textarea{
+  resize: none !important;
+  width: 100%;
+  height: 5vh;
+  border: 1px solid lightgrey;
+  outline: none;
+}
+
+.addTaskField > svg{
+  position: absolute;
+  right: 8px;
+  color: #67748B;
+  font-size: 22px;
+}
+
+.deleteTask:hover, 
+.addTaskField > svg:hover{
+  cursor: url('img/icon/pointer.png'), auto !important;	
+}
+
+.addTaskButton{
+  background: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  transition: 0.3s;
+}
+
+.addTaskButton:hover{
+  background-color: #EBECF0;
+}
+
+.addTaskButton > svg{
+  color: #67748B;
+  font-size: 22px;
+  margin-right: 8px;
+}
+
+.validTaskButton{
+  background-color: #333333;
+  border: none;
+  padding: 5px;
+  color: white;
+  transition: 0.3s;
+}
+
+.defaultColumn .validTaskButton:hover{
+  background-color: black;
+}
+
+.boardTodo h3{
+  font-weight: bold;
+}
+
+.boardTodo > div > div{
+  width: 20vw;
+  min-width: 200px;
+  max-width: 500px;
+}
+
+.darkColumn h3{
+  color: white;
+  background-color: black !important;
+}
+
+.darkColumn > div{
+  color: white;
+  background-color: black !important;
+}
+
+.darkColumn .addTaskButton{
+  color: white;
+  background-color: black !important;
+}
+
+.darkColumn .task, .darkColumn textarea{
+  background-color: #222222;
+  color: white;
+}
+
+.darkColumn .task > span{
+  color: white;
+}
+
+.darkColumn .task > .deleteTask{
+  background-color: black !important;
+}
 

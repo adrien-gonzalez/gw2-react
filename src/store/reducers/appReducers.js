@@ -1,4 +1,4 @@
-const initialState = { apiKey: {key: 0}, appColor: {color: 0} }
+const initialState = { apiKey: {key: 0}, appColor: {color: 0}, tasks: {update: false} }
 
 function appState(state = initialState, action) {
     let nextState;
@@ -14,6 +14,13 @@ function appState(state = initialState, action) {
             // console.log("state", state);
             nextState = {
                 ...state, appColor: (action.value)
+            }
+            // console.log("next", nextState);
+            return nextState || state
+        case 'UPDATE_TASK':
+            // console.log("state", state);
+            nextState = {
+                ...state, tasks: (action.value)
             }
             // console.log("next", nextState);
             return nextState || state

@@ -13,6 +13,8 @@ import Worldboss from './pages/Worldboss';
 import Characters from './pages/Characters';
 import Bank from './pages/Bank';
 import Map from './pages/Map';
+import Todo from './pages/Todo';
+
 import SettingsIcon from '@mui/icons-material/Settings';
 import ModalAuth from "./components/ModalAuth";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -65,6 +67,8 @@ const App = (props) => {
             <Route exact path="pages/bank" element={<Bank/>}/>
             <Route exact path="pages/trading" element={<Trading/>}/>
             <Route exact path="pages/map" element={<Map/>}/>
+            <Route exact path="pages/todo" element={<Todo/>}/>
+
 
           </Routes>
         </div>
