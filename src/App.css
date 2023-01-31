@@ -209,7 +209,12 @@ button:hover{
 
   .p-column-header-content > .p-column-title{
     display: block;
+  }
 
+  .boardTodo > div > div{
+    width: 20vw;
+    min-width: 250px;
+    max-width: 500px;
   }
 
 }
@@ -308,22 +313,7 @@ button:hover{
   }
   .App-header {
     display: none !important;
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
-    z-index: 2;
-    transform: rotate(-90deg);
-    position: fixed;
-    bottom: 32px;
-    height: 0px; */
   }
-
-  /* .App-header  button{
-    border: 1px solid white;
-  } */
-
   .rdt_TableBody{ 
     height: 43vh !important;
     background-color: rgba(0,0,0,0.8) !important;
@@ -456,6 +446,10 @@ button:hover{
   .mapInfo{
     top: 115px !important;
   }
+
+  .boardTodo > div > div{
+    width: 85%;
+  }  
 
 }
 
@@ -2436,11 +2430,6 @@ Animations
   font-weight: bold;
 }
 
-.boardTodo > div > div{
-  width: 20vw;
-  min-width: 200px;
-  max-width: 500px;
-}
 
 .darkColumn h3{
   color: white;

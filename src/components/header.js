@@ -68,6 +68,7 @@ const Header = (props) => {
           <div style={{backgroundColor: localStorage.getItem('color') == "dark" ? 'rgb(34, 34, 34)' : 'white'}} className="nav">
             <div className="nav-wrapper">
               <nav>
+                <label htmlFor="toggle"  onClick={()=>navigate("pages/todo")}><div className="buttonWithIconMobile"><AssignmentTurnedInIcon className="menuIcon" style={{ color: "white" }}/></div><span>To Do List</span></label>
                 <label htmlFor="toggle"  onClick={()=>navigate("pages/events")}><div className="buttonWithIconMobile"><AccessTimeFilledIcon className="menuIcon" style={{ color: "white" }}/></div><span>Évènements</span></label>
                 <label htmlFor="toggle"  onClick={()=>navigate("pages/worldboss")}><div className="buttonWithIconMobile"><div style={{ backgroundImage: `url(${boss})`}}></div></div><span>WorldBoss</span></label>
                 {apiKey ?<label htmlFor="toggle"  onClick={()=>navigate("pages/characters")}><div className="buttonWithIconMobile"><PersonIcon className="menuIcon" style={{ color: "white" }}/></div><span>Personnages</span></label>: ''}
