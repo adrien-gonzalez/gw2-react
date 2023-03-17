@@ -22,8 +22,6 @@ import dungeonImg from "../img/icon/dungeon.png";
 import FullscreenIcon from '@mui/icons-material/Fullscreen';
 
 
-
-
 // MASTERY POINTS
 import desert from "../img/icon/desert.png";
 import maguuma from "../img/icon/maguuma.png";
@@ -33,7 +31,7 @@ import cantha from "../img/icon/cantha.png";
 
 // JSON MAP INFO
 import  mapsDetails from '../data/maps.json';
-import  mapsAll from '../data/mapsAll.json';
+import  mapsAll from '../data/mapsALL.json';
 
 
 
@@ -68,7 +66,10 @@ const Map = (props) => {
           element => element.id == maps.id
         )
 
-       
+        // console.log(mapsInfo)
+
+        
+
           if(Object.keys(maps.tasks).length > 0 && mapsInfo.type == "Public" && mapsInfo.show != false){
             Object.keys(maps.tasks).map((key, index)=> { 
               tasks.push([{'id': mapsInfo.id, 'coord' : map.unproject(maps.tasks[key].coord,map.getMaxZoom()), 'type' : 'CoreIcon', 'name': maps.tasks[key].name}])
@@ -157,7 +158,7 @@ const Map = (props) => {
               </Popup>
             </Marker>
           )
-        } else if(key[0].type == "pointInterestIcon"){
+         } else if(key[0].type == "pointInterestIcon"){
 
     
           var pointInterestIcon = L.icon({
@@ -242,7 +243,7 @@ const Map = (props) => {
           var masteryPoint = {'Cantha': cantha, 'Maguuma': maguuma, 'Desert': desert, 'Tyria': tyria, 'Tundra': tundra}
           
           var masteryIcon = L.icon({
-            iconUrl: masteryPoint[key[0].region],
+            iconUrl: masteryPoint[key[0].region] ?? cantha,
             iconSize:     [32, 32], 
             className: "hideElement map_"+key[0].id,
           });
@@ -268,7 +269,6 @@ const Map = (props) => {
     if(continent.length == 0){
       mapsDetails.map((key, index)=> { 
       if(key.type == "Public" && key.show != false)
-      // console.log(key)
         continent.push({"id": key.id, "name" : key.name, "coord":key.continent_rect})
       })
     }
