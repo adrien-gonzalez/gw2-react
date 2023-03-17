@@ -33,7 +33,7 @@ import cantha from "../img/icon/cantha.png";
 
 // JSON MAP INFO
 import  mapsDetails from '../data/maps.json';
-import  mapsAll from '../data/mapAllNew.json';
+import  mapsAll from '../data/mapsAll.json';
 
 
 
