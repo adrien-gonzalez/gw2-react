@@ -21,7 +21,9 @@ const Events = (props) => {
     const [color, setColor] = useState(localStorage.getItem('color') ?? 'default');
     const localTime =  moment();
     // const startHour = Math.floor(localTime.hour() / 2) * 2;
-    const startHour = isFloat(localTime.hour() / 2) ? Math.floor(localTime.hour() / 2) * 2 + 1 : Math.floor(localTime.hour() / 2) * 2 - 1;
+
+    // Besoin de condition si heure d'été ou hiver
+    const startHour = isFloat(localTime.hour() / 2) ? Math.floor(localTime.hour() / 2) * 2 + 1 : Math.floor(localTime.hour() / 2) * 2 ;//- 1;
 
 
     function isFloat(n) {
