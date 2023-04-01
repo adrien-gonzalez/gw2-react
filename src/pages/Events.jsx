@@ -20,10 +20,12 @@ const Events = (props) => {
     const orientation = useOrientationChange()
     const [color, setColor] = useState(localStorage.getItem('color') ?? 'default');
     const localTime =  moment();
-    // const startHour = Math.floor(localTime.hour() / 2) * 2;
 
     // Besoin de condition si heure d'été ou hiver
-    const startHour = isFloat(localTime.hour() / 2) ? Math.floor(localTime.hour() / 2) * 2 + 1 : Math.floor(localTime.hour() / 2) * 2 ;//- 1;
+    // ETE
+    const startHour = Math.floor(localTime.hour() / 2) * 2;
+    // HIVER
+    // const startHour = isFloat(localTime.hour() / 2) ? Math.floor(localTime.hour() / 2) * 2 + 1 : Math.floor(localTime.hour() / 2) * 2 - 1;
 
 
     function isFloat(n) {
