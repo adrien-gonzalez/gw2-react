@@ -82,21 +82,24 @@ const Trading = (props) => {
 
         const object = []
         const data = await getAllItems()
-        data.results.map((key, index) => {
+       
+        // ["id","buy","sell","supply","demand"]
+        data.items.map((key, index) => {
 
             const nameFr = Items.find(
-                element => element.id == data.results[index].data_id
+                element => element.id == data.items[index][0]
             )
 
             if(nameFr) {
-                data.results[index].name = nameFr.name
-                data.results[index].description = nameFr.description
-                data.results[index].details = nameFr.details
-                data.results[index].rarity = nameFr.rarity
-                data.results[index].flags = nameFr.flags
-                data.results[index].type = nameFr.type
-                data.results[index].vendor_value = nameFr.vendor_value
-                object.push(data.results[index])
+                data.items[index].name = nameFr.name
+                data.items[index].description = nameFr.description
+                data.items[index].details = nameFr.details
+                data.items[index].rarity = nameFr.rarity
+                data.items[index].flags = nameFr.flags
+                data.items[index].type = nameFr.type
+                data.items[index].vendor_value = nameFr.vendor_value
+                data.items[index].img = nameFr.icon
+                object.push(data.items[index])
             } 
         })
 
@@ -140,7 +143,6 @@ const Trading = (props) => {
     const header1 = renderHeader1();
     const nameItem = (rowData) => {
 
-
         return  (
             <div className='trading_item'>
                 <div onClick={() => {setShowModalItem(true);setItemId(rowData)}} className={"item_info "+rowData.rarity} style={{backgroundImage: `url(${rowData.img})`}}></div>
@@ -150,11 +152,11 @@ const Trading = (props) => {
     }
 
     const sellPriceItem = (rowData) => {
-        return currency_calculation(rowData.max_offer_unit_price)
+        return currency_calculation(rowData[1])
     }
 
     const buyPriceItem = (rowData) => {
-        return currency_calculation(rowData.min_sale_unit_price)
+        return currency_calculation(rowData[2])
     }
 
 

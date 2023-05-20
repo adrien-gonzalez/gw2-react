@@ -91,7 +91,7 @@ export function getTrading(page) {
 // GET ALL ITEMS WITH BUY AND SELL
 export function getAllItems(){
     return axios
-    .get("https://www.gw2spidy.com/api/v0.9/json/all-items/all")
+    .get("https://api.gw2tp.com/1/bulk/items.json")
     .then((response) => response.data)
     .catch((error) => error.response.data.errors);    
 }

@@ -99,9 +99,16 @@ const ModalCharacter = (props) => {
   };
 
   const getMyEquipment = async (item, api, count) => {
-    const data = await getItem(item, api)
-    data.count = count
-    return data
+
+    try {
+      const data = await getItem(item, api)
+      data.count = count
+      return data
+    } catch (e) {
+      // console.log(e)
+    }
+
+   
   };
 
   const character_detail = async (character_info) =>  {
@@ -513,7 +520,7 @@ const ModalCharacter = (props) => {
                 <table className="character_equipment">
                     <tbody>
                     {Array(tr).fill(1).map((el, i) =>  
-                      <tr  key={i}>
+                      <tr  className="equipment_modal row_invetory" key={i}>
                         {Array(td).fill(1).map((el, j) =>
                           find(i, j, equipment)
                         )}

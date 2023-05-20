@@ -227,7 +227,12 @@ button:hover{
   margin-left: 0px;
 }
 
+.equipment_modal{
+  margin-bottom: 0px !important;
+}
+
 @media screen and (max-width: 599px) {
+
 
   .trading_table{
     width: 100%;
@@ -1166,15 +1171,11 @@ input:focus{
 }
 
 
-
 @media (max-width: 475px){
   .modal-dialog{
     width: 100%;
   }
 
-  .character_equipment td{
-    padding: 22px;
-  }
 
   .modalCharacterGeneral{
     z-index: 9999 !important;
@@ -1232,6 +1233,7 @@ input:focus{
   /* animation-iteration-count: 1; */
   animation-timing-function: ease-in;
   animation-duration: 0.4s;
+  height: 100%;
 }
 
 .border_equipment{
