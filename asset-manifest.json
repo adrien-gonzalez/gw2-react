@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/gw2-react/static/css/main.6809db7d.css",
-    "main.js": "/gw2-react/static/js/main.e5ecc24c.js",
+    "main.js": "/gw2-react/static/js/main.bc69b047.js",
     "static/js/787.211ad51a.chunk.js": "/gw2-react/static/js/787.211ad51a.chunk.js",
     "static/media/background.png": "/gw2-react/static/media/background.f4ed0829f5e6f6b91523.png",
     "static/media/Triple terreur.png": "/gw2-react/static/media/Triple terreur.d37b44a8a3be4c3ef818.png",
@@ -31,6 +31,7 @@
     "static/media/necromancer_icon.png": "/gw2-react/static/media/necromancer_icon.c0bb6ce5df949209b71d.png",
     "static/media/Leatherworker.png": "/gw2-react/static/media/Leatherworker.6c41412053f96f34bd34.png",
     "static/media/ranger_icon.png": "/gw2-react/static/media/ranger_icon.22a867265e6fd9fe0e64.png",
+    "static/media/sky.png": "/gw2-react/static/media/sky.f6a81bc6648377437ae5.png",
     "static/media/tyria.png": "/gw2-react/static/media/tyria.448c99d6c36d6f6e4b23.png",
     "static/media/desert.png": "/gw2-react/static/media/desert.5f072cf104c6d08c99d7.png",
     "static/media/maguuma.png": "/gw2-react/static/media/maguuma.d5853b0e31ff5aa94040.png",
@@ -45,11 +46,11 @@
     "index.html": "/gw2-react/index.html",
     "static/media/bank.svg": "/gw2-react/static/media/bank.054bc5f7f27e065e92c1bc2dccd17aa7.svg",
     "main.6809db7d.css.map": "/gw2-react/static/css/main.6809db7d.css.map",
-    "main.e5ecc24c.js.map": "/gw2-react/static/js/main.e5ecc24c.js.map",
+    "main.bc69b047.js.map": "/gw2-react/static/js/main.bc69b047.js.map",
     "787.211ad51a.chunk.js.map": "/gw2-react/static/js/787.211ad51a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.6809db7d.css",
-    "static/js/main.e5ecc24c.js"
+    "static/js/main.bc69b047.js"
   ]
 }
