@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import 'moment-timezone';
-import useScreenOrientation from 'react-hook-screen-orientation';
+// import useScreenOrientation from 'react-hook-screen-orientation';
 import useOrientationChange from "use-orientation-change";
 import Spinner from 'react-bootstrap/Spinner';
 import eventsEng from '../data/events.json';
@@ -23,9 +23,9 @@ const Events = (props) => {
 
     // Besoin de condition si heure d'été ou hiver
     // ETE
-    const startHour = Math.floor(localTime.hour() / 2) * 2;
+    // const startHour = Math.floor(localTime.hour() / 2) * 2;
     // HIVER
-    // const startHour = isFloat(localTime.hour() / 2) ? Math.floor(localTime.hour() / 2) * 2 + 1 : Math.floor(localTime.hour() / 2) * 2 - 1;
+    const startHour = isFloat(localTime.hour() / 2) ? Math.floor(localTime.hour() / 2) * 2 + 1 : Math.floor(localTime.hour() / 2) * 2 - 1;
 
 
     function isFloat(n) {
@@ -64,7 +64,7 @@ const Events = (props) => {
     useEffect(() => {
         // OrientationChange()
 
-        if(moment.tz.guess() == "Europe/Paris"){
+        if(moment.tz.guess() === "Europe/Paris"){
             setEvents(eventsFr)
         } else {
             setEvents(eventsEng)
@@ -76,7 +76,7 @@ const Events = (props) => {
             movePointer()
         },1000);
 
-        if(props.appColor.color != 0){
+        if(props.appColor.color !== 0){
             setColor(props.appColor.color)
         }
 
@@ -84,40 +84,84 @@ const Events = (props) => {
   
 
 
-    if(events != false){
-        if(orientation == "landscape" || window.innerWidth > 900)
+    if(events !== false){
+        if(orientation === "landscape" || window.innerWidth > 900)
         {
             return (
                 <section className="meta-section">
                     <div className="meta-container">
-                        <div className={color == "default" ? "blackColor pointer" : "whiteColor pointer"} style={{left: pointerPosition+'%'}}>
+                        <div className={color === "default" ? "blackColor pointer" : "whiteColor pointer"} style={{left: pointerPosition+'%'}}>
                             {pointerPosition > 7 ? <span className="local"><strong >Heure Serveur</strong><span style={{color: 'black'}}>{pointerTime}</span></span> : ""}
                             {pointerPosition < 93 ? <span className="server"><strong>Heure locale</strong><span>{pointerLocalTime}</span></span> : ""}
                         </div>
                         {events.map((key, index) => {
                             let offset = 0;
-                                if(key.show != false){
+                                if(key.show !== false){
                                     return(
                                         <div key={'meta_'+index} className="meta">
-                                            {key.category_name ? <div className={index == 0 ? "first category_name" : "not_first_category category_name"}>{key.category_name}</div> : ""}
+                                            {key.category_name ? <div className={index === 0 ? "first category_name" : "not_first_category category_name"}>{key.category_name}</div> : ""}
                                             <span className="meta-name">{key.name}</span>
                                             <div className="bar">
                                                 {key.phases.map((phase, index2) => {
-        
-                                                    let correctedTime = "" + (startHour + (offset > 59 ? 1 : 0));
-                                                    phase.hour = ("00" + correctedTime).slice(-2);
-                                                    phase.minute = ("00" + (offset % 60)).slice(-2);
-                                                    offset += phase.duration;
-        
-                                                
-                                                        return(
-                                                            <div style={{background: phase.color, color: textColor(phase.text), width:'calc('+calcPhaseWidth(phase.duration)+'% - .25rem)'}} key={'phase'+index2} className="phase">
-                                                                <div className="phase-time">{phase.hour} : {phase.minute}</div>
-                                                                <div className="phase-name">{phase.name}</div>
-                                                            </div>
-                                                        )
-                                                
                                                     
+                                                    // For event time up > 2 hours
+                                                    if(phase.start){
+                                                        let correctedTime = "" + (startHour + (offset > 59 ? 1 : 0));
+                                                        let start = parseFloat(phase.start)
+                                                        let timeUp = parseFloat(phase.timeUp)
+                                                        let show = false
+
+                                                        phase.hour = ("00" + correctedTime).slice(-2);
+                                                        phase.minute = ("00" + (offset % 60)).slice(-2);
+                                                        offset += phase.duration;
+                                                        let nextHour = []
+                                                        let plusProcheAuDessus = Infinity;
+
+                                                        for(var i = 0; i < 8; i++){
+                                                            if(start > parseInt(correctedTime) && start < parseInt(correctedTime) + 2 && !show){
+                                                                show = true
+                                                            }
+                                                            
+                                                            nextHour.push(start)
+                                                            start = start + timeUp
+                                                        }
+
+                                                        // The next event time
+                                                        for (var i = 0; i < nextHour.length; i++) {
+                                                            if (nextHour[i] > parseInt(correctedTime) + 2 && nextHour[i] < plusProcheAuDessus) {
+                                                                plusProcheAuDessus = nextHour[i];
+                                                            }
+                                                        }
+
+                                                        if(show){
+                                                            return(
+                                                                <div style={{background: phase.color, color: textColor(phase.text), width:'calc('+calcPhaseWidth(phase.duration)+'% - .25rem)'}} key={'phase'+index2} className="phase">
+                                                                    <div className="phase-time">{phase.hour} : {phase.minute}</div>
+                                                                    <div className="phase-name">{phase.name}</div>
+                                                                </div>   
+                                                            )
+                                                        } else {
+                                                            return(
+                                                                <div style={{background: phase.color, color: textColor(phase.text), width:'calc('+calcPhaseWidth(120)+'% - .25rem)'}} key={'phase'+index2} className="phase">
+                                                                    <div className="phase-time">{phase.hour} : {phase.minute}</div>
+                                                                    <div className="phase-name">{phase.name+ " (Prochaine à "+parseFloat(plusProcheAuDessus).toFixed(2)+")"}</div>
+                                                                </div>
+                                                            )
+                                                        }
+                                                    } else {
+                                                        let correctedTime = "" + (startHour + (offset > 59 ? 1 : 0));
+                                                        phase.hour = ("00" + correctedTime).slice(-2);
+                                                        phase.minute = ("00" + (offset % 60)).slice(-2);
+                                                        offset += phase.duration;
+            
+                                                            return(
+                                                                <div style={{background: phase.color, color: textColor(phase.text), width:'calc('+calcPhaseWidth(phase.duration)+'% - .25rem)'}} key={'phase'+index2} className="phase">
+                                                                    <div className="phase-time">{phase.hour} : {phase.minute}</div>
+                                                                    <div className="phase-name">{phase.name}</div>
+                                                                </div>
+                                                            )
+                                                    }
+ 
                                                 })}
                                             </div>
                                         </div>
@@ -126,13 +170,13 @@ const Events = (props) => {
                                 } 
                         })}
                     </div>
-                    <span className={color == "default" ? "blackColorSpan basedPage" : "whiteColorSpan basedPage"}>This page is based on the <a href="https://gw2.ninja/timer">Guild Wars 2 Event Timer</a> by <a href="https://twitch.tv/rediche">Rediche.</a></span>
+                    <span className={color === "default" ? "blackColorSpan basedPage" : "whiteColorSpan basedPage"}>This page is based on the <a href="https://gw2.ninja/timer">Guild Wars 2 Event Timer</a> by <a href="https://twitch.tv/rediche">Rediche.</a></span>
                 </section>
             ); 
         } else {
             return(
                 <div>
-                    <ScreenRotationIcon style={{color: localStorage.getItem('color') == "default" ? "black" : "white" }} className="changeOrientation"></ScreenRotationIcon>
+                    <ScreenRotationIcon style={{color: localStorage.getItem('color') === "default" ? "black" : "white" }} className="changeOrientation"></ScreenRotationIcon>
                 </div>
             )
         }
@@ -145,7 +189,7 @@ const Events = (props) => {
                 size="lg"
                 role="status"
                 aria-hidden="true"
-                style={{color: localStorage.getItem('color') == "default" ? "black" : "white" }}
+                style={{color: localStorage.getItem('color') === "default" ? "black" : "white" }}
             /> 
         )
     }

@@ -9,6 +9,41 @@
     "category": "halloween",
     "category_name": "Halloween"
   }, {
+    "name": "Convergences",
+    "phases": [
+        { "name": "", "duration": 30, "color": "rgb(255,216,140)", "text": "dark", "start":2.3, "timeUp":3},
+        { "name": "Convergences", "duration": 20, "color": "rgb(255,216,140)", "text": "dark", "start":2.3, "timeUp":3},
+        { "name": "", "duration": 70, "color": "rgb(255,216,140)", "text": "dark", "start":2.3, "timeUp":3}
+    ],
+    "category": "secrets-of-the-obscure",
+    "category_name": "Secrets of the Obscure"
+
+  },{
+    "name": "Archipel de l'observatoire céleste",
+    "phases": [
+        { "name": "", "duration": 60, "color": "rgb(255,216,140)", "text": "dark" },
+        { "name": "Déverrouiller la Tour du sorcier", "duration": 25, "color": "rgb(255,187,51)", "text": "dark" },
+        { "name": "", "duration": 35, "color": "rgb(255,216,140)", "text": "dark" }
+    ],
+    "category": "secrets-of-the-obscure"
+  },{
+    "name": "Tour du sorcier",
+    "phases": [
+        { "name": "Vol de nuit", "duration": 20, "color": "rgb(255,187,51)", "text": "dark" },
+        { "name": "", "duration": 40, "color": "rgb(255,216,140)", "text": "dark" },
+        { "name": "Cible de dracaille", "duration": 40, "color": "rgb(255,187,51)", "text": "dark" },
+        { "name": "Cible & Vol de nuit", "duration": 15, "color": "rgb(255,187,51)", "text": "dark" },
+        { "name": "", "duration": 5, "color": "rgb(255,216,140)", "text": "dark" }
+    ],
+    "category": "secrets-of-the-obscure"
+  },{
+    "name": "Amnytas",
+    "phases": [
+        { "name": "La défense d'Amnytas", "duration": 25, "color": "rgb(255,187,51)", "text": "dark" },
+        { "name": "", "duration": 95, "color": "rgb(255,216,140)", "text": "dark" }
+    ],
+    "category": "secrets-of-the-obscure"
+  },{
     "name": "Cycle Jour-Nuit - Cantha",
     "phases": [
         { "name": "Nuit", "duration": 35, "color": "#1998B6", "text": "light" },

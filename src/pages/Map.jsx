@@ -28,6 +28,8 @@ import maguuma from "../img/icon/maguuma.png";
 import tyria from "../img/icon/tyria.png";
 import tundra from "../img/icon/tundra.png";
 import cantha from "../img/icon/cantha.png";
+import sky from "../img/icon/sky.png";
+
 
 // JSON MAP INFO
 import  mapsDetails from '../data/maps.json';
@@ -61,14 +63,11 @@ const Map = (props) => {
     if(allMarkers.length == 0){
       for(var i = 0; i < Object.keys(mapsAll[1].maps).length; i++){
         var maps = mapsAll[1].maps[Object.keys(mapsAll[1].maps)[i]]
-  
+       
         const mapsInfo = mapsDetails.find(
           element => element.id == maps.id
-        )
+        ) ?? maps
 
-        // console.log(mapsInfo)
-
-        
 
           if(Object.keys(maps.tasks).length > 0 && mapsInfo.type == "Public" && mapsInfo.show != false){
             Object.keys(maps.tasks).map((key, index)=> { 
@@ -94,7 +93,7 @@ const Map = (props) => {
               vista.push([{'id': mapsInfo.id, 'coord' : map.unproject(maps.vista[key].coord,map.getMaxZoom()), 'type' : 'vistaIcon', 'name': maps.vista[key].name}])
             })
           }
-  
+
           if(Object.keys(maps.waypoint).length > 0 && mapsInfo.type == "Public" && mapsInfo.show != false){
             Object.keys(maps.waypoint).map((key, index)=> { 
               waypoint.push([{'id': mapsInfo.id, 'coord' : map.unproject(maps.waypoint[key].coord,map.getMaxZoom()), 'type' : 'wayPointIcon', 'name': maps.waypoint[key].name,
@@ -240,7 +239,7 @@ const Map = (props) => {
           )
         } else {
           
-          var masteryPoint = {'Cantha': cantha, 'Maguuma': maguuma, 'Desert': desert, 'Tyria': tyria, 'Tundra': tundra}
+          var masteryPoint = {'Cantha': cantha, 'Maguuma': maguuma, 'Desert': desert, 'Tyria': tyria, 'Tundra': tundra, 'Sky': sky}
           
           var masteryIcon = L.icon({
             iconUrl: masteryPoint[key[0].region] ?? cantha,
@@ -268,7 +267,7 @@ const Map = (props) => {
 
     if(continent.length == 0){
       mapsDetails.map((key, index)=> { 
-      if(key.type == "Public" && key.show != false)
+      if(key.type === "Public" && key.show != false)
         continent.push({"id": key.id, "name" : key.name, "coord":key.continent_rect})
       })
     }
