@@ -93,9 +93,12 @@ const ModalCharacter = (props) => {
   }
 
   const getMySkin = async (skin, api) => {
-    const data = await getSkin(skin, api)
-    return data
- 
+    try{
+      const data = await getSkin(skin, api)
+      return data 
+    } catch (error){
+      return;
+    }
   };
 
   const getMyEquipment = async (item, api, count) => {
@@ -105,7 +108,7 @@ const ModalCharacter = (props) => {
       data.count = count
       return data
     } catch (e) {
-      // console.log(e)
+      return;
     }
 
    
@@ -115,7 +118,7 @@ const ModalCharacter = (props) => {
 
     const object = await Promise.all(character_info.equipment.map((key, index) => {
       if(key.skin){
-        return getMySkin(key.skin, apiKey)
+        return getMySkin(key.skin, apiKey) 
       } else {
         return getMyEquipment(key.id, apiKey)
       }
@@ -145,9 +148,15 @@ const ModalCharacter = (props) => {
       if(typeof item_find_inventory != "undefined"){
 
         if(item_find_inventory.name != "Weapon"){
-          const item_find = equipment_.filter(
-            element => element.details ? element.details.type == item_find_inventory.name : element.type == item_find_inventory.name
-          )
+          
+          const item_find = equipment_.filter(element => {
+            if (typeof element !== "undefined") {
+              return element.details?.type === item_find_inventory.name || element.type === item_find_inventory.name;
+            }
+            return false;
+          })
+
+          
 
           if(typeof item_find[[item_find_inventory.number]] !="undefined"){
               return(
@@ -164,10 +173,13 @@ const ModalCharacter = (props) => {
             
         } else { 
 
-          const item_find = equipment_.filter(
-            element => element.type == item_find_inventory.name
-          )
-
+          const item_find = equipment_.filter(element => {
+            if (typeof element !== "undefined") {
+              return  element.type == item_find_inventory.name
+            }
+            return false;
+          })
+         
           if(typeof item_find[item_find_inventory.number] !="undefined"){
 
             if(item_find[item_find_inventory.number].details.type != "Trident" && item_find[item_find_inventory.number].details.type != "Harpoon"  

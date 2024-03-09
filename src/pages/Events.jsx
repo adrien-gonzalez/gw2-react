@@ -96,61 +96,92 @@ const Events = (props) => {
                         </div>
                         {events.map((key, index) => {
                             let offset = 0;
+                            let notEvent = true;
+
+                            let plusProcheAuDessus = Infinity;
                                 if(key.show !== false){
                                     return(
                                         <div key={'meta_'+index} className="meta">
                                             {key.category_name ? <div className={index === 0 ? "first category_name" : "not_first_category category_name"}>{key.category_name}</div> : ""}
                                             <span className="meta-name">{key.name}</span>
                                             <div className="bar">
+                                                
                                                 {key.phases.map((phase, index2) => {
                                                     
-                                                    // For event time up > 2 hours
-                                                    if(phase.start){
+                                                    // For event time up = fixed or > 2 hours
+                                                    if(key.fixed){
                                                         let correctedTime = "" + (startHour + (offset > 59 ? 1 : 0));
-                                                        let start = parseFloat(phase.start)
-                                                        let timeUp = parseFloat(phase.timeUp)
-                                                        let show = false
-
-                                                        phase.hour = ("00" + correctedTime).slice(-2);
-                                                        phase.minute = ("00" + (offset % 60)).slice(-2);
-                                                        offset += phase.duration;
-                                                        let nextHour = []
-                                                        let plusProcheAuDessus = Infinity;
-
-                                                        for(var i = 0; i < 8; i++){
-                                                            if(start > parseInt(correctedTime) && start < parseInt(correctedTime) + 2 && !show){
-                                                                show = true
-                                                            }
-                                                            
-                                                            nextHour.push(start)
-                                                            start = start + timeUp
+                                                        let timeUp = phase[0];
+                                                        let show = false;
+                                                        
+                                                        if (timeUp > parseInt(correctedTime) + 2 && timeUp < plusProcheAuDessus) {
+                                                            plusProcheAuDessus = timeUp;
                                                         }
 
-                                                        // The next event time
-                                                        for (var i = 0; i < nextHour.length; i++) {
-                                                            if (nextHour[i] > parseInt(correctedTime) + 2 && nextHour[i] < plusProcheAuDessus) {
-                                                                plusProcheAuDessus = nextHour[i];
-                                                            }
+
+                                                        if(timeUp > parseInt(correctedTime) && timeUp < parseInt(correctedTime) + 2){
+                                                            show = true  
+                                                            notEvent = false
                                                         }
+
 
                                                         if(show){
+                                                            // Heure de début du créneau en heures et minutes
+                                                            var heureDebut = parseInt(correctedTime);
+                                                            var minuteDebut = 0;
+
+                                                            // Heure donnée en heures et minutes
+                                                            var heureDonnee = parseInt(timeUp);
+                                                            var minuteDonnee = parseInt(timeUp.toString().substr(3,3)) * 10;
+
+                                                         
+
+                                                            // Convertir les heures en minutes
+                                                            var debutEnMinutes = heureDebut * 60 + minuteDebut;
+                                                            var donneeEnMinutes = heureDonnee * 60 + minuteDonnee;
+                                                            var creneaux_1 = donneeEnMinutes - debutEnMinutes
+                                                            var next_hour = parseInt(minuteDonnee) + parseInt(key.duration) < 60 ? heureDonnee+" : "+(parseInt(minuteDonnee) + parseInt(key.duration)) : ""
+                                                          
                                                             return(
-                                                                <div style={{background: phase.color, color: textColor(phase.text), width:'calc('+calcPhaseWidth(phase.duration)+'% - .25rem)'}} key={'phase'+index2} className="phase">
-                                                                    <div className="phase-time">{phase.hour} : {phase.minute}</div>
-                                                                    <div className="phase-name">{phase.name}</div>
-                                                                </div>   
-                                                            )
-                                                        } else {
-                                                            return(
-                                                                <div style={{background: phase.color, color: textColor(phase.text), width:'calc('+calcPhaseWidth(120)+'% - .25rem)'}} key={'phase'+index2} className="phase">
-                                                                    <div className="phase-time">{phase.hour} : {phase.minute}</div>
-                                                                    <div className="phase-name">{phase.name+ " (Prochaine à "+parseFloat(plusProcheAuDessus).toFixed(2)+")"}</div>
+                                                                <div key={"event_"+index2} className="event_fixed">
+                                                                    {timeUp > parseInt(correctedTime) 
+                                                                    ?
+                                                                        <div style={{background: key.color, color: textColor(key.text), width:'calc('+calcPhaseWidth(creneaux_1)+'% - .25rem)'}} key={'phase1'+index2} className="phase">
+                                                                            <div className="phase-time">{correctedTime+" : 00"}</div>
+                                                                            <div className="phase-name"></div>
+                                                                        </div>  
+                                                                
+                                                                
+                                                                    : ''
+                                                                    }
+                                                                   
+                                                                    <div style={{background: key.color, color: textColor(key.text), width:'calc('+calcPhaseWidth(key.duration)+'% - .25rem)'}} key={'phase'+index2} className="phase">
+                                                                        <div className="phase-time">{timeUp.toString().replace('.', ' : ')+"0"}</div>
+                                                                        <div className="phase-name">{key.event_name}</div>
+                                                                    </div>  
+
+                                                                    {timeUp < parseInt(correctedTime) + 2 
+                                                                    ?
+                                                                        <div style={{background: key.color, color: textColor(key.text), width:'calc('+calcPhaseWidth(120 - creneaux_1 - key.duration)+'% - .25rem)'}} key={'phase2'+index2} className="phase">
+                                                                            <div className="phase-time">{next_hour}</div>
+                                                                            <div className="phase-name"></div>
+                                                                        </div>  
+                                                                    : ''
+                                                                    }
                                                                 </div>
+                                                               
                                                             )
+                                                        } else if(index2 === key.phases.length - 1 && notEvent){
+                                                            return(
+                                                                <div style={{background: key.color, color: textColor(key.text), width:'calc('+calcPhaseWidth(120)+'% - .25rem)'}} key={'phase'+index2} className="phase">
+                                                                    <div className="phase-time">{correctedTime+" : 00"}</div>
+                                                                    <div className="phase-name">Prochain évènement à {parseFloat(plusProcheAuDessus).toFixed(2)}</div>
+                                                                </div>  
+                                                            ) 
                                                         }
                                                     } else {
                                                         let correctedTime = "" + (startHour + (offset > 59 ? 1 : 0));
-                                                        phase.hour = ("00" + correctedTime).slice(-2);
+                                                        phase.hour = correctedTime.slice(-2) < 24 ? ("00" + correctedTime).slice(-2) : "00";
                                                         phase.minute = ("00" + (offset % 60)).slice(-2);
                                                         offset += phase.duration;
             

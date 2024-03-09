@@ -76,23 +76,24 @@ const Characters = (props) => {
 
     ];
 
-    const characters = async () => {
-        
-       
-        try {
-            const data = await getCharacters(apiKey);
-            setCharacter(data)
-        } catch (error) {
-            console.log(error)
-        }
-      };
+  
 
 
     useEffect(() => {
+
+        const characters = async () => {
+            try {
+                const data = await getCharacters(apiKey);
+                setCharacter(data)
+            } catch (error) {
+                console.log(error)
+            }
+        };
+
         if(apiKey != null){
             characters()
         }
-    },[apiKey])
+    },[apiKey, character])
 
 
     if(apiKey){
