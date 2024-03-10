@@ -21,12 +21,16 @@ const Events = (props) => {
     const [color, setColor] = useState(localStorage.getItem('color') ?? 'default');
     const localTime =  moment();
 
-    // Besoin de condition si heure d'été ou hiver
-    // ETE
-    // const startHour = Math.floor(localTime.hour() / 2) * 2;
-    // HIVER
-    const startHour = isFloat(localTime.hour() / 2) ? Math.floor(localTime.hour() / 2) * 2 + 1 : Math.floor(localTime.hour() / 2) * 2 - 1;
-
+    const isDaylightSavingTime = moment().tz('Europe/Paris').isDST();
+    let startHour = 0;
+    
+    if(!isDaylightSavingTime){
+        // Heure hiver
+        startHour = isFloat(localTime.hour() / 2) ? Math.floor(localTime.hour() / 2) * 2 + 1 : Math.floor(localTime.hour() / 2) * 2 - 1;
+    } else {
+        // Heure été
+        startHour = Math.floor(localTime.hour() / 2) * 2;
+    }
 
     function isFloat(n) {
         return n === +n && n !== (n|0);
@@ -97,8 +101,8 @@ const Events = (props) => {
                         {events.map((key, index) => {
                             let offset = 0;
                             let notEvent = true;
-
                             let plusProcheAuDessus = Infinity;
+
                                 if(key.show !== false){
                                     return(
                                         <div key={'meta_'+index} className="meta">
@@ -141,13 +145,13 @@ const Events = (props) => {
                                                             var donneeEnMinutes = heureDonnee * 60 + minuteDonnee;
                                                             var creneaux_1 = donneeEnMinutes - debutEnMinutes
                                                             var next_hour = parseInt(minuteDonnee) + parseInt(key.duration) < 60 ? heureDonnee+" : "+(parseInt(minuteDonnee) + parseInt(key.duration)) : ""
-                                                          
+
                                                             return(
                                                                 <div key={"event_"+index2} className="event_fixed">
                                                                     {timeUp > parseInt(correctedTime) 
                                                                     ?
                                                                         <div style={{background: key.color, color: textColor(key.text), width:'calc('+calcPhaseWidth(creneaux_1)+'% - .25rem)'}} key={'phase1'+index2} className="phase">
-                                                                            <div className="phase-time">{correctedTime+" : 00"}</div>
+                                                                            <div className="phase-time">{correctedTime.length === 1 ? "0"+correctedTime+" : 00" : correctedTime+" : 00"}</div>
                                                                             <div className="phase-name"></div>
                                                                         </div>  
                                                                 
@@ -174,31 +178,36 @@ const Events = (props) => {
                                                         } else if(index2 === key.phases.length - 1 && notEvent){
                                                             return(
                                                                 <div style={{background: key.color, color: textColor(key.text), width:'calc('+calcPhaseWidth(120)+'% - .25rem)'}} key={'phase'+index2} className="phase">
-                                                                    <div className="phase-time">{correctedTime+" : 00"}</div>
+                                                                    <div className="phase-time">{correctedTime.length === 1 ? "0"+correctedTime+" : 00" : correctedTime+" : 00"}</div>
                                                                     <div className="phase-name">Prochain évènement à {parseFloat(plusProcheAuDessus).toFixed(2)}</div>
                                                                 </div>  
                                                             ) 
+                                                        } else {
+                                                            // Return empty
+                                                            return false;
                                                         }
                                                     } else {
                                                         let correctedTime = "" + (startHour + (offset > 59 ? 1 : 0));
-                                                        phase.hour = correctedTime.slice(-2) < 24 ? ("00" + correctedTime).slice(-2) : "00";
+                                                        phase.hour = ("00" + correctedTime).slice(-2);
                                                         phase.minute = ("00" + (offset % 60)).slice(-2);
                                                         offset += phase.duration;
-            
+
                                                             return(
                                                                 <div style={{background: phase.color, color: textColor(phase.text), width:'calc('+calcPhaseWidth(phase.duration)+'% - .25rem)'}} key={'phase'+index2} className="phase">
-                                                                    <div className="phase-time">{phase.hour} : {phase.minute}</div>
+                                                                    <div className="phase-time">{phase.hour === 24 ? "00" : phase.hour} : {phase.minute}</div>
                                                                     <div className="phase-name">{phase.name}</div>
                                                                 </div>
                                                             )
                                                     }
- 
                                                 })}
                                             </div>
                                         </div>
         
                                     )
-                                } 
+                                } else {
+                                    // Return empty
+                                    return false;
+                                }
                         })}
                     </div>
                     <span className={color === "default" ? "blackColorSpan basedPage" : "whiteColorSpan basedPage"}>This page is based on the <a href="https://gw2.ninja/timer">Guild Wars 2 Event Timer</a> by <a href="https://twitch.tv/rediche">Rediche.</a></span>

@@ -1453,11 +1453,12 @@ input:focus{
 .meta{
   margin-bottom: 30px;
   text-align: left;
-  width: 98%;
+  width: 100%;
 }
 
 .meta-section{
   width: 100%;
+  padding: 0px 10px 0px 10px;
   overflow-y: auto;
 }
 
