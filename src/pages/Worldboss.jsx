@@ -64,9 +64,12 @@ const Worldboss = (props) => {
     const fetchBosses = async (schedule = []) => {
        
         worldbossesTimer.map((key, index) => {
-            key.fixed.map(event =>
-                schedule.push([(event[0]) * 60 + event[1], key.name, key.original, key.waypoint])
-            ) 
+            return(
+                key.fixed.map(event =>
+                    schedule.push([(event[0]) * 60 + event[1], key.name, key.original, key.waypoint])
+                ) 
+            )
+           
         })
 
         setWorldbosses(schedule)
@@ -87,7 +90,7 @@ const Worldboss = (props) => {
                     entry.stamp.setDate(entry.stamp.getDate() + 1);
                 }
             
-                retval.push(entry);
+                return retval.push(entry);
         })
         // }
         return retval.sort(function (a, b) { return a.remaining - b.remaining });
@@ -103,7 +106,7 @@ const Worldboss = (props) => {
         const data = await getPermissions(apiKey)
 
         const progression = data.permissions.find(
-            element => element == "progression"
+            element => element === "progression"
         )
         if(progression){
             getKiled(apiKey)
@@ -122,16 +125,16 @@ const Worldboss = (props) => {
             var rn = new Date();
             var rs = rn.getSeconds();
             // auto refresh table at 0 second
-            if (rs == 0){
+            if (rs === 0){
                 if(apiKey){  permissions(apiKey) }
                 fetchBosses()
             }
         },1000);
-    },[])
+    },[apiKey])
   
 
 
-    if(worldbosses != false){
+    if(worldbosses !== false){
         return (
             <div className="worldbosses">
                 <table id="output">
@@ -147,14 +150,16 @@ const Worldboss = (props) => {
                        
                         {getSchedule(-10).map((curr, id) => {
                             const bossImage = images_boss.find(
-                                element => element.id == curr.key
+                                element => element.id === curr.key
                             )
 
                             if(worldbossesKilled.length > 1){
                                 var killed = false
                                 worldbossesKilled.map((key, index) => {
-                                    if(key == curr.original){
-                                        killed = true
+                                    if(key === curr.original){
+                                        return killed = true
+                                    } else {
+                                        return false;
                                     }
                                 })
 
@@ -181,8 +186,8 @@ const Worldboss = (props) => {
                                         </tr>
                                     )
                                 }
-                            } else if(worldbossesKilled.length == 1){
-                               if(worldbossesKilled[0] == curr.original){
+                            } else if(worldbossesKilled.length === 1){
+                               if(worldbossesKilled[0] === curr.original){
                                 return(
                                     <tr className="bossKilled" key={"boss_"+id}>
                                         <td className='cell flex-picture'>
@@ -233,7 +238,7 @@ const Worldboss = (props) => {
                 size="lg"
                 role="status"
                 aria-hidden="true"
-                style={{color: localStorage.getItem('color') == "default" ? "black" : "white" }}
+                style={{color: localStorage.getItem('color') === "default" ? "black" : "white" }}
             /> 
         )
     }

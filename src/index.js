@@ -5,9 +5,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 createRoot(document.getElementById('root')).render( // Utilisez createRoot
-  <React.StrictMode>
+  // Problem strictMode with react dnd
+  // <React.StrictMode>
     <App />
-  </React.StrictMode>
+  // </React.StrictMode>
 );
 
 reportWebVitals();

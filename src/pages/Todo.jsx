@@ -1,12 +1,9 @@
 import '../App.css';
 import {connect} from 'react-redux';
 import React, { useCallback, useState, useEffect } from "react";
-import ReactDOM from "react-dom";
 import styled from "styled-components";
 import "@atlaskit/css-reset";
 import { DragDropContext } from "react-beautiful-dnd";
-
-import initialData from "../components/dnd/initial-data";
 import { Column } from "../components/dnd/column";
 
 // import "./styles.css";
@@ -20,30 +17,26 @@ const Todo = (props) => {
   const [taskValues, setTaskValues] = useState({});
   const [hoveredTask, setHoveredTask] = useState(null);
 
-  // const [state, setState] = useState(initialData);
-
-
   const handleDragStart = useCallback( 
     start => {
       document.body.style.color = "orange";
       document.body.style.transition = "background-color 0.2s ease";
-
+      
       setState({
         ...state,
         homeIndex: state.columnOrder.indexOf(start.source.droppableId)
       });
     },
     [state]
-    
   );
 
   const handleDragUpdate = useCallback(
-    update => {
-      const opacity = update.destination
-        ? update.destination.index / Object.keys(state.tasks).length
-        : 0;
-    },
-    [state]
+    // update => {
+    //   const opacity = update.destination
+    //     ? update.destination.index / Object.keys(state.tasks).length
+    //     : 0;
+    // },
+    // [state]
   );
 
   const handleDragEnd = useCallback(
@@ -124,7 +117,6 @@ const Todo = (props) => {
   };
 
   const handleClick = (columnId) => {
-
     if (!showTextarea[columnId]) {
       setShowTextarea({ ...showTextarea, [columnId]: true });
     } else {
@@ -141,7 +133,6 @@ const Todo = (props) => {
         }
       }
     }
-   
   };
 
   const handleCancel = (columnId) => {
@@ -185,7 +176,6 @@ const Todo = (props) => {
       
       return { ...prevState, columns: updatedColumns, tasks: updatedTasks };
     });
-
   }
 
 
@@ -202,6 +192,7 @@ const Todo = (props) => {
                 const tasks = column.taskIds.map(taskId => state.tasks[taskId]);
                 const isDropDisabled = index < state.homeIndex;
 
+                // console.log(state)
                 return (
                   <Column
                     handleClick={() => handleClick(columnId)}
@@ -213,7 +204,7 @@ const Todo = (props) => {
                     taskValues={taskValues}
                     handleChange={handleChange}
                     showTextarea={showTextarea}
-                    key={column.id}
+                    key={columnId}
                     column={column}
                     tasks={tasks}
                     isDropDisabled={isDropDisabled}

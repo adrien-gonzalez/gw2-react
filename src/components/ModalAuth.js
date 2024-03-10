@@ -45,7 +45,7 @@ const ModalAuth = (props) => {
         {permissions_data.map((key, index) => {
 
       
-        if(permissionsKey != false){
+        if(permissionsKey !== false){
           
           const permission_find = permissionsKey.permissions.some(item => item === key.name);
 
@@ -98,7 +98,7 @@ const ModalAuth = (props) => {
 
     <>
       <Modal 
-        className= {localStorage.getItem('color') == "dark" ? "darkColor" : "defaultColor"}
+        className= {localStorage.getItem('color') === "dark" ? "darkColor" : "defaultColor"}
         show={props.show} 
         onHide={props.onHide}
         size="sl"
@@ -116,7 +116,7 @@ const ModalAuth = (props) => {
             initialValues={{ key: '', color: ''}}
             onSubmit={(values, { setSubmitting }) => {
               // alert("values:" + JSON.stringify(values));
-              if(values.key != ""){
+              if(values.key !== ""){
                 getAccount(values.key).then(response=> 
                   { 
                     if(response){
@@ -131,7 +131,7 @@ const ModalAuth = (props) => {
                   })
               } 
 
-              if(values.color != ""){
+              if(values.color !== ""){
                 updateColor(values.color)
                 close()
 
@@ -160,7 +160,7 @@ const ModalAuth = (props) => {
                     Theme Color
                   </InputLabel>
                     <NativeSelect
-                        defaultValue={localStorage.getItem('color') == "dark" ? "dark" : "default"}
+                        defaultValue={localStorage.getItem('color') === "dark" ? "dark" : "default"}
                         type="text"
                         name="color"
                         onChange={handleChange}
@@ -210,8 +210,8 @@ const ModalAuth = (props) => {
 
 
                     <div className="valid_form">
-                      <Button  className={localStorage.getItem('color') == "dark" ? "darkColorButton modalButton" : "defaultColorButton modalButton"} onClick={close}>Annuler</Button>
-                      <Button  className={localStorage.getItem('color') == "dark" ? "darkColorButton modalButton" : "defaultColorButton modalButton"} type="submit" disabled={isSubmitting}>Valider</Button>
+                      <Button  className={localStorage.getItem('color') === "dark" ? "darkColorButton modalButton" : "defaultColorButton modalButton"} onClick={close}>Annuler</Button>
+                      <Button  className={localStorage.getItem('color') === "dark" ? "darkColorButton modalButton" : "defaultColorButton modalButton"} type="submit" disabled={isSubmitting}>Valider</Button>
                   </div>
               </Form>
             )}

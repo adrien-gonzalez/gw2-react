@@ -8,11 +8,7 @@ import gold_icon from "../img/icon/gold.png";
 import silver_icon from "../img/icon/silver.png";
 import bronze_icon from "../img/icon/bronze.png";
 import ModalItem from "../components/ModalItem";
-
-
-
 import { InputText } from 'primereact/inputtext';
-
 import Items from '../data/items.json';
 
 
@@ -70,9 +66,9 @@ const Trading = (props) => {
         return (
           <span className="count_gold_price">
             
-            {gold != 0 ? <div className="gold_number">{gold}<div style={{backgroundImage: `url(${gold_icon})`}}></div></div> : ''}
-            {silver != 0 || gold != 0 ? <div className="gold_number">{silver}<div style={{backgroundImage: `url(${silver_icon})`}}></div></div> : ''}
-            {bronze != 0 ? <div className="gold_number">{bronze}<div style={{backgroundImage: `url(${bronze_icon})`}}></div></div> : ''}
+            {gold !== 0 ? <div className="gold_number">{gold}<div style={{backgroundImage: `url(${gold_icon})`}}></div></div> : ''}
+            {silver !== 0 || gold !== 0 ? <div className="gold_number">{silver}<div style={{backgroundImage: `url(${silver_icon})`}}></div></div> : ''}
+            {bronze !== 0 ? <div className="gold_number">{bronze}<div style={{backgroundImage: `url(${bronze_icon})`}}></div></div> : ''}
           </span>
         )
     }
@@ -87,7 +83,7 @@ const Trading = (props) => {
         data.items.map((key, index) => {
 
             const nameFr = Items.find(
-                element => element.id == data.items[index][0]
+                element => element.id === data.items[index][0]
             )
 
             if(nameFr) {
@@ -99,8 +95,10 @@ const Trading = (props) => {
                 data.items[index].type = nameFr.type
                 data.items[index].vendor_value = nameFr.vendor_value
                 data.items[index].img = nameFr.icon
-                object.push(data.items[index])
-            } 
+                return object.push(data.items[index])
+            } else {
+                return false;
+            }
         })
 
         setTrading(object)
@@ -132,7 +130,7 @@ const Trading = (props) => {
         return (
             <div className="flex justify-content-between">
                 <Button type="button" icon="pi pi-filter-slash" label="Clear" className="p-button-outlined" onClick={clearFilter1} />
-                <span className="p-input-icon-left">
+                <span className="p-input-icon-left research_field">
                     <i className="pi pi-search" />
                     <InputText value={globalFilterValue1} onChange={onGlobalFilterChange1} placeholder="Rechercher" />
                 </span>
@@ -170,7 +168,7 @@ const Trading = (props) => {
 
     
   
-    if(trading != false){
+    if(trading !== false){
 
         return (  
 
@@ -184,14 +182,14 @@ const Trading = (props) => {
                       paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
                       rows={10} rowsPerPageOptions={[10,20,50]}
                       paginatorLeft={paginatorLeft} paginatorRight={paginatorRight}
-                      globalFilterFields={['name']} header={header1} emptyMessage="No customers found."
+                      globalFilterFields={['name']} header={header1} emptyMessage="No data found."
                     >   
                         {/* <Column field="country.name" sortable header="Country" filterField="country.name" body={nameItem} filter filterPlaceholder="Search by country" /> */}
                     
                         <Column field="name" header="Nom" style={{width:'50%'}} body={nameItem}/>
-                        <Column sortable field="restriction_level" header="Niveau" />
-                        <Column sortable field="min_sale_unit_price" header="Prix d'achat"  body={buyPriceItem}/>
-                        <Column sortable field="max_offer_unit_price" header="Prix de vente" body={sellPriceItem} />
+                        <Column  field="restriction_level" header="Niveau" />
+                        <Column  field="min_sale_unit_price" header="Prix d'achat"  body={buyPriceItem}/>
+                        <Column  field="max_offer_unit_price" header="Prix de vente" body={sellPriceItem} />
                         {/* <Column field="inventoryStatus" header="Status" body={statusTemplate} />
                         <Column field="rating" header="Rating" body={ratingTemplate} /> */}
                     </DataTable>
@@ -210,7 +208,7 @@ const Trading = (props) => {
                 size="lg"
                 role="status"
                 aria-hidden="true"
-                style={{color: localStorage.getItem('color') == "dark" ? "white" : "black" }}
+                style={{color: localStorage.getItem('color') === "dark" ? "white" : "black" }}
             /> 
         ); 
     }

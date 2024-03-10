@@ -1144,7 +1144,7 @@ input:focus{
     padding: 27px;
   }
 
-  .row_invetory td{
+  .row_inventory td{
     background-size: contain;
     background-repeat: no-repeat;
     height: 55px;
@@ -1214,7 +1214,7 @@ input:focus{
     justify-content: flex-start !important;
   }
   
-  .row_invetory td{
+  .row_inventory td{
     background-size: contain;
     background-repeat: no-repeat;
     height: 45px;
@@ -1359,18 +1359,18 @@ input:focus{
   height: 150px;
 }
 
-.row_invetory{
+.row_inventory{
   display: flex;
   flex-wrap: wrap;
 }
 
-.row_invetory{
+.row_inventory{
  margin-bottom: 25px;
 }
 
 
 
-.row_invetory td:hover{
+.row_inventory td:hover{
   cursor: url('img/icon/pointer.png'), auto;	
 }
 
@@ -1381,6 +1381,12 @@ input:focus{
 }
 
 .table_bags tr{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.table_bags tbody{
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
 }
@@ -1454,6 +1460,29 @@ input:focus{
   margin-bottom: 30px;
   text-align: left;
   width: 100%;
+}
+
+.research_field{
+  position: relative;
+}
+
+.research_field .pi{
+  position: absolute;
+  position: absolute;
+  top: 15px;
+  left: 8px;
+}
+
+.p-hidden-accessible{
+  display: none !important;
+}
+
+.p-dropdown-items{
+  padding: 0px !important;
+}
+
+.p-datatable-header{
+  padding: 8px;
 }
 
 .meta-section{

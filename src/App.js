@@ -4,7 +4,6 @@ import Header from './components/header';
 import background from './img/background/background.png';
 import {Provider } from 'react-redux';
 import Store from './store/configureStore';
-import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 
 import Events from './pages/Events';
@@ -21,18 +20,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Router for navigation
 import {
-  BrowserRouter,
   HashRouter,
   Routes, //replaces "Switch" used till v5
   Route,
   Navigate 
 } from "react-router-dom";
-import { Login } from '@mui/icons-material';
 
 const App = (props) => {
  
   const [showModalAuth, setShowModalAuth] = useState(false);
-  const [apiKey] = useState(localStorage.getItem('apiKey') ?? null);
 
   useEffect(() => { 
   }, [props])
@@ -42,12 +38,12 @@ const App = (props) => {
     <Provider store={Store}>
 
       <HashRouter>
-        <div className={localStorage.getItem('color')+" App"} style={{backgroundColor: localStorage.getItem('color') == "dark" ? '#222222' : '', backgroundImage: localStorage.getItem('color') == "dark" ? '' : 'url('+background+')'}} >
+        <div className={localStorage.getItem('color')+" App"} style={{backgroundColor: localStorage.getItem('color') === "dark" ? '#222222' : '', backgroundImage: localStorage.getItem('color') === "dark" ? '' : 'url('+background+')'}} >
           
 
           <Header/>
           
-          <SettingsIcon style={{color: localStorage.getItem('color') == "dark" ? 'white' : 'black'}} onClick={() => setShowModalAuth(true)} className="settings"></SettingsIcon>
+          <SettingsIcon style={{color: localStorage.getItem('color') === "dark" ? 'white' : 'black'}} onClick={() => setShowModalAuth(true)} className="settings"></SettingsIcon>
 
          
           
