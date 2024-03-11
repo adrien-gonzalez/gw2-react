@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/gw2-react/static/css/main.a3d9dc74.css",
-    "main.js": "/gw2-react/static/js/main.5a0f828e.js",
+    "main.js": "/gw2-react/static/js/main.f7ce3d13.js",
     "static/js/453.a37af695.chunk.js": "/gw2-react/static/js/453.a37af695.chunk.js",
     "static/media/background.png": "/gw2-react/static/media/background.f4ed0829f5e6f6b91523.png",
     "static/media/Triple terreur.png": "/gw2-react/static/media/Triple terreur.d37b44a8a3be4c3ef818.png",
@@ -46,11 +46,11 @@
     "index.html": "/gw2-react/index.html",
     "static/media/bank.svg": "/gw2-react/static/media/bank.054bc5f7f27e065e92c1bc2dccd17aa7.svg",
     "main.a3d9dc74.css.map": "/gw2-react/static/css/main.a3d9dc74.css.map",
-    "main.5a0f828e.js.map": "/gw2-react/static/js/main.5a0f828e.js.map",
+    "main.f7ce3d13.js.map": "/gw2-react/static/js/main.f7ce3d13.js.map",
     "453.a37af695.chunk.js.map": "/gw2-react/static/js/453.a37af695.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a3d9dc74.css",
-    "static/js/main.5a0f828e.js"
+    "static/js/main.f7ce3d13.js"
   ]
 }
