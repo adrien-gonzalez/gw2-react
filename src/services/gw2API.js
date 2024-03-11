@@ -37,9 +37,9 @@ export function getItem(item_id = "") {
 
 
 // SCOPE ACCOUNT
-export function getSkin(skin_id, key) {
+export function getSkin(skin_id) {
     return axios
-    .get(process.env.REACT_APP_API_URL+"skins/"+skin_id+"?access_token="+key)
+    .get(process.env.REACT_APP_API_URL+"skins/"+skin_id)
     .then((response) => response.data)
     .catch((error) => error.response.data.errors);    
 }

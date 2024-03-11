@@ -1,7 +1,7 @@
 import { Modal } from "react-bootstrap";
 import { Button } from '@mui/material';
 import "bootstrap/dist/css/bootstrap.min.css";
-import { getItem, getSkin, getWallet, getCurrencies, getAllItemsWithId } from '../services/gw2API';
+import { getItem, getSkin, getAllItemsWithId } from '../services/gw2API';
 import React, { useState, useEffect } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 import {  Tooltip, Zoom  } from '@mui/material';
@@ -91,9 +91,9 @@ const ModalCharacter = (props) => {
       props.close()
   }
 
-  const getMySkin = async (skin, api) => {
+  const getMySkin = async (skin) => {
     try{
-      const data = await getSkin(skin, api)
+      const data = await getSkin(skin)
       return data 
     } catch (error){
       return;
@@ -229,7 +229,7 @@ const ModalCharacter = (props) => {
 
       const object = await Promise.all(props.character.equipment.map((key) => {
         if(key.skin){
-          return getMySkin(key.skin, apiKey) 
+          return getMySkin(key.skin) 
         } else {
           return getMyEquipment(false, key.id)
         }

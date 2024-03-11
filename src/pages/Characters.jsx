@@ -90,7 +90,7 @@ const Characters = (props) => {
             }
         };
 
-        if(apiKey != null){
+        if(apiKey != null && !character){
             characters()
         }
     },[apiKey, character])
