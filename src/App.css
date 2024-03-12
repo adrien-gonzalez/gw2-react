@@ -2480,7 +2480,7 @@ Animations
 }
 
 
-
+/* 
 [data-rbd-droppable-id="todo"] .sc-gEvEer{
   background-color: #E74C3C !important
 }
@@ -2496,4 +2496,21 @@ Animations
 
 [data-rbd-droppable-id="other"] .sc-gEvEer{
   background-color: #2C3E50 !important
+} */
+
+
+.todo .task > div:first-child {
+  background-color: #E74C3C;
+}
+
+.in_progress .task > div:first-child {
+  background-color: orange;
+}
+
+.done .task > div:first-child {
+  background-color: #27AE60 ;
+}
+
+.other .task > div:first-child {
+  background-color: #2C3E50;
 }

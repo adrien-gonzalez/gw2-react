@@ -34,9 +34,9 @@ const initialData = {
     columnOrder: ["column-1", "column-2", "column-3", "column-4"]
   };
   
-  if(!localStorage.getItem('tasks')){
-    localStorage.setItem('tasks', JSON.stringify(initialData));
-  }
+  // if(!localStorage.getItem('tasks')){
+  //   localStorage.setItem('tasks', JSON.stringify(initialData));
+  // }
 
   export default initialData;
   

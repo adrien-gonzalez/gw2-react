@@ -31,7 +31,6 @@ const TaskList = styled.div`
 
 
 export const Column = ({ handleClear, onMouseLeave, onMouseEnter, hoveredTask, taskValues, handleChange, handleClick, showTextarea, handleCancel, column, isDropDisabled, tasks }) => {
-
   return (
     <Container className={localStorage.getItem('color') == "dark" ? 'darkColumn '+column.name+'' : 'defaultColumn '+column.name+''}>
       <Title>{column.title}</Title>

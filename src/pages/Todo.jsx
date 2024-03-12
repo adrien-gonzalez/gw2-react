@@ -5,40 +5,17 @@ import styled from "styled-components";
 import "@atlaskit/css-reset";
 import { DragDropContext } from "react-beautiful-dnd";
 import { Column } from "../components/dnd/column";
+import initialData  from "../components/dnd/initial-data";
+
 
 // import "./styles.css";
 
 const Container = styled.div`
   display: flex;
 `;
-const Todo = (props) => {
-  const initialState = {
-    columnOrder: ["todo", "inProgress", "done", "other"],
-    columns: {
-      "todo": {
-        id: "todo",
-        title: "À faire",
-        taskIds: []
-      },
-      "inProgress": {
-        id: "inProgress",
-        title: "En cours",
-        taskIds: []
-      },
-      "done": {
-        id: "done",
-        title: "Terminée",
-        taskIds: []
-      },
-      "other": {
-        id: "other",
-        title: "Autre",
-        taskIds: []
-      }
-    },
-    tasks: {}
-  };
-  const [state, setState] = useState(localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : initialState);
+const Todo = (props) => { 
+
+  const [state, setState] = useState(localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : initialData);
   const [showTextarea, setShowTextarea] = useState({});
   const [taskValues, setTaskValues] = useState({});
   const [hoveredTask, setHoveredTask] = useState(null);
@@ -47,7 +24,7 @@ const Todo = (props) => {
     start => {
       document.body.style.color = "orange";
       document.body.style.transition = "background-color 0.2s ease";
-
+      
       setState({
         ...state,
         homeIndex: state.columnOrder.indexOf(start.source.droppableId)
@@ -57,12 +34,12 @@ const Todo = (props) => {
   );
 
   const handleDragUpdate = useCallback(
-    // update => {
-    //   const opacity = update.destination
-    //     ? update.destination.index / Object.keys(state.tasks).length
-    //     : 0;
-    // },
-    // [state]
+    update => {
+      const opacity = update.destination
+        ? update.destination.index / Object.keys(state.tasks).length
+        : 0;
+    },
+    [state]
   );
 
   const handleDragEnd = useCallback(
@@ -204,7 +181,9 @@ const Todo = (props) => {
     });
   }
 
+
   return (
+    
     <section className="wrapper boardTodo">
       <DragDropContext
             onDragStart={handleDragStart}
