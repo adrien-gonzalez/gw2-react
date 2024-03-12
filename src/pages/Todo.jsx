@@ -13,7 +13,7 @@ const Container = styled.div`
 `;
 const Todo = (props) => {
   const initialState = {
-    columnOrder: ["todo", "inProgress", "done", "other"], // Ordre des colonnes
+    columnOrder: ["todo", "inProgress", "done", "other"],
     columns: {
       "todo": {
         id: "todo",
@@ -33,11 +33,10 @@ const Todo = (props) => {
       "other": {
         id: "other",
         title: "Autre",
-        taskIds: [] 
+        taskIds: []
       }
     },
-    tasks: {
-    }
+    tasks: {}
   };
   const [state, setState] = useState(localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : initialState);
   const [showTextarea, setShowTextarea] = useState({});
@@ -48,7 +47,7 @@ const Todo = (props) => {
     start => {
       document.body.style.color = "orange";
       document.body.style.transition = "background-color 0.2s ease";
-      
+
       setState({
         ...state,
         homeIndex: state.columnOrder.indexOf(start.source.droppableId)
@@ -214,6 +213,7 @@ const Todo = (props) => {
           >
            <Container>
             {state.columnOrder.map((columnId, index) => {
+
               const column = state.columns[columnId];
               const tasks = column.taskIds.map(taskId => state.tasks[taskId]);
               const isDropDisabled = index < state.homeIndex;
