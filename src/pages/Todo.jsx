@@ -12,7 +12,34 @@ const Container = styled.div`
   display: flex;
 `;
 const Todo = (props) => {
-  const [state, setState] = useState(JSON.parse(localStorage.getItem('tasks')));
+  const initialState = {
+    columnOrder: ["todo", "inProgress", "done", "other"], // Ordre des colonnes
+    columns: {
+      "todo": {
+        id: "todo",
+        title: "À faire",
+        taskIds: []
+      },
+      "inProgress": {
+        id: "inProgress",
+        title: "En cours",
+        taskIds: []
+      },
+      "done": {
+        id: "done",
+        title: "Terminée",
+        taskIds: []
+      },
+      "other": {
+        id: "other",
+        title: "Autre",
+        taskIds: [] 
+      }
+    },
+    tasks: {
+    }
+  };
+  const [state, setState] = useState(localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : initialState);
   const [showTextarea, setShowTextarea] = useState({});
   const [taskValues, setTaskValues] = useState({});
   const [hoveredTask, setHoveredTask] = useState(null);
@@ -178,7 +205,6 @@ const Todo = (props) => {
     });
   }
 
-
   return (
     <section className="wrapper boardTodo">
       <DragDropContext
@@ -186,34 +212,32 @@ const Todo = (props) => {
             onDragUpdate={handleDragUpdate}
             onDragEnd={handleDragEnd}
           >
-            <Container>
-              {state.columnOrder.map((columnId, index) => {
-                const column = state.columns[columnId];
-                const tasks = column.taskIds.map(taskId => state.tasks[taskId]);
-                const isDropDisabled = index < state.homeIndex;
+           <Container>
+            {state.columnOrder.map((columnId, index) => {
+              const column = state.columns[columnId];
+              const tasks = column.taskIds.map(taskId => state.tasks[taskId]);
+              const isDropDisabled = index < state.homeIndex;
 
-                // console.log(state)
-                return (
-                  <Column
-                    handleClick={() => handleClick(columnId)}
-                    handleCancel={() => handleCancel(columnId)}
-                    handleClear={(taskId, columnId) => handleClear(taskId, columnId)}
-                    onMouseEnter={(taskId) => setHoveredTask(taskId)}
-                    onMouseLeave={() => setHoveredTask(null)}
-                    hoveredTask={hoveredTask}
-                    taskValues={taskValues}
-                    handleChange={handleChange}
-                    showTextarea={showTextarea}
-                    key={columnId}
-                    column={column}
-                    tasks={tasks}
-                    isDropDisabled={isDropDisabled}
-                  />
-                );
-                
-              })}
-              
-            </Container>
+              return (
+                <Column
+                  key={columnId}
+                  id={columnId} // Ajoutez l'identifiant ici
+                  handleClick={() => handleClick(columnId)}
+                  handleCancel={() => handleCancel(columnId)}
+                  handleClear={(taskId, columnId) => handleClear(taskId, columnId)}
+                  onMouseEnter={(taskId) => setHoveredTask(taskId)}
+                  onMouseLeave={() => setHoveredTask(null)}
+                  hoveredTask={hoveredTask}
+                  taskValues={taskValues}
+                  handleChange={handleChange}
+                  showTextarea={showTextarea}
+                  column={column}
+                  tasks={tasks}
+                  isDropDisabled={isDropDisabled}
+                />
+              );
+            })}
+          </Container>
       </DragDropContext>
     </section>
   );

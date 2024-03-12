@@ -2359,22 +2359,6 @@ Animations
   position: absolute;
 }
 
-.todo .task > div:first-child {
-  background-color: #E74C3C;
-}
-
-.in_progress .task > div:first-child {
-  background-color: orange;
-}
-
-.done .task > div:first-child {
-  background-color: #27AE60 ;
-}
-
-.other .task > div:first-child {
-  background-color: #2C3E50;
-}
-
 .hide{
   display: none !important;
 }
@@ -2495,3 +2479,21 @@ Animations
   background-color: black !important;
 }
 
+
+
+[data-rbd-droppable-id="todo"] .sc-gEvEer{
+  background-color: #E74C3C !important
+}
+
+[data-rbd-droppable-id="inProgress"] .sc-gEvEer{
+  background-color: orange !important
+}
+
+[data-rbd-droppable-id="done"] .sc-gEvEer{
+  background-color: #27AE60 !important
+}
+
+
+[data-rbd-droppable-id="other"] .sc-gEvEer{
+  background-color: #2C3E50 !important
+}
